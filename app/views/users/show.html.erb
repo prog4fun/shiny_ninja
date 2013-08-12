@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Login:</b>
+  <%= @user.login %>
+</p>
+
+<p>
+  <b>Firstname:</b>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @user.password %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%= @user.phone_number %>
+</p>
+
+<p>
+  <b>Street:</b>
+  <%= @user.street %>
+</p>
+
+<p>
+  <b>Street number:</b>
+  <%= @user.street_number %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @user.zipcode %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @user.city %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @user.country %>
+</p>
+
+<p>
+  <b>Bank name:</b>
+  <%= @user.bank_name %>
+</p>
+
+<p>
+  <b>Bank number code:</b>
+  <%= @user.bank_number_code %>
+</p>
+
+<p>
+  <b>Bank account number:</b>
+  <%= @user.bank_account_number %>
+</p>
+
+<p>
+  <b>Taxnumber:</b>
+  <%= @user.taxnumber %>
+</p>
+
+<p>
+  <b>Signatur path:</b>
+  <%= @user.signatur_path %>
+</p>
+
+<p>
+  <b>User types:</b>
+  <%= @user.user_types %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

@@ -14,3 +14,12 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+/nbproject
+/config/database.yml
+/config/database.yml~
+/config/environments/staging.rb
+/config/environments/staging.rb~
+/config/environments/production.rb
+/config/environments/production.rb~
+/config/deploy.rb
+/config/deploy.rb~
