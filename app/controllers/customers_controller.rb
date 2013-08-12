@@ -2,6 +2,8 @@
 
 class CustomersController < ApplicationController
 
+  # Filter
+  before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
   
 

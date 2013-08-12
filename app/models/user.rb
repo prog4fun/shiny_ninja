@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
     :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/},
     :uniqueness => {:case_sensitive => false}
+  validates :firstname, :presence => true
+  validates :lastname, :presence => true
   
   
   ROLES = %w[admin time_tracker project_evaluator]
