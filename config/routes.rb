@@ -1,4 +1,10 @@
 ShinyNinja::Application.routes.draw do
+  
+  match "/users/adm_index", :controller => "users", :action => "adm_index"
+  match "/users/:id/adm_show", :controller => "users", :action => "adm_show"
+  match "/users/:id/adm_create", :controller => "users", :action => "adm_create"
+  match "/users/:id/adm_edit", :controller => "users", :action => "adm_edit"
+  
   resources :services
 
   resources :reports

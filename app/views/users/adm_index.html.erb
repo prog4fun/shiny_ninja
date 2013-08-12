@@ -17,11 +17,9 @@
       <td><%= user.login %></td>
       <td><%= user.firstname %></td>
       <td><%= user.lastname %></td>
-      <td id="action"><%= link_to_show(user) %></td>
-      <td id="action"><%= link_to_edit(edit_user_path(user)) %></td>
-      <% unless user.id == current_user.id %>
-        <td id="action"><%= link_to_destroy(user, confirm: t("labels.actions.confirm"), method: :delete) %></td>
-      <% end %>
+      <td id="action"><%= link_to t("labels.actions.show"), :controller => "users", :action => "adm_show", :id => user.id %></td>
+      <td id="action"><%= link_to t("labels.actions.edit"), :controller => "users", :action => "adm_edit", :id => user.id %></td>
+      <td id="action"><%= link_to_destroy(user, confirm: t("labels.actions.confirm"), method: :delete) %></td>
     </tr>
   <% end %>
 </table>

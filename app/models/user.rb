@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   
   # associations
   has_many :customers
-  has_and_belongs_to_many :projects
   
   # validations
   validates :login, :presence => true,
@@ -33,7 +32,7 @@ class User < ActiveRecord::Base
   validates :firstname, :presence => true
   validates :lastname, :presence => true
   
-  
+  # if you change the order here, change users_controller --> create!
   ROLES = %w[administrator time_tracker project_evaluator]
   
   def roles=(roles)
@@ -66,4 +65,16 @@ class User < ActiveRecord::Base
     result.order("lastname ASC")
   end
   
+  def self.adm_search(search)
+    result = User
+    if search
+      if search["firstname"].present?
+        result = result.where("firstname LIKE ?", search["firstname"])
+      end
+      if search["lastname"].present?
+        result = result.where("lastname LIKE ?", search["lastname"])
+      end
+    end
+    result.order("lastname ASC")
+  end
 end

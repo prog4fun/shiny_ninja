@@ -19,6 +19,19 @@ class UsersController < ApplicationController
       format.html
     end
   end
+  
+  def adm_index
+    params[:search] ||= {}
+    @users = User.adm_search(params[:search]).page(params[:page])
+    
+    @active_menu = "user"
+    @search_bar = true
+    @head1 = t("activerecord.models.users")
+
+    respond_to do |format|
+      format.html
+    end
+  end
 
   def show
     @user = User.find(params[:id])
@@ -37,9 +50,33 @@ class UsersController < ApplicationController
       not_own_object_redirection
     end
   end
+  
+  def adm_show
+    @user = User.find(params[:id])
+    
+    @active_menu = "user"
+    @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
+    add_breadcrumb t("labels.actions.show"), user_path(@user)
+
+    respond_to do |format|
+      format.html
+    end
+  end
 
   def new
-    @user = User.new :country => "Deutschland"
+    @user = User.new
+    
+    @active_menu = "user"
+    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.users")}"
+    add_breadcrumb t("labels.actions.new"), new_user_path
+
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def adm_new
+    @user = User.new
     
     @active_menu = "user"
     @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.users")}"
@@ -63,6 +100,14 @@ class UsersController < ApplicationController
       not_own_object_redirection
     end
   end
+  
+  def adm_edit
+    @user = User.find(params[:id])
+    
+    @active_menu = "user"
+    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
+    add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
+  end
 
   def create
     @user = User.new(params[:user])
@@ -70,7 +115,9 @@ class UsersController < ApplicationController
     @active_menu = "user"
 
     respond_to do |format|
-      params[:user][:country] = "de"
+      @user.attributes = {:country => "de",
+        :created_by => current_user.id,
+        :roles_mask => 3 }   # 3 --> project_evaluator
       if @user.save
         format.html { redirect_to @user, notice: t("confirmations.messages.saved") }
       else
@@ -85,6 +132,7 @@ class UsersController < ApplicationController
     @active_menu = "user"
 
     respond_to do |format|
+      params[:user][:country] = "de"
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: t("confirmations.messages.saved") }
       else

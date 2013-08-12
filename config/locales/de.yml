@@ -259,8 +259,8 @@ de:
       bank_account_number: "Kontonummer"
       tax_number: "Steuernummer"
       signature: "Unterschrift"
-      user_type: "Rolle"
-      user_types: "Rollen"
+      role: "Rolle"
+      roles: "Rollen"
     project:
       name: "Projektname"
       timebudget: "geplante Stunden für das Projekt"

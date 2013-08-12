@@ -78,6 +78,13 @@
 </p>
 
 <p>
+  <b><%= t("labels.person.roles") %></b>
+  <% @user.roles.each do |role| %>
+    <%= role.humanize %>,</b>
+<% end %>
+</p>
+
+<p>
   <b><%= t("labels.universe.comment") %></b>
   <%= @user.comment %>
 </p>
