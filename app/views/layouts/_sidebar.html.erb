@@ -1,0 +1,9 @@
+# encoding: UTF-8
+
+<%  if @search_bar == true %>
+  <b> <font size="+2"> Downloads </font> </b>
+  <br/>
+  <%  if @active_menu == "report" %>
+    <%= link_to 'CSV-File', :action => "index", :data => params[:search], :format => :csv %>
+  <% end %>
+<% end %>

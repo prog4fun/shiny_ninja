@@ -1,0 +1,52 @@
+# encoding: UTF-8
+
+<div id="menu">
+  <%  if @active_menu == "report" %>
+    <li class="nav"><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
+  <% end %>
+
+  <%  if @active_menu == "bill" %>
+    <li class="nav"><%= link_to t('activerecord.models.bills'), bills_path %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.bills'), bills_path %></li>
+  <% end %>
+
+  <%  if @active_menu == "service" %>
+    <li class="nav"><%= link_to t('activerecord.models.services'), services_path %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.services'), services_path %></li>
+  <% end %>
+
+  <%  if @active_menu == "project" %>
+    <li class="nav"><%= link_to t('activerecord.models.projects'), projects_path %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.projects'), projects_path %></li>
+  <% end %>
+
+  <%  if @active_menu == "contract" %>
+    <li class="nav"><%= link_to t('activerecord.models.contracts'), contracts_path %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.contracts'), contracts_path %></li>
+  <% end %>
+
+  <%  if @active_menu == "customer" %>
+    <li class="nav"><%= link_to t('activerecord.models.customers'), customers_path %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.customers'), customers_path %></li>
+  <% end %>
+
+  <%  if @active_menu == "roles" %>
+    <li class="nav"><%= link_to t('activerecord.models.roles'), roles_path %></li>
+  <% else %>
+    <li><%# link_to t('activerecord.models.roles'), roles_path %></li>
+  <% end %>
+
+  <%  if @active_menu == "user" %>
+    <li class="nav"><%= link_to t('activerecord.models.users'), users_path %></li>
+  <% else %>
+    <li><%= link_to t('activerecord.models.users'), users_path %></li>
+  <% end %>
+
+</div>
