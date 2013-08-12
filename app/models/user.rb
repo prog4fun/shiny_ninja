@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates :lastname, :presence => true
   
   
-  ROLES = %w[admin time_tracker project_evaluator]
+  ROLES = %w[administrator time_tracker project_evaluator]
   
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)

@@ -230,6 +230,8 @@ de:
       head: "Aktionen"
       new: "Neu"
       show: "Anzeigen"
+    authorization:
+      denied: "Sie haben nicht die benötigten Rechte für diese Seite."
     breadcrumbs:
       index: "Startseite"
       index_title: "Zurück zur Übersicht"

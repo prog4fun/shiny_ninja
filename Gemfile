@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 
 gem 'breadcrumbs_on_rails'
+gem 'cancan'
 gem 'devise'
 gem 'kaminari'
 

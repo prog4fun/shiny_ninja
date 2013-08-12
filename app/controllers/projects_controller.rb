@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
+  load_and_authorize_resource
   
   def index
     @projects = Project.page(params[:page]).per(@@object_quantity_of_one_page)
