@@ -1,11 +1,17 @@
 # encoding: UTF-8
 
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  # :registerable
+  devise :database_authenticatable, :recoverable,
+    :rememberable, :trackable, :validatable
+  
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
-    :country, :email, :firstname, :lastname, :login, :password, :password_confirmation,
-    :phone_number, :roles, :signature, :street, :street_number,
-    :tax_number, :zipcode
-  # :roles_mask
+    :comment, :country, :email, :firstname, :lastname, :login, :password,
+    :password_confirmation, :phone_number, :remember_me, :roles, :roles_mask, 
+    :signature, :street, :street_number, :tax_number, :zipcode
   
   # validations
   validates :login, :presence => true,

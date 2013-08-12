@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 
 gem 'breadcrumbs_on_rails'
+gem 'devise'
 gem 'kaminari'
 
 # To use ActiveModel has_secure_password
