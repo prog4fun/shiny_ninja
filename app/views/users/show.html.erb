@@ -83,4 +83,4 @@
 </p>
 
 
-<%= link_to t("labels.actions.edit"), edit_user_path(@user) %>
+<%= link_to t("labels.actions.edit"), :controller => "users", :action => "adm_edit", :id => @user.id %>

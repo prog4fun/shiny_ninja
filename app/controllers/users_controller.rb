@@ -119,7 +119,7 @@ class UsersController < ApplicationController
         :created_by => current_user.id,
         :roles_mask => 3 }   # 3 --> project_evaluator
       if @user.save
-        format.html { redirect_to @user, notice: t("confirmations.messages.saved") }
+        format.html { redirect_to redirect_to action: "adm_show", id: @user.id, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "new" }
       end
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       params[:user][:country] = "de"
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: t("confirmations.messages.saved") }
+        format.html { redirect_to action: "adm_show", id: @user.id, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "edit" }
       end

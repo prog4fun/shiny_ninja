@@ -27,12 +27,11 @@
 
   <%  css_user_class = "nav" if @active_menu == "user" %>
 
-  <% if current_user != nil %>
+  <% if current_user.present? %>
     <% if current_user.is? :administrator %>
       <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_index" %></li>
+    <% else %>
+      <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), users_path %></li>
     <% end %>
-  <% else %>
-    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), users_path %></li>
   <% end %>
-
 </div>
