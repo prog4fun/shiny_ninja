@@ -34,18 +34,12 @@
   <%  if @active_menu == "customer" %>
     <li class="nav"><%= link_to t('activerecord.models.customers'), customers_path %></li>
   <% else %>
-    <li><%# link_to t('activerecord.models.customers'), customers_path %></li>
-  <% end %>
-
-  <%  if @active_menu == "roles" %>
-    <li class="nav"><%= link_to t('activerecord.models.roles'), roles_path %></li>
-  <% else %>
-    <li><%# link_to t('activerecord.models.roles'), roles_path %></li>
+    <li><%= link_to t('activerecord.models.customers'), customers_path %></li>
   <% end %>
 
   <%  if @active_menu == "user" %>
     <li class="nav"><%= link_to t('activerecord.models.users'), users_path %></li>
-  <% else %>
+    <% else %>
     <li><%= link_to t('activerecord.models.users'), users_path %></li>
   <% end %>
 
