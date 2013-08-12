@@ -2,6 +2,14 @@
 
 module ApplicationHelper
   
+  # UNIVERSE
+  def cancel_link
+    return link_to t("labels.actions.cancel"), request.env["HTTP_REFERER"],
+      :class => 'cancel',
+      :confirm => t("labels.cancel_confirm")
+  end
+  
+  
   # ICONS
   def link_to_function(icon, options = {})
     return link_to(icon, options, :class => "no_hover")

@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130811090428) do
     t.string   "bank_account_number"
     t.string   "tax_number"
     t.string   "signature"
+    t.text     "comment"
     t.integer  "roles_mask"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

@@ -89,5 +89,10 @@
   <% end %>
 </p>
 
+<p>
+  <b><%= t("labels.universe.comment") %></b>
+  <%= @user.comment %>
+</p>
+
 
 <%= link_to t("labels.actions.edit"), edit_user_path(@user) %>

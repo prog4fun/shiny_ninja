@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :bank_account_number
       t.string :tax_number
       t.string :signature
+      t.text :comment
       t.integer :roles_mask
 
       t.timestamps

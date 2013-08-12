@@ -221,6 +221,8 @@ de:
   labels:
     actions:
       back: "Zurück"
+      cancel: "Abbrechen"
+      cancel_confirm: "Sind Sie sich sicher? Alle Eingaben gehen verloren."
       confirmate: "Sind Sie sich sicher?"
       destroy: "Löschen"
       edit: "Bearbeiten"
@@ -231,6 +233,9 @@ de:
     breadcrumbs:
       index: "Startseite"
       index_title: "Zurück zur Übersicht"
+    customer:
+      name: "Bezeichnung"
+      email: "eMail des Ansprechspartners"
     person:
       firstname: "Vorname"
       lastname: "Nachname"
@@ -251,3 +256,5 @@ de:
       signature: "Unterschrift"
       user_type: "Rolle"
       user_types: "Rollen"
+    universe:
+      comment: "Kommentar"
