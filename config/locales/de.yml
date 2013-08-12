@@ -223,7 +223,7 @@ de:
       back: "Zurück"
       cancel: "Abbrechen"
       cancel_confirm: "Sind Sie sich sicher? Alle Eingaben gehen verloren."
-      confirmate: "Sind Sie sich sicher?"
+      confirm: "Sind Sie sich sicher?"
       destroy: "Löschen"
       edit: "Bearbeiten"
       logout: "Ausloggen"
@@ -265,6 +265,8 @@ de:
       date: "Datum"
       duration: "Dauer"
     service:
+      billable: "Abrechenbar"
+      name: "Servicename"
       wage: "Gehalt"
     universe:
       comment: "Kommentar"

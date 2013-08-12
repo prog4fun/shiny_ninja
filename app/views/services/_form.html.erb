@@ -1,0 +1,41 @@
+# encoding: UTF-8
+
+<%= form_for(@service) do |f| %>
+  <% if @service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service.errors.count, t("errors.form")) %></h2>
+
+      <ul>
+        <% @service.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, t("labels.service.name") %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :wage, t("labels.service.wage") %><br />
+    <%= f.text_field :wage %>
+  </div>
+  <div class="field">
+    <%= f.label :billable, t("labels.service.billable") %><br />
+    <%= f.check_box :billable %>
+  </div>
+  <div class="field">
+    <%= f.label :comment, t("labels.universe.comment") %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <div class="actions">
+    <%= f.submit %><%= cancel_link %>
+  </div>
+<% end %>

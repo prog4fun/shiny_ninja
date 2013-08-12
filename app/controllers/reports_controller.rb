@@ -31,9 +31,10 @@ class ReportsController < ApplicationController
   end
 
   def new
+    @report = Report.new
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
-    #@services = Service.where( :user_id => current_user.id)
+    @services = Service.where( :user_id => current_user.id)
     
     @active_menu = "report"
     @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.reports")}"
@@ -46,6 +47,9 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
+    customers = Customer.where( :user_id => current_user.id)
+    @projects = Project.where( :customer_id => customers)
+    @services = Service.where( :user_id => current_user.id)
     
     @active_menu = "report"
     @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.report")}"

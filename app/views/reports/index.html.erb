@@ -20,7 +20,7 @@
       <td><%= report.service.wage %></td>
       <td id="action"><td><%= link_to_show(report) %></td>
       <td id="action"><td><%= link_to_edit(edit_report_path(report)) %></td>
-      <td id="action"><td><%= link_to_destroy(project, confirm: t("labels.actions.confirmate"), method: :delete) %></td>
+      <td id="action"><td><%= link_to_destroy(project, confirm: t("labels.actions.confirm"), method: :delete) %></td>
     </tr>
   <% end %>
 </table>

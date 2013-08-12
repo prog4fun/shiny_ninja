@@ -5,8 +5,8 @@
 # +++++++++++++++++++++++++
 Customer.delete_all
 Project.delete_all
-# Report.delete_all
-# Service.delete_all
+Report.delete_all
+Service.delete_all
 User.delete_all
 
 # +++++++++++++++++++++++++
@@ -100,6 +100,46 @@ customer5 = Customer.create(
   user_id: user4.id
 )
 
+
+# Services
+# +++++++++++++++++++++++++
+service1 = Service.create(
+  name: "Java",
+  wage: 10,
+  billable: true,
+  comment: "Java programming",
+  user_id: user1.id
+)
+service2 = Service.create(
+  name: "C++",
+  wage: 15,
+  billable: true,
+  comment: "C++ programming",
+  user_id: user1.id
+)
+service3 = Service.create(
+  name: "Ruby",
+  wage: 20,
+  billable: true,
+  comment: "Ruby programming",
+  user_id: user2.id
+)
+service4 = Service.create(
+  name: "HTML",
+  wage: 25,
+  billable: false,
+  comment: "HTML programming",
+  user_id: user3.id
+)
+service5 = Service.create(
+  name: "JavaScript",
+  wage: 30,
+  billable: false,
+  comment: "JavaScript programming",
+  user_id: user4.id
+)
+
+
 # Projects
 # +++++++++++++++++++++++++
 project1 = Project.create(
@@ -125,4 +165,43 @@ project4 = Project.create(
   timebudget: 400,
   comment: "Event application programming",
   customer_id: customer4.id
+)
+
+
+# Reports
+# +++++++++++++++++++++++++
+report1 = Report.create(
+  date: DateTime.strptime("05/08/2011", "%d/%m/%Y"),
+  duration: 2.3,
+  comment: "A lot of fun",
+  project_id: project1.id,
+  service_id: service1.id
+)
+report2 = Report.create(
+  date: DateTime.strptime("10/02/2012", "%d/%m/%Y"),
+  duration: 3.74,
+  comment: "Great",
+  project_id: project2.id,
+  service_id: service2.id
+)
+report3 = Report.create(
+  date: DateTime.strptime("15/09/2012", "%d/%m/%Y"),
+  duration: 4.25,
+  comment: "Boring",
+  project_id: project3.id,
+  service_id: service3.id
+)
+report4 = Report.create(
+  date: DateTime.strptime("20/12/2014", "%d/%m/%Y"),
+  duration: 5.68,
+  comment: "What's next?",
+  project_id: project4.id,
+  service_id: service4.id
+)
+report5 = Report.create(
+  date: DateTime.strptime("04/03/2015", "%d/%m/%Y"),
+  duration: 3.70,
+  comment: "Looking forward",
+  project_id: project4.id,
+  service_id: service4.id
 )

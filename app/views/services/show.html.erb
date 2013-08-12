@@ -1,0 +1,26 @@
+# encoding: UTF-8
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= t("labels.service.name") %></b>
+  <%= @service.name %>
+</p>
+
+<p>
+  <b><%= t("labels.service.wage") %></b>
+  <%= @service.wage %>
+</p>
+
+<p>
+  <b><%= t("labels.service.billable") %></b>
+  <%= @service.billable %>
+</p>
+
+<p>
+  <b><%= t("labels.universe.comment") %></b>
+  <%= @service.comment %>
+</p>
+
+
+<%= link_to t("labels.actions.edit"), edit_user_path(@user) %>

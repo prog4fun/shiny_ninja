@@ -18,22 +18,22 @@
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :duration, t("labels.report.duration") %> (in hours, use  ' . ')<br />
-    <%= f.text_field :duration %>
+    <%= f.label :duration, t("labels.report.duration") %> (in Stunden, trenne mit  ' . ')<br />
+    <%= f.number_field :duration, :size => 2 %>
   </div>
   <div class="field">
     <%= f.label :project_id, t("activerecord.models.project") %><br />
     <%= select("report", "project_id", @projects.collect {|i| [ i.name, i.id ] }) %>
     <div class="field">
-  <%# f.label :service_id, t("activerecord.models.service") %> %><br />
-  <%# select("report", "service_id", @services.all.collect {|i| [ i.name, i.id ] }) %>
+      <%= f.label :service_id, t("activerecord.models.service") %><br />
+      <%= select("report", "service_id", @services.all.collect {|i| [ i.name, i.id ] }) %>
     </div>
-<div class="field">
-  <%= f.label :comment, t("labels.universe.comment") %><br />
-    <%= f.text_area :comment %>
-  </div>
-    
-    
+    <div class="field">
+      <%= f.label :comment, t("labels.universe.comment") %><br />
+      <%= f.text_area :comment %>
+    </div>
+
+
     <div class="actions">
       <%= f.submit %><%= cancel_link %>
     </div>
