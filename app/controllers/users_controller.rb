@@ -2,13 +2,19 @@
 
 class UsersController < ApplicationController
 
+  before_filter :add_breadcrumb_index
+  
+
+  def add_breadcrumb_index
+    add_breadcrumb t("labels.breadcrumbs.index"), users_path, :title => t("labels.breadcrumbs.index_title")
+  end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(@@object_quantity_of_one_page)
     
     @active_menu = "user"
     @search_bar = true
-    @head1 = t('activerecord.models.users')
+    @head1 = t("activerecord.models.users")
 
     respond_to do |format|
       format.html
@@ -19,20 +25,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     @active_menu = "user"
-    @head1 = "Show < " + @user.firstname + " " + @user.lastname + " >"
+    @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
+    add_breadcrumb t("labels.actions.show"), user_path(@user)
 
     respond_to do |format|
       format.html
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new :country => "Deutschland"
     
     @active_menu = "user"
-    @head1 = "New " + t('activerecord.models.user').pluralize
+    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.users")}"
+    add_breadcrumb t("labels.actions.new"), new_user_path
 
     respond_to do |format|
       format.html
@@ -43,7 +49,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     @active_menu = "user"
-    @head1 = "Edit < " + t('activerecord.models.user') + " >"
+    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
+    add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
   end
 
   def create
