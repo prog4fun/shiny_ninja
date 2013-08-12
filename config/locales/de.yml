@@ -261,5 +261,10 @@ de:
     project:
       name: "Projektname"
       timebudget: "geplante Stunden für das Projekt"
+    report:
+      date: "Datum"
+      duration: "Dauer"
+    service:
+      wage: "Gehalt"
     universe:
       comment: "Kommentar"

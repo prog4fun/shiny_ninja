@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= t("labels.report.date") %></b>
+  <%= @report.date %>
+</p>
+
+<p>
+  <b><%= t("labels.report.duration") %></b>
+  <%= @report.duration %>
+</p>
+
+<p>
+  <b><%= t("activerecord.models.project") %></b>
+  <%= @report.project.name %>
+</p>
+
+<p>
+  <b><%= t("activerecord.models.service") %></b>
+  <%= @report.service.name %>
+</p>
+
+<p>
+  <b><%= t("labels.universe.comment") %></b>
+  <%= @report.comment %>
+</p>
+
+
+<%= link_to t("labels.actions.edit"), edit_user_path(@user) %>

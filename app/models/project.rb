@@ -3,4 +3,9 @@ class Project < ActiveRecord::Base
   
   # associations
   belongs_to :customer
+  
+  # validations
+  validates :name, :presence => true
+  validates :timebudget, :presence => true
+  validates :customer_id, :presence => true
 end

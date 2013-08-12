@@ -1,0 +1,40 @@
+# encoding: UTF-8
+
+<%= form_for(@report) do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, t("errors.form")) %></h2>
+
+      <ul>
+        <% @report.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date, t("labels.report.date") %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :duration, t("labels.report.duration") %> (in hours, use  ' . ')<br />
+    <%= f.text_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id, t("activerecord.models.project") %><br />
+    <%= select("report", "project_id", @projects.collect {|i| [ i.name, i.id ] }) %>
+    <div class="field">
+  <%# f.label :service_id, t("activerecord.models.service") %> %><br />
+  <%# select("report", "service_id", @services.all.collect {|i| [ i.name, i.id ] }) %>
+    </div>
+<div class="field">
+  <%= f.label :comment, t("labels.universe.comment") %><br />
+    <%= f.text_area :comment %>
+  </div>
+    
+    
+    <div class="actions">
+      <%= f.submit %><%= cancel_link %>
+    </div>
+  <% end %>

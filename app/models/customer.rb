@@ -5,7 +5,11 @@ class Customer < ActiveRecord::Base
   
   # associations
   has_many :projects
-  
   belongs_to :user
+  
+  # validations
+  validates :name, :presence => true
+  validates :email, :presence => true
+  validates :user_id, :presence => true
   
 end

@@ -15,9 +15,9 @@
       <td><%= user.login %></td>
       <td><%= user.firstname %></td>
       <td><%= user.lastname %></td>
-      <td><%= link_to_show(user) %></td>
-      <td><%= link_to_edit(edit_user_path(user)) %></td>
-      <td><%= link_to_destroy(user, confirm: t("labels.actions.confirmate"), method: :delete) %></td>
+      <td id="action"><td><%= link_to_show(user) %></td>
+      <td id="action"><td><%= link_to_edit(edit_user_path(user)) %></td>
+      <td id="action"><td><%= link_to_destroy(user, confirm: t("labels.actions.confirmate"), method: :delete) %></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,26 @@
+# encoding: UTF-8
+
+<div id="new-button"><%= link_to_new(new_report_path) %></div>
+
+
+<table>
+  <tr>
+    <th><%= t("labels.report.date") %></th>
+    <th><%= t("activerecord.models.customer") %></th>
+    <th><%= t("labels.report.duration") %></th>
+    <th><%= t("labels.service.wage") %></th>
+    <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
+  </tr>
+
+  <% @reports.each do |report| %>
+    <tr>
+      <td><%= report.date %></td>
+      <td><%= get_customer_of_report(report) %></td>
+      <td><%= report.duration %></td>
+      <td><%= report.service.wage %></td>
+      <td id="action"><td><%= link_to_show(report) %></td>
+      <td id="action"><td><%= link_to_edit(edit_report_path(report)) %></td>
+      <td id="action"><td><%= link_to_destroy(project, confirm: t("labels.actions.confirmate"), method: :delete) %></td>
+    </tr>
+  <% end %>
+</table>

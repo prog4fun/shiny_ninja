@@ -4,7 +4,7 @@
   <%  if @active_menu == "report" %>
     <li class="nav"><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
   <% else %>
-    <li><%# link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
+    <li><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
   <% end %>
 
   <%  if @active_menu == "bill" %>
