@@ -226,9 +226,11 @@ de:
       confirm: "Sind Sie sich sicher?"
       destroy: "Löschen"
       edit: "Bearbeiten"
-      logout: "Ausloggen"
       head: "Aktionen"
+      logout: "Ausloggen"
       new: "Neu"
+      reset: "Zurücksetzen"
+      search: "Suchen"
       show: "Anzeigen"
     authorization:
       denied: "Sie haben nicht die benötigten Rechte für diese Seite."

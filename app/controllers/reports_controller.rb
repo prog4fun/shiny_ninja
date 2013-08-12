@@ -7,7 +7,10 @@ class ReportsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @reports = Report.page(params[:page]).per(@@object_quantity_of_one_page)
+    @customers = Customer.where( :user_id => current_user.id)
+    @projects = Project.where( :customer_id => @customers)
+    params[:search] ||= {}
+    @reports = Report.search(params[:search], current_user).page(params[:page])
     
     @active_menu = "report"
     @search_bar = true

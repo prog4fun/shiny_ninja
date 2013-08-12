@@ -1,0 +1,20 @@
+<%= form_tag reports_path, :method => 'get' do %>
+
+
+  <%= label_tag("[search][date_from]", t("labels.date") + " (from") %>
+  <%= label_tag("[search][date_to]", " - to)") %></br>
+
+  <%= text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4) %>
+  <%= text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4) %></br>
+
+  <%= label_tag("[search][customer]", t("activerecord.models.customer")) %></br>
+  <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.empty_search_option")) %></br>
+
+  <%= label_tag("[search][project]", t("activerecord.models.project")) %></br>
+  <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.empty_search_option")) %></br>
+  </br>
+  <div style="float: left; width: auto;"><%= submit_tag t("labels.actions.search"), :name => nil %></div>
+
+<% end %>
+
+<%= button_to(t("labels.actions.reset"), reports_path, :method => 'get') %>

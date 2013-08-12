@@ -1,0 +1,11 @@
+<%= form_tag services_path, :method => 'get' do %>
+
+  <%= label_tag("[search][name]", t("labels.name")) %></br>
+  <%= text_field_tag("[search][name]", params[:search][:name]) %></br>
+  </br>
+  <div style="float: left; width: auto;"><%= submit_tag t("labels.actions.search"), :name => nil %></div>
+
+<% end %>
+
+<%= button_to(t("labels.actions.reset"), services_path, :method => 'get') %>
+

@@ -1,0 +1,14 @@
+<%= form_tag projects_path, :method => 'get' do %>
+
+  <%= label_tag("[search][name]", t("labels.name")) %></br>
+  <%= text_field_tag("[search][name]", params[:search][:name]) %></br>
+
+  <%= label_tag("[search][customer]", t("activerecord.models.customer")) %></br>
+  <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.empty_search_option")) %></br>
+  </br>
+  <div style="float: left; width: auto;"><%= submit_tag t("labels.actions.search"), :name => nil %></div>
+
+<% end %>
+
+<%= button_to(t("labels.actions.reset"), projects_path, :method => 'get') %>
+

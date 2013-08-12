@@ -9,12 +9,13 @@ class User < ActiveRecord::Base
     :rememberable, :trackable, :validatable
   
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :email, :firstname, :lastname, :login, :password,
-    :password_confirmation, :phone_number, :remember_me, :roles, :roles_mask, 
-    :signature, :street, :street_number, :tax_number, :zipcode
+    :comment, :country, :created_by, :email, :firstname, :lastname, :login,
+    :password, :password_confirmation, :phone_number, :remember_me, :roles,
+    :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode
   
   # associations
   has_many :customers
+  has_and_belongs_to_many :projects
   
   # validations
   validates :login, :presence => true,
@@ -47,6 +48,22 @@ class User < ActiveRecord::Base
   
   def is?(role)
     roles.include?(role.to_s)
+  end
+  
+  # search
+  def self.search(search, current_user)
+
+    result = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
+    
+    if search
+      if search["firstname"].present?
+        result = result.where("firstname LIKE ?", search["firstname"])
+      end
+      if search["lastname"].present?
+        result = result.where("lastname LIKE ?", search["lastname"])
+      end
+    end
+    result.order("lastname ASC")
   end
   
 end

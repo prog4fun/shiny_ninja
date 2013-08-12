@@ -1,10 +1,10 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :login, :null => false
+      t.string :login,      :null => false
       t.string :firstname
       t.string :lastname
-      t.string :email, :null => false
+      t.string :email,      :null => false
       t.string :phone_number
       t.string :street
       t.string :street_number
@@ -18,6 +18,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :signature
       t.text :comment
       t.integer :roles_mask
+      t.integer :created_by, :null => false
 
       t.timestamps
     end

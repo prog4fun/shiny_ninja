@@ -8,7 +8,8 @@ class CustomersController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @customers = Customer.page(params[:page]).per(@@object_quantity_of_one_page)
+    params[:search] ||= {}
+    @customers = Customer.search(params[:search], current_user).page(params[:page])
     
     @active_menu = "customer"
     @search_bar = true

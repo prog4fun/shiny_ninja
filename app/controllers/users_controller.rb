@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @users = User.page(params[:page]).per(@@object_quantity_of_one_page)
+    params[:search] ||= {}
+    @users = User.search(params[:search], current_user).page(params[:page])
     
     @active_menu = "user"
     @search_bar = true

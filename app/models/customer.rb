@@ -12,4 +12,20 @@ class Customer < ActiveRecord::Base
   validates :email, :presence => true
   validates :user_id, :presence => true
   
+  # search
+  def self.search(search, current_user)
+    
+    result = current_user.customers
+    
+    if search
+      if search["name"].present?
+        result = result.where('name LIKE ?', "%" + search["name"] + "%")
+      end
+      if search["email"].present?
+        result = result.where('email LIKE ?', "%" + search["email"] + "%")
+      end    
+    end
+    result.order("name")
+  end
+  
 end

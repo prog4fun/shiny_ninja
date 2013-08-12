@@ -7,7 +7,8 @@ class ServicesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @services = Service.page(params[:page]).per(@@object_quantity_of_one_page)
+    params[:search] ||= {}
+    @services = Service.search(params[:search], current_user).page(params[:page])
     
     @active_menu = "service"
     @search_bar = true

@@ -33,20 +33,20 @@
       <%= yield %>
     </div>
 
-    <%# if user_signed_in? %>
-      <%#  if @search_bar == true %>
+    <% if user_signed_in? %>
+      <%  if @search_bar == true %>
         <div id="search-bar">
           <h2>Filter ...</h2>
-          <%# render "search_bar" %>
+          <%= render "search_bar" %>
         </div>
         <div id="sidebar-with-search-bar">
-        <%#  else %>
+        <%  else %>
           <div id="sidebar-without-search-bar">
-          <%# end %>
+          <% end %>
 
           <%= render "layouts/sidebar" %>
         </div>
-      <%# end%>
+      <% end%>
 
       <div id="footer">
         <%= render "layouts/footer" %>

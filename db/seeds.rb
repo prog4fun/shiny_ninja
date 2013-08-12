@@ -32,7 +32,8 @@ user1 = User.create(
   bank_account_number: "365468131",
   tax_number: "999-888-555",
   signature: "/home/shiny-ninja-data/signature/mkoriath.png",
-  roles_mask: 1
+  roles_mask: 1,
+  created_by: 1
 )
 user2 = User.create(
   login: "cturk",
@@ -40,7 +41,8 @@ user2 = User.create(
   firstname: "Christopher",
   lastname: "Turk",
   email: "Christopher.Turk@mail.com",
-  roles_mask: 1
+  roles_mask: 1,
+  created_by: user1.id
 )
 user3 = User.create(
   login: "creid",
@@ -48,7 +50,8 @@ user3 = User.create(
   firstname: "Elliot",
   lastname: "Reid",
   email: "Elliot.Reid@mail.com",
-  roles_mask: 2
+  roles_mask: 2,
+  created_by: user2.id
 )
 user4 = User.create(
   login: "cespinosa",
@@ -56,7 +59,8 @@ user4 = User.create(
   firstname: "Carla",
   lastname: "Espinosa",
   email: "Carla.Espinosa@mail.com",
-  roles_mask: 2
+  roles_mask: 2,
+  created_by: user3.id
 )
 user5 = User.create(
   login: "pcox",
@@ -64,7 +68,8 @@ user5 = User.create(
   firstname: "Perry",
   lastname: "Cox",
   email: "Perry.Cox@mail.com",
-  roles_mask: 3
+  roles_mask: 3,
+  created_by: user4.id
 )
 
 # Customers

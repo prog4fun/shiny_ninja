@@ -8,7 +8,9 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @projects = Project.page(params[:page]).per(@@object_quantity_of_one_page)
+    @customers = Customer.where( :user_id => current_user.id )
+    params[:search] ||= {}
+    @projects = Project.search(params[:search], current_user).page(params[:page])
     
     @active_menu = "project"
     @search_bar = true
