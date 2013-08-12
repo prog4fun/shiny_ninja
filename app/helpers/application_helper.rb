@@ -6,7 +6,7 @@ module ApplicationHelper
   def cancel_link
     return link_to t("labels.actions.cancel"), request.env["HTTP_REFERER"],
       :class => 'cancel',
-      :confirm => t("labels.cancel_confirm")
+      :confirm => t("labels.actions.cancel_confirm")
   end
   
   

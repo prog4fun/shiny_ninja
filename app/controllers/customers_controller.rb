@@ -6,11 +6,6 @@ class CustomersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
   
-
-  def add_breadcrumb_index
-    add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
-  end
-  
   def index
     @customers = Customer.page(params[:page]).per(@@object_quantity_of_one_page)
     
@@ -94,5 +89,12 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to customers_url }
     end
+  end
+  
+  #######################################################################
+  
+  private
+  def add_breadcrumb_index
+    add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
 end

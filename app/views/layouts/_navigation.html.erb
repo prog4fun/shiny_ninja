@@ -22,7 +22,7 @@
   <%  if @active_menu == "project" %>
     <li class="nav"><%= link_to t('activerecord.models.projects'), projects_path %></li>
   <% else %>
-    <li><%# link_to t('activerecord.models.projects'), projects_path %></li>
+    <li><%= link_to t('activerecord.models.projects'), projects_path %></li>
   <% end %>
 
   <%  if @active_menu == "contract" %>

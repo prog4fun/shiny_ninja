@@ -1,12 +1,12 @@
 # encoding: UTF-8
 
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
+<%= form_for(@customer) do |f| %>
+  <% if @customer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, t("errors.form")) %></h2>
+      <h2><%= pluralize(@customer.errors.count, t("errors.form")) %></h2>
 
       <ul>
-        <% @comment.errors.full_messages.each do |msg| %>
+        <% @customer.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>

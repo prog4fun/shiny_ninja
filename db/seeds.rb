@@ -4,7 +4,7 @@
 # +  Delete               +
 # +++++++++++++++++++++++++
 Customer.delete_all
-# Project.delete_all
+Project.delete_all
 # Report.delete_all
 # Service.delete_all
 User.delete_all
@@ -98,4 +98,31 @@ customer5 = Customer.create(
   email: "Rod.Flanders@mail.de",
   comment: "Go to church",
   user_id: user4.id
+)
+
+# Projects
+# +++++++++++++++++++++++++
+project1 = Project.create(
+  name: "Mobile",
+  timebudget: 100,
+  comment: "Mobile development",
+  customer_id: customer1.id
+)
+project2 = Project.create(
+  name: "Browser",
+  timebudget: 200,
+  comment: "Browser development",
+  customer_id: customer2.id
+)
+project3 = Project.create(
+  name: "Tablet",
+  timebudget: 300,
+  comment: "Tablet development",
+  customer_id: customer3.id
+)
+project4 = Project.create(
+  name: "Event",
+  timebudget: 400,
+  comment: "Event application programming",
+  customer_id: customer4.id
 )

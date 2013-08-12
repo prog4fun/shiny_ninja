@@ -256,5 +256,8 @@ de:
       signature: "Unterschrift"
       user_type: "Rolle"
       user_types: "Rollen"
+    project:
+      name: "Projektname"
+      timebudget: "geplante Stunden für das Projekt"
     universe:
       comment: "Kommentar"

@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
     :password_confirmation, :phone_number, :remember_me, :roles, :roles_mask, 
     :signature, :street, :street_number, :tax_number, :zipcode
   
+  # associations
+  has_many :customers
+  
   # validations
   validates :login, :presence => true,
     :uniqueness => {:case_sensitive => false}

@@ -1,0 +1,36 @@
+# encoding: UTF-8
+
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, t("errors.form")) %></h2>
+
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, t("labels.project.name") %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :timebudget, t("labels.customer.timebudget") %><br />
+    <%= f.text_field :timebudget %>
+  </div>
+  <div class="field">
+    <%= f.label :comment, t("labels.universe.comment") %><br />
+    <%= f.text_area :comment, :size => "40x10" %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id, t("activerecord.models.customer") %><br />
+    <%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><%= cancel_link %>
+  </div>
+<% end %>

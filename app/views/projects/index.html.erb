@@ -1,0 +1,22 @@
+# encoding: UTF-8
+
+<div id="new-button"><%= link_to_new(new_project_path) %></div>
+
+
+<table>
+  <tr>
+    <th><%= t("labels.project.name") %></th>
+    <th><%= t("activerecord.models.customer") %></th>
+    <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
+  </tr>
+
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.name %></td>
+      <td><%= project.customer.name %></td>
+      <td><%= link_to_show(project) %></td>
+      <td><%= link_to_edit(edit_project_path(project)) %></td>
+      <td><%= link_to_destroy(project, confirm: t("labels.actions.confirmate"), method: :delete) %></td>
+    </tr>
+  <% end %>
+</table>

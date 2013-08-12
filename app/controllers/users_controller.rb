@@ -6,11 +6,6 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
   
-
-  def add_breadcrumb_index
-    add_breadcrumb t("labels.breadcrumbs.index"), users_path, :title => t("labels.breadcrumbs.index_title")
-  end
-
   def index
     @users = User.page(params[:page]).per(@@object_quantity_of_one_page)
     
@@ -94,5 +89,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
     end
+  end
+  
+  #######################################################################
+  
+  private
+  def add_breadcrumb_index
+    add_breadcrumb t("labels.breadcrumbs.index"), users_path, :title => t("labels.breadcrumbs.index_title")
   end
 end
