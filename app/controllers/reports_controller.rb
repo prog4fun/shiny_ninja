@@ -24,12 +24,19 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
     
-    @active_menu = "report"
-    @head1 = "#{t("labels.actions.show")} <#{@report.firstname} #{@report.lastname}>"
-    add_breadcrumb t("labels.actions.show"), report_path(@report)
+    services = Service.where("user_id = ?", current_user.id)
+    my_reports = Report.where( :service_id => services)
+    
+    if my_reports.include?(@report)
+      @active_menu = "report"
+      @head1 = "#{t("labels.actions.show")} <#{@report.date}>"
+      add_breadcrumb t("labels.actions.show"), report_path(@report)
 
-    respond_to do |format|
-      format.html
+      respond_to do |format|
+        format.html
+      end
+    else
+      not_own_object_redirection
     end
   end
 
@@ -50,13 +57,19 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
+
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
-    @services = Service.where( :user_id => current_user.id)
+    @services = Service.where("user_id = ?", current_user.id)
+    my_reports = Report.where( :service_id => @services)
     
-    @active_menu = "report"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.report")}"
-    add_breadcrumb t("labels.actions.edit"), edit_report_path(@report.id)
+    if my_reports.include?(@report)
+      @active_menu = "report"
+      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.report")}"
+      add_breadcrumb t("labels.actions.edit"), edit_report_path(@report.id)
+    else
+      not_own_object_redirection
+    end
   end
 
   def create

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class CustomersController < ApplicationController
-
+  
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
@@ -23,12 +23,17 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     
-    @active_menu = "customer"
-    @head1 = "#{t("labels.actions.show")} <#{@customer.firstname} #{@customer.lastname}>"
-    add_breadcrumb t("labels.actions.show"), customer_path(@customer)
+    if current_user.customers.include?(@customer)
+      @active_menu = "customer"
+      @head1 = "#{t("labels.actions.show")} <#{@customer.name}>"
+      add_breadcrumb t("labels.actions.show"), customer_path(@customer)
 
-    respond_to do |format|
-      format.html
+      respond_to do |format|
+        format.html
+      end
+      
+    else
+      not_own_object_redirection
     end
   end
 
@@ -47,9 +52,14 @@ class CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
     
-    @active_menu = "customer"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.customer")}"
-    add_breadcrumb t("labels.actions.edit"), edit_customer_path(@customer.id)
+    if current_user.customers.include?(@customer)
+      @active_menu = "customer"
+      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.customer")}"
+      add_breadcrumb t("labels.actions.edit"), edit_customer_path(@customer.id)
+    
+    else
+      not_own_object_redirection
+    end
   end
 
   def create
@@ -99,4 +109,8 @@ class CustomersController < ApplicationController
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
+  
+#  def redirect_if_not_own_object
+#    raise ActiveRecord::RecordNotFound
+#  end
 end

@@ -226,6 +226,7 @@ de:
       confirm: "Sind Sie sich sicher?"
       destroy: "Löschen"
       edit: "Bearbeiten"
+      empty_search_option: "Bitte auswählen"
       head: "Aktionen"
       logout: "Ausloggen"
       new: "Neu"

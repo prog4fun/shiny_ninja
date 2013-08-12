@@ -9,7 +9,6 @@ module ApplicationHelper
       :confirm => t("labels.actions.cancel_confirm")
   end
   
-  
   # ICONS
   def link_to_function(icon, options = {})
     return link_to(icon, options, :class => "no_hover")

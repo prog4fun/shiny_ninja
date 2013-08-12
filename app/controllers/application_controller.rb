@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   # Index Broadcrumpb
   add_breadcrumb @breadcrump_index_name, :root_path
   
+  def not_own_object_redirection
+    raise ActiveRecord::RecordNotFound
+  end
+  
 end

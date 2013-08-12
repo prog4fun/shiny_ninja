@@ -24,12 +24,19 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     
-    @active_menu = "project"
-    @head1 = "#{t("labels.actions.show")} <#{@project.firstname} #{@project.lastname}>"
-    add_breadcrumb t("labels.actions.show"), project_path(@project)
+    customers = current_user.customers
+    my_projects = Project.where( :customer_id => customers)
+    
+    if my_projects.include?(@project)
+      @active_menu = "project"
+      @head1 = "#{t("labels.actions.show")} <#{@project.name}"
+      add_breadcrumb t("labels.actions.show"), project_path(@project)
 
-    respond_to do |format|
-      format.html
+      respond_to do |format|
+        format.html
+      end
+    else
+      not_own_object_redirection
     end
   end
 
@@ -48,11 +55,17 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    @customers = Customer.where( :user_id => current_user.id )
+
+    @customers = current_user.customers
+    my_projects = Project.where( :customer_id => @customers)
     
-    @active_menu = "project"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.project")}"
-    add_breadcrumb t("labels.actions.edit"), edit_project_path(@project.id)
+    if my_projects.include?(@project)    
+      @active_menu = "project"
+      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.project")}"
+      add_breadcrumb t("labels.actions.edit"), edit_project_path(@project.id)
+    else
+      not_own_object_redirection
+    end
   end
 
   def create

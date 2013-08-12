@@ -23,12 +23,18 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     
-    @active_menu = "user"
-    @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
-    add_breadcrumb t("labels.actions.show"), user_path(@user)
+    my_users = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
+    
+    if my_users.include?(@user)
+      @active_menu = "user"
+      @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
+      add_breadcrumb t("labels.actions.show"), user_path(@user)
 
-    respond_to do |format|
-      format.html
+      respond_to do |format|
+        format.html
+      end
+    else
+      not_own_object_redirection
     end
   end
 
@@ -47,9 +53,15 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     
-    @active_menu = "user"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
-    add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
+    my_users = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
+    
+    if my_users.include?(@user)
+      @active_menu = "user"
+      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
+      add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
+    else
+      not_own_object_redirection
+    end
   end
 
   def create

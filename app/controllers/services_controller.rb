@@ -29,11 +29,17 @@ class ServicesController < ApplicationController
     respond_to do |format|
       format.html
     end
+  else
+    not_own_object_redirection
   end
+end
 
-  def new
-    @service = Service.new
+def new
+  @service = Service.new
     
+  my_services = Service.where("user_id = ?", current_user.id)
+    
+  if my_services.include?(@service)
     @active_menu = "service"
     @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.services")}"
     add_breadcrumb t("labels.actions.new"), new_service_path
@@ -46,9 +52,15 @@ class ServicesController < ApplicationController
   def edit
     @service = Service.find(params[:id])
     
-    @active_menu = "service"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.service")}"
-    add_breadcrumb t("labels.actions.edit"), edit_service_path(@service.id)
+    my_services = Service.where("user_id = ?", current_user.id)
+    
+    if my_services.include?(@service)
+      @active_menu = "service"
+      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.service")}"
+      add_breadcrumb t("labels.actions.edit"), edit_service_path(@service.id)
+    else
+      not_own_object_redirection
+    end
   end
 
   def create
