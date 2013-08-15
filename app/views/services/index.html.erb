@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-<div id="new-button"><%= link_to_new(new_service_path) %></div>
+<div id="new-button"><%= link_to_new(:controller => "services", :action => "new") %></div>
 
 <%= paginate @services %>
 
@@ -16,7 +16,7 @@
       <td><%= service.name %></td>
       <td><%= service.wage %></td>
       <td id="action"><td><%= link_to_show(service) %></td>
-      <td id="action"><td><%= link_to_edit(edit_service_path(service)) %></td>
+      <td id="action"><td><%= link_to_edit(:controller => "services", :action => "edit", :id => service.id) %></td>
       <td id="action"><td><%= link_to_destroy(service, confirm: t("labels.actions.confirm"), method: :delete) %></td>
     </tr>
   <% end %>

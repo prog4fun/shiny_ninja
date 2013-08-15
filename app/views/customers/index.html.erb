@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-<div id="new-button"><%= link_to_new(new_customer_path) %></div>
+<div id="new-button"><%= link_to_new(:controller => "customers", :action => "new") %></div>
 
 <%= paginate @customers %>
 
@@ -16,6 +16,7 @@
       <td><%= customer.name %></td>
       <td><%= customer.email %></td>
       <td id="action"><td><%= link_to_show(customer) %></td>
+      <td id="action"><td><%= link_to_edit(:controller => "customers", :action => "edit", :id => customer.id) %></td>
       <td id="action"><td><%= link_to_edit(edit_customer_path(customer)) %></td>
       <td id="action"><td><%= link_to_destroy(customer, confirm: t("labels.actions.confirm"), method: :delete) %></td>
     </tr>

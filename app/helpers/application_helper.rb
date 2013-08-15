@@ -40,27 +40,42 @@ module ApplicationHelper
   
   # LINKS
   def link_to_show(options = {})
-    return link_to_function(icon_show, options)
+    if can? :show, options
+      return link_to_function(icon_show, options)
+    end
   end
 
   def link_to_edit(options = {})
-    return link_to_function(icon_edit, options)
+    if can? :update, hash_with_controller_to_model(options)
+      return link_to_function(icon_edit, options)
+    end
   end
 
   def link_to_destroy(object, options = {})
-    options.merge!(:class => "no_hover")
-    return link_to(icon_destroy, object, options)
+    if can? :destroy, object.class
+      options.merge!(:class => "no_hover")
+      return link_to(icon_destroy, object, options)
+    end
   end
   
-  def link_to_new(object, options = {})
-    options.merge!(:class => "no_hover")
-    return link_to(icon_new, object, options)
+  def link_to_new(options = {})
+    if can? :create, hash_with_controller_to_model(options)
+      return link_to_function(icon_new, options)
+    end
   end
+  
+  
   
   def link_to_logout(object, options = {})
     options.merge!(:class => "no_hover")
     return link_to(icon_logout, object, options)
   end
   
+  
+  def hash_with_controller_to_model(hash)
+    model = hash[:controller].singularize.camelize.constantize
+    return model
+  end
+
   
 end

@@ -2,8 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    # 
+
     user ||= User.new
     
     if user.is? :administrator
@@ -13,12 +12,18 @@ class Ability
       can :manage, Project
       can :manage, Report
       can :manage, Service
-      can :index, User
+      can :tt_index, User
+      can :tt_new, User
+      can :tt_edit, User
       can :create, User
       can :update, User
       can :destroy, User
-    else
-      can :show, User
+    elsif user.is? :project_evaluator
+      can :pe_show, User
+      can :pe_edit, User
+      can :create, User
+      can :update, User
+      can :destroy, User
     end
     
     #
