@@ -196,7 +196,7 @@ class UsersController < ApplicationController
         if @user.update_attributes(params[:user])
           format.html { redirect_to @user, id: @user.id, notice: t("confirmations.messages.saved") }
         else
-          format.html { render action: "edit" }
+          format.html { render action: "tt_edit" }
         end
       end
     end
@@ -221,7 +221,7 @@ class UsersController < ApplicationController
       if my_users.include?(@user)
         @user.destroy
         respond_to do |format|
-          format.html { redirect_to users_url }
+          format.html { redirect_to action: "tt_index" }
         end
       else
         not_own_object_redirection
