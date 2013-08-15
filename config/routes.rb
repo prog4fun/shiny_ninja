@@ -15,6 +15,12 @@ ShinyNinja::Application.routes.draw do
   match "/users/pe_show", :controller => "users", :action => "pe_show"
   match "/users/pe_edit", :controller => "users", :action => "pe_edit"
   
+  # Index
+  match "/index", :controller => "indices", :action => "index"
+  match "/administrator", :controller => "indices", :action => "administrator"
+  match "/timetracker", :controller => "indices", :action => "timetracker"
+  match "/projectevaluator", :controller => "indices", :action => "projectevaluator"
+  
   # Resources
   resources :services
 
@@ -77,7 +83,7 @@ ShinyNinja::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'users#index'
+  root :to => 'indices#index'
 
   # See how all your routes lay out with "rake routes"
 

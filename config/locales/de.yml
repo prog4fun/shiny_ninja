@@ -269,6 +269,10 @@ de:
     report:
       date: "Datum"
       duration: "Dauer"
+    roles:
+      administrator: "Administrator"
+      timetracker: "Zeit-Erfasser"
+      projectevaluator: "Zeit-Auswerter"
     service:
       billable: "Abrechenbar"
       name: "Servicename"
