@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-<div id="new-button"><%= link_to_new(new_user_path) %></div>
+<div id="new-button"><%= link_to_new(:controller => "users", :action => "tt_edit") %></div>
 
 <%= paginate @users %>
 
@@ -17,11 +17,9 @@
       <td><%= user.login %></td>
       <td><%= user.firstname %></td>
       <td><%= user.lastname %></td>
-      <td id="action"><%= link_to_show(user) %></td>
-      <td id="action"><%= link_to_edit(edit_user_path(user)) %></td>
-      <% unless user.id == current_user.id %>
-        <td id="action"><%= link_to_destroy(user, confirm: t("labels.actions.confirm"), method: :delete) %></td>
-      <% end %>
+      <td id="action"><%= link_to_show(:controller => "users", :action => "tt_show") %></td>
+      <td id="action"><%= link_to_edit(:controller => "users", :action => "tt_edit", :id => user.id) %></td>
+      <td id="action"><%= link_to_destroy(user, confirm: t("labels.actions.confirm"), method: :delete) %></td>
     </tr>
   <% end %>
 </table>

@@ -242,10 +242,12 @@ de:
       name: "Bezeichnung"
       email: "eMail des Ansprechspartners"
     person:
+      creator: "Ersteller"
       firstname: "Vorname"
       lastname: "Nachname"
       email: "eMail"
       login: "Benutzername"
+      my_account: "Mein Account"
       password: "Passwort"
       password_cofirmation: "Passwort bestätigen"
       phone_number: "Telefonnummer"

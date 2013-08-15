@@ -7,7 +7,9 @@ class UsersController < ApplicationController
   before_filter :add_breadcrumb_index
   load_and_authorize_resource
   
-  def index
+  ### Index ###################################################################
+  
+  def tt_index
     params[:search] ||= {}
     @users = User.search(params[:search], current_user).page(params[:page])
     
@@ -32,8 +34,10 @@ class UsersController < ApplicationController
       format.html
     end
   end
+  
+  ### Show ####################################################################
 
-  def show
+  def tt_show
     @user = User.find(params[:id])
     
     my_users = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
@@ -51,8 +55,18 @@ class UsersController < ApplicationController
     end
   end
   
+  def pe_show
+    @user = current_user
+  
+    @active_menu = "user"
+    @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
+    add_breadcrumb(t("labels.actions.show"), :controller => "users", :action => "pe_show")
+      
+  end
+  
   def adm_show
     @user = User.find(params[:id])
+    @creator = User.find(@user.created_by)
     
     @active_menu = "user"
     @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
@@ -62,8 +76,11 @@ class UsersController < ApplicationController
       format.html
     end
   end
+  
+  ### New #####################################################################
 
-  def new
+  def tt_new
+    # new for an time_tracker to create an project_evaluator
     @user = User.new
     
     @active_menu = "user"
@@ -76,7 +93,7 @@ class UsersController < ApplicationController
   end
   
   def adm_new
-    @user = User.new
+    @user = User.new :login => "p-"
     
     @active_menu = "user"
     @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.users")}"
@@ -86,8 +103,10 @@ class UsersController < ApplicationController
       format.html
     end
   end
+  
+  ### Edit ####################################################################
 
-  def edit
+  def tt_edit
     @user = User.find(params[:id])
     
     my_users = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
@@ -100,6 +119,14 @@ class UsersController < ApplicationController
       not_own_object_redirection
     end
   end
+
+  def pe_edit
+    @user = current_user
+  
+    @active_menu = "user"
+    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
+    add_breadcrumb(t("labels.actions.edit"), :controller => "users", :action => "pe_edit")
+  end
   
   def adm_edit
     @user = User.find(params[:id])
@@ -108,52 +135,102 @@ class UsersController < ApplicationController
     @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
     add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
   end
+  
+  ### Create ##################################################################
 
   def create
     @user = User.new(params[:user])
     
     @active_menu = "user"
-
-    respond_to do |format|
-      @user.attributes = {:country => "de",
-        :created_by => current_user.id,
-        :roles_mask => 3 }   # 3 --> project_evaluator
-      if @user.save
-        format.html { redirect_to redirect_to action: "adm_show", id: @user.id, notice: t("confirmations.messages.saved") }
-      else
-        format.html { render action: "new" }
+    
+    if current_user.is? :administrator
+      respond_to do |format|
+        @user.attributes = {:country => "de",
+          :created_by => current_user.id }
+        if @user.save
+          format.html { redirect_to action: "adm_show", id: @user.id, notice: t("confirmations.messages.saved") }
+        else
+          format.html { render action: "adm_new" }
+        end
+      end
+      
+    else  # no administrator
+      respond_to do |format|
+        ###
+        @user.attributes = { :login => "p-" << params[:user][:login],
+          ###
+          :country => "de",
+          :created_by => current_user.id,
+          :roles_mask => 4 }   # 4 --> project_evaluator
+        if @user.save
+          format.html { redirect_to @user, id: @user.id, notice: t("confirmations.messages.saved") }
+        else
+          format.html { render action: "new" }
+        end
       end
     end
+    
   end
+  
+  ### Update ##################################################################
 
   def update
     @user = User.find(params[:id])
     
     @active_menu = "user"
+    
+    if current_user.is? :administrator
 
-    respond_to do |format|
-      params[:user][:country] = "de"
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to action: "adm_show", id: @user.id, notice: t("confirmations.messages.saved") }
-      else
-        format.html { render action: "edit" }
+      respond_to do |format|
+        params[:user][:country] = "de"
+        if @user.update_attributes(params[:user])
+          format.html { redirect_to action: "adm_show", id: @user.id, notice: t("confirmations.messages.saved") }
+        else
+          format.html { render action: "adm_edit" }
+        end
+      end
+    
+    else  # no administrator
+      respond_to do |format|
+        params[:user][:country] = "de"
+        if @user.update_attributes(params[:user])
+          format.html { redirect_to @user, id: @user.id, notice: t("confirmations.messages.saved") }
+        else
+          format.html { render action: "edit" }
+        end
       end
     end
+    
   end
+  
+  ### Destroy #################################################################
 
   def destroy
     @user = User.find(params[:id])
     
     @active_menu = "user"
     
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
+    if current_user.is? :administrator
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to action: "adm_index" }
+      end
+    
+    else  # no administrator
+      my_users = User.where("created_by = ?", current_user.id)
+      if my_users.include?(@user)
+        @user.destroy
+        respond_to do |format|
+          format.html { redirect_to users_url }
+        end
+      else
+        not_own_object_redirection
+      end
     end
+    
   end
   
-  #######################################################################
+  ### Other ###################################################################
   
   private
   def add_breadcrumb_index

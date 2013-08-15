@@ -1,0 +1,92 @@
+# encoding: UTF-8
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, t("errors.form")) %></h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+      <%= f.label :login, t("labels.person.login") %><br />
+      <%= f.text_field :login, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :firstname, t("labels.person.firstname") %><br />
+    <%= f.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= f.label :lastname, t("labels.person.lastname") %><br />
+    <%= f.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= f.label :email, t("labels.person.email") %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password, t("labels.person.password") %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, t("labels.person.password_confirmation") %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number, t("labels.person.phone_number") %><br />
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :street, t("labels.person.street") %><br />
+    <%= f.text_field :street %>
+  </div>
+  <div class="field">
+    <%= f.label :street_number, t("labels.person.street_number") %><br />
+    <%= f.text_field :street_number %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode, t("labels.person.zipcode") %><br />
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :city, t("labels.person.city") %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :country, t("labels.person.country") %><br />
+    <%= f.text_field :country, :value => "Deutschland", :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_name, t("labels.person.bank_name") %><br />
+    <%= f.text_field :bank_name %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_code, t("labels.person.bank_code") %><br />
+    <%= f.text_field :bank_code %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_account_number, t("labels.person.bank_account_number") %><br />
+    <%= f.text_field :bank_account_number %>
+  </div>
+  <div class="field">
+    <%= f.label :tax_number, t("labels.person.tax_number") %><br />
+    <%= f.text_field :tax_number %>
+  </div>
+  <div class="field">
+    <%= f.label :signature, t("labels.person.signature") %><br />
+    <%= f.text_field :signature %>
+  </div>
+  <div class="field">
+    <%= f.label :comment, t("labels.universe.comment") %><br />
+    <%= f.text_area :comment, :size => "40x10" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><%= cancel_link %>
+  </div>
+<% end %>

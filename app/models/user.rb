@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   validates :firstname, :presence => true
   validates :lastname, :presence => true
   
-  # if you change the order here, change users_controller --> create!
+  # if you change the order here, change users_controller --> create (default-id)!
   ROLES = %w[administrator time_tracker project_evaluator]
   
   def roles=(roles)
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   # search
   def self.search(search, current_user)
 
-    result = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
+    result = User.where("created_by = ?", current_user.id)
     
     if search
       if search["firstname"].present?

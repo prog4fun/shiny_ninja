@@ -8,8 +8,17 @@ class Ability
     
     if user.is? :administrator
       can :manage, :all
+    elsif user.is? :time_tracker
+      can :manage, Customer
+      can :manage, Project
+      can :manage, Report
+      can :manage, Service
+      can :index, User
+      can :create, User
+      can :update, User
+      can :destroy, User
     else
-      can :read, :all
+      can :show, User
     end
     
     #
