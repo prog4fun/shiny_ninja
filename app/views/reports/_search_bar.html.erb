@@ -1,20 +1,27 @@
-<%= form_tag reports_path, :method => 'get' do %>
+# encoding: UTF-8
 
+<form>
+  <fieldset>
+    <legend>
+      <%= t("labels.actions.search_head") %>
+      <a class='btn btn-mini' href='<%= reports_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
+    </legend>
+    
+    <%= form_tag reports_path, :method => 'get' do %>
 
-  <%= label_tag("[search][date_from]", t("labels.date") + " (from") %>
-  <%= label_tag("[search][date_to]", " - to)") %></br>
+      <label><%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %></label>
+      <%= text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4) %>
 
-  <%= text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4) %>
-  <%= text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4) %></br>
+      <label><%= label_tag("[search][date_to]", t("labels.datetime.date_to")) %></label>
+      <%= text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4) %></br>
 
-  <%= label_tag("[search][customer]", t("activerecord.models.customer")) %></br>
-  <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.empty_search_option")) %></br>
+      <label><%= label_tag("[search][customer]", t("activerecord.models.customer")) %></label>
+      <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.empty_search_option")) %></br>
 
-  <%= label_tag("[search][project]", t("activerecord.models.project")) %></br>
-  <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.empty_search_option")) %></br>
-  </br>
-  <div style="float: left; width: auto;"><%= submit_tag t("labels.actions.search"), :name => nil %></div>
+      <label><%= label_tag("[search][project]", t("activerecord.models.project")) %></label>
+      <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.empty_search_option")) %></br>
 
-<% end %>
-
-<%= button_to(t("labels.actions.reset"), reports_path, :method => 'get') %>
+      <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
+    <% end %>
+  </fieldset>
+</form>

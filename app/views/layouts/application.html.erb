@@ -4,53 +4,53 @@
 <html>
   <head>
     <title>Shiny-Ninja</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+<%#= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "bootstrap.min", :rel => "stylesheet", :media => "screen" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-  <div id="header">
-    <%= render "layouts/header" %>
-  </div>
-
   <body>
-    <div id="navigation">
-      <%= render "layouts/navigation" %>
-    </div>
 
-    <div id="breadcrump">
-      <%= render_breadcrumbs %>
-    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <a class="brand" href="#">ShinyNinja</a>
+            <ul class="nav">
+              <%= render "layouts/navigation" %>
+            </ul>
 
-    <div id="user_control">
-      <%= render "layouts/user_control" %>
-    </div>
-
-    <div id="content">
-<%# step 3 in devise installation %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <h1><%= @head1 %></h1>
-      <%= yield %>
-    </div>
-
-    <% if user_signed_in? %>
-      <%  if @search_bar == true %>
-        <div id="search-bar">
-          <h2>Filter ...</h2>
-          <%= render "search_bar" %>
+            <div class="navbar pull-right">
+              <%= render "layouts/user_control" %>
+            </div>
+          </div>
         </div>
-        <div id="sidebar-with-search-bar">
-        <%  else %>
-          <div id="sidebar-without-search-bar">
-          <% end %>
+        <div class="container-fluid">
+<%#= render "layouts/breadcrumbs" %> 
+          <%= render "layouts/alerts" %> 
 
-          <%= render "layouts/sidebar" %>
+          <h1><%= @head1 %></h1>
+          <%= yield %>
+
+
+
+
         </div>
-      <% end%>
-
-      <div id="footer">
-        <%= render "layouts/footer" %>
       </div>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <p> <%# Developed by development AT koriath-tech.de %> </p>
+      </div>
+    </footer>
+
+
 
   </body>
+
+
+
 </html>

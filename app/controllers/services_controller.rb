@@ -3,7 +3,7 @@
 class ServicesController < ApplicationController
   # Filter
   before_filter :authenticate_user!
-  before_filter :add_breadcrumb_index
+  # before_filter :add_breadcrumb_index
   load_and_authorize_resource
   
   def index

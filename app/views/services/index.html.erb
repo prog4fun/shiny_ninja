@@ -1,23 +1,37 @@
 # encoding: UTF-8
 
-<div id="new-button"><%= link_to_new(:controller => "services", :action => "new") %></div>
+<div class="row-fluid">
+  <div class="span1 offset8">
+    <%= link_to_new(:controller => "services", :action => "new") %>
+  </div>
+</div>
 
-<%= paginate @services %>
+<div class="row-fluid">
+  <div class="span9">
 
-<table>
-  <tr>
-    <th><%= t("labels.service.name") %> %></th>
-    <th><%= t("labels.service.wage") %> %></th>
-    <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
-  </tr>
+    <%= paginate @services %>
 
-  <% @services.each do |service| %>
-    <tr>
-      <td><%= service.name %></td>
-      <td><%= service.wage %></td>
-      <td id="action"><td><%= link_to_show(service) %></td>
-      <td id="action"><td><%= link_to_edit(:controller => "services", :action => "edit", :id => service.id) %></td>
-      <td id="action"><td><%= link_to_destroy(service, confirm: t("labels.actions.confirm"), method: :delete) %></td>
-    </tr>
-  <% end %>
-</table>
+    <table class="table table-bordered table-hover table-condensed">
+      <tr>
+        <th><%= t("labels.service.name") %> %></th>
+        <th><%= t("labels.service.wage") %> %></th>
+        <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
+      </tr>
+
+      <% @services.each do |service| %>
+        <tr>
+          <td><%= service.name %></td>
+          <td><%= service.wage %></td>
+          <td style="width:5%"><%= link_to_show(service) %></td>
+          <td style="width:5%"><%= link_to_edit(:controller => "services", :action => "edit", :id => service.id) %></td>
+          <td style="width:5%"><%= link_to_destroy(:controller => "services", :action => "show", :id => service.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+  <div class="span3">
+    <%= render "search_bar" %>
+  </div>
+</div>

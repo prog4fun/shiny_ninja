@@ -1,11 +1,18 @@
-<%= form_tag services_path, :method => 'get' do %>
+# encoding: UTF-8
 
-  <%= label_tag("[search][name]", t("labels.name")) %></br>
-  <%= text_field_tag("[search][name]", params[:search][:name]) %></br>
-  </br>
-  <div style="float: left; width: auto;"><%= submit_tag t("labels.actions.search"), :name => nil %></div>
+<form>
+  <fieldset>
+    <legend>
+      <%= t("labels.actions.search_head") %>
+      <a class='btn btn-mini' href='<%= services_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
+    </legend>
 
-<% end %>
+    <%= form_tag services_path, :method => 'get' do %>
 
-<%= button_to(t("labels.actions.reset"), services_path, :method => 'get') %>
+      <label><%= label_tag("[search][name]", t("labels.name")) %></label>
+      <%= text_field_tag("[search][name]", params[:search][:name]) %>
 
+      <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
+    <% end %>
+  </fieldset>
+</form>

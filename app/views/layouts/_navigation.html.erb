@@ -1,54 +1,38 @@
 # encoding: UTF-8
 
-<div id="menu">
-  <%  if @active_menu == "report" %>
-    <li class="nav"><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
+<%  if @active_menu == "report" %>
+  <li class="active"><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
+<% else %>
+  <li><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
+<% end %>
+
+<%  if @active_menu == "service" %>
+  <li class="active"><%= link_to t('activerecord.models.services'), services_path %></li>
+<% else %>
+  <li><%= link_to t('activerecord.models.services'), services_path %></li>
+<% end %>
+
+<%  if @active_menu == "project" %>
+  <li class="active"><%= link_to t('activerecord.models.projects'), projects_path %></li>
+<% else %>
+  <li><%= link_to t('activerecord.models.projects'), projects_path %></li>
+<% end %>
+
+<%  if @active_menu == "customer" %>
+  <li class="active"><%= link_to t('activerecord.models.customers'), customers_path %></li>
   <% else %>
-    <li><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
-  <% end %>
+  <li><%= link_to t('activerecord.models.customers'), customers_path %></li>
+<% end %>
 
-  <%  if @active_menu == "service" %>
-    <li class="nav"><%= link_to t('activerecord.models.services'), services_path %></li>
-  <% else %>
-    <li><%= link_to t('activerecord.models.services'), services_path %></li>
-  <% end %>
+<%  css_user_class = "active" if @active_menu == "user" %>
 
-  <%  if @active_menu == "project" %>
-    <li class="nav"><%= link_to t('activerecord.models.projects'), projects_path %></li>
-  <% else %>
-    <li><%= link_to t('activerecord.models.projects'), projects_path %></li>
-  <% end %>
-
-  <%  if @active_menu == "customer" %>
-    <li class="nav"><%= link_to t('activerecord.models.customers'), customers_path %></li>
-    <% else %>
-    <li><%= link_to t('activerecord.models.customers'), customers_path %></li>
-  <% end %>
-
-  <%  css_user_class = "nav" if @active_menu == "user" %>
-
-  <% if current_user.present? %>
-    <% if current_user.is? :administrator %>
-      <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_index" %></li>
-    <% elsif current_user.is? :time_tracker %>
-      <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "tt_index" %></li>
-    <% end %>
-
-    <% if current_user.is? :administrator %>
-      <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_show", :id => current_user.id %></li>
-    <% elsif current_user.is? :time_tracker %>
-      <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "tt_show", :id => current_user.id %></li>
-    <% elsif current_user.is? :time_tracker %>
-      <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "pe_show" %></li>
-
-    <% end %>
-
-
-
-
+<% if current_user.present? %>
+  <% if current_user.is? :administrator %>
+    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_index" %></li>
+  <% elsif current_user.is? :time_tracker %>
+    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "tt_index" %></li>
+  <% elsif current_user.is? :time_tracker %>
+    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "pe_show" %></li>
 
   <% end %>
-
-
-
-</div>
+<% end %>

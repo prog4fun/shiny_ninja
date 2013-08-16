@@ -1,25 +1,39 @@
 # encoding: UTF-8
 
-<div id="new-button"><%= link_to_new(:controller => "users", :action => "adm_new") %></div>
+<div class="row-fluid">
+  <div class="span1 offset8">
+    <%= link_to_new(:controller => "users", :action => "adm_new") %>
+  </div>
+</div>
 
-<%= paginate @users %>
+<div class="row-fluid">
+  <div class="span9">
 
-<table>
-  <tr>
-    <th><%= t("labels.person.login") %></th>
-    <th><%= t("labels.person.firstname") %></th>
-    <th><%= t("labels.person.lastname") %></th>
-    <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
-  </tr>
+    <%= paginate @users %>
 
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.login %></td>
-      <td><%= user.firstname %></td>
-      <td><%= user.lastname %></td>
-      <td id="action"><%= link_to_show(:controller => "users", :action => "adm_show", :id => user.id) %></td>
-      <td id="action"><%= link_to_edit(:controller => "users", :action => "adm_edit", :id => user.id) %></td>
-      <td id="action"><%= link_to_destroy(user, confirm: t("labels.actions.confirm"), method: :delete) %></td>
-    </tr>
-  <% end %>
-</table>
+    <table class="table table-bordered table-hover table-condensed">
+      <tr>
+        <th><%= t("labels.person.login") %></th>
+        <th><%= t("labels.person.firstname") %></th>
+        <th><%= t("labels.person.lastname") %></th>
+        <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
+      </tr>
+
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.login %></td>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>
+          <td style="width:5%"><%= link_to_show(:controller => "users", :action => "adm_show", :id => user.id) %></td>
+          <td style="width:5%"><%= link_to_edit(:controller => "users", :action => "adm_edit", :id => user.id) %></td>
+          <td style="width:5%"><%= link_to_destroy(:controller => "users", :action => "show", :id => user.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+  <div class="span3">
+    <%= render "search_bar" %>
+  </div>
+</div>

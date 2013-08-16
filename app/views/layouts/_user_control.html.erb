@@ -1,9 +1,14 @@
 # encoding: UTF-8
 
 <% if user_signed_in? %>
-  <%= "Logged in as: " + current_user.login %>
-  <%= link_to_logout(destroy_user_session_path, :method => :delete) %>
+
+  <div class="btn-group">
+    <a class="btn" href="<%= users_path %>"><%= current_user.login %></a>
+    <a class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</a>
+  </div>
+
 <% else %>
-  <%#*delete comment for registration%>
-  <%# link_to t("labels.registration"), new_user_registration_path %> <%#oder%> <%= link_to t("labels.user_login"), new_user_session_path %>
+
+  <a class="btn btn-success" href="<%= new_user_session_path %>">Anmelden</a>
+
 <% end %>

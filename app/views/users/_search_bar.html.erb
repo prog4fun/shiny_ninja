@@ -1,14 +1,22 @@
-<%= form_tag users_path, :method => 'get' do %>
+# encoding: UTF-8
 
-  <%= label_tag("[search][firstname]", t("labels.firstname")) %></br>
-  <%= text_field_tag("[search][firstname]", params[:search][:firstname]) %></br>
+<form>
+  <fieldset>
+    <legend>
+      <%= t("labels.actions.search_head") %>
+      <a class='btn btn-mini' href='<%= users_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
+    </legend>
+    
+    <%= form_tag users_path, :method => 'get' do %>
 
-  <%= label_tag("[search][lastname]", t("labels.lastname")) %></br>
-  <%= text_field_tag("[search][lastname]", params[:search][:lastname]) %></br>
-  </br>
-  <div style="float: left; width: auto;"><%= submit_tag t("labels.actions.search"), :name => nil %></div>
+      <label><%= label_tag("[search][firstname]", t("labels.firstname")) %></label>
+      <%= text_field_tag("[search][firstname]", params[:search][:firstname]) %>
 
-  <% end %>
+      <label><%= label_tag("[search][lastname]", t("labels.lastname")) %></label>
+      <%= text_field_tag("[search][lastname]", params[:search][:lastname]) %>
 
-  <%= button_to(t("labels.actions.reset"), users_path, :method => 'get') %>
+      <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
+    <% end %>
+  </fieldset>
+</form>
 
