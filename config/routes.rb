@@ -18,6 +18,8 @@ ShinyNinja::Application.routes.draw do
   # Index
   match "/index", :controller => "indices", :action => "index"
   match "/home", :controller => "indices", :action => "home"
+  match "/impressum", :controller => "indices", :action => "impressum"
+  match "/impressum", :controller => "devise/indices", :action => "impressum"
   match "/administrator", :controller => "indices", :action => "administrator"
   match "/timetracker", :controller => "indices", :action => "timetracker"
   match "/projectevaluator", :controller => "indices", :action => "projectevaluator"

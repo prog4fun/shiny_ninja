@@ -21,8 +21,10 @@ class IndicesController < ApplicationController
   end
   
   def home
-    # for users, which are not logged in
-    @head1 = "Willkommen"
+  end
+  
+  def impressum
+    
   end
 
   def administrator
