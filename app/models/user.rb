@@ -17,6 +17,12 @@ class User < ActiveRecord::Base
   has_many :customers
   
   # validations
+  validates :bank_account_number, :bank_name, :bank_code, :city,
+    :comment, :country, :created_by, :email, :firstname, :lastname, :login,
+    :password, :password_confirmation, :phone_number, :remember_me, :roles,
+    :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode,
+    :format => {:with => /^[^<>%&$]*$/}
+  
   validates :login, :presence => true,
     :uniqueness => {:case_sensitive => false}
   validates :password, :length => { :minimum => 5, :maximum => 40},

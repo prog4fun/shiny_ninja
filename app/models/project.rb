@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
   belongs_to :customer
   
   # validations
+  validates :comment, :customer_id, :name, :timebudget,
+    :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
   validates :timebudget, :presence => true
   validates :customer_id, :presence => true

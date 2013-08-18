@@ -8,6 +8,8 @@ class Report < ActiveRecord::Base
   belongs_to :service
   
   # validations
+  validates :comment, :date, :duration, :project_id, :service_id,
+    :format => {:with => /^[^<>%&$]*$/}
   validates :date, :presence => true
   validates :duration, :presence => true
   validates :project_id, :presence => true

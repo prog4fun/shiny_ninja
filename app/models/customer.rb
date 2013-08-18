@@ -8,8 +8,11 @@ class Customer < ActiveRecord::Base
   belongs_to :user
   
   # validations
+  validates :comment, :email, :name, :user_id,
+    :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
-  validates :email, :presence => true
+  validates :email, :presence => true,
+    :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/}
   validates :user_id, :presence => true
   
   # search

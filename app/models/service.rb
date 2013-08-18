@@ -8,6 +8,8 @@ class Service < ActiveRecord::Base
   belongs_to :user
   
   # validations
+  validates :billable, :comment, :name, :user_id, :wage,
+    :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
   validates :user_id, :presence => true
   
