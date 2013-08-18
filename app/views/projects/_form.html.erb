@@ -1,36 +1,49 @@
 # encoding: UTF-8
 
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, t("errors.form")) %></h2>
+<div class="row-fluid">
+  <div class="span6">
 
-      <ul>
-        <% @project.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name, t("labels.project.name") %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :timebudget, t("labels.customer.timebudget") %><br />
-    <%= f.number_field :timebudget %>
-  </div>
-  <div class="field">
-    <%= f.label :customer_id, t("activerecord.models.customer") %><br />
-    <%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }) %>
-  </div>
-  <div class="field">
-    <%= f.label :comment, t("labels.universe.comment") %><br />
-    <%= f.text_area :comment, :size => "40x10" %>
-  </div>
+    <%= form_for(@project, :html => {:class => "form-horizontal"}) do |f| %>
+      <% if @project.errors.any? %>
 
-  <div class="actions">
-    <%= f.submit %><%= cancel_link %>
+        <h3 class="offset1"><%= @project.errors.count %> <%= t("errors.form") %></h3>
+        <div class="alert alert-error offset1">
+          <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <div class="control-group">
+        <%= f.label :name, t("labels.project.name") + " *", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name, placeholder: "#{t("labels.project.name")}" %>     
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :timebudget, t("labels.datetime.hours") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.number_field :timebudget, placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :customer_id, t("activerecord.models.customer") + " *", :class => "control-label" %>
+        <div class="controls"><%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }) %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :comment, t("labels.universe.comment"), :class => "control-label" %>
+        <div class="controls"><%= f.text_area :comment, :size => "40x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+      </div>
+
+      <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+        <%= cancel_link %>
+      </div>
+
+    <% end %>
   </div>
-<% end %>
+</div>

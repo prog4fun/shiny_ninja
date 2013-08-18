@@ -21,9 +21,7 @@ class Ability
     elsif user.is? :project_evaluator
       can :pe_show, User
       can :pe_edit, User
-      can :create, User
       can :update, User
-      can :destroy, User
     end
     
     #

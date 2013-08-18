@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   end
   
   def adm_new
-    @user = User.new :login => "p-"
+    @user = User.new
     
     @active_menu = "user"
     add_breadcrumb t("labels.actions.new"), new_user_path

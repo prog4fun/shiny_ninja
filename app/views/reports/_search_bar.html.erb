@@ -16,10 +16,10 @@
       <%= text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4) %></br>
 
       <label><%= label_tag("[search][customer]", t("activerecord.models.customer")) %></label>
-      <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.empty_search_option")) %></br>
+      <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option")) %></br>
 
       <label><%= label_tag("[search][project]", t("activerecord.models.project")) %></label>
-      <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.empty_search_option")) %></br>
+      <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.universe.empty_search_option")) %></br>
 
       <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
     <% end %>

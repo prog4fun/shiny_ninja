@@ -1,40 +1,51 @@
 # encoding: UTF-8
 
-<%= form_for(@report) do |f| %>
-  <% if @report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@report.errors.count, t("errors.form")) %></h2>
+<div class="row-fluid">
+  <div class="span6">
 
-      <ul>
-        <% @report.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :date, t("labels.report.date") %><br />
-    <%= f.date_select :date %>
+    <%= form_for(@report, :html => {:class => "form-horizontal"}) do |f| %>
+      <% if @report.errors.any? %>
+
+        <h3 class="offset1"><%= @report.errors.count %> <%= t("errors.form") %></h3>
+        <div class="alert alert-error offset1">
+          <ul>
+            <% @report.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <div class="control-group">
+        <%= f.label :date, t("labels.report.date") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.date_select :date %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :duration, t("labels.report.duration") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.number_field :duration, :size => 2, placeholder: "#{t("activerecord.attributes.report.duration_explanation")}" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :project_id, t("activerecord.models.project") + " *", :class => "control-label" %>
+        <div class="controls"><%= select("report", "project_id", @projects.collect {|i| [ i.name, i.id ] }) %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :service_id, t("activerecord.models.service") + " *", :class => "control-label" %>
+        <div class="controls"><%= select("report", "service_id", @services.all.collect {|i| [ i.name, i.id ] }) %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :comment, t("labels.universe.comment"), :class => "control-label" %>
+        <div class="controls"><%= f.text_area :comment, :size => "40x10",  placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+      </div>
+
+      <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+        <%= cancel_link %>
+      </div>
+
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :duration, t("labels.report.duration") %> (in Stunden, trenne mit  ' . ')<br />
-    <%= f.number_field :duration, :size => 2 %>
-  </div>
-  <div class="field">
-    <%= f.label :project_id, t("activerecord.models.project") %><br />
-    <%= select("report", "project_id", @projects.collect {|i| [ i.name, i.id ] }) %>
-    <div class="field">
-      <%= f.label :service_id, t("activerecord.models.service") %><br />
-      <%= select("report", "service_id", @services.all.collect {|i| [ i.name, i.id ] }) %>
-    </div>
-    <div class="field">
-      <%= f.label :comment, t("labels.universe.comment") %><br />
-      <%= f.text_area :comment %>
-    </div>
-
-
-    <div class="actions">
-      <%= f.submit %><%= cancel_link %>
-    </div>
-  <% end %>
+</div>

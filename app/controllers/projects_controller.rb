@@ -66,6 +66,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @customers = Customer.where( :user_id => current_user.id )
     
     @active_menu = "project"
 
@@ -81,6 +82,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+    @customers = Customer.where( :user_id => current_user.id )
     
     @active_menu = "project"
 

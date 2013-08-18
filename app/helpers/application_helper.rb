@@ -4,9 +4,9 @@ module ApplicationHelper
   
   # UNIVERSE
   def cancel_link
-    return link_to t("labels.actions.cancel"), request.env["HTTP_REFERER"],
-      :class => 'cancel',
-      :confirm => t("labels.actions.cancel_confirm")
+    url = url_for(request.env["HTTP_REFERER"])
+    html_code = "<a class='btn btn-small btn-danger' href='#{url}' data-confirm='#{t("labels.actions.confirm")}'>#{t("labels.actions.cancel")}</a>"
+      return raw html_code
   end
   
   # ICONS

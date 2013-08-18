@@ -1,101 +1,122 @@
 # encoding: UTF-8
 
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, t("errors.form")) %></h2>
 
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row-fluid">
+  <div class="span6">
 
-  <div class="field">
-    <%= f.label :login, t("labels.person.login") %><br />
-    <%= f.text_field :login %>
+
+    <%= form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
+      <% if @user.errors.any? %>
+
+        <h3 class="offset1"><%= @user.errors.count %> <%= t("errors.form") %></h3>
+        <div class="alert alert-error offset1">
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+
+      <div class="control-group">
+        <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :login, :class => "span6", placeholder: "p-" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :firstname, t("activerecord.attributes.user.firstname") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :firstname, :class => "span8", placeholder: "#{t("activerecord.attributes.user.firstname_explanation")}"  %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :lastname, t("activerecord.attributes.user.lastname") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :lastname, :class => "span8", placeholder: "#{t("activerecord.attributes.user.lastname_explanation")}"  %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :email, t("activerecord.attributes.user.email") + " *", :class => "control-label" %>
+        <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on">@</span>
+            <%= f.email_field :email, :class => "span10", placeholder: "#{t("activerecord.attributes.user.email_explanation")}" %>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :password, t("activerecord.attributes.user.password") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.password_field :password, placeholder: "#{t("activerecord.attributes.user.password_explanation")}" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :password_confirmation, t("activerecord.attributes.user.password_cofirmation") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.password_field :password_confirmation, placeholder: "#{t("activerecord.attributes.user.password_cofirmation_explanation")}" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :phone_number, t("activerecord.attributes.user.phone_number"), :class => "control-label" %>
+        <div class="controls"><%= f.text_field :phone_number, placeholder: "#{t("activerecord.attributes.user.phone_number_explanation")}" %></div>
+      </div>
+
+      <div class="control-group controls-row">
+        <%= f.label :street, t("activerecord.attributes.user.street"), :class => "control-label" %>
+        <div class="controls"><%= f.text_field :street, :class => "span6", placeholder: "#{t("activerecord.attributes.user.street_explanation")}" %></div>
+        <div class="controls"><%= f.text_field :street_number, :class => "span2", placeholder: "#{t("activerecord.attributes.user.street_number_explanation")}" %></div>
+      </div>
+
+      <div class="control-group controls-row">
+        <%= f.label :zipcode, t("activerecord.attributes.user.zipcode_and_city"), :class => "control-label" %>
+        <div class="controls"><%= f.text_field :zipcode, :class => "span3", placeholder: "#{t("activerecord.attributes.user.zipcode_explanation")}" %></div>
+        <div class="controls"><%= f.text_field :city, :class => "span5", placeholder: "#{t("activerecord.attributes.user.city_explanation")}" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :country, t("activerecord.attributes.user.country"), :class => "control-label" %>
+        <div class="controls">Deutschland</div>
+      </div>
+      <div class="control-group">
+        <%= f.label :bank_name, t("activerecord.attributes.user.bank_name"), :class => "control-label" %>
+        <div class="controls"><%= f.text_field :bank_name %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :bank_code, t("activerecord.attributes.user.bank_code"), :class => "control-label" %>
+        <div class="controls"> <%= f.text_field :bank_code %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :bank_account_number, t("activerecord.attributes.user.bank_account_number"), :class => "control-label" %>
+        <div class="controls"><%= f.text_field :bank_account_number %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :tax_number, t("activerecord.attributes.user.tax_number"), :class => "control-label" %>
+        <div class="controls"><%= f.text_field :tax_number %></div>
+      </div>
+  <%#
+  <div class="control-group">
+  <= f.label :signature, t("activerecord.attributes.user.signature"), :class => "control-label" >
+  <div class="controls"><= f.text_field :signature ></div>
   </div>
-  <div class="field">
-    <%= f.label :firstname, t("labels.person.firstname") %><br />
-    <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :lastname, t("labels.person.lastname") %><br />
-    <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :email, t("labels.person.email") %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password, t("labels.person.password") %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, t("labels.person.password_confirmation") %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number, t("labels.person.phone_number") %><br />
-    <%= f.text_field :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :street, t("labels.person.street") %><br />
-    <%= f.text_field :street %>
-  </div>
-  <div class="field">
-    <%= f.label :street_number, t("labels.person.street_number") %><br />
-    <%= f.text_field :street_number %>
-  </div>
-  <div class="field">
-    <%= f.label :zipcode, t("labels.person.zipcode") %><br />
-    <%= f.text_field :zipcode %>
-  </div>
-  <div class="field">
-    <%= f.label :city, t("labels.person.city") %><br />
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :country, t("labels.person.country") %><br />
-    <%= f.text_field :country, :readonly => true %>
-  </div>
-  <div class="field">
-    <%= f.label :bank_name, t("labels.person.bank_name") %><br />
-    <%= f.text_field :bank_name %>
-  </div>
-  <div class="field">
-    <%= f.label :bank_code, t("labels.person.bank_code") %><br />
-    <%= f.text_field :bank_code %>
-  </div>
-  <div class="field">
-    <%= f.label :bank_account_number, t("labels.person.bank_account_number") %><br />
-    <%= f.text_field :bank_account_number %>
-  </div>
-  <div class="field">
-    <%= f.label :tax_number, t("labels.person.tax_number") %><br />
-    <%= f.text_field :tax_number %>
-  </div>
-  <div class="field">
-    <%= f.label :signature, t("labels.person.signature") %><br />
-    <%= f.text_field :signature %>
-  </div>
-  <div class="field">
-    <%= f.label :roles, t("labels.person.roles") %><br />
-    <% for role in User::ROLES %>
-      <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
-      <%= label_tag "user_roles_#{role}", role.humanize %><br />
+  %>
+      <div class="control-group">
+        <%= f.label :roles, t("activerecord.attributes.user.roles") + " *", :class => "control-label" %>
+        <div class="controls">
+          <% for role in User::ROLES %>
+            <label class="checkbox">
+              <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+              <%= label_tag "user_roles_#{role}", role.humanize %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+      <%= hidden_field_tag "user[roles][]", "" %>
+        
+      <div class="control-group">
+        <%= f.label :comment, t("labels.uiverse.comment"), :class => "control-label" %>
+        <div class="controls"><%= f.text_area :comment, :class => "span7", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+      </div>
+
+      <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+        <%= cancel_link %>
+      </div>
+
     <% end %>
   </div>
-  <%= hidden_field_tag "user[roles][]", "" %>
-  <div class="field">
-    <%= f.label :comment, t("labels.universe.comment") %><br />
-    <%= f.text_area :comment, :size => "40x10" %>
-  </div>
-  <%= f.hidden_field :created_by %>
+</div>
 
-  <div class="actions">
-    <%= f.submit %><%= cancel_link %>
-  </div>
-<% end %>

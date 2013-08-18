@@ -19,58 +19,58 @@
 
     <table class="table table-hover">
       <tr>
-        <th><%= t("labels.person.login") %></th>
+        <th><%= t("activerecord.attributes.user.login") %></th>
         <td><%= @user.login %></td>
       </tr>
 
       <tr>
-        <th><%= t("labels.person.firstname") %></th>
+        <th><%= t("activerecord.attributes.user.firstname") %></th>
         <td><%= @user.firstname %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.lastname") %></th>
+        <th><%= t("activerecord.attributes.user.lastname") %></th>
         <td><%= @user.lastname %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.email") %></th>
+        <th><%= t("activerecord.attributes.user.email") %></th>
         <td><%= @user.email %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.phone_number") %></th>
+        <th><%= t("activerecord.attributes.user.phone_number") %></th>
         <td><%= @user.phone_number %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.sreet_and_number") %></th>
+        <th><%= t("activerecord.attributes.user.sreet_and_number") %></th>
         <td><%= @user.street %> <%= @user.street_number %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.zipcode_and_city") %></th>
+        <th><%= t("activerecord.attributes.user.zipcode_and_city") %></th>
         <td><%= @user.zipcode %><%= ", " if @user.city.present? %><%= @user.city %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.country") %></th>
+        <th><%= t("activerecord.attributes.user.country") %></th>
         <td><%= @user.country %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.bank_code_and_name") %></th>
+        <th><%= t("activerecord.attributes.user.bank_code_and_name") %></th>
         <td><%= @user.bank_code %><%= ", " if @user.bank_name.present? %><%= @user.bank_name %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.bank_account_number") %></th>
+        <th><%= t("activerecord.attributes.user.bank_account_number") %></th>
         <td><%= @user.bank_account_number %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.tax_number") %></th>
+        <th><%= t("activerecord.attributes.user.tax_number") %></th>
         <td><%= @user.tax_number %></td>
       </tr>
 <%#
 <tr>
-<th><= t("labels.person.signature") ></th>
+<th><= t("activerecord.attributes.user.signature") ></th>
 <td><= @user.signature ></td>
 </tr>
 %>
       <tr>
-        <th><%= t("labels.person.roles") %></th>
+        <th><%= t("activerecord.attributes.user.roles") %></th>
         <td>
           <% i = @user.roles.count %>
           <% @user.roles.each do |role| %>
@@ -80,7 +80,7 @@
         </td>
       </tr>
       <tr>
-        <th><%= t("labels.person.creator") %></th>
+        <th><%= t("activerecord.attributes.user.creator") %></th>
         <td><%= @creator.login %></td>
       </tr>
       <tr>

@@ -1,41 +1,54 @@
 # encoding: UTF-8
 
-<%= form_for(@service) do |f| %>
-  <% if @service.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@service.errors.count, t("errors.form")) %></h2>
 
-      <ul>
-        <% @service.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row-fluid">
+  <div class="span6">
 
-  <div class="field">
-    <%= f.label :name, t("labels.service.name") %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :wage, t("labels.service.wage") %><br />
-    <%= f.text_field :wage %>
-  </div>
-  <div class="field">
-    <%= f.label :billable, t("labels.service.billable") %><br />
-    <%= f.check_box :billable %>
-  </div>
-  <div class="field">
-    <%= f.label :comment, t("labels.universe.comment") %><br />
-    <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
 
-  <div class="actions">
-    <%= f.submit %><%= cancel_link %>
+    <%= form_for(@service, :html => {:class => "form-horizontal"}) do |f| %>
+      <% if @service.errors.any? %>
+
+        <h3 class="offset1"><%= @service.errors.count %> <%= t("errors.form") %></h3>
+        <div class="alert alert-error offset1">
+          <ul>
+            <% @service.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="control-group">
+        <%= f.label :name, t("labels.service.name") + " *", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :name, placeholder: "#{t("labels.universe.label")}" %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :wage, t("activerecord.attributes.service.wage") + " *", :class => "control-label" %>
+        <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on">€</span>
+            <%= f.text_field :wage, :class => "span4", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :billable, t("labels.service.billable"), :class => "control-label" %>
+        <div class="controls"><%= f.check_box :billable %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :comment, t("labels.universe.comment"), :class => "control-label" %>
+        <div class="controls"><%= f.text_area :comment, :class => "span7", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+      </div>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+        
+        <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+        <%= cancel_link %>
+      </div>
+
+    <% end %>
   </div>
-<% end %>
+</div>
+

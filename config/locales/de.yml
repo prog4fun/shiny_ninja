@@ -129,7 +129,7 @@ de:
       header:
         one: ! "Konnte %{model} nicht speichern: ein Fehler."
         other: ! "Konnte %{model} nicht speichern: %{count} Fehler."
-    form: "Fehler verhinderte(n) das Speichern"
+    form: "Fehler:"
   helpers:
     select:
       prompt: Bitte wählen
@@ -217,6 +217,50 @@ de:
       services: "Tätigkeiten"
       user: "Benutzer"
       users: "Benutzer"
+    attributes:
+      project:
+        timebudget: "geplante Stunden"
+        timebudget_explanation: "geplante Stunden z.B. [10.5]"
+      report:
+        date: "Datum"
+        duration: "Dauer"
+        duration_explanation: "in Stunden, z.B. 5.3"
+      service:
+        wage: "Stundenlohn"
+        wage_explanation: "z.B. 30.50"
+      user:
+        login: "Benutzername"
+        firstname: "Vorname"
+        firstname_explanation: "Wie heißen Sie"
+        lastname: "Nachname"
+        lastname_explanation: "...mit Nachnamen?"
+        email: "E-Mail"
+        email_explanation: "Ihre E-Mail Adresse"
+        password: "Passwort"
+        password_explanation: "min. 5 Zeichen"
+        password_cofirmation: "Passwort bestätigen"
+        password_cofirmation_explanation: "Passwort wiederholen"
+        phone_number: "Telefonnummer"
+        phone_number_explanation: "Handy/Festnetz..."
+        street: "Straße"
+        street_explanation: "Straße"
+        street_number: "Hausnummer"
+        street_number_explanation: "Nr."
+        sreet_and_number: "Sraße und Hausnr."
+        zipcode: "Postleitzahl"
+        zipcode_explanation: "PLZ"
+        city: "Ort"
+        city_explanation: "Ort"
+        zipcode_and_city: "PLZ und Ort"
+        country: "Land"
+        bank_name: "Bankname"
+        bank_code: "Bankleitzahl"
+        bank_code_and_name: "Bankname und BLZ"
+        bank_account_number: "Kontonummer"
+        tax_number: "Steuernummer"
+        signature: "Unterschrift"
+        role: "Rolle"
+        roles: "Rollen"
       
   labels:
     actions:
@@ -228,12 +272,12 @@ de:
       destroy_explanation: "Löscht den ausgewählten Eintrag"
       edit: "Bearbeiten"
       edit_explanation: "Editiert den ausgewählten Eintrag"
-      empty_search_option: "Bitte auswählen"
       head: "Aktionen"
       logout: "Ausloggen"
       new: "Neu"
       new_explanation: "Legt ein neuen Eintrag an"
       reset: "Zurücksetzen"
+      save: "Speichern"
       search: "Suchen"
       search_head: "Suche"
       show: "Anzeigen"
@@ -244,7 +288,9 @@ de:
       index_title: "Zurück zur Übersicht"
     customer:
       name: "Bezeichnung"
-      email: "eMail des Ansprechspartners"
+      name_explanation: "Name, Firma, ..."
+      email: "E-Mail"
+      email_explanation: "des Ansprechspartners"
     datetime:
       date_from: "Datum von"
       date_to: "Datum bis"
@@ -252,32 +298,12 @@ de:
       hours: "Stunden"
     person:
       creator: "Ersteller"
-      firstname: "Vorname"
-      lastname: "Nachname"
-      email: "eMail"
-      login: "Benutzername"
       my_account: "Mein Account"
-      password: "Passwort"
-      password_cofirmation: "Passwort bestätigen"
-      phone_number: "Telefonnummer"
-      street: "Straße"
-      street_number: "Hausnummer"
-      sreet_and_number: "Sraße und Hausnr."
-      zipcode: "Postleitzahl"
-      city: "Stadt"
-      zipcode_and_city: "PLZ und Ort"
-      country: "Land"
-      bank_name: "Bankname"
-      bank_code: "Bankleitzahl"
-      bank_code_and_name: "Bankname und BLZ"
-      bank_account_number: "Kontonummer"
-      tax_number: "Steuernummer"
-      signature: "Unterschrift"
-      role: "Rolle"
-      roles: "Rollen"
+      
+ 
     project:
       name: "Projektname"
-      timebudget: "geplante Stunden für das Projekt"
+      name_explanation: "Name für das Projekt"
     report:
       date: "Datum"
       duration: "Dauer"
@@ -291,3 +317,8 @@ de:
       wage: "Gehalt"
     universe:
       comment: "Kommentar"
+      comment_explanation: "Platz für mehr ..."
+      empty_search_option: "Bitte auswählen"
+      label: "Bezeichnung"
+      mandatory_field: "Pflichtfeld"
+      mandatory_field_explanation: "*  markierte Felder sind Pflichtfelder"

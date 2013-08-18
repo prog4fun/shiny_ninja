@@ -70,6 +70,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(params[:report])
+    customers = Customer.where( :user_id => current_user.id)
+    @projects = Project.where( :customer_id => customers)
+    @services = Service.where( :user_id => current_user.id)
     
     @active_menu = "report"
 
@@ -85,6 +88,9 @@ class ReportsController < ApplicationController
 
   def update
     @report = Report.find(params[:id])
+    customers = Customer.where( :user_id => current_user.id)
+    @projects = Project.where( :customer_id => customers)
+    @services = Service.where( :user_id => current_user.id)
     
     @active_menu = "report"
 

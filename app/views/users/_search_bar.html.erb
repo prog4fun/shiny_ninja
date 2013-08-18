@@ -9,10 +9,10 @@
     
     <%= form_tag users_path, :method => 'get' do %>
 
-      <label><%= label_tag("[search][firstname]", t("labels.firstname")) %></label>
+      <label><%= label_tag("[search][firstname]", t("activerecord.attributes.user.firstname")) %></label>
       <%= text_field_tag("[search][firstname]", params[:search][:firstname]) %>
 
-      <label><%= label_tag("[search][lastname]", t("labels.lastname")) %></label>
+      <label><%= label_tag("[search][lastname]", t("activerecord.attributes.user.lastname")) %></label>
       <%= text_field_tag("[search][lastname]", params[:search][:lastname]) %>
 
       <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>

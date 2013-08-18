@@ -13,7 +13,7 @@
       <%= text_field_tag("[search][name]", params[:search][:name]) %></br>
 
       <label><%= label_tag("[search][customer]", t("activerecord.models.customer")) %></label>
-      <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.actions.empty_search_option")) %></br>
+      <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option")) %></br>
 
       <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
     <% end %>

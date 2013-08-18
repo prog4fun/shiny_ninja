@@ -18,36 +18,36 @@
 
     <table class="table table-hover">
       <tr>
-        <th><%= t("labels.person.login") %></th>
+        <th><%= t("activerecord.attributes.user.login") %></th>
         <td><%= @user.login %></td>
       </tr>
 
       <tr>
-        <th><%= t("labels.person.firstname") %></th>
+        <th><%= t("activerecord.attributes.user.firstname") %></th>
         <td><%= @user.firstname %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.lastname") %></th>
+        <th><%= t("activerecord.attributes.user.lastname") %></th>
         <td><%= @user.lastname %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.email") %></th>
+        <th><%= t("activerecord.attributes.user.email") %></th>
         <td><%= @user.email %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.phone_number") %></th>
+        <th><%= t("activerecord.attributes.user.phone_number") %></th>
         <td><%= @user.phone_number %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.sreet_and_number") %></th>
+        <th><%= t("activerecord.attributes.user.sreet_and_number") %></th>
         <td><%= @user.street %> <%= @user.street_number %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.zipcode_and_city") %></th>
+        <th><%= t("activerecord.attributes.user.zipcode_and_city") %></th>
         <td><%= @user.zipcode %><%= ", " if @user.city.present? %><%= @user.city %></td>
       </tr>
       <tr>
-        <th><%= t("labels.person.country") %></th>
+        <th><%= t("activerecord.attributes.user.country") %></th>
         <td><%= @user.country %></td>
       </tr>
       <tr>
