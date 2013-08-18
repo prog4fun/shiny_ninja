@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     
     @active_menu = "user"
     @search_bar = true
-    @head1 = t("activerecord.models.users")
 
     respond_to do |format|
       format.html
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
     
     @active_menu = "user"
     @search_bar = true
-    @head1 = t("activerecord.models.users")
 
     respond_to do |format|
       format.html
@@ -44,7 +42,6 @@ class UsersController < ApplicationController
     
     if my_users.include?(@user)
       @active_menu = "user"
-      @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
       add_breadcrumb t("labels.actions.show"), user_path(@user)
 
       respond_to do |format|
@@ -59,7 +56,6 @@ class UsersController < ApplicationController
     @user = current_user
   
     @active_menu = "user"
-    @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
     add_breadcrumb(t("labels.actions.show"), :controller => "users", :action => "pe_show")
       
   end
@@ -69,7 +65,6 @@ class UsersController < ApplicationController
     @creator = User.find(@user.created_by)
     
     @active_menu = "user"
-    @head1 = "#{t("labels.actions.show")} <#{@user.firstname} #{@user.lastname}>"
     add_breadcrumb t("labels.actions.show"), user_path(@user)
 
     respond_to do |format|
@@ -84,7 +79,6 @@ class UsersController < ApplicationController
     @user = User.new
     
     @active_menu = "user"
-    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.users")}"
     add_breadcrumb t("labels.actions.new"), new_user_path
 
     respond_to do |format|
@@ -96,7 +90,6 @@ class UsersController < ApplicationController
     @user = User.new :login => "p-"
     
     @active_menu = "user"
-    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.users")}"
     add_breadcrumb t("labels.actions.new"), new_user_path
 
     respond_to do |format|
@@ -113,7 +106,6 @@ class UsersController < ApplicationController
     
     if my_users.include?(@user)
       @active_menu = "user"
-      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
       add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
     else
       not_own_object_redirection
@@ -124,7 +116,6 @@ class UsersController < ApplicationController
     @user = current_user
   
     @active_menu = "user"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
     add_breadcrumb(t("labels.actions.edit"), :controller => "users", :action => "pe_edit")
   end
   
@@ -132,7 +123,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     @active_menu = "user"
-    @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.user")}"
     add_breadcrumb t("labels.actions.edit"), edit_user_path(@user.id)
   end
   

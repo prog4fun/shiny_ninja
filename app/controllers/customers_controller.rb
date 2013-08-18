@@ -13,7 +13,6 @@ class CustomersController < ApplicationController
     
     @active_menu = "customer"
     @search_bar = true
-    @head1 = t("activerecord.models.customers")
 
     respond_to do |format|
       format.html
@@ -25,7 +24,6 @@ class CustomersController < ApplicationController
     
     if current_user.customers.include?(@customer)
       @active_menu = "customer"
-      @head1 = "#{t("labels.actions.show")} <#{@customer.name}>"
       add_breadcrumb t("labels.actions.show"), customer_path(@customer)
 
       respond_to do |format|
@@ -41,7 +39,6 @@ class CustomersController < ApplicationController
     @customer = Customer.new
     
     @active_menu = "customer"
-    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.customers")}"
     add_breadcrumb t("labels.actions.new"), new_customer_path
 
     respond_to do |format|
@@ -54,7 +51,6 @@ class CustomersController < ApplicationController
     
     if current_user.customers.include?(@customer)
       @active_menu = "customer"
-      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.customer")}"
       add_breadcrumb t("labels.actions.edit"), edit_customer_path(@customer.id)
     
     else

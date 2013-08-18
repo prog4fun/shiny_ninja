@@ -14,7 +14,6 @@ class ProjectsController < ApplicationController
     
     @active_menu = "project"
     @search_bar = true
-    @head1 = t("activerecord.models.projects")
 
     respond_to do |format|
       format.html
@@ -29,7 +28,6 @@ class ProjectsController < ApplicationController
     
     if my_projects.include?(@project)
       @active_menu = "project"
-      @head1 = "#{t("labels.actions.show")} <#{@project.name}"
       add_breadcrumb t("labels.actions.show"), project_path(@project)
 
       respond_to do |format|
@@ -45,7 +43,6 @@ class ProjectsController < ApplicationController
     @customers = Customer.where( :user_id => current_user.id )
     
     @active_menu = "project"
-    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.projects")}"
     add_breadcrumb t("labels.actions.new"), new_project_path
 
     respond_to do |format|
@@ -61,7 +58,6 @@ class ProjectsController < ApplicationController
     
     if my_projects.include?(@project)    
       @active_menu = "project"
-      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.project")}"
       add_breadcrumb t("labels.actions.edit"), edit_project_path(@project.id)
     else
       not_own_object_redirection

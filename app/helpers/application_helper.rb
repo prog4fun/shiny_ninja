@@ -52,21 +52,41 @@ module ApplicationHelper
     end
   end
 
-  def link_to_edit(options = {})
+  def index_link_to_edit(options = {})
     if can? :update, hash_with_controller_to_model(options)
       url = url_for(options)
       html_code = "<a class='btn btn-small btn-warning' href='#{url}'><i class='#{icon_edit}' alt='#{t("labels.actions.edit")}' title='#{t("labels.actions.edit_explanation")}'></i></a>"
       return raw html_code
     end
   end
+  
+   def show_link_to_edit(options = {})
+    if can? :update, hash_with_controller_to_model(options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-warning' href='#{url}'><i class='#{icon_edit}' alt='#{t("labels.actions.edit")}' title='#{t("labels.actions.edit_explanation")}'></i> #{t("labels.actions.edit")}</a>"
+      return raw html_code
+    end
+  end
 
-  def link_to_destroy(options = {})
+  def index_link_to_destroy(options = {})
     if can? :create, hash_with_controller_to_model(options)
       # if can? :destroy, object.class
       # options.merge!(:class => "no_hover")
       # return link_to(icon_destroy, object, options)
       url = url_for(options)
       html_code = "<a class='btn btn-small btn-danger' href='#{url}' class='no_hover' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i></a>"
+      return raw html_code
+      
+    end
+  end
+  
+  def show_link_to_destroy(options = {})
+    if can? :create, hash_with_controller_to_model(options)
+      # if can? :destroy, object.class
+      # options.merge!(:class => "no_hover")
+      # return link_to(icon_destroy, object, options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-danger' href='#{url}' class='no_hover' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i>#{t("labels.actions.destroy")}</a>"
       return raw html_code
       
     end

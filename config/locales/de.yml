@@ -248,6 +248,8 @@ de:
     datetime:
       date_from: "Datum von"
       date_to: "Datum bis"
+      hour: "Stunde"
+      hours: "Stunden"
     person:
       creator: "Ersteller"
       firstname: "Vorname"
@@ -260,11 +262,14 @@ de:
       phone_number: "Telefonnummer"
       street: "Straße"
       street_number: "Hausnummer"
+      sreet_and_number: "Sraße und Hausnr."
       zipcode: "Postleitzahl"
       city: "Stadt"
+      zipcode_and_city: "PLZ und Ort"
       country: "Land"
       bank_name: "Bankname"
       bank_code: "Bankleitzahl"
+      bank_code_and_name: "Bankname und BLZ"
       bank_account_number: "Kontonummer"
       tax_number: "Steuernummer"
       signature: "Unterschrift"

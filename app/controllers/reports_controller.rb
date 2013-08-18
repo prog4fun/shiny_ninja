@@ -14,7 +14,6 @@ class ReportsController < ApplicationController
     
     @active_menu = "report"
     @search_bar = true
-    @head1 = t("activerecord.models.reports")
 
     respond_to do |format|
       format.html
@@ -29,7 +28,6 @@ class ReportsController < ApplicationController
     
     if my_reports.include?(@report)
       @active_menu = "report"
-      @head1 = "#{t("labels.actions.show")} <#{@report.date}>"
       add_breadcrumb t("labels.actions.show"), report_path(@report)
 
       respond_to do |format|
@@ -47,7 +45,6 @@ class ReportsController < ApplicationController
     @services = Service.where( :user_id => current_user.id)
     
     @active_menu = "report"
-    @head1 = "#{t("labels.actions.new")} #{t("activerecord.models.reports")}"
     add_breadcrumb t("labels.actions.new"), new_report_path
 
     respond_to do |format|
@@ -65,7 +62,6 @@ class ReportsController < ApplicationController
     
     if my_reports.include?(@report)
       @active_menu = "report"
-      @head1 = "#{t("labels.actions.edit")} #{t("activerecord.models.report")}"
       add_breadcrumb t("labels.actions.edit"), edit_report_path(@report.id)
     else
       not_own_object_redirection
