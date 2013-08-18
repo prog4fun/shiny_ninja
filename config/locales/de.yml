@@ -273,6 +273,7 @@ de:
       edit: "Bearbeiten"
       edit_explanation: "Editiert den ausgewählten Eintrag"
       head: "Aktionen"
+      login: "Anmelden"
       logout: "Ausloggen"
       new: "Neu"
       new_explanation: "Legt ein neuen Eintrag an"
@@ -299,8 +300,6 @@ de:
     person:
       creator: "Ersteller"
       my_account: "Mein Account"
-      
- 
     project:
       name: "Projektname"
       name_explanation: "Name für das Projekt"
