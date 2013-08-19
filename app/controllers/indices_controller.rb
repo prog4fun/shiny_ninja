@@ -5,7 +5,7 @@ class IndicesController < ApplicationController
   before_filter :add_breadcrumb_index
   
   
-  def index
+  def start
     if current_user.nil?
       redirect_to(:controller => "indices", :action => "home") and return
     else
@@ -24,7 +24,6 @@ class IndicesController < ApplicationController
   end
   
   def impressum
-    
   end
 
   def administrator
