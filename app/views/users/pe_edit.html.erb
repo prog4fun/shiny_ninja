@@ -53,7 +53,7 @@
         <div class="controls"><%= f.password_field :password, placeholder: "#{t("activerecord.attributes.user.password_explanation")}" %></div>
       </div>
       <div class="control-group">
-        <%= f.label :password_confirmation, t("activerecord.attributes.user.password_cofirmation") + " *", :class => "control-label" %>
+        <%= f.label :password_confirmation, t("activerecord.attributes.user.password_cofirmation") + " **", :class => "control-label" %>
         <div class="controls"><%= f.password_field :password_confirmation, placeholder: "#{t("activerecord.attributes.user.password_cofirmation_explanation")}" %></div>
       </div>
       <div class="control-group">
@@ -82,6 +82,7 @@
       </div>
 
       <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+      <div class="muted offset1"><%= t("labels.universe.password_login_explanation") %></div>
 
       <div class="form-actions">
         <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>

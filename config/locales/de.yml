@@ -331,3 +331,4 @@ de:
       label: "Bezeichnung"
       mandatory_field: "Pflichtfeld"
       mandatory_field_explanation: "*  markierte Felder sind Pflichtfelder"
+      password_login_explanation: "** Ändern Sie Ihr eigenes Passwort, so müssen Sie sich im Anschluss mit dem neuen Passwort anmelden."
