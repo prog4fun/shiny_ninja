@@ -16,7 +16,7 @@ ShinyNinja::Application.routes.draw do
   match "/users/pe_edit", :controller => "users", :action => "pe_edit"
   
   # Reports
-  match "/reports/import", :controller => "reports", :action => "import"
+  # match "/reports/import", :controller => "reports", :action => "import"
   
   # Index
   match "/index/start", :controller => "indices", :action => "start"

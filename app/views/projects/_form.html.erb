@@ -25,12 +25,12 @@
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :timebudget, t("labels.datetime.hours"), :class => "control-label" %>
-        <div class="controls"><%= f.number_field :timebudget, placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %></div>
-      </div>
-      <div class="control-group">
         <%= f.label :customer_id, t("activerecord.models.customer") + " *", :class => "control-label" %>
         <div class="controls"><%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }) %></div>
+      </div>
+      <div class="control-group">
+        <%= f.label :timebudget, t("labels.datetime.hours"), :class => "control-label" %>
+        <div class="controls"><%= f.number_field :timebudget, placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %></div>
       </div>
       <div class="control-group">
         <%= f.label :comment, t("labels.universe.comment"), :class => "control-label" %>

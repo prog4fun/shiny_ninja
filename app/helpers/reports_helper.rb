@@ -4,7 +4,7 @@ module ReportsHelper
   
   def get_customer_of_report(report)
     customer = report.project.customer.name
-    customer = truncate(customer, :length => 20)
+    customer = truncate(customer, :length => 25)
     return customer    
   end
   

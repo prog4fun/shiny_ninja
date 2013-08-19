@@ -2,7 +2,11 @@
 
 <div class="row-fluid">
   <div class="span7 offset1">
-    <h1><%= t("labels.roles.projectevaluator") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
+    <% if @user == current_user %>
+      <h1><%= t("labels.person.my_account") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
+      <% else %>
+      <h1><%= t("labels.roles.projectevaluator") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
+    <% end %>
   </div>
 </div>
 

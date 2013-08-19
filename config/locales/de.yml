@@ -238,6 +238,7 @@ de:
         lastname_explanation: "...mit Nachnamen?"
         email: "E-Mail"
         email_explanation: "Ihre E-Mail Adresse"
+        email_project_evaluator_explanation: "Seine E-Mail Adresse"
         password: "Passwort"
         password_explanation: "min. 5 Zeichen"
         password_cofirmation: "Passwort bestätigen"
