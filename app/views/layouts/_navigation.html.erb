@@ -30,9 +30,9 @@
   <% if current_user.is? :administrator %>
     <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_index" %></li>
   <% elsif current_user.is? :time_tracker %>
-    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "tt_index" %></li>
-  <% elsif current_user.is? :time_tracker %>
-    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "pe_show" %></li>
+    <li class=<%= css_user_class %>><%= link_to t('labels.roles.projectevaluator'), :controller => "users", :action => "tt_index" %></li>
+  <% elsif current_user.is? :project_evaluator %>
+    <li class=<%= css_user_class %>><%= link_to t('labels.person.my_account'), :controller => "users", :action => "pe_show" %></li>
 
   <% end %>
 <% end %>

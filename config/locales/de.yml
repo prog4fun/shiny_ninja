@@ -261,6 +261,7 @@ de:
         signature: "Unterschrift"
         role: "Rolle"
         roles: "Rollen"
+        creator: "Erstellt von"
       
   labels:
     actions:

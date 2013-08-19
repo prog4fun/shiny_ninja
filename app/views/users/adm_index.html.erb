@@ -27,7 +27,16 @@
       </tr>
 
       <% @users.each do |user| %>
-        <tr>
+        <%
+        if user.is? :administrator
+          tr_class = "error"
+          elsif user.is? :time_tracker
+          tr_class = "warning"
+          elsif user.is? :project_evaluator
+          tr_class = "success"
+          end
+      %>
+        <tr class=<%= tr_class %>>
           <td><%= user.login %></td>
           <td><%= user.firstname %></td>
           <td><%= user.lastname %></td>

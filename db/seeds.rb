@@ -15,6 +15,14 @@ User.delete_all
 
 # Users
 # +++++++++++++++++++++++++
+user0 = User.create(
+  login: "user0",
+  password: "test123",
+  firstname: "Seed",
+  lastname: "ID",
+  email: "user0@mail.de",
+  created_by: 2
+)
 user1 = User.create(
   login: "mkoriath",
   password: "test123",
@@ -33,7 +41,7 @@ user1 = User.create(
   tax_number: "999-888-555",
   signature: "/home/shiny-ninja-data/signature/mkoriath.png",
   roles_mask: 1,
-  created_by: 1
+  created_by: user0.id
 )
 user2 = User.create(
   login: "cturk",
@@ -68,7 +76,7 @@ user5 = User.create(
   firstname: "Perry",
   lastname: "Cox",
   email: "Perry.Cox@mail.com",
-  roles_mask: 3,
+  roles_mask: 4,
   created_by: user4.id
 )
 
