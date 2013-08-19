@@ -273,6 +273,8 @@ de:
       confirm: "Sind Sie sich sicher?"
       destroy: "Löschen"
       destroy_explanation: "Löscht den ausgewählten Eintrag"
+      download: "Download"
+      download_csv_explonation: "Als .csv-Datei herunterladen"
       edit: "Bearbeiten"
       edit_explanation: "Editiert den ausgewählten Eintrag"
       head: "Aktionen"
@@ -283,6 +285,7 @@ de:
       reset: "Zurücksetzen"
       save: "Speichern"
       search: "Suchen"
+      search_explonation: "Tabelle mit ausgewählten Kreterien filtern."
       search_head: "Suche"
       show: "Anzeigen"
     authorization:

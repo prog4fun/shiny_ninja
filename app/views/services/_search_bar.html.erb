@@ -12,7 +12,7 @@
       <label><%= label_tag("[search][name]", t("labels.name")) %></label>
       <%= text_field_tag("[search][name]", params[:search][:name]) %>
 
-      <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
+      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></a>    
     <% end %>
   </fieldset>
 </form>

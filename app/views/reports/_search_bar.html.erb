@@ -6,7 +6,7 @@
       <%= t("labels.actions.search_head") %>
       <a class='btn btn-mini' href='<%= reports_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
     </legend>
-    
+
     <%= form_tag reports_path, :method => 'get' do %>
 
       <label><%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %></label>
@@ -21,7 +21,7 @@
       <label><%= label_tag("[search][project]", t("activerecord.models.project")) %></label>
       <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.universe.empty_search_option")) %></br>
 
-      <button type="submit" class="btn btn-info" ><%= t("labels.actions.search") %></button>
+      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></a>    
     <% end %>
   </fieldset>
 </form>

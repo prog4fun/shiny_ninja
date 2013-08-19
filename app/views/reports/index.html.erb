@@ -43,7 +43,13 @@
       <% end %>
     </table>
 
+    <div class="span2 offset10">
+      <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :format => :csv) %>">   <i class="icon-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explonation") %>"></i> <%= t("labels.actions.download") %></a>
+    </div>
+
   </div>
+
+
 
   <div class="span3">
     <%= render "search_bar" %>

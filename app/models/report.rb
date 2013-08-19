@@ -15,6 +15,38 @@ class Report < ActiveRecord::Base
   validates :project_id, :presence => true
   validates :service_id, :presence => true
   
+  # CSV-Download
+  require 'csv'
+  include ActionView::Helpers::NumberHelper
+  def self.download_csv(options = {})
+    headline = [I18n.t("activerecord.attributes.report.date"),
+      I18n.t("activerecord.models.customer"),
+      I18n.t("activerecord.models.project"),
+      I18n.t("activerecord.models.service"),
+      I18n.t("labels.roles.timetracker"),
+      I18n.t("activerecord.attributes.report.duration"),
+      I18n.t("labels.universe.comment")]
+    CSV.generate(:col_sep => ";") do |csv|
+      csv << headline
+      all.each do |report|
+        user = report.project.customer.user 
+        user = user.firstname + " " + user.lastname
+        ##
+        data = [
+          report.date,
+          report.project.customer.name,
+          report.project.name,
+          report.service.name,
+          user,
+          report.duration.to_s.gsub(".",","),
+          report.comment     ]
+        # csv << report.attributes.values_at(*column_names)
+        csv << data
+      end
+    end
+  end
+  
+  
   # search
   def self.search(search, current_user)
     

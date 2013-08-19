@@ -27,6 +27,14 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.csv  {
+        reports_for_download = Report.search(params[:data], current_user)
+        filename = reports_for_download.first.date.strftime("%d.%m.%Y-")
+        filename << reports_for_download.last.date.strftime("%d.%m.%Y_")
+        filename << t("activerecord.models.reports")
+        filename << ".csv"
+        
+        send_data reports_for_download.download_csv, :filename => filename   }
     end
   end
 
