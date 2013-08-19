@@ -10,6 +10,15 @@ module ApplicationHelper
   end
   
   # ICONS
+  def icon_boolean(state)
+    if state == true
+      return t("labels.state.positive")
+    else
+      return t("labels.state.negative")
+    end
+  end
+  
+  
   def link_to_function(icon, options = {})
     return link_to(icon, options, :class => "no_hover")
   end

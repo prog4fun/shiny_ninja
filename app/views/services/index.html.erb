@@ -30,8 +30,8 @@
           <td><%= service.name %></td>
           <td><%= service.wage %></td>
           <td style="width:5%"><%= link_to_show(service) %></td>
-          <td style="width:5%"><%= index_link_to_edit(:controller => "services", :action => "edit", :id => service.id) %></td>
-          <td style="width:5%"><%= index_link_to_destroy(:controller => "services", :action => "show", :id => service.id) %></td>
+          <%= index_link_to_edit(:controller => "services", :action => "edit", :id => service.id) %></td>
+          <%= index_link_to_destroy(:controller => "services", :action => "show", :id => service.id) %></td>
         </tr>
       <% end %>
     </table>

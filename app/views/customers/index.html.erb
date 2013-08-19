@@ -30,8 +30,8 @@
           <td><%= customer.name %></td>
           <td><%= customer.email %></td>
           <td style="width:5%"><%= link_to_show(customer) %></td>
-          <td style="width:5%"><%= index_link_to_edit(:controller => "customers", :action => "edit", :id => customer.id) %></td>
-          <td style="width:5%"><%= index_link_to_destroy(:controller => "customers", :action => "show", :id => customer.id) %></td>
+          <%= index_link_to_edit(:controller => "customers", :action => "edit", :id => customer.id) %></td>
+          <%= index_link_to_destroy(:controller => "customers", :action => "show", :id => customer.id) %></td>
         </tr>
       <% end %>
     </table>

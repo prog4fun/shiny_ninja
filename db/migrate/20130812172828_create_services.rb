@@ -3,7 +3,7 @@ class CreateServices < ActiveRecord::Migration
     create_table :services do |t|
       t.string :name,           :null => false
       t.decimal :wage,          :precision => 10, :scale => 2
-      t.boolean :billable
+      t.boolean :billable,      :default => true
       t.text :comment
       t.integer :user_id,       :null => false
 

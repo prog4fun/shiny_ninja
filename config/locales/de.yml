@@ -320,6 +320,9 @@ de:
       billable: "Abrechenbar"
       name: "Servicename"
       wage: "Gehalt"
+    state:
+      positive: "Ja"
+      negative: "Nein"
     universe:
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."

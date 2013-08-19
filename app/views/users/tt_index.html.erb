@@ -32,8 +32,8 @@
           <td><%= user.firstname %></td>
           <td><%= user.lastname %></td>
           <td style="width:5%"><%= link_to_show(:controller => "users", :action => "tt_show", :id => user.id) %></td>
-          <td style="width:5%"><%= index_link_to_edit(:controller => "users", :action => "tt_edit", :id => user.id) %></td>
-          <td style="width:5%"><%= index_link_to_destroy(:controller => "users", :action => "show", :id => user.id) %></td>
+          <%= index_link_to_edit(:controller => "users", :action => "tt_edit", :id => user.id) %></td>
+          <%= index_link_to_destroy(:controller => "users", :action => "show", :id => user.id) %></td>
         </tr>
       <% end %>
     </table>
