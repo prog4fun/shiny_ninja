@@ -145,6 +145,11 @@ class ReportsController < ApplicationController
   
   #######################################################################
   
+  def import
+    
+  end
+  
+  
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), reports_path, :title => t("labels.breadcrumbs.index_title")
