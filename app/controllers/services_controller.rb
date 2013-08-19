@@ -94,13 +94,18 @@ class ServicesController < ApplicationController
     
     @active_menu = "service"
     
-    @service.destroy
+    dependency = @service.reports.count
+    if dependency > 0
+      flash[:alert] = t("activerecord.models.service") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.reports")})."
+      redirect_to services_url
+    else
+      @service.destroy
 
-    respond_to do |format|
-      format.html { redirect_to services_url }
+      respond_to do |format|
+        format.html { redirect_to services_url }
+      end
     end
   end
-  
   #######################################################################
   
   private

@@ -100,10 +100,16 @@ class ProjectsController < ApplicationController
     
     @active_menu = "project"
     
-    @project.destroy
+    dependency = @project.reports.count
+    if dependency > 0
+      flash[:alert] = t("activerecord.models.project") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.reports")})."
+      redirect_to projects_url
+    else
+      @project.destroy
 
-    respond_to do |format|
-      format.html { redirect_to projects_url }
+      respond_to do |format|
+        format.html { redirect_to projects_url }
+      end
     end
   end
   

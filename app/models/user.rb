@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   
   # associations
   has_many :customers
+  has_many :services
   
   # validations
   validates :bank_account_number, :bank_name, :bank_code, :city,

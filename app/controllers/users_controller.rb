@@ -201,23 +201,37 @@ class UsersController < ApplicationController
     @active_menu = "user"
     
     if current_user.is? :administrator
-      @user.destroy
-      respond_to do |format|
-        format.html { redirect_to action: "adm_index" }
+      dependency = @user.customers.count
+      dependency += @user.services.count
+      if dependency > 0
+        flash[:alert] = t("activerecord.models.user") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.reports")}/#{t("activerecord.models.services")})."
+        redirect_to action: "adm_index"
+      else
+        @user.destroy
+        respond_to do |format|
+          format.html { redirect_to action: "adm_index" }
+        end
       end
     
     else  # no administrator
-      my_users = User.where("created_by = ?", current_user.id)
-      if my_users.include?(@user)
-        @user.destroy
-        respond_to do |format|
-          format.html { redirect_to action: "tt_index" }
-        end
+      
+      dependency = @user.customers.count
+      dependency += @user.services.count
+      if dependency > 0
+        flash[:alert] = t("activerecord.models.user") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.reports")}/#{t("activerecord.models.services")})."
+        redirect_to action: "tt_index"
       else
-        not_own_object_redirection
+        my_users = User.where("created_by = ?", current_user.id)
+        if my_users.include?(@user)
+          @user.destroy
+          respond_to do |format|
+            format.html { redirect_to action: "tt_index" }
+          end
+        else
+          not_own_object_redirection
+        end
       end
     end
-    
   end
   
   ### Other ###################################################################

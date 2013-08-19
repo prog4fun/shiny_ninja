@@ -92,10 +92,16 @@ class CustomersController < ApplicationController
     
     @active_menu = "customer"
     
-    @customer.destroy
+    dependency = @customer.projects.count
+    if dependency > 0
+      flash[:alert] = t("activerecord.models.customer") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.customers")})."
+      redirect_to customers_url
+    else
+      @customer.destroy
 
-    respond_to do |format|
-      format.html { redirect_to customers_url }
+      respond_to do |format|
+        format.html { redirect_to customers_url }
+      end
     end
   end
   
@@ -106,7 +112,7 @@ class CustomersController < ApplicationController
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
   
-#  def redirect_if_not_own_object
-#    raise ActiveRecord::RecordNotFound
-#  end
+  #  def redirect_if_not_own_object
+  #    raise ActiveRecord::RecordNotFound
+  #  end
 end
