@@ -135,9 +135,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    customers = current_user.customers
-    @my_projects = Project.where(:customer_id => customers)
     
+    if current_user.customers.present?
+      customers = current_user.customers
+      @my_projects = Project.where(:customer_id => customers)
+    end
+      
     @active_menu = "user"
     
     if current_user.is? :administrator
@@ -173,8 +176,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    customers = current_user.customers
-    @my_projects = Project.where(:customer_id => customers)
+    
+    if current_user.customers.present?
+      customers = current_user.customers
+      @my_projects = Project.where(:customer_id => customers)
+    end
     
     @active_menu = "user"
     

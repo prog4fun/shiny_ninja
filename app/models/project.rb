@@ -9,7 +9,6 @@ class Project < ActiveRecord::Base
   validates :comment, :customer_id, :name, :timebudget,
     :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
-  validates :timebudget, :presence => true
   validates :customer_id, :presence => true
   
   # search
