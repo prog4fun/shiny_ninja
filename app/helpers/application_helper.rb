@@ -6,7 +6,7 @@ module ApplicationHelper
   def cancel_link
     url = url_for(request.env["HTTP_REFERER"])
     html_code = "<a class='btn btn-small btn-danger' href='#{url}' data-confirm='#{t("labels.actions.confirm")}'>#{t("labels.actions.cancel")}</a>"
-      return raw html_code
+    return raw html_code
   end
   
   # ICONS
@@ -44,23 +44,23 @@ module ApplicationHelper
   
   # LINKS
   def link_to_show(options = {})
-    if can? :show, options
-      # return link_to_function(icon_show, options)
-      url = url_for(options)
-      html_code = "<a class='btn btn-small btn-info' href='#{url}'><i class='#{icon_show}' alt='#{t("labels.actions.show")}' title='#{t("labels.actions.show_explanation")}'></i></a>"
-      return raw html_code
-    end
+    #if can? :tt_show, options
+    # return link_to_function(icon_show, options)
+    url = url_for(options)
+    html_code = "<a class='btn btn-small btn-info' href='#{url}'><i class='#{icon_show}' alt='#{t("labels.actions.show")}' title='#{t("labels.actions.show_explanation")}'></i></a>"
+    return raw html_code
+    #end
   end
 
   def index_link_to_edit(options = {})
     if can? :update, hash_with_controller_to_model(options)
       url = url_for(options)
-      html_code = "<a class='btn btn-small btn-warning' href='#{url}'><i class='#{icon_edit}' alt='#{t("labels.actions.edit")}' title='#{t("labels.actions.edit_explanation")}'></i></a>"
+      html_code = "<td style='width:5%'><a class='btn btn-small btn-warning' href='#{url}'><i class='#{icon_edit}' alt='#{t("labels.actions.edit")}' title='#{t("labels.actions.edit_explanation")}'></i></a></td>"
       return raw html_code
     end
   end
   
-   def show_link_to_edit(options = {})
+  def show_link_to_edit(options = {})
     if can? :update, hash_with_controller_to_model(options)
       url = url_for(options)
       html_code = "<a class='btn btn-warning' href='#{url}'><i class='#{icon_edit}' alt='#{t("labels.actions.edit")}' title='#{t("labels.actions.edit_explanation")}'></i> #{t("labels.actions.edit")}</a>"
@@ -74,7 +74,7 @@ module ApplicationHelper
       # options.merge!(:class => "no_hover")
       # return link_to(icon_destroy, object, options)
       url = url_for(options)
-      html_code = "<a class='btn btn-small btn-danger' href='#{url}' class='no_hover' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i></a>"
+      html_code = "<td style='width:5%'><a class='btn btn-small btn-danger' href='#{url}' class='no_hover' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i></a></td>"
       return raw html_code
       
     end

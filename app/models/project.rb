@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   
   # associations
   belongs_to :customer
+  has_and_belongs_to_many :users
   
   # validations
   validates :comment, :customer_id, :name, :timebudget,

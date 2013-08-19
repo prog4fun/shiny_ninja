@@ -12,6 +12,7 @@ class Ability
       can :manage, Project
       can :manage, Report
       can :manage, Service
+      can :tt_show, User
       can :tt_index, User
       can :tt_new, User
       can :tt_edit, User
@@ -19,6 +20,8 @@ class Ability
       can :update, User
       can :destroy, User
     elsif user.is? :project_evaluator
+      can :index, Report
+      can :show, Report
       can :pe_show, User
       can :pe_edit, User
       can :update, User

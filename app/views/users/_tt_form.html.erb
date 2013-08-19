@@ -22,11 +22,15 @@
 
       <div class="control-group">
         <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :login, :class => "span6", placeholder: "p-" %></div>
+        <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on">p-</span>
+            <%= f.text_field :login, :class => "span7", placeholder: "#{t("activerecord.attributes.user.login_explonation")}" %></div>
+        </div>
       </div>
       <div class="control-group">
         <%= f.label :firstname, t("activerecord.attributes.user.firstname") + " *", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :firstname, :class => "span8", placeholder: "#{t("activerecord.attributes.user.firstname_explanation")}"  %></div>
+        <div class="controls"><%= f.text_field :firstname, :class => "span8", placeholder: "#{t("activerecord.attributes.user.firstname_project_evaluator_explanation")}"  %></div>
       </div>
       <div class="control-group">
         <%= f.label :lastname, t("activerecord.attributes.user.lastname") + " *", :class => "control-label" %>
@@ -70,27 +74,16 @@
         <div class="controls">Deutschland</div>
       </div>
       <div class="control-group">
-        <%= f.label :bank_name, t("activerecord.attributes.user.bank_name"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :bank_name %></div>
+        <%= f.label :projects, t("activerecord.models.projects"), :class => "control-label" %>
+        <div class="controls">
+          <% @my_projects.each do |project| %>
+            <label class="checkbox">
+              <%= check_box_tag "user[project_ids][]", project.id, @user.projects.include?(project) %>
+              <%= project.name %></br>
+            </label>
+          <% end %>
+        </div>
       </div>
-      <div class="control-group">
-        <%= f.label :bank_code, t("activerecord.attributes.user.bank_code"), :class => "control-label" %>
-        <div class="controls"> <%= f.text_field :bank_code %></div>
-      </div>
-      <div class="control-group">
-        <%= f.label :bank_account_number, t("activerecord.attributes.user.bank_account_number"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :bank_account_number %></div>
-      </div>
-      <div class="control-group">
-        <%= f.label :tax_number, t("activerecord.attributes.user.tax_number"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :tax_number %></div>
-      </div>
-  <%#
-  <div class="control-group">
-  <= f.label :signature, t("activerecord.attributes.user.signature"), :class => "control-label" >
-  <div class="controls"><= f.text_field :signature ></div>
-  </div>
-  %>
       <div class="control-group">
         <%= f.label :comment, t("labels.uiverse.comment"), :class => "control-label" %>
         <div class="controls"><%= f.text_area :comment, :class => "span7", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>

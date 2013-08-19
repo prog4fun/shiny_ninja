@@ -18,8 +18,13 @@ class Report < ActiveRecord::Base
   # search
   def self.search(search, current_user)
     
-    services = Service.where("user_id = ?", current_user.id)
-    result = Report.where( :service_id => services)
+    if current_user.is? :project_evaluator
+      projects = current_user.projects
+      result = Report.where( :project_id => projects)
+    else
+      services = Service.where("user_id = ?", current_user.id)
+      result = Report.where( :service_id => services)
+    end    
     
     if search
       if search["date_from"].present?

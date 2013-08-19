@@ -77,6 +77,8 @@ class UsersController < ApplicationController
   def tt_new
     # new for an time_tracker to create an project_evaluator
     @user = User.new
+    customers = current_user.customers
+    @my_projects = Project.where(:customer_id => customers)
     
     @active_menu = "user"
     add_breadcrumb t("labels.actions.new"), new_user_path
@@ -101,6 +103,9 @@ class UsersController < ApplicationController
 
   def tt_edit
     @user = User.find(params[:id])
+    @user.login[0..1] = '' 
+    customers = current_user.customers
+    @my_projects = Project.where(:customer_id => customers)
     
     my_users = User.where("created_by = ? OR id = ?", current_user.id, current_user.id)
     
@@ -130,6 +135,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    customers = current_user.customers
+    @my_projects = Project.where(:customer_id => customers)
     
     @active_menu = "user"
     
@@ -153,9 +160,9 @@ class UsersController < ApplicationController
           :created_by => current_user.id,
           :roles_mask => 4 }   # 4 --> project_evaluator
         if @user.save
-          format.html { redirect_to @user, id: @user.id, notice: t("confirmations.messages.saved") }
+          format.html { redirect_to action: "tt_show", id: @user.id, notice: t("confirmations.messages.saved") }
         else
-          format.html { render action: "new" }
+          format.html { render action: "tt_new" }
         end
       end
     end
@@ -166,6 +173,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    customers = current_user.customers
+    @my_projects = Project.where(:customer_id => customers)
     
     @active_menu = "user"
     
@@ -179,14 +188,25 @@ class UsersController < ApplicationController
           format.html { render action: "adm_edit" }
         end
       end
+      
+    elsif current_user.is? :time_tracker
+      respond_to do |format|
+        params[:user][:country] = "de"
+        params[:user][:login] = "p-" << params[:user][:login]
+        if @user.update_attributes(params[:user])
+          format.html { redirect_to action: "tt_show", id: @user.id, notice: t("confirmations.messages.saved") }
+        else
+          format.html { render action: "tt_edit" }
+        end
+      end
     
-    else  # no administrator
+    else  # project_evaluator
       respond_to do |format|
         params[:user][:country] = "de"
         if @user.update_attributes(params[:user])
-          format.html { redirect_to @user, id: @user.id, notice: t("confirmations.messages.saved") }
+          format.html { redirect_to action: "pe_show", id: @user.id, notice: t("confirmations.messages.saved") }
         else
-          format.html { render action: "tt_edit" }
+          format.html { render action: "pe_edit" }
         end
       end
     end

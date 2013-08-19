@@ -230,8 +230,10 @@ de:
         wage_explanation: "z.B. 30.50"
       user:
         login: "Benutzername"
+        login_explonation: "Benutzername"
         firstname: "Vorname"
         firstname_explanation: "Wie heißen Sie"
+        firstname_project_evaluator_explanation: "Wie heißt der Auswerter"
         lastname: "Nachname"
         lastname_explanation: "...mit Nachnamen?"
         email: "E-Mail"

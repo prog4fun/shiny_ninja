@@ -22,7 +22,9 @@
         <th><%= t("labels.report.date") %></th>
         <th><%= t("activerecord.models.customer") %></th>
         <th><%= t("labels.report.duration") %></th>
-        <th><%= t("labels.service.wage") %></th>
+        <% unless current_user.is? :project_evaluator %>
+          <th><%= t("labels.service.wage") %></th>
+        <% end %>
         <th colspan="3"><%= t("labels.actions.head") %></th>
       </tr>
 
@@ -31,10 +33,12 @@
           <td><%= report.date %></td>
           <td><%= get_customer_of_report(report) %></td>
           <td><%= report.duration %></td>
-          <td><%= report.service.wage %></td>
+          <% unless current_user.is? :project_evaluator %>
+            <td><%= report.service.wage %></td>
+          <% end %>
           <td style="width:5%"><%= link_to_show(report) %></td>
-          <td style="width:5%"><%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %></td>
-          <td style="width:5%"><%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %></td>
+          <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
+          <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
         </tr>
       <% end %>
     </table>

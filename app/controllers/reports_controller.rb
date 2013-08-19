@@ -7,8 +7,18 @@ class ReportsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @customers = Customer.where( :user_id => current_user.id)
-    @projects = Project.where( :customer_id => @customers)
+    
+    if current_user.is? :project_evaluator
+      @projects = current_user.projects
+      customer_ids = Array.new
+      @projects.each{|project| customer_ids.push(project.customer_id)}
+      @customers = Customer.where(:id => customer_ids)
+    else
+      @customers = Customer.where( :user_id => current_user.id)
+      @projects = Project.where( :customer_id => @customers)
+    end
+    
+    
     params[:search] ||= {}
     @reports = Report.search(params[:search], current_user).page(params[:page])
     
@@ -23,10 +33,20 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
     
-    services = Service.where("user_id = ?", current_user.id)
-    my_reports = Report.where( :service_id => services)
+    my_services = Service.where("user_id = ?", current_user.id)
+    my_reports = Report.where( :service_id => my_services)
+    pes_projects = current_user.projects
+    pes_reports = Report.where( :project_id => pes_projects)
+     
     
     if my_reports.include?(@report)
+      @active_menu = "report"
+      add_breadcrumb t("labels.actions.show"), report_path(@report)
+
+      respond_to do |format|
+        format.html
+      end
+    elsif pes_reports.include?(@report)
       @active_menu = "report"
       add_breadcrumb t("labels.actions.show"), report_path(@report)
 

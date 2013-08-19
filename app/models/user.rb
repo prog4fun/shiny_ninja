@@ -10,17 +10,18 @@ class User < ActiveRecord::Base
   
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
     :comment, :country, :created_by, :email, :firstname, :lastname, :login,
-    :password, :password_confirmation, :phone_number, :remember_me, :roles,
+    :password, :password_confirmation, :phone_number, :project_ids, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode
   
   # associations
   has_many :customers
   has_many :services
+  has_and_belongs_to_many :projects
   
   # validations
   validates :bank_account_number, :bank_name, :bank_code, :city,
     :comment, :country, :created_by, :email, :firstname, :lastname, :login,
-    :password, :password_confirmation, :phone_number, :remember_me, :roles,
+    :password, :password_confirmation, :phone_number, :project_ids, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode,
     :format => {:with => /^[^<>%&$]*$/}
   

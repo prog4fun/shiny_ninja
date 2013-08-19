@@ -79,6 +79,18 @@
           <% end %>
         </td>
       </tr>
+      <% if @user.is? :project_evaluator %>
+        <tr>
+          <th><%= t("activerecord.models.projects") %></th>
+          <td>
+            <% i = @user.projects.count %>
+            <% @user.projects.each do |project| %>
+              <%= project.name %> <%= ", " if i > 1 %>
+              <% i -= 1 %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
       <tr>
         <th><%= t("activerecord.attributes.user.creator") %></th>
         <td><%= @creator.login %></td>
