@@ -1,61 +1,62 @@
 # encoding: UTF-8
 
-<div class="row-fluid">
-  <div class="span9">
-    <h1><%= t("activerecord.models.reports")%></h1>
-  </div>
+<div class="page-header">
+  <h1><%= t("activerecord.models.reports")%></h1>
 </div>
 
 
-<div class="row-fluid">
-  <div class="span1 offset8">
-    <%= link_to_new(:controller => "reports", :action => "new") %>
+<div class="row">
+  <div class="col-md-2 col-md-offset-7">
+    <div class="btn-group">
+      <button type="button" class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :format => :csv) %>">
+        <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explonation") %>"></span>
+        <%= t("labels.actions.download") %>
+      </button>
+      <%= link_to_new(:controller => "reports", :action => "new") %>
+    </div>
   </div>
 </div>
 
-<div class="row-fluid">
-  <div class="span9">
+<div class="row">
+  <div class="col-md-9">
     <%= paginate @reports %>
 
-    <table class="table table-bordered table-hover table-condensed">
-      <tr>
-        <th><%= t("labels.report.date") %></th>
-        <th><%= t("activerecord.models.customer") %></th>
-        <% if current_user.is? :project_evaluator %>
-          <th><%= t("activerecord.models.project") %></th>
-        <% else %>
-          <th><%= t("labels.service.wage") %></th>
-        <% end %>
-        <th><%= t("labels.report.duration") %></th>
-        <th colspan="3"><%= t("labels.actions.head") %></th>
-      </tr>
-
-      <% @reports.each do |report| %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed">
         <tr>
-          <td><%= report.date %></td>
-          <td><%= get_customer_of_report(report) %></td>
+          <th><%= t("labels.report.date") %></th>
+          <th><%= t("activerecord.models.customer") %></th>
           <% if current_user.is? :project_evaluator %>
-            <td><%= truncate(report.project.name, :length => 10) %></td>
+            <th><%= t("activerecord.models.project") %></th>
           <% else %>
-            <td><%= report.service.wage %></td>
+            <th><%= t("labels.service.wage") %></th>
           <% end %>
-          <td><%= report.duration %></td>
-          <td style="width:5%"><%= link_to_show(report) %></td>
-          <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
-          <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+          <th><%= t("labels.report.duration") %></th>
+          <th colspan="3"><%= t("labels.actions.head") %></th>
         </tr>
-      <% end %>
-    </table>
 
-    <div class="span2 offset10">
-      <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :format => :csv) %>">   <i class="icon-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explonation") %>"></i> <%= t("labels.actions.download") %></a>
+        <% @reports.each do |report| %>
+          <tr>
+            <td><%= report.date %></td>
+            <td><%= get_customer_of_report(report) %></td>
+            <% if current_user.is? :project_evaluator %>
+              <td><%= truncate(report.project.name, :length => 10) %></td>
+            <% else %>
+              <td><%= report.service.wage %></td>
+            <% end %>
+            <td><%= report.duration %></td>
+            <td style="width:5%"><%= link_to_show(report) %></td>
+            <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
+            <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+          </tr>
+        <% end %>
+      </table>
     </div>
 
   </div>
 
-
-
-  <div class="span3">
+  <div class="col-md-3">
     <%= render "search_bar" %>
   </div>
+
 </div>

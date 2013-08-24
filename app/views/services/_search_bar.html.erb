@@ -1,18 +1,20 @@
 # encoding: UTF-8
 
-<form>
+
+<%= form_tag(services_path, :method => 'get', :role => "form") do %>
   <fieldset>
     <legend>
+      <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i>
       <%= t("labels.actions.search_head") %>
-      <a class='btn btn-mini' href='<%= services_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
+      <button class="btn btn-xs" href="<%= services_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></button>
     </legend>
 
-    <%= form_tag services_path, :method => 'get' do %>
+    <div class="form-group">
+      <%= label_tag("[search][name]", t("labels.name")) %>
+      <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>
+    </div>
 
-      <label><%= label_tag("[search][name]", t("labels.name")) %></label>
-      <%= text_field_tag("[search][name]", params[:search][:name]) %>
+    <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></button>    
 
-      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></a>    
-    <% end %>
   </fieldset>
-</form>
+<% end %>

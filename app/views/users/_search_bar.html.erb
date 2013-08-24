@@ -1,22 +1,25 @@
 # encoding: UTF-8
 
-<form>
+
+<%= form_tag(users_path, :method => 'get', :role => "form") do %>
   <fieldset>
     <legend>
+      <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i>
       <%= t("labels.actions.search_head") %>
-      <a class='btn btn-mini' href='<%= users_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
+      <button class="btn btn-xs" href="<%= users_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></button>
     </legend>
-    
-    <%= form_tag users_path, :method => 'get' do %>
 
-      <label><%= label_tag("[search][firstname]", t("activerecord.attributes.user.firstname")) %></label>
-      <%= text_field_tag("[search][firstname]", params[:search][:firstname]) %>
+    <div class="form-group">
+      <%= label_tag("[search][firstname]", t("activerecord.attributes.user.firstname")) %>
+      <%= text_field_tag("[search][firstname]", params[:search][:firstname], :class => "form-control") %>
+    </div>
 
-      <label><%= label_tag("[search][lastname]", t("activerecord.attributes.user.lastname")) %></label>
-      <%= text_field_tag("[search][lastname]", params[:search][:lastname]) %>
+    <div class="form-group">
+      <%= label_tag("[search][lastname]", t("activerecord.attributes.user.lastname")) %>
+      <%= text_field_tag("[search][lastname]", params[:search][:lastname], :class => "form-control") %>
+    </div>
 
-      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></a>    
-    <% end %>
+    <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></button>    
+
   </fieldset>
-</form>
-
+<% end %>

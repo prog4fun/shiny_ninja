@@ -1,46 +1,47 @@
 # encoding: UTF-8
 
-<div class="row-fluid">
-  <div class="span9">
-    <h1><%= t("labels.roles.projectevaluator") %></h1>
-  </div>
+<div class="page-header">
+  <h1><%= t("labels.roles.projectevaluator") %></h1>
 </div>
 
 
-<div class="row-fluid">
-  <div class="span1 offset8">
-      <%= link_to_new(:controller => "users", :action => "tt_new") %>
+<div class="row">
+  <div class="col-md-1 col-md-offset-8">
+    <%= link_to_new(:controller => "users", :action => "tt_new") %>
   </div>
 </div>
 
-<div class="row-fluid">
-  <div class="span9">
+<div class="row">
+  <div class="col-md-9">
 
     <%= paginate @users %>
 
-    <table class="table table-bordered table-hover table-condensed">
-      <tr>
-        <th><%= t("activerecord.attributes.user.login") %></th>
-        <th><%= t("activerecord.attributes.user.firstname") %></th>
-        <th><%= t("activerecord.attributes.user.lastname") %></th>
-        <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
-      </tr>
-
-      <% @users.each do |user| %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed">
         <tr>
-          <td><%= user.login %></td>
-          <td><%= user.firstname %></td>
-          <td><%= user.lastname %></td>
-          <td style="width:5%"><%= link_to_show(:controller => "users", :action => "tt_show", :id => user.id) %></td>
-          <%= index_link_to_edit(:controller => "users", :action => "tt_edit", :id => user.id) %></td>
-          <%= index_link_to_destroy(:controller => "users", :action => "show", :id => user.id) %></td>
+          <th><%= t("activerecord.attributes.user.login") %></th>
+          <th><%= t("activerecord.attributes.user.firstname") %></th>
+          <th><%= t("activerecord.attributes.user.lastname") %></th>
+          <th id="action" colspan="3"><%= t("labels.actions.head") %></th>
         </tr>
-      <% end %>
-    </table>
+
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.login %></td>
+            <td><%= user.firstname %></td>
+            <td><%= user.lastname %></td>
+            <td style="width:5%"><%= link_to_show(:controller => "users", :action => "tt_show", :id => user.id) %></td>
+            <%= index_link_to_edit(:controller => "users", :action => "tt_edit", :id => user.id) %></td>
+            <%= index_link_to_destroy(:controller => "users", :action => "show", :id => user.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
 
   </div>
 
-  <div class="span3">
+  <div class="col-md-3">
     <%= render "search_bar" %>
   </div>
+
 </div>
