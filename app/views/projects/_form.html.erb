@@ -1,14 +1,15 @@
 # encoding: UTF-8
 
-<div class="row-fluid">
-  <div class="span6">
+
+<div class="row">
+  <div class="col-md-9">
 
 
-    <%= form_for(@project, :html => {:class => "form-horizontal"}) do |f| %>
+    <%= form_for(@project, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
       <% if @project.errors.any? %>
 
-        <h3 class="offset1"><%= @project.errors.count %> <%= t("errors.form") %></h3>
-        <div class="alert alert-error offset1">
+        <div class="alert alert-danger">
+          <h4><strong><%= @project.errors.count %> <%= t("errors.form") %></strong></h4>
           <ul>
             <% @project.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
@@ -17,32 +18,41 @@
         </div>
       <% end %>
 
-
-      <div class="control-group">
-        <%= f.label :name, t("labels.project.name") + " *", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :name, placeholder: "#{t("labels.project.name")}" %>     
+      <div class="form-group">
+        <%= f.label :name, t("labels.project.name") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= f.text_field :name, :class => "form-control", placeholder: "#{t("labels.project.name")}" %>     
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :customer_id, t("activerecord.models.customer") + " *", :class => "control-label" %>
-        <div class="controls"><%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }) %></div>
+      <div class="form-group">
+        <%= f.label :customer_id, t("activerecord.models.customer") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }, :class => "form-control") %>
+        </div>
       </div>
-      <div class="control-group">
-        <%= f.label :timebudget, t("labels.datetime.hours"), :class => "control-label" %>
-        <div class="controls"><%= f.number_field :timebudget, placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :timebudget, t("labels.datetime.hours"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= f.number_field :timebudget, :class => "form-control", placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %>
+        </div>
       </div>
-      <div class="control-group">
-        <%= f.label :comment, t("labels.universe.comment"), :class => "control-label" %>
-        <div class="controls"><%= f.text_area :comment, :size => "40x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :comment, t("labels.universe.comment"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= f.text_area :comment, :class => "form-control", :size => "40x10", placeholder: "#{t("labels.universe.comment_explanation")}" %>
+        </div>
       </div>
 
-      <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
 
-      <div class="form-actions">
-        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-        <%= cancel_link %>
+      <div class="form-group">
+        <div class="col-lg-3 col-lg-offset-2">
+          <div class="btn-group">
+            <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+            <%= cancel_link %>
+          </div>
+        </div>
       </div>
+      <div class="text-muted col-lg-5 col-lg-offset-1"><%= t("labels.universe.mandatory_field_explanation") %></div>
 
     <% end %>
   </div>

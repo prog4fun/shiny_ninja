@@ -1,15 +1,15 @@
 # encoding: UTF-8
 
 
-<div class="row-fluid">
-  <div class="span6">
+<div class="row">
+  <div class="col-md-9">
 
 
-    <%= form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
+    <%= form_for(@user, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
       <% if @user.errors.any? %>
 
-        <h3 class="offset1"><%= @user.errors.count %> <%= t("errors.form") %></h3>
-        <div class="alert alert-error offset1">
+        <div class="alert alert-danger">
+          <h4><strong><%= @user.errors.count %> <%= t("errors.form") %></strong></h4>
           <ul>
             <% @user.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
@@ -18,82 +18,80 @@
         </div>
       <% end %>
 
-
-
-      <div class="control-group">
-        <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :login, :class => "span6", placeholder: "p-" %></div>
+      <div class="form-group">
+        <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :login, :class => "form-control", placeholder: "p-" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :firstname, t("activerecord.attributes.user.firstname") + " *", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :firstname, :class => "span8", placeholder: "#{t("activerecord.attributes.user.firstname_explanation")}"  %></div>
+      <div class="form-group">
+        <%= f.label :firstname, t("activerecord.attributes.user.firstname") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :firstname, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.firstname_explanation")}"  %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :lastname, t("activerecord.attributes.user.lastname") + " *", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :lastname, :class => "span8", placeholder: "#{t("activerecord.attributes.user.lastname_explanation")}"  %></div>
+      <div class="form-group">
+        <%= f.label :lastname, t("activerecord.attributes.user.lastname") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :lastname, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.lastname_explanation")}"  %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :email, t("activerecord.attributes.user.email") + " *", :class => "control-label" %>
-        <div class="controls">
-          <div class="input-prepend">
-            <span class="add-on">@</span>
-            <%= f.email_field :email, :class => "span10", placeholder: "#{t("activerecord.attributes.user.email_explanation")}" %>
+      <div class="form-group">
+        <%= f.label :email, t("activerecord.attributes.user.email") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <%= f.email_field :email, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.email_explanation")}" %>
           </div>
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :password, t("activerecord.attributes.user.password") + " *", :class => "control-label" %>
-        <div class="controls"><%= f.password_field :password, placeholder: "#{t("activerecord.attributes.user.password_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :password, t("activerecord.attributes.user.password") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.password_field :password, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.password_explanation")}" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :password_confirmation, t("activerecord.attributes.user.password_cofirmation") + " **", :class => "control-label" %>
-        <div class="controls"><%= f.password_field :password_confirmation, placeholder: "#{t("activerecord.attributes.user.password_cofirmation_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, t("activerecord.attributes.user.password_cofirmation") + " **", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.password_field :password_confirmation, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.password_cofirmation_explanation")}" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :phone_number, t("activerecord.attributes.user.phone_number"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :phone_number, placeholder: "#{t("activerecord.attributes.user.phone_number_explanation")}" %></div>
-      </div>
-
-      <div class="control-group controls-row">
-        <%= f.label :street, t("activerecord.attributes.user.street"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :street, :class => "span6", placeholder: "#{t("activerecord.attributes.user.street_explanation")}" %></div>
-        <div class="controls"><%= f.text_field :street_number, :class => "span2", placeholder: "#{t("activerecord.attributes.user.street_number_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :phone_number, t("activerecord.attributes.user.phone_number"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :phone_number, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.phone_number_explanation")}" %></div>
       </div>
 
-      <div class="control-group controls-row">
-        <%= f.label :zipcode, t("activerecord.attributes.user.zipcode_and_city"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :zipcode, :class => "span3", placeholder: "#{t("activerecord.attributes.user.zipcode_explanation")}" %></div>
-        <div class="controls"><%= f.text_field :city, :class => "span5", placeholder: "#{t("activerecord.attributes.user.city_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :street, t("activerecord.attributes.user.street"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-3"><%= f.text_field :street, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.street_explanation")}" %></div>
+        <div class="col-lg-1"><%= f.text_field :street_number, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.street_number_explanation")}" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :country, t("activerecord.attributes.user.country"), :class => "control-label" %>
-        <div class="controls">Deutschland</div>
+
+      <div class="form-group controls-row">
+        <%= f.label :zipcode, t("activerecord.attributes.user.zipcode_and_city"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-2"><%= f.text_field :zipcode, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.zipcode_explanation")}" %></div>
+        <div class="col-lg-2"><%= f.text_field :city, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.city_explanation")}" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :bank_name, t("activerecord.attributes.user.bank_name"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :bank_name %></div>
+      <div class="form-group">
+        <%= f.label :country, t("activerecord.attributes.user.country"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><div class="form-control">Deutschland</div></div>
       </div>
-      <div class="control-group">
-        <%= f.label :bank_code, t("activerecord.attributes.user.bank_code"), :class => "control-label" %>
-        <div class="controls"> <%= f.text_field :bank_code %></div>
+      <div class="form-group">
+        <%= f.label :bank_name, t("activerecord.attributes.user.bank_name"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :bank_name, :class => "form-control" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :bank_account_number, t("activerecord.attributes.user.bank_account_number"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :bank_account_number %></div>
+      <div class="form-group">
+        <%= f.label :bank_code, t("activerecord.attributes.user.bank_code"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"> <%= f.text_field :bank_code, :class => "form-control" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :tax_number, t("activerecord.attributes.user.tax_number"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :tax_number %></div>
+      <div class="form-group">
+        <%= f.label :bank_account_number, t("activerecord.attributes.user.bank_account_number"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :bank_account_number, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :tax_number, t("activerecord.attributes.user.tax_number"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :tax_number, :class => "form-control" %></div>
       </div>
   <%#
-  <div class="control-group">
-  <= f.label :signature, t("activerecord.attributes.user.signature"), :class => "control-label" >
-  <div class="controls"><= f.text_field :signature ></div>
+  <div class="form-group">
+  <= f.label :signature, t("activerecord.attributes.user.signature"), :class => "col-lg-2 control-label" >
+  <div class="col-lg-4"><= f.text_field :signature ></div>
   </div>
   %>
-      <div class="control-group">
-        <%= f.label :roles, t("activerecord.attributes.user.roles") + " *", :class => "control-label" %>
-        <div class="controls">
+      <div class="form-group">
+        <%= f.label :roles, t("activerecord.attributes.user.roles") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
           <% for role in User::ROLES %>
             <label class="checkbox">
               <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
@@ -103,21 +101,24 @@
         </div>
       </div>
       <%= hidden_field_tag "user[roles][]", "" %>
-        
-      <div class="control-group">
-        <%= f.label :comment, t("labels.uiverse.comment"), :class => "control-label" %>
-        <div class="controls"><%= f.text_area :comment, :class => "span7", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+
+      <div class="form-group">
+        <%= f.label :comment, t("labels.uiverse.comment"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_area :comment, :class => "form-control", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
       </div>
 
-      <div class="muted offset1"><%= t("labels.universe.mandatory_field_explanation") %></div>
-      <div class="muted offset1"><%= t("labels.universe.password_login_explanation") %></div>
-
-      <div class="form-actions">
-        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-        <%= cancel_link %>
+      <div class="form-group">
+        <div class="col-lg-3 col-lg-offset-2">
+          <div class="btn-group">
+            <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+            <%= cancel_link %>
+          </div>
+        </div>
       </div>
+      <div class="text-muted col-lg-6 col-lg-offset-1">
+        <%= t("labels.universe.mandatory_field_explanation") %><br/>
+        <%= t("labels.universe.password_login_explanation") %></div>
 
     <% end %>
   </div>
 </div>
-

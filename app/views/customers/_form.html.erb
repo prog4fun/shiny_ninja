@@ -1,15 +1,15 @@
 # encoding: UTF-8
 
 
-<div class="row-fluid">
-  <div class="span6">
+<div class="row">
+  <div class="col-md-9">
 
 
-    <%= form_for(@customer, :html => {:class => "form-horizontal"}) do |f| %>
+    <%= form_for(@customer, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
       <% if @customer.errors.any? %>
 
-        <h3 class="offset1"><%= @customer.errors.count %> <%= t("errors.form") %></h3>
-        <div class="alert alert-error offset1">
+        <div class="alert alert-danger">
+          <h4><strong><%= @customer.errors.count %> <%= t("errors.form") %></strong></h4>
           <ul>
             <% @customer.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
@@ -18,29 +18,34 @@
         </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :name, t("labels.customer.name"), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :name, :class => "span9", placeholder: "#{t("labels.customer.name_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :name, t("labels.customer.name") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :name, :class => "form-control", placeholder: "#{t("labels.customer.name_explanation")}" %></div>
       </div>
-      <div class="control-group">
-        <%= f.label :email, t("labels.customer.email"), :class => "control-label" %>
-        <div class="controls">
-          <div class="input-prepend">
-            <span class="add-on">@</span>
-            <%= f.email_field :email, :class => "span10", placeholder: "#{t("labels.customer.email_explanation")}" %>
+      <div class="form-group">
+        <%= f.label :email, t("labels.customer.email") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <%= f.email_field :email, :class => "form-control", placeholder: "#{t("labels.customer.email_explanation")}" %>
           </div>
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :comment, t("labels.uiverse.comment"), :class => "control-label" %>
-        <div class="controls"><%= f.text_area :comment, :class => "span7", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
+      <div class="form-group">
+        <%= f.label :comment, t("labels.uiverse.comment"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_area :comment, :class => "form-control", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
       </div>
       <%= f.hidden_field :user_id, :value => current_user.id %>
 
-      <div class="form-actions">
-        <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-        <%= cancel_link %>
+      <div class="form-group">
+        <div class="col-lg-3 col-lg-offset-2">
+          <div class="btn-group">
+            <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+            <%= cancel_link %>
+          </div>
+        </div>
       </div>
+      <div class="text-muted col-lg-5 col-lg-offset-1"><%= t("labels.universe.mandatory_field_explanation") %></div>
 
     <% end %>
   </div>
