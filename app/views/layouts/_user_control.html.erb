@@ -10,8 +10,8 @@
     <% elsif current_user.is? :project_evaluator %>
       <% url = url_for(:controller => "users", :action => "pe_show") %>
     <% end %>
-    <button type="button" class="btn btn-info" href="<%= url %>">Hey, <%= current_user.firstname %>!</button>
-    <button type="button" class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</button>
+    <a class="btn btn-info" href="<%= url %>">Hey, <%= current_user.firstname %>!</a>
+    <a class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</a>
   </div>
 
 <% else %>
