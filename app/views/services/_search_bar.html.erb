@@ -6,8 +6,7 @@
     <legend>
       <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i>
       <%= t("labels.actions.search_head") %>
-      <button class="btn btn-xs" href="<%= services_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></button>
-    </legend>
+      <a class="btn btn-default btn-xs" href="<%= services_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a></legend>
 
     <div class="form-group">
       <%= label_tag("[search][name]", t("labels.name")) %>

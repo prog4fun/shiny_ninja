@@ -6,13 +6,18 @@
     <title>Shiny-Ninja</title>
 <%#= stylesheet_link_tag    "application", :media => "all" %>
     <%= stylesheet_link_tag    "bootstrap", :rel => "stylesheet" %>
+    <%= stylesheet_link_tag    "jquery-ui-1.10.3.custom", :rel => "stylesheet" %>
     <%= javascript_include_tag "application" %>
-    <script src="//code.jquery.com/jquery.js"></script>
+<%#<script src="//code.jquery.com/jquery.js"></script> %>
+    <%= javascript_include_tag "jquery-1.9.1" %>
     <%= javascript_include_tag "bootstrap" %>
+    <%= javascript_include_tag "jquery-ui-1.10.3.custom" %>
+    <%= javascript_include_tag "my_functions.js" %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <%= csrf_meta_tags %>
+
+
   </head>
   <body>
 
