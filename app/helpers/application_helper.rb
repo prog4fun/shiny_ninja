@@ -29,17 +29,17 @@ module ApplicationHelper
   
   def icon_show
     # return icon("icons/information/Information_16x16.png", t("labels.actions.show"))
-    return "icon-star"
+    return "glyphicon glyphicon-eye-open"
   end
 
   def icon_edit
     # return icon("icons/edit/Edit_16x16.png", t("labels.actions.edit"))
-    return "icon-edit"
+    return "glyphicon glyphicon-edit"
   end
 
   def icon_destroy
     # return icon("icons/delete/Delete_16x16.png", t("labels.actions.destroy"))
-    return "icon-remove"
+    return "glyphicon glyphicon-remove"
   end
   
   def icon_new
@@ -56,7 +56,8 @@ module ApplicationHelper
     #if can? :tt_show, options
     # return link_to_function(icon_show, options)
     url = url_for(options)
-    html_code = "<a class='btn btn-small btn-info' href='#{url}'><i class='#{icon_show}' alt='#{t("labels.actions.show")}' title='#{t("labels.actions.show_explanation")}'></i></a>"
+    html_code = "<a class='btn btn-small btn-info' href='#{url}'><span class='#{icon_show}' alt='#{t("labels.actions.show")}' title='#{t("labels.actions.show_explanation")}'></span></a>"
+    
     return raw html_code
     #end
   end

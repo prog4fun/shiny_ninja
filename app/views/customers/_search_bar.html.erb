@@ -3,19 +3,24 @@
 <form>
   <fieldset>
     <legend>
+      <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i>
       <%= t("labels.actions.search_head") %>
-      <a class='btn btn-mini' href='<%= customers_path %>'><i class='icon-refresh' alt='<%= t("labels.actions.reset") %>' title='<%= t("labels.actions.reset") %>'></i> <%= t("labels.actions.reset") %></a>
+      <button class="btn btn-xs" href="<%= customers_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></button>
     </legend>
 
-    <%= form_tag customers_path, :method => 'get' do %>
+    <%= form_tag(customers_path, :method => 'get', :role => "form") do %>
 
-      <label><%= label_tag("[search][name]", t("labels.name")) %></label>
-      <%= text_field_tag("[search][name]", params[:search][:name]) %>
+      <div class="form-group">
+        <%= label_tag("[search][name]", t("labels.name")) %>
+        <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>
+      </div>
 
-      <label><%= label_tag("[search][email]", t("labels.email")) %></label>
-      <%= text_field_tag("[search][email]", params[:search][:email]) %></label>
+      <div class="form-group">
+        <label><%= label_tag("[search][email]", t("labels.email")) %></label>
+        <%= text_field_tag("[search][email]", params[:search][:email], :class => "form-control") %></label>
+      </div>
 
-     <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></a>    
-    <% end %>
+      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></a>    
+      <% end %>
   </fieldset>
 </form>

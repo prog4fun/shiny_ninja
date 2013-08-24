@@ -10,21 +10,22 @@
     <% elsif current_user.is? :project_evaluator %>
       <% url = url_for(:controller => "users", :action => "pe_show") %>
     <% end %>
-    <a class="btn" href="<%= url %>">Hey, <%= current_user.firstname %>!</a>
-    <a class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</a>
+    <button type="button" class="btn btn-info" href="<%= url %>">Hey, <%= current_user.firstname %>!</button>
+    <button type="button" class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</button>
   </div>
 
 <% else %>
 
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-inline"}) do |f| %>
-    <%= f.text_field :login, :class => "input-small", placeholder: "#{t("activerecord.attributes.user.login")}"  %>
-    <%= f.password_field :password, :class => "input-small", placeholder: "#{t("activerecord.attributes.user.password")}"  %>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "navbar-form navbar-right"}) do |f| %>
+    <div class="form-group">
+      <%= f.text_field :login, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.login")}"  %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.password")}"  %>
+    </div>
 
     <% if devise_mapping.rememberable? -%>
-      <label class="checkbox">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </label>
+      <%= f.hidden_field :remember_me, :value => true %>
     <% end -%>
 
     <button type="submit" class="btn btn-success"><%= t("labels.actions.login") %></button>
