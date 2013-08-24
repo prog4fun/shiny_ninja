@@ -1,40 +1,45 @@
 # encoding: UTF-8
 
-<div class="row-fluid">
-  <div class="span7 offset1">
-    <h1><%= t("activerecord.models.project")%> "<%= @project.name %>"</h1>
-  </div>
+<div class="page-header">
+  <h1><%= t("activerecord.models.project")%> "<%= @project.name %>"</h1>
 </div>
 
 
-<div class="row-fluid">
-  <div class="span3 offset6 ">
-    <%= show_link_to_edit(:controller => "projects", :action => "edit", :id => @project.id) %>
-    <%= show_link_to_destroy(:controller => "projects", :action => "show", :id => @project.id) %>
-  </div>
-</div>
+<div class="row">
+  <div class="col-md-9">
 
-<div class="row-fluid">
-  <div class="span7 offset1">
-
-    <table class="table table-hover">
-      <tr>
-        <th><%= t("labels.project.name") %></th>
-        <td><%= @project.name %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.models.customer") %></th>
-        <td><%= @project.customer.name %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.project.timebudget") %></th>
-        <td><%= @project.timebudget %></td>
-      </tr>
-      <tr>
-        <th><%= t("labels.universe.comment") %></th>
-        <td><%= @project.comment %></td>
-      </tr>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed">
+        <tr>
+          <th><%= t("labels.project.name") %></th>
+          <td><%= @project.name %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.models.customer") %></th>
+          <td><%= @project.customer.name %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.project.timebudget") %></th>
+          <td><%= @project.timebudget %></td>
+        </tr>
+        <tr>
+          <th><%= t("labels.universe.comment") %></th>
+          <td><%= @project.comment %></td>
+        </tr>
+      </table>
+    </div>
 
   </div>
+
+  <div class="col-md-1">
+    <div class="btn-group-vertical">
+      <%= show_link_to_index(:controller => "projects", :action => "index") %>
+      <%= show_link_to_edit(:controller => "projects", :action => "edit", :id => @project.id) %>
+      <%= show_link_to_destroy(:controller => "projects", :action => "show", :id => @project.id) %>
+    </div>
+  </div>
+
 </div>
+
+
+

@@ -1,75 +1,80 @@
 # encoding: UTF-8
 
-<div class="row-fluid">
-  <div class="span7 offset1">
-    <% if @user == current_user %>
-      <h1><%= t("labels.person.my_account") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
-      <% else %>
-      <h1><%= t("labels.roles.projectevaluator") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
-    <% end %>
-  </div>
+<div class="page-header">
+  <% if @user == current_user %>
+    <h1><%= t("labels.person.my_account") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
+  <% else %>
+    <h1><%= t("labels.roles.projectevaluator") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
+  <% end %>
 </div>
 
 
-<div class="row-fluid">
-  <div class="span3 offset6 ">
-    <%= show_link_to_edit(:controller => "users", :action => "tt_edit", :id => @user.id) %>
-    <%= show_link_to_destroy(:controller => "users", :action => "show", :id => @user.id) %>
-  </div>
-</div>
+<div class="row">
+  <div class="col-md-9">
 
-<div class="row-fluid">
-  <div class="span7 offset1">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed">
+        <tr>
+          <th><%= t("activerecord.attributes.user.login") %></th>
+          <td><%= @user.login %></td>
+        </tr>
 
-    <table class="table table-hover">
-      <tr>
-        <th><%= t("activerecord.attributes.user.login") %></th>
-        <td><%= @user.login %></td>
-      </tr>
-
-      <tr>
-        <th><%= t("activerecord.attributes.user.firstname") %></th>
-        <td><%= @user.firstname %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.user.lastname") %></th>
-        <td><%= @user.lastname %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.user.email") %></th>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.user.phone_number") %></th>
-        <td><%= @user.phone_number %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.user.sreet_and_number") %></th>
-        <td><%= @user.street %> <%= @user.street_number %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.user.zipcode_and_city") %></th>
-        <td><%= @user.zipcode %><%= ", " if @user.city.present? %><%= @user.city %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.attributes.user.country") %></th>
-        <td><%= @user.country %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.models.projects") %></th>
-        <td>
-          <% i = @user.projects.count %>
-          <% @user.projects.each do |project| %>
-            <%= project.name %> <%= ", " if i > 1 %>
-            <% i -= 1 %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= t("labels.universe.comment") %></th>
-        <td><%= @user.comment %></td>
-      </tr>
-    </table>
+        <tr>
+          <th><%= t("activerecord.attributes.user.firstname") %></th>
+          <td><%= @user.firstname %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.lastname") %></th>
+          <td><%= @user.lastname %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.email") %></th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.phone_number") %></th>
+          <td><%= @user.phone_number %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.sreet_and_number") %></th>
+          <td><%= @user.street %> <%= @user.street_number %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.zipcode_and_city") %></th>
+          <td><%= @user.zipcode %><%= ", " if @user.city.present? %><%= @user.city %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.country") %></th>
+          <td><%= @user.country %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.models.projects") %></th>
+          <td>
+            <% i = @user.projects.count %>
+            <% @user.projects.each do |project| %>
+              <%= project.name %> <%= ", " if i > 1 %>
+              <% i -= 1 %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t("labels.universe.comment") %></th>
+          <td><%= @user.comment %></td>
+        </tr>
+      </table>
+    </div>
 
   </div>
+
+  <div class="col-md-1">
+    <div class="btn-group-vertical">
+      <%= show_link_to_index(:controller => "users", :action => "tt_index") %>
+      <%= show_link_to_edit(:controller => "users", :action => "tt_edit", :id => @user.id) %>
+      <%= show_link_to_destroy(:controller => "users", :action => "show", :id => @user.id) %>
+    </div>
+  </div>
+
 </div>
+
+
+

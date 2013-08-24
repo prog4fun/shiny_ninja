@@ -1,43 +1,49 @@
 # encoding: UTF-8
 
-<div class="row-fluid">
-  <div class="span7 offset1">
-    <h1>Eintrag vom <%= @report.date %></h1>
-  </div>
+<div class="page-header">
+  <h1>Eintrag vom <%= @report.date %></h1>
 </div>
 
 
-<div class="row-fluid">
-  <div class="span3 offset6 ">
-    <%= show_link_to_edit(:controller => "reports", :action => "edit", :id => @report.id) %>
-    <%= show_link_to_destroy(:controller => "reports", :action => "show", :id => @report.id) %>
-  </div>
-</div>
+<div class="row">
+  <div class="col-md-9">
 
-<div class="row-fluid">
-  <div class="span7 offset1">
-
-    <table class="table table-hover">
-      <tr>
-        <th><%= t("labels.report.date") %></th>
-        <td><%= @report.date %></td>
-      </tr>
-      <tr>
-        <th><%= t("labels.report.duration") %></th>
-        <td><%= @report.duration %> <%= t("labels.datetime.hours") %></td>
-      </tr>
-      <tr>
-        <th><%= t("activerecord.models.project") %></th>
-        <td><%= @report.project.name %></td>
-      </tr><tr>
-        <th><%= t("activerecord.models.service") %></th>
-        <td><%= @report.service.name %></td>
-      </tr>
-      <tr>
-        <th><%= t("labels.universe.comment") %></th>
-        <td><%= @report.comment %></td>
-      </tr>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed">
+        <tr>
+          <th><%= t("labels.report.date") %></th>
+          <td><%= @report.date %></td>
+        </tr>
+        <tr>
+          <th><%= t("labels.report.duration") %></th>
+          <td><%= @report.duration %> <%= t("labels.datetime.hours") %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.models.project") %></th>
+          <td><%= @report.project.name %></td>
+        </tr><tr>
+          <th><%= t("activerecord.models.service") %></th>
+          <td><%= @report.service.name %></td>
+        </tr>
+        <tr>
+          <th><%= t("labels.universe.comment") %></th>
+          <td><%= @report.comment %></td>
+        </tr>
+      </table>
+    </div>
 
   </div>
+
+  <div class="col-md-1">
+    <div class="btn-group-vertical">
+      <%= show_link_to_index(:controller => "reports", :action => "index") %>
+      <%= show_link_to_edit(:controller => "reports", :action => "edit", :id => @report.id) %>
+      <%= show_link_to_destroy(:controller => "reports", :action => "show", :id => @report.id) %>
+    </div>
+  </div>
+
 </div>
+
+
+
+

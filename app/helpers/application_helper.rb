@@ -27,6 +27,10 @@ module ApplicationHelper
     return image_tag(image_path, :alt => alt_text, :title => alt_text)
   end
   
+  def icon_index
+    return "glyphicon glyphicon-th-list"
+  end
+    
   def icon_show
     # return icon("icons/information/Information_16x16.png", t("labels.actions.show"))
     return "glyphicon glyphicon-eye-open"
@@ -52,6 +56,16 @@ module ApplicationHelper
   end
   
   # LINKS
+  def show_link_to_index(options = {})
+    #if can? :tt_show, options
+    # return link_to_function(icon_show, options)
+    url = url_for(options)
+    html_code = "<a class='btn btn-small btn-info' href='#{url}'><span class='#{icon_index}' alt='#{t("labels.actions.index")}' title='#{t("labels.actions.index_explanation")}'></span> #{t("labels.actions.index")}</a>"
+    
+    return raw html_code
+    #end
+  end
+  
   def link_to_show(options = {})
     #if can? :tt_show, options
     # return link_to_function(icon_show, options)

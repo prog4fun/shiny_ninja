@@ -279,6 +279,8 @@ de:
       edit: "Bearbeiten"
       edit_explanation: "Editiert den ausgewählten Eintrag"
       head: "Aktionen"
+      index: "Übersicht"
+      index_explanation: "Zur Übersicht"
       login: "Anmelden"
       logout: "Ausloggen"
       new: "Neu"
