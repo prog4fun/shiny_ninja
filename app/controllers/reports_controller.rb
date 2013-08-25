@@ -67,7 +67,7 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new
+    @report = Report.new :date => Date.today
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
     @services = Service.where( :user_id => current_user.id)

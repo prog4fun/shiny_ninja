@@ -27,7 +27,7 @@
       <div class="form-group">
         <%= f.label :customer_id, t("activerecord.models.customer") + " *", :class => "col-lg-2 control-label" %>
         <div class="col-lg-4">
-          <%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }, :class => "form-control") %>
+          <%= select("project", "customer_id", @customers.collect {|i| [ i.name, i.id ] }, {:include_blank => true}, {:class => "autocomplete"}) %>
         </div>
       </div>
       <div class="form-group">
