@@ -103,7 +103,9 @@ class UsersController < ApplicationController
 
   def tt_edit
     @user = User.find(params[:id])
-    @user.login[0..1] = '' 
+    unless @user.is? :time_tracker
+      @user.login[0..1] = '' 
+    end
     customers = current_user.customers
     @my_projects = Project.where(:customer_id => customers)
     
@@ -162,6 +164,7 @@ class UsersController < ApplicationController
           :country => "de",
           :created_by => current_user.id,
           :roles_mask => 4 }   # 4 --> project_evaluator
+        
         if @user.save
           format.html { redirect_to action: "tt_show", id: @user.id, notice: t("confirmations.messages.saved") }
         else
@@ -198,7 +201,9 @@ class UsersController < ApplicationController
     elsif current_user.is? :time_tracker
       respond_to do |format|
         params[:user][:country] = "de"
-        params[:user][:login] = "p-" << params[:user][:login]
+        unless @user.is? :time_tracker
+          params[:user][:login] = "p-" << params[:user][:login]
+        end
         if @user.update_attributes(params[:user])
           format.html { redirect_to action: "tt_show", id: @user.id, notice: t("confirmations.messages.saved") }
         else
