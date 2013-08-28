@@ -1,213 +1,185 @@
-	/*####################################################################
+/*####################################################################
 
-		filename: application.css
-		description: overrides bootstrap and other css-files
-		
-	######################################################################
-	
-	
-	######################################################################
-	
-		instructions:
-		
-		add button for toggle element in sidebar:
-		
-			<button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".sidebar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		
-		#######
-		
-		make element in sidebar toggle - hidden as default:
-			class="sidebar-collapse collapse"
-			
-		#######
-		
-		make element in sidebar toggle - visible as default:
-			class="sidebar-collapse in"		
-	
-	######################################################################
-	
-	
-	
-	###################################
-	
-		"base-css" for all viewports
-	
-	#################################*/
+filename: application.css
+description: overrides bootstrap and other css-files
+######################################################################
+######################################################################
+instructions:
+add button for toggle element in sidebar:
+<button type="button" class="sidebar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+#######
+make element in sidebar toggle - hidden as default:
+class="sidebar-collapse collapse"
+#######
+make element in sidebar toggle - visible as default:
+class="sidebar-collapse in"
+######################################################################
+###################################
+"base-css" for all viewports
+#################################*/
 
 body {
-	padding-top: 50px;
+    padding-top: 50px;
 }
 
 
 .row {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .nav .navbar-nav .navbar-right {
-	display: none;
+    display: none;
 }
 
 .col-md-2.col-md-offset-7 {
-	text-align: right;
+    text-align: right;
 }
 
 
 .sidebar-toggle {
-  position: relative;
-  float: right;
-  padding: 6px 7px;
-  margin-right: 5px;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 4px;
+    position: relative;
+    float: right;
+    padding: 6px 7px;
+    margin-right: 5px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
 .sidebar-toggle .icon-bar {
-  display: block;
-  width: 15px;
-  height: 1px;
-  border-radius: 1px;
+    display: block;
+    width: 15px;
+    height: 1px;
+    border-radius: 1px;
 }
 
 .sidebar-toggle .icon-bar + .icon-bar {
-  margin-top: 4px;
+    margin-top: 4px;
 }
 
 .sidebar-toggle {
-  border-color: #dddddd;
+    border-color: #dddddd;
 }
 .sidebar-toggle:hover,
 .sidebar-toggle:focus {
-  background-color: #dddddd;
+    background-color: #dddddd;
 }
 
 .sidebar-toggle .icon-bar {
-  background-color: #cccccc;
+    background-color: #cccccc;
 }
 
 .modal-footer {
-	font-size: 10px;
-	text-align: center;
+    font-size: 10px;
+    text-align: center;
 }
 
 .navbar-nav li.danger {
-	background-color: #d9534f;
-	border-color: #d43f3a;
+    background-color: #d9534f;
+    border-color: #d43f3a;
 }
 
 .navbar-nav li.success {
-	background-color: #5cb85c;
-	border-color: #4cae4c;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
 }
 
 .navbar-nav li.danger > a, .navbar-nav li.danger > a:hover, .navbar-nav li.danger > a:active,
 .navbar-nav li.success > a, .navbar-nav li.success > a:hover, .navbar-nav li.success > a:active {
-	color: #ffffff;
+    color: #ffffff;
 }
 
-.navbar-nav li.danger:hover, .navbar-nav li.danger:focus, .navbar-nav li.danger:active, .navbar-nav li.danger.active {	
+.navbar-nav li.danger:hover, .navbar-nav li.danger:focus, .navbar-nav li.danger:active, .navbar-nav li.danger.active {	
     background-color: #d2322d;
-    border-color: #ac2925;  
+    border-color: #ac2925;
 }
 
 .navbar-nav li.success:hover, .navbar-nav li.success:focus, .navbar-nav li.success:active, .navbar-nav li.success.active {
-	background-color: #47a447;
-	border-color: #398439;	
+    background-color: #47a447;
+    border-color: #398439;	
 }
 
-	/*###################################
-	
-		css for webkit-browsers
-	
-	###################################*/
+/*###################################
+css for webkit-browsers
+###################################*/
 
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 
-	legend + * {
-	    -webkit-margin-top-collapse : separate;
-	    margin-top                  : 20px;
-	}
+    legend + * {
+        -webkit-margin-top-collapse : separate;
+        margin-top : 20px;
+    }
 
 }
 
-	/*###################################
-	
-		css for screens > 768px
-	
-	###################################*/
+/*###################################
+css for screens > 768px
+###################################*/
 
 @media (min-width: 460px) {
 
-	.modal-footer {
-		font-size: 12px;
-		text-align: right;
-	}
+    .modal-footer {
+        font-size: 12px;
+        text-align: right;
+    }
 
 }
-	
-	/*###################################
-	
-		css for screens > 768px
-	
-	###################################*/
+
+/*###################################
+css for screens > 768px
+###################################*/
 
 @media (min-width: 768px) {
 
-	.navbar-right .btn-group {
-		margin-top: 8px;
-		margin-right: 15px;
-	}
-	
-	.nav > li > a {
-		padding: 15px 5px;
-	}
+    .navbar-right .btn-group {
+        margin-top: 8px;
+        margin-right: 15px;
+    }
+
+    .nav > li > a {
+        padding: 15px 5px;
+    }
 
 }
 
-	/*###################################
-	
-		css for screens > 814px
-	
-	###################################*/
+/*###################################
+css for screens > 814px
+###################################*/
 
 @media (min-width: 814px) {
 
-	.nav > li > a {
-		padding: 15px 10px;
-	}
+    .nav > li > a {
+        padding: 15px 10px;
+    }
 
 }
 
-	/*###################################
-	
-		css for screens > 860px
-	
-	###################################*/
+/*###################################
+css for screens > 860px
+###################################*/
 
 @media (min-width: 860px) {
 
-	.nav > li > a {
-		padding: 15px 15px;
-	}
+    .nav > li > a {
+        padding: 15px 15px;
+    }
 
 }
 
-	/*###################################
-	
-		css for screens > 992px
-	
-	###################################*/
+/*###################################
+css for screens > 992px
+###################################*/
 
 @media (min-width: 992px) {
 
-	.col-md-2.col-md-offset-7 {
-		width: 75%;
-		margin-left: 0px;
-	}
+    .col-md-2.col-md-offset-7 {
+        width: 75%;
+        margin-left: 0px;
+    }
 
 }
