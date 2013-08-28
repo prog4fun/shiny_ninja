@@ -9,7 +9,7 @@
   <div class="col-md-2 col-md-offset-7">
     <div class="btn-group">
       <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :format => :csv) %>">
-        <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explonation") %>"></span>
+        <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
         <%= t("labels.actions.download") %>
       </a>
       <%= link_to_new(:controller => "reports", :action => "new") %>

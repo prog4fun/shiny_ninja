@@ -1,19 +1,40 @@
 # encoding: UTF-8
 
-<h2>Sign in</h2>
+<div class="page-header">
+  <h1><%= t("labels.actions.login")%></h1>
+</div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :login %><br />
-  <%= f.text_field :login %></div>
+<div class="row">
+  <div class="col-md-9">
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+      <div class="form-group">
+        <%= f.label :login, t("activerecord.attributes.user.login"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :login, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.login_explanation")}" %></div>
+      </div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+      <div class="form-group">
+        <%= f.label :password, t("activerecord.attributes.user.password"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.password_field :password, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.password")}" %></div>
+      </div>
 
-<%= render "devise/shared/links" %>
+
+      <% if devise_mapping.rememberable? -%>
+    <%#= f.check_box :remember_me %> <%#= f.label :remember_me %>
+        <%= f.hidden_field :remember_me, :value => true %>
+      <% end -%>
+
+
+      <div class="form-group">
+        <div class="col-lg-3 col-lg-offset-2">
+            <button type="submit" class="btn btn-success"><%= t("labels.actions.login") %></button>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+
+<%#= render "devise/shared/links" %>

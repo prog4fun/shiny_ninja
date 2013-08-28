@@ -230,7 +230,7 @@ de:
         wage_explanation: "z.B. 30.50"
       user:
         login: "Benutzername"
-        login_explonation: "Benutzername"
+        login_explanation: "Benutzername"
         firstname: "Vorname"
         firstname_explanation: "Wie heißen Sie"
         firstname_project_evaluator_explanation: "Wie heißt der Auswerter"
@@ -275,7 +275,7 @@ de:
       destroy: "Löschen"
       destroy_explanation: "Löscht den ausgewählten Eintrag"
       download: "Download"
-      download_csv_explonation: "Als .csv-Datei herunterladen"
+      download_csv_explanation: "Als .csv-Datei herunterladen"
       edit: "Bearbeiten"
       edit_explanation: "Editiert den ausgewählten Eintrag"
       head: "Aktionen"
