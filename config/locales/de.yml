@@ -288,7 +288,8 @@ de:
       reset: "Zurücksetzen"
       save: "Speichern"
       search: "Suchen"
-      search_explonation: "Tabelle mit ausgewählten Kreterien filtern."
+      search_explanation: "Tabelle nach ausgewählten Kriterien filtern."
+      search_toggle: "Klicken um Suche ein- oder auszublenden."
       search_head: "Suche"
       show: "Anzeigen"
     authorization:
