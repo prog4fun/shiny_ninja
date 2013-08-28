@@ -1,60 +1,26 @@
 # encoding: UTF-8
 
-<% if @active_menu == "report" %>
-  <li class="active"><%= link_to t('activerecord.models.reports'), reports_path, :class => "nav" %></li>
-<% else %>
-  <li class="nav"><%= link_to t('activerecord.models.reports'), reports_path %></li>
-<% end %>
-
-
 <% if user_signed_in? %>
-  <% @active_menu == "user" ? css_user_class = "active":css_user_class = "nav" %>
-  <% if current_user.is? :administrator %>
-
-    <% if @active_menu == "project" %>
-      <li class="active"><%= link_to t('activerecord.models.projects'), projects_path %></li>
-    <% else %>
-      <li class="nav"><%= link_to t('activerecord.models.projects'), projects_path %></li>
-    <% end %>
-
-    <% if @active_menu == "customer" %>
-      <li class="active"><%= link_to t('activerecord.models.customers'), customers_path %></li>
-    <% else %>
-      <li class="nav"><%= link_to t('activerecord.models.customers'), customers_path %></li>
-    <% end %>
-
-    <% if @active_menu == "service" %>
-      <li class="active"><%= link_to t('activerecord.models.services'), services_path %></li>
-    <% else %>
-      <li class="nav"><%= link_to t('activerecord.models.services'), services_path %></li>
-    <% end %>
-
-    <li class=<%= css_user_class %>><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_index" %></li>
-
-
-  <% elsif current_user.is? :time_tracker %>
-
-    <% if @active_menu == "project" %>
-      <li class="active"><%= link_to t('activerecord.models.projects'), projects_path %></li>
-    <% else %>
-      <li class="nav"><%= link_to t('activerecord.models.projects'), projects_path %></li>
-    <% end %>
-
-    <% if @active_menu == "customer" %>
-      <li class="active"><%= link_to t('activerecord.models.customers'), customers_path %></li>
-    <% else %>
-      <li class="nav"><%= link_to t('activerecord.models.customers'), customers_path %></li>
-    <% end %>
-
-    <% if @active_menu == "service" %>
-      <li class="active"><%= link_to t('activerecord.models.services'), services_path %></li>
-    <% else %>
-      <li class="nav"><%= link_to t('activerecord.models.services'), services_path %></li>
-      <% end %>
-
-    <li class=<%= css_user_class %>><%= link_to t('labels.roles.projectevaluator'), :controller => "users", :action => "tt_index" %></li>
-
-
-    <%# else project_evaluator and not logged in%>
+  <% @active_menu == "user" ? css_user_class = "active":css_user_class = "nav"  %>
+  <li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
+  <% if current_user.is? :administrator || :time_tracker %>
+    <li class='<%= @active_menu == "project" ? "active" : "nav" %>'><%= link_to t('activerecord.models.projects'), projects_path %></li>
+    <li class='<%= @active_menu == "customer" ? "active" : "nav" %>'><%= link_to t('activerecord.models.customers'), customers_path %></li>
+    <li class='<%= @active_menu == "service" ? "active" : "nav" %>'><%= link_to t('activerecord.models.services'), services_path %></li>
+    <% if current_user.is? :administrator %>
+      <li class='<%= css_user_class %>'><%= link_to t('activerecord.models.users'), :controller => "users", :action => "adm_index" %></li>
+      <% url = url_for(:controller => "users", :action => "adm_show", :id => current_user.id) %>
+    <% elsif current_user.is? :time_tracker %>
+      <li class='<%= css_user_class %>'><%= link_to t('labels.roles.projectevaluator'), :controller => "users", :action => "tt_index" %></li>
+      <% url = url_for(:controller => "users", :action => "tt_show", :id => current_user.id) %> <% end %>
+  <% elsif current_user.is? :project_evaluator %>
+    <% url = url_for(:controller => "users", :action => "pe_show") %>
   <% end %>
+
+  <li class='visible-xs'><a href="<%= url %>"><%= t('labels.person.my_account') %></a></li>
+  <li class='nav danger visible-xs'><%= link_to(t('labels.actions.logout'), destroy_user_session_path)  %></li>
+
+<% else %>
+  <li class='nav success visible-xs'><%= link_to(t('labels.actions.login'), new_user_session_path)  %></li>
+
 <% end %>
