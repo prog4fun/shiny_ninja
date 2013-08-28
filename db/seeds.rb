@@ -24,7 +24,7 @@ user0 = User.create(
   created_by: 2
 )
 user1 = User.create(
-  login: "mkoriath",
+  login: "testuser",
   password: "test123",
   firstname: "MyFirstname",
   lastname: "MyLastname",
