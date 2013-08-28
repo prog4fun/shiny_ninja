@@ -4,7 +4,6 @@
 <html>
   <head>
     <title>Shiny-Ninja</title>
-<%#= stylesheet_link_tag    "application", :media => "all" %>
     <%= stylesheet_link_tag    "bootstrap", :rel => "stylesheet" %>
     <%= stylesheet_link_tag    "jquery-ui-1.10.3.custom", :rel => "stylesheet" %>
     <%= stylesheet_link_tag    "application", :rel => "stylesheet" %>
@@ -15,7 +14,18 @@
     <%= javascript_include_tag "jquery-ui-1.10.3.custom" %>
     <%= javascript_include_tag "my_functions.js" %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# Set Viewport, Initial Scaling, Restrict Scaling by User, Hide Safari Address Bar on iOS, WebApp-Images for iOS and Android %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <%= favicon_link_tag 'webapp/AppIcon57x57.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '57x57' %>
+    <%= favicon_link_tag 'webapp/AppIcon57x57@2x.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '114x114' %>    
+    <%= favicon_link_tag 'webapp/AppIcon60x60.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '60x60' %>
+    <%= favicon_link_tag 'webapp/AppIcon60x60@2x.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '120x120' %>    
+    <%= favicon_link_tag 'webapp/AppIcon72x72.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '72x72' %>
+    <%= favicon_link_tag 'webapp/AppIcon72x72@2x.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144' %>    
+    <%= favicon_link_tag 'webapp/AppIcon76x76.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '76x76' %>
+    <%= favicon_link_tag 'webapp/AppIcon76x76@2x.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '152x152' %>
+  
     <%= csrf_meta_tags %>
 
 
