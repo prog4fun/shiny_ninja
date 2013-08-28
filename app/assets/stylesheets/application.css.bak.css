@@ -1,0 +1,202 @@
+body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: #5B5E5B;
+}
+
+h1 {
+    color: #ff6600;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #7cc021;
+    line-height:1%;
+}
+
+p, ol, ul {
+    text-align: justify;
+}
+
+strong {
+    font-weight: bold;
+    color: #808080;
+}
+
+a {
+    color: #87A019;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #2582A4;
+}
+
+#header {
+    position: absolute;
+    top: 0%;
+    left: 5%;
+    width: 60%;
+    height: 7%;
+    font-weight: normal;
+}
+
+#breadcrump {
+    position: absolute;
+    top: 8%;
+    left: 20%;
+    width: 55%;
+    height: 2%;
+    font-weight: normal;
+}
+
+#user_control {
+    position: absolute;
+    top: 8%;
+    left: 77%;
+    width: 20%;
+    height: 2%;
+    font-weight: normal;
+}
+
+#navigation {
+    position: absolute;
+    top: 17%;
+    width: 18%;
+    height: 80%;
+    border-right: 1px solid #C6EC8C;
+    font-weight: normal;
+}
+#content {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 55%;
+    height: 80%;
+    font-weight: normal;
+}
+#search-bar {
+    position: absolute;
+    top: 15%;
+    left: 77%;
+    width: 20%;
+    height: 30%;
+    font-weight: normal;
+}
+#sidebar-with-search-bar {
+    position: absolute;
+    top: 55%;
+    left: 77%;
+    width: 20%;
+    height: 40%;
+    font-weight: normal;
+}
+#sidebar-without-search-bar {
+    position: absolute;
+    top: 11%;
+    left: 77%;
+    width: 20%;
+    height: 80%;
+    font-weight: normal;
+}
+#footer {
+    position: absolute;
+    bottom: 11%;
+    height: 5%;
+}
+#menu {
+    width: 85%;
+    border-style: solid solid none solid;
+    border-color: #D76100;
+    border-size: 1px;
+    border-width: 1px;
+    margin: 10px;
+}
+
+#menu li a {
+    height: 32px;
+    voice-family: ""; 
+    voice-family: inherit;
+    height: 24px;
+    text-decoration: none;
+}
+
+#menu li a:link, #menu li a:visited {
+    color: #9E3C02;
+    display: block;
+    background: url(menu.gif);
+    padding: 8px 0 0 30px;
+}
+
+#menu li a:hover {
+    color: #fff;
+    background: url(menu.gif) 0 -32px;
+    padding: 8px 0 0 30px;
+}
+
+#menu li a:active {
+    color: #fff;
+    background: url(menu.gif) 0 -64px;
+    padding: 8px 0 0 30px;
+}
+#menu li.nav {
+    color: #fff;
+}
+
+/* 
+       Web20 Table Style
+       written by Netway Media, http://www.netway-media.com
+*/
+table {
+    border-collapse: collapse;
+    /* border: 1px solid #666666; */
+    font: normal 11px verdana, arial, helvetica, sans-serif;
+    color: #363636;
+    background: #f6f6f6;
+    text-align:left;
+    width: 100%;
+}
+caption {
+    text-align: center;
+    font: bold 16px arial, helvetica, sans-serif;
+    background: transparent;
+    padding:6px 4px 8px 0px;
+    color: #CC00FF;
+    text-transform: uppercase;
+}
+thead, tfoot {
+    background:url(bg1.png) repeat-x;
+    text-align:left;
+    height:30px;
+}
+#action{
+    text-align: center;
+    width: 5%;
+
+}
+
+thead th, tfoot th {
+    padding:5px;
+}
+table a {
+    color: #333333;
+    text-decoration:none;
+}
+table a:hover {
+    text-decoration:underline;
+}
+tr.odd {
+    background: #f1f1f1;
+}
+tbody th, tbody td {
+    padding:5px;
+}
+td i {
+    width: 2%;    
+}
+/* 
+       Extras
+*/
+#new-button{
+    float: right;
+    width: 4%;
+}
