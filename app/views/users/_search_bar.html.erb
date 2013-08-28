@@ -5,19 +5,27 @@
     <legend>
       <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
       <%= t("labels.actions.search_head") %>
+      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".sidebar-collapse" title="<%= t("labels.actions.search_toggle") %>">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </legend>
+
+    <div class="sidebar-collapse collapse">
+      <div class="form-group">
+        <%= label_tag("[search][firstname]", t("activerecord.attributes.user.firstname")) %>
+        <%= text_field_tag("[search][firstname]", params[:search][:firstname], :class => "form-control") %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag("[search][lastname]", t("activerecord.attributes.user.lastname")) %>
+        <%= text_field_tag("[search][lastname]", params[:search][:lastname], :class => "form-control") %>
+      </div>
+
+      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>    
       <a class="btn btn-default btn-xs" href="<%= get_index_url %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a></legend>
 
-    <div class="form-group">
-      <%= label_tag("[search][firstname]", t("activerecord.attributes.user.firstname")) %>
-      <%= text_field_tag("[search][firstname]", params[:search][:firstname], :class => "form-control") %>
     </div>
-
-    <div class="form-group">
-      <%= label_tag("[search][lastname]", t("activerecord.attributes.user.lastname")) %>
-      <%= text_field_tag("[search][lastname]", params[:search][:lastname], :class => "form-control") %>
-    </div>
-
-    <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>    
-
   </fieldset>
 <% end %>
