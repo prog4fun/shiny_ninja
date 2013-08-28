@@ -20,7 +20,7 @@ class Service < ActiveRecord::Base
     
     if search
       if search["name"].present?
-        result = result.where("name LIKE ?", search["name"])
+        result = result.where("name LIKE ?", "%" + search["name"] + "%")
       end
     end
     result.order("name ASC")

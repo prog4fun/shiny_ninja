@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     
     if search
       if search["firstname"].present?
-        result = result.where("firstname LIKE ?", search["firstname"])
+        result = result.where("firstname LIKE ?", "%" + search["firstname"] + "%")
       end
       if search["lastname"].present?
         result = result.where("lastname LIKE ?", search["lastname"])
@@ -77,10 +77,10 @@ class User < ActiveRecord::Base
     result = User
     if search
       if search["firstname"].present?
-        result = result.where("firstname LIKE ?", search["firstname"])
+        result = result.where("firstname LIKE ?", "%" + search["firstname"] + "%")
       end
       if search["lastname"].present?
-        result = result.where("lastname LIKE ?", search["lastname"])
+        result = result.where("lastname LIKE ?", "%" + search["lastname"] + "%")
       end
     end
     result.order("lastname ASC")
