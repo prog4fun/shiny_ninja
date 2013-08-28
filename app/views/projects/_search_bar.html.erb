@@ -17,6 +17,6 @@
       <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
     </div>
 
-    <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explonation") %>"></i> <%= t("labels.actions.search") %></button>    
+    <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>    
   </fieldset>
 <% end %>
