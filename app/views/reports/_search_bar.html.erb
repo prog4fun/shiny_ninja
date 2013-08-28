@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
       </button>
     </legend>
-    <div class="sidebar-collapse collapse">
+    <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
       <div class="form-group">
         <%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %>
         <%= text_field_tag("[search][date_from]", params[:search][:date_from], :id => "datepicker_from", :size => 4, :class => "form-control") %>

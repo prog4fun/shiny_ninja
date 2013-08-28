@@ -12,7 +12,7 @@
       </button>
     </legend>
 
-    <div class="sidebar-collapse collapse">
+    <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
       <div class="form-group">
         <%= label_tag("[search][name]", t("labels.name")) %>
         <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>

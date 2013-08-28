@@ -1,5 +1,15 @@
 # encoding: UTF-8
 
+<%
+if params[:search].present?
+  x = "sidebar-collapse in"
+else
+  x = "sidebar-collapse collapse"
+end
+
+
+%>
+
 
 <%= form_tag(customers_path, :method => 'get', :role => "form") do %>
   <fieldset>
@@ -13,7 +23,7 @@
       </button>
     </legend>
 
-    <div class="sidebar-collapse collapse">
+    <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
       <div class="form-group">
         <div class="form-group">
           <%= label_tag("[search][name]", t("labels.name")) %>

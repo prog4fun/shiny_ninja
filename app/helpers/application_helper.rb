@@ -9,6 +9,10 @@ module ApplicationHelper
     return raw html_code
   end
   
+  def search_active?
+    params[:search].present? ? true : false
+  end
+  
   # ICONS
   def icon_boolean(state)
     if state == true
