@@ -9,12 +9,10 @@ class IndicesController < ApplicationController
     if current_user.nil?
       redirect_to(:controller => "indices", :action => "home") and return
     else
-      if current_user.is? :time_tracker
+      if current_user.is? :administrator
+        redirect_to(:controller => "users", :action => "index") and return
+      else
         redirect_to(:controller => "reports", :action => "index") and return
-      elsif current_user.is? :project_evaluator
-        redirect_to(:controller => "reports", :action => "index") and return
-      elsif current_user.is? :administrator
-        redirect_to(:controller => "users", :action => "adm_index") and return
       end
     end
 

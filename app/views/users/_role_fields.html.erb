@@ -1,0 +1,14 @@
+# encoding: UTF-8
+
+<div class="form-group">
+  <%= f.label :roles, t("activerecord.attributes.user.roles") + " *", :class => "col-lg-2 control-label" %>
+  <div class="col-lg-4">
+    <% for role in User::ROLES %>
+      <label class="checkbox">
+        <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+        <%= label_tag "user_roles_#{role}", role.humanize %>
+      </label>
+    <% end %>
+  </div>
+</div>
+<%= hidden_field_tag "user[roles][]", "" %>

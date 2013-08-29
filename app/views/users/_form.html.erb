@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-<div class="page-header">
-  <h1>Meinen Account bearbeiten</h1>
-</div>
-
 
 <div class="row">
   <div class="col-md-9">
@@ -24,7 +20,7 @@
 
       <div class="form-group">
         <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4"><%= f.text_field :login, :class => "form-control", placeholder: "p-" %></div>
+        <div class="col-lg-4"><%= f.text_field :login, :class => "form-control", placeholder: t("activerecord.attributes.user.login_explanation") %></div>
       </div>
       <div class="form-group">
         <%= f.label :firstname, t("activerecord.attributes.user.firstname") + " *", :class => "col-lg-2 control-label" %>
@@ -71,6 +67,29 @@
         <%= f.label :country, t("activerecord.attributes.user.country"), :class => "col-lg-2 control-label" %>
         <div class="col-lg-4"><div class="form-control">Deutschland</div></div>
       </div>
+      <div class="form-group">
+        <%= f.label :bank_name, t("activerecord.attributes.user.bank_name"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :bank_name, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :bank_code, t("activerecord.attributes.user.bank_code"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"> <%= f.text_field :bank_code, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :bank_account_number, t("activerecord.attributes.user.bank_account_number"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :bank_account_number, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :tax_number, t("activerecord.attributes.user.tax_number"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :tax_number, :class => "form-control" %></div>
+      </div>
+
+      <% if current_user.is? :administrator %>
+        <%= f.fields_for :users do |builder| %>
+          <%= render "role_fields", :f => builder %>
+        <% end %>
+      <% end %>
+
       <div class="form-group">
         <%= f.label :comment, t("labels.uiverse.comment"), :class => "col-lg-2 control-label" %>
         <div class="col-lg-4"><%= f.text_area :comment, :class => "form-control", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>

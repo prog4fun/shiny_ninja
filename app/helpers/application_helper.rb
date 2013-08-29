@@ -61,13 +61,11 @@ module ApplicationHelper
   
   # LINKS
   def show_link_to_index(options = {})
-    #if can? :tt_show, options
-    # return link_to_function(icon_show, options)
-    url = url_for(options)
-    html_code = "<a class='btn btn-small btn-info' href='#{url}'><span class='#{icon_index}' alt='#{t("labels.actions.index")}' title='#{t("labels.actions.index_explanation")}'></span> #{t("labels.actions.index")}</a>"
-    
-    return raw html_code
-    #end
+    if can? :tt_show, hash_with_controller_to_model(options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-small btn-info' href='#{url}'><span class='#{icon_index}' alt='#{t("labels.actions.index")}' title='#{t("labels.actions.index_explanation")}'></span> #{t("labels.actions.index")}</a>"
+      return raw html_code
+    end
   end
   
   def link_to_show(options = {})

@@ -58,22 +58,7 @@ class User < ActiveRecord::Base
   end
   
   # search
-  def self.search(search, current_user)
-
-    result = User.where("created_by = ?", current_user.id)
-    
-    if search
-      if search["firstname"].present?
-        result = result.where("firstname LIKE ?", "%" + search["firstname"] + "%")
-      end
-      if search["lastname"].present?
-        result = result.where("lastname LIKE ?", search["lastname"])
-      end
-    end
-    result.order("lastname ASC")
-  end
-  
-  def self.adm_search(search)
+  def self.search(search)
     result = User
     if search
       if search["firstname"].present?

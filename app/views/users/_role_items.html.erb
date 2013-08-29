@@ -1,0 +1,12 @@
+# encoding: UTF-8
+
+<tr>
+  <th><%= t("activerecord.attributes.user.roles") %></th>
+  <td>
+    <% i = @user.roles.count %>
+    <% @user.roles.each do |role| %>
+      <%= role.humanize %> <%= ", " if i > 1 %>
+      <% i -= 1 %>
+    <% end %>
+  </td>
+</tr>
