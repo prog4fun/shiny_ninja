@@ -18,7 +18,7 @@
   <% end %>
 
   <li class='visible-xs'><a href="<%= url %>"><%= t('labels.person.my_account') %></a></li>
-  <li class='nav danger visible-xs'><%= link_to(t('labels.actions.logout'), destroy_user_session_path)  %></li>
+  <li class='nav danger visible-xs'> <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</a></li>
 
 <% else %>
   <li class='nav success visible-xs'><%= link_to(t('labels.actions.login'), new_user_session_path)  %></li>
