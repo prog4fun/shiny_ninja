@@ -167,8 +167,8 @@ body {
         padding: 15px 5px;
     }
 
-    .navbar-form .form-group.hidden-xs {
-        display: inline-block;
+    .navbar-form .form-group.hidden-xs, .navbar-right .btn.hidden-xs {
+        display: inline-block !important;
     }
 
 }
