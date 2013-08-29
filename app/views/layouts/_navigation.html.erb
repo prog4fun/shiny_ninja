@@ -1,5 +1,5 @@
 # encoding: UTF-8
-
+<ul class="nav navbar-nav">
 <% if user_signed_in? %>
   <% @active_menu == "user" ? css_user_class = "active":css_user_class = "nav"  %>
   <li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
@@ -24,3 +24,4 @@
   <li class='nav success visible-xs'><%= link_to(t('labels.actions.login'), new_user_session_path)  %></li>
 
 <% end %>
+</ul>
