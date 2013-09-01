@@ -17,7 +17,7 @@ ShinyNinja::Application.routes.draw do
   resources :services
 
   resources :reports
-
+  
   resources :projects
 
   devise_for :users

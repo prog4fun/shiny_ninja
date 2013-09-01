@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
     my_projects = Project.where( :customer_id => customers)
     
     if my_projects.include?(@project)
+      @evaluators = @project.users
       @active_menu = "project"
       add_breadcrumb t("labels.actions.show"), project_path(@project)
 
@@ -56,7 +57,8 @@ class ProjectsController < ApplicationController
     @customers = current_user.customers
     my_projects = Project.where( :customer_id => @customers)
     
-    if my_projects.include?(@project)    
+    if my_projects.include?(@project)
+      @evaluators = @project.users
       @active_menu = "project"
       add_breadcrumb t("labels.actions.edit"), edit_project_path(@project.id)
     else

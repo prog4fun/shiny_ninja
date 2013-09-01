@@ -3,6 +3,14 @@
 
 <div class="row">
   <div class="col-md-9">
+    <%= link_to_new(:controller => "projects_users", :action => "new") %>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-9">
 
 
     <%= form_for(@project, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
@@ -34,6 +42,17 @@
         <%= f.label :timebudget, t("labels.datetime.hours"), :class => "col-lg-2 control-label" %>
         <div class="col-lg-4">
           <%= f.number_field :timebudget, :class => "form-control", placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :projects, t("labels.roles.projectevaluator"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <div class="form-control">        
+            <% @evaluators.each do |evaluator| %>
+              <%= evaluator.email %>
+              <a class='btn btn-danger btn-xs no_hover' href='<%= url_for() %>' data-confirm='<%= t("labels.actions.confirm") %>' data-method='delete' rel='nofollow'><i class='<%= icon_destroy %>' alt='<%= t("labels.actions.destroy") %>' title='<%=  t("labels.actions.destroy_explanation") %>'></i></a>          
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="form-group">

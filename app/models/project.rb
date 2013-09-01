@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Project < ActiveRecord::Base
   attr_accessible :comment, :customer_id, :name, :timebudget
   
