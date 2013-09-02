@@ -1,7 +1,9 @@
 # encoding: UTF-8
 
-<p>Welcome <%= @resource.email %>!</p>
+<p>Herzlich Willkommen <%= @resource.firstname %> <%= @resource.lastname %>,</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Sie können Ihren Account bestätigen, indem Sie den folgenden Link anklicken:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'Account bestätigen', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>Viel Spaß mit der Applikation</p>
