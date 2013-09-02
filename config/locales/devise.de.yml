@@ -20,13 +20,13 @@ de:
       signed_in: 'Erfolgreich angemeldet.'
       signed_out: 'Erfolgreich abgemeldet.'
     passwords:
-      send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie ihr Passwort zurücksetzten können.'
+      send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Passwort zurücksetzten können.'
       updated: 'Ihr Passwort wurde geändert. Sie sind angemeldet.'
     confirmations:
-      send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie ihr Passwort zurücksetzten können.'
+      send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit einem Link, der Ihre E-Mail-Adresse bestätigt.'
       updated: 'Ihr Passwort wurde geändert. Sie sind angemeldet.'
     registrations:
-      signed_up: 'Sie haben sich erfolgreich registriert. Es kann sein, dass Sie eine Aktivierungs-E-Mail erhalten.'
+      signed_up: 'Sie haben sich erfolgreich registriert. In wenigen Minuten erhalten Sie eine Aktivierungs-E-Mail.'
       updated: 'Die Angaben wurden erfolgreich geändert.'
       destroyed: 'Ihr Account wurde erfolgreich gelöscht.'
     unlocks:
