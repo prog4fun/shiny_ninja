@@ -10,10 +10,6 @@ module DeviseHelper
   def devise_error_messages!
     return "" if resource.errors.empty?
    
-    if resource.errors[:email].present?
-      return flash[:notice] = "Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Passwort zurücksetzten können. "
-    end
-
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
     sentence = I18n.t("errors.messages.not_saved",
       :count => resource.errors.count,
