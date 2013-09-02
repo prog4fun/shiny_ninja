@@ -2,10 +2,10 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable,
   # :lockable, :timeoutable and :omniauthable
   # :validatable
-  devise :database_authenticatable, :recoverable,
+  devise :database_authenticatable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable
   
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
