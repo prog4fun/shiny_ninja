@@ -9,6 +9,7 @@ class Ability
       can :manage, :all
     elsif user.is? :time_tracker
       can :manage, Customer
+      can :manage, ProjectsUser
       can :manage, Project
       can :manage, Report
       can :manage, Service
