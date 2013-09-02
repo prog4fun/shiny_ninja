@@ -5,11 +5,8 @@
 </div>
 
 <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => "form-horizontal", :role => "form" }) do |f| %>
-  <% if devise_error_messages!.present? %>
-    <div class="alert alert-danger">
-      <%= devise_error_messages! %>
-    </div>
-  <% end %>
+
+  <%= devise_error_messages! %>
 
   <div class="form-group">
     <%= f.label :email, t("activerecord.attributes.user.email") + " *", :class => "col-lg-2 control-label" %>
