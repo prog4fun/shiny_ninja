@@ -1,11 +1,7 @@
 # encoding: UTF-8
 
 <div class="page-header">
-  <% if @user == current_user %>
-    <h1><%= t("labels.person.my_account") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
-  <% else %>
-    <h1><%= t("labels.roles.projectevaluator") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
-  <% end %>
+  <h1><%= t("activerecord.models.user") %> "<%= @user.firstname %> <%= @user.lastname %>"</h1>
 </div>
 
 
@@ -48,15 +44,22 @@
           <td><%= @user.country %></td>
         </tr>
         <tr>
-          <th><%= t("activerecord.models.projects") %></th>
-          <td>
-            <% i = @user.projects.count %>
-            <% @user.projects.each do |project| %>
-              <%= project.name %> <%= ", " if i > 1 %>
-              <% i -= 1 %>
-            <% end %>
-          </td>
+          <th><%= t("activerecord.attributes.user.bank_code_and_name") %></th>
+          <td><%= @user.bank_code %><%= ", " if @user.bank_name.present? %><%= @user.bank_name %></td>
         </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.bank_account_number") %></th>
+          <td><%= @user.bank_account_number %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.tax_number") %></th>
+          <td><%= @user.tax_number %></td>
+        </tr>
+
+        <% if current_user.is? :administrator %>
+          <%= render 'role_items' %>
+        <% end %>
+
         <tr>
           <th><%= t("labels.universe.comment") %></th>
           <td><%= @user.comment %></td>
@@ -68,13 +71,14 @@
 
   <div class="col-md-1">
     <div class="btn-group-vertical">
-      <%= show_link_to_index(:controller => "users", :action => "tt_index") %>
-      <%= show_link_to_edit(:controller => "users", :action => "tt_edit", :id => @user.id) %>
+      <%= show_link_to_index(:controller => "users", :action => "index") %>
+      <%= show_link_to_edit(:controller => "users", :action => "edit", :id => @user.id) %>
       <%= show_link_to_destroy(:controller => "users", :action => "show", :id => @user.id) %>
     </div>
   </div>
 
 </div>
+
 
 
 

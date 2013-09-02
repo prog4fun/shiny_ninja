@@ -23,6 +23,12 @@
           <td><%= @project.timebudget %></td>
         </tr>
         <tr>
+          <th><%= t("labels.roles.projectevaluator") %></th>
+          <% @evaluators.each do |evaluator| %>
+            <td><%= evaluator.email %></td>
+          <% end %>
+        </tr>
+        <tr>
           <th><%= t("labels.universe.comment") %></th>
           <td><%= @project.comment %></td>
         </tr>

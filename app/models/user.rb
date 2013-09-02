@@ -2,26 +2,27 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable,
   # :lockable, :timeoutable and :omniauthable
-  # :registerable, :validatable
-  devise :database_authenticatable, :recoverable,
-    :rememberable, :trackable
+  # :validatable
+  devise :database_authenticatable, :confirmable, :recoverable,
+    :registerable, :rememberable, :trackable
   
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :created_by, :email, :firstname, :lastname, :login,
-    :password, :password_confirmation, :phone_number, :project_ids, :remember_me, :roles,
+    :comment, :country, :email, :firstname, :lastname, :login,
+    :password, :password_confirmation, :phone_number, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode
   
   # associations
   has_many :customers
   has_many :services
-  has_and_belongs_to_many :projects
+  has_many :projects_users
+  has_many :projects, :through => :projects_users
   
   # validations
   validates :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :created_by, :email, :firstname, :lastname, :login,
-    :password, :password_confirmation, :phone_number, :project_ids, :remember_me, :roles,
+    :comment, :country, :email, :firstname, :lastname, :login,
+    :password, :password_confirmation, :phone_number, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode,
     :format => {:with => /^[^<>%&$]*$/}
   
@@ -58,22 +59,7 @@ class User < ActiveRecord::Base
   end
   
   # search
-  def self.search(search, current_user)
-
-    result = User.where("created_by = ?", current_user.id)
-    
-    if search
-      if search["firstname"].present?
-        result = result.where("firstname LIKE ?", "%" + search["firstname"] + "%")
-      end
-      if search["lastname"].present?
-        result = result.where("lastname LIKE ?", search["lastname"])
-      end
-    end
-    result.order("lastname ASC")
-  end
-  
-  def self.adm_search(search)
+  def self.search(search)
     result = User
     if search
       if search["firstname"].present?

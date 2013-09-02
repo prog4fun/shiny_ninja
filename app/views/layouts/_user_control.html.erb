@@ -2,16 +2,9 @@
 <ul class="nav navbar-nav navbar-right hidden-xs">
 <% if user_signed_in? %>
 
-  <div class="btn-group">
-    <% if current_user.is? :administrator %>
-      <% url = url_for(:controller => "users", :action => "adm_show", :id => current_user.id) %>
-    <% elsif current_user.is? :time_tracker %>
-      <% url = url_for(:controller => "users", :action => "tt_show", :id => current_user.id) %>
-    <% elsif current_user.is? :project_evaluator %>
-      <% url = url_for(:controller => "users", :action => "pe_show") %>
-    <% end %>
-    <a class="btn btn-default" href="<%= url %>">Hey, <%= current_user.firstname %>!</a>
-    <a class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">Abmelden</a>
+  <div class="btn-group hidden-xs">
+    <a class="btn btn-default" href="<%= user_path(current_user) %>">Hey, <%= current_user.firstname %>!</a>
+    <a class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow"><%= t('labels.actions.logout') %></a>
   </div>
 
 <% else %>
@@ -28,7 +21,9 @@
       <%= f.hidden_field :remember_me, :value => true %>
     <% end -%>
 
-    <button type="submit" class="btn btn-success"><%= t("labels.actions.login") %></button>
+    <button type="submit" class="btn btn-success hidden-xs"><%= t("labels.actions.login") %></button>
+    <a class='btn btn btn-info hidden-xs' href='<%= url_for(new_registration_path(resource_name)) %>'> <%= t("labels.actions.sign_up") %></a>  
+
   <% end %>
 
 <% end %>

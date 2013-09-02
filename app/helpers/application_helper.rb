@@ -61,13 +61,11 @@ module ApplicationHelper
   
   # LINKS
   def show_link_to_index(options = {})
-    #if can? :tt_show, options
-    # return link_to_function(icon_show, options)
-    url = url_for(options)
-    html_code = "<a class='btn btn-small btn-info' href='#{url}'><span class='#{icon_index}' alt='#{t("labels.actions.index")}' title='#{t("labels.actions.index_explanation")}'></span> #{t("labels.actions.index")}</a>"
-    
-    return raw html_code
-    #end
+    if can? :tt_show, hash_with_controller_to_model(options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-small btn-info' href='#{url}'><span class='#{icon_index}' alt='#{t("labels.actions.index")}' title='#{t("labels.actions.index_explanation")}'></span> #{t("labels.actions.index")}</a>"
+      return raw html_code
+    end
   end
   
   def link_to_show(options = {})
@@ -114,7 +112,19 @@ module ApplicationHelper
       # options.merge!(:class => "no_hover")
       # return link_to(icon_destroy, object, options)
       url = url_for(options)
-      html_code = "<a class='btn btn-danger no_hover' href='#{url}' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i>#{t("labels.actions.destroy")}</a>"
+      html_code = "<a class='btn btn-danger no_hover' href='#{url}' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i> #{t("labels.actions.destroy")}</a>"
+      return raw html_code
+      
+    end
+  end
+  
+   def link_to_destroy_evaluator(options = {})
+    if can? :create, hash_with_controller_to_model(options)
+      # if can? :destroy, object.class
+      # options.merge!(:class => "no_hover")
+      # return link_to(icon_destroy, object, options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-danger btn-xs no_hover' href='#{url}' data-confirm='#{t("labels.actions.confirm")}' data-method='delete' rel='nofollow'><i class='#{icon_destroy}' alt='#{t("labels.actions.destroy")}' title='#{t("labels.actions.destroy_explanation")}'></i></a>"
       return raw html_code
       
     end
@@ -129,6 +139,15 @@ module ApplicationHelper
     end
   end
   
+  # needs to be merged with method above!!
+  def link_to_new_evaluator(options = {})
+    if can? :create, hash_with_controller_to_model(options)
+      # return link_to_function(icon_new, options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-primary' href='#{url}'><i class='#{icon_new}' alt='#{t("labels.actions.new")}er #{t("labels.roles.projectevaluator")}' title='#{t("labels.actions.new_explanation")}'></i> #{t("labels.actions.new")}er #{t("labels.roles.projectevaluator")}</a>"
+      return raw html_code
+    end
+  end
   
   def link_to_logout(object, options = {})
     options.merge!(:class => "no_hover")

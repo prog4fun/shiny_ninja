@@ -9,22 +9,18 @@ class Ability
       can :manage, :all
     elsif user.is? :time_tracker
       can :manage, Customer
+      can :manage, ProjectsUser
       can :manage, Project
       can :manage, Report
       can :manage, Service
-      can :tt_show, User
-      can :tt_index, User
-      can :tt_new, User
-      can :tt_edit, User
-      can :create, User
-      can :update, User
-      can :destroy, User
+      # Do not user :read, because read = show + index
+      can :show, User  # To Show own Account --> UserController#Show
+      can :update, User  # To Edit own Account --> UserController#Edit
     elsif user.is? :project_evaluator
       can :index, Report
       can :show, Report
-      can :pe_show, User
-      can :pe_edit, User
-      can :update, User
+      can :show, User  # To Show own Account --> UserController#Show
+      can :update, User  # To Edit own Account --> UserController#Edit
     end
     
     #

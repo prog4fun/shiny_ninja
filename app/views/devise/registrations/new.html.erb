@@ -1,20 +1,55 @@
 # encoding: UTF-8
 
-<h2>Sign up</h2>
+<div class="page-header">
+  <h1><%= t("labels.actions.sign_up")%></h1>
+</div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
+  <% if devise_error_messages!.present? %>
+    <div class="alert alert-danger">
+      <%= devise_error_messages! %>
+    </div>
+  <% end %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="form-group">
+    <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "col-lg-2 control-label" %>
+    <div class="col-lg-4"><%= f.text_field :login, :class => "form-control", placeholder: t("activerecord.attributes.user.login_explanation") %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :firstname, t("activerecord.attributes.user.firstname") + " *", :class => "col-lg-2 control-label" %>
+    <div class="col-lg-4"><%= f.text_field :firstname, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.firstname_explanation")}"  %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :lastname, t("activerecord.attributes.user.lastname") + " *", :class => "col-lg-2 control-label" %>
+    <div class="col-lg-4"><%= f.text_field :lastname, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.lastname_explanation")}"  %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, t("activerecord.attributes.user.email") + " *", :class => "col-lg-2 control-label" %>
+    <div class="col-lg-4">
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <%= f.email_field :email, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.email_explanation")}" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, t("activerecord.attributes.user.password") + " *", :class => "col-lg-2 control-label" %>
+    <div class="col-lg-4"><%= f.password_field :password, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.password_explanation")}" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, t("activerecord.attributes.user.password_cofirmation") + " **", :class => "col-lg-2 control-label" %>
+    <div class="col-lg-4"><%= f.password_field :password_confirmation, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.password_cofirmation_explanation")}" %></div>
+  </div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= f.hidden_field :roles_mask, :value => 4 %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <div class="form-group">
+    <div class="col-lg-3 col-lg-offset-2">
+      <button type="submit" class="btn btn-success"><%= t("labels.actions.sign_up") %></button>
+    </div>
+  </div>
+  <div class="text-muted col-lg-6 col-lg-offset-1">
+    <%= t("labels.universe.mandatory_field_explanation") %>
+  <% end %>
+</div>

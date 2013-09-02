@@ -19,7 +19,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :comment
       t.integer :roles_mask
       t.integer :created_by, :null => false
-
+    
       t.timestamps
     end
   end

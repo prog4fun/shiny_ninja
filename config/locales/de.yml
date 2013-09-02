@@ -117,6 +117,7 @@ de:
       less_than_or_equal_to: muss kleiner oder gleich %{count} sein
       not_a_number: ist keine Zahl
       not_an_integer: muss ganzzahlig sein
+      not_saved: "Registrierung konnte nicht abgeschlossen werden."
       odd: muss ungerade sein
       record_invalid: ! "Gültigkeitsprüfung ist fehlgeschlagen: %{errors}"
       taken: ist bereits vergeben
@@ -292,6 +293,8 @@ de:
       search_toggle: "Klicken um Suche ein- oder auszublenden."
       search_head: "Suche"
       show: "Anzeigen"
+      sign_up: "Registrieren"
+      sign_up_explanation: "Neuen Account anlegen"
     authorization:
       denied: "Sie haben nicht die benötigten Rechte für diese Seite."
     breadcrumbs:
