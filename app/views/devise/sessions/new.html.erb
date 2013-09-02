@@ -28,7 +28,15 @@
 
       <div class="form-group">
         <div class="col-lg-3 col-lg-offset-2">
+          <div class="btn-group">
             <button type="submit" class="btn btn-success"><%= t("labels.actions.login") %></button>
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <%= render "devise/shared/links" %>
+            </ul>
+          </div>
         </div>
       </div>
 
