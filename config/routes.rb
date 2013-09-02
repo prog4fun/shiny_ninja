@@ -21,7 +21,7 @@ ShinyNinja::Application.routes.draw do
   
   resources :projects
 
-  devise_for :users, :controllers => { :passwords => :my_passwords }
+  devise_for :users, :controllers => { :registrations => :registrations, :passwords => :passwords}
   devise_for :users
 
   resources :customers
