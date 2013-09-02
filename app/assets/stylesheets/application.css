@@ -104,6 +104,11 @@ body {
     border-color: #4cae4c;
 }
 
+.navbar-nav li.info {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
 .navbar-nav li.danger > a, .navbar-nav li.danger > a:hover, .navbar-nav li.danger > a:active,
 .navbar-nav li.success > a, .navbar-nav li.success > a:hover, .navbar-nav li.success > a:active {
     color: #ffffff;

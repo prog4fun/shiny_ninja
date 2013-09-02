@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     
     own_user = true if current_user.id == @user.id
     if ( current_user.is? :administrator ) || own_user
-      @creator = User.find(@user.created_by)
       @active_menu = "user"
       # add_breadcrumb t("labels.actions.show"), user_path(@user)
 
@@ -76,8 +75,7 @@ class UsersController < ApplicationController
     @active_menu = "user"
         
     respond_to do |format|
-      @user.attributes = {:country => "de",
-        :created_by => current_user.id }
+      @user.attributes = {:country => "de" }
       if @user.save
         format.html { redirect_to @user, notice: t("confirmations.messages.saved") }
       else

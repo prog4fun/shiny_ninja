@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  # :registerable, :validatable
+  # :validatable
   devise :database_authenticatable, :recoverable,
-    :rememberable, :trackable
+    :registerable, :rememberable, :trackable
   
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :created_by, :email, :firstname, :lastname, :login,
+    :comment, :country, :email, :firstname, :lastname, :login,
     :password, :password_confirmation, :phone_number, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode
   
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   
   # validations
   validates :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :created_by, :email, :firstname, :lastname, :login,
+    :comment, :country, :email, :firstname, :lastname, :login,
     :password, :password_confirmation, :phone_number, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode,
     :format => {:with => /^[^<>%&$]*$/}
