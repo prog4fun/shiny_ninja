@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     :registerable, :rememberable, :trackable
   
   attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :email, :firstname, :lastname, :login,
+    :comment, :confirmed_at, :country, :email, :firstname, :lastname, :login,
     :password, :password_confirmation, :phone_number, :remember_me, :roles,
     :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode
   
