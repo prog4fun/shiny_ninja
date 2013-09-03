@@ -145,3 +145,13 @@ $(function() {
         $(".autocomplete").toggle();
     });
 });
+
+
+
+
+$(document).ready(function(){
+	$("a[href^='/']").click(function(event){
+		event.preventDefault();
+		window.location = $(this).attr('href');
+	});
+});
