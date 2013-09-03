@@ -36,24 +36,10 @@
           <%= f.number_field :timebudget, :class => "form-control", placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %>
         </div>
       </div>
-      <div class="form-group">
-        <%= f.label :projects, t("labels.roles.projectevaluator"), :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4">
 
-
-          <ul class="list-group">
-            <%= link_to_new_evaluator(:controller => "projects_users", :action => "new", :project_id => @project.id) %>
-            <% @evaluators.each do |evaluator| %>
-              <li class="list-group-item">
-                <%= evaluator.email %>
-                <%= link_to_destroy_evaluator(:controller => "projects_users", :action => "show", :project_id => @project.id, :user_id => evaluator.id) %></td>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-
-      </div>
-
+      <% unless params[:action] == 'new' %>
+        <%= render 'evaluator_fields', :f => f %>
+      <% end %>
 
       <div class="form-group">
         <%= f.label :comment, t("labels.universe.comment"), :class => "col-lg-2 control-label" %>
