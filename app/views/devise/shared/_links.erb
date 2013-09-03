@@ -6,9 +6,6 @@
 <%# end -%>
 <%# end -%>
 
-<%- if controller_name != 'sessions' %>
-  <li><a href="<%= url_for(new_session_path(resource_name)) %>"><%= t("labels.actions.login") %></a></li>
-<% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
     <li><a href="<%= url_for(new_password_path(resource_name)) %>"><%= t("labels.actions.forgot_password") %></a></li>
