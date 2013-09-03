@@ -1,0 +1,17 @@
+# encoding: UTF-8
+
+<p>Hallo <%= @project_evaluator.firstname %> <%= @project_evaluator.lastname %>,</p>
+
+<p>
+  <%= @time_tracker.firstname %> <%= @time_tracker.lastname %>  hat Sie zum Auswerten von Zeiten einem Projekt hinzugefügt.
+</p>
+
+<p>
+  Klicken Sie bitte auf den nachfolgenden Link und melden sich an.<br/>
+  Nach der Anmeldung wird Ihnen im Menüpunkt <%= t('activerecord.models.reports') %> das Projekt hinzugefügt.
+</p>
+
+<p>
+  <%= link_to 'Passwort ändern', edit_password_url(@resource, :reset_password_token => @resource.reset_password_token) %>
+</p>
+

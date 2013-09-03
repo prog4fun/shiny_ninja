@@ -18,11 +18,27 @@ class ProjectsUsersController < ApplicationController
 
   def create
     @projects_user = ProjectsUser.new(params[:projects_user])
+    logger.debug "###########################################"
+    logger.debug params[:projects_user]
+    logger.debug "###########################################"
+    
     @project = Project.find(params[:projects_user][:project_id])
     @users = User.where(:roles_mask => 4)  # 4 --> Project Evaluator
 
     respond_to do |format|
       if @projects_user.save
+        
+        if User.exists?(:id => params[:projects_user][:user_id])    # change question to email when text field
+          @project_evaluator = User.find(params[:projects_user][:user_id])
+          @time_tracker = User.find(current_user.id)
+          logger.debug "###########################################"
+          logger.debug @project_evaluator.email
+          logger.debug "###########################################"
+          
+          ProjectsUserMailer.existing_user_added_to_project(@time_tracker, @project_evaluator, @project)
+        end
+        
+        
         format.html { redirect_to  :controller => "projects", :action => "edit", :id => params[:projects_user][:project_id], notice: t("confirmations.messages.saved") }
       else
         format.html { redirect_to  :controller => "projects", :action => "edit", :id => params[:projects_user][:project_id] }
