@@ -260,7 +260,7 @@ de:
         country: "Land"
         bank_name: "Kreditinstitut"
         bank_code: "Bankleitzahl"
-        bank_code_and_name: "Kreditinstitut und BLZ"
+        bank_code_and_name: "BLZ und Kreditinstitut"
         bank_account_number: "Kontonummer"
         tax_number: "Steuernummer"
         signature: "Unterschrift"
