@@ -130,7 +130,7 @@ body {
     border-color: #46b8da;	
 }
 
-.input-group .form-control, .form-control {
+#edituser .input-group .form-control, #edituser .form-control {
 	width: auto;
 }
 
