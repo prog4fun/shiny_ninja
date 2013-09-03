@@ -25,9 +25,9 @@
         <tr>
           <th><%= t("labels.report.date") %></th>
           <th><%= t("activerecord.models.customer") %></th>
-          <% if current_user.is? :project_evaluator %>
-            <th><%= t("activerecord.models.project") %></th>
-          <% else %>
+           <th><%= t("activerecord.models.project") %></th>
+           <th><%= t("activerecord.models.service") %></th>
+          <% unless current_user.is? :project_evaluator %>
             <th><%= t("labels.service.wage") %></th>
           <% end %>
           <th><%= t("labels.report.duration") %></th>
@@ -37,10 +37,10 @@
         <% @reports.each do |report| %>
           <tr>
             <td><%= report.date %></td>
-            <td><%= get_customer_of_report(report) %></td>
-            <% if current_user.is? :project_evaluator %>
-              <td><%= truncate(report.project.name, :length => 10) %></td>
-            <% else %>
+            <td><%= truncate(get_customer_of_report(report), :length => 25) %></td>
+              <td><%= truncate(report.project.name, :length => 25) %></td>
+              <td><%= truncate(report.service.name, :length => 25) %></td>
+            <% unless current_user.is? :project_evaluator %>
               <td><%= report.service.wage %></td>
             <% end %>
             <td><%= report.duration %></td>

@@ -110,7 +110,8 @@ body {
 }
 
 .navbar-nav li.danger > a, .navbar-nav li.danger > a:hover, .navbar-nav li.danger > a:active,
-.navbar-nav li.success > a, .navbar-nav li.success > a:hover, .navbar-nav li.success > a:active {
+.navbar-nav li.success > a, .navbar-nav li.success > a:hover, .navbar-nav li.success > a:active,
+.navbar-nav li.info > a, .navbar-nav li.info > a:hover, .navbar-nav li.info > a:active {
     color: #ffffff;
 }
 
@@ -122,6 +123,11 @@ body {
 .navbar-nav li.success:hover, .navbar-nav li.success:focus, .navbar-nav li.success:active, .navbar-nav li.success.active {
     background-color: #47a447;
     border-color: #398439;	
+}
+
+.navbar-nav li.info:hover, .navbar-nav li.info:focus, .navbar-nav li.info:active, .navbar-nav li.info.active {
+    background-color: #5bc0de;
+    border-color: #46b8da;	
 }
 
 /*###################################

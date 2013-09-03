@@ -287,7 +287,7 @@ de:
       index: "Übersicht"
       index_explanation: "Zur Übersicht"
       login: "Anmelden"
-      logout: "Ausloggen"
+      logout: "Abmelden"
       new: "Neu"
       new_explanation: "Legt ein neuen Eintrag an"
       password_reset: "Passwort zurücksetzen"
