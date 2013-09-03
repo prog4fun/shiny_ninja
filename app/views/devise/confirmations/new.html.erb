@@ -13,17 +13,9 @@
     <div class="col-lg-4"><%= f.email_field :email, :class => "form-control", placeholder: t("activerecord.attributes.user.email_explanation") %></div>
   </div>
 
-  <div class="form-group">
+ <div class="form-group">
     <div class="col-lg-3 col-lg-offset-2">
-      <div class="btn-group">
-        <button type="submit" class="btn btn-success"><%= t("labels.actions.email_confirmation_submit") %></button>
-        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <%= render "devise/shared/links" %>
-        </ul>
-      </div>
+      <button type="submit" class="btn btn-success"><%= t("labels.actions.email_confirmation_submit") %></button>
     </div>
   </div>
   <div class="text-muted col-lg-6 col-lg-offset-1">

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shiny-Ninja</title>
+    <title>ShinyNinja</title>
     <%= stylesheet_link_tag    "bootstrap", :rel => "stylesheet" %>
     <%= stylesheet_link_tag    "jquery-ui-1.10.3.custom", :rel => "stylesheet" %>
     <%= stylesheet_link_tag    "application", :rel => "stylesheet" %>
@@ -39,7 +39,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">ShinyNinja</a>
+        <%= link_to "ShinyNinja", root_path, class: "navbar-brand" %>
       </div>
 
       <div class="navbar-collapse collapse">        

@@ -9,10 +9,10 @@ de:
 
   devise:
     failure:
-      unauthenticated: 'Sie müssen sich anmelden, bevor Sie weiterfahren können.'
-      unconfirmed: 'Sie müssen Ihren Account bestätigen, bevor Sie weiterfahren können.'
+      unauthenticated: 'Sie müssen sich anmelden, bevor Sie fortfahren können.'
+      unconfirmed: 'Sie müssen Ihren Account bestätigen, bevor Sie fortfahren können.'
       locked: 'Ihr Account ist gesperrt.'
-      invalid: 'Ungültige Anmeldedaten.'
+      invalid: 'Ihre Anmeldedaten sind inkorrekt. Bitte versuchen Sie es erneut.'
       invalid_token: 'Invalid authentication token.'
       timeout: 'Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an.'
       inactive: 'Ihr Account ist nicht aktiv.'
