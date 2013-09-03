@@ -3,14 +3,28 @@ ShinyNinja::Application.routes.draw do
   # Reports
   # match "/reports/import", :controller => "reports", :action => "import"
   
+  
+  
+ 
+
   # Index
-  match "/index/start", :controller => "indices", :action => "start"
-  match "/index/home", :controller => "indices", :action => "home"
-  match "/index/impressum", :controller => "indices", :action => "impressum"
-  match "/index/impressum", :controller => "devise/indices", :action => "impressum"
-  match "/index/administrator", :controller => "indices", :action => "administrator"
-  match "/index/timetracker", :controller => "indices", :action => "timetracker"
-  match "/index/projectevaluator", :controller => "indices", :action => "projectevaluator"
+  authenticated do
+  match "/", :controller => "indices", :action => "start"
+  end
+  
+  match "/", :controller => "indices", :action => "home"
+  match "index/start", :controller => "indices", :action => "start"
+  match "index/home", :controller => "indices", :action => "home"
+  match "index/impressum", :controller => "indices", :action => "impressum"
+  match "index/impressum", :controller => "devise/indices", :action => "impressum"
+  match "index/administrator", :controller => "indices", :action => "administrator"
+  match "index/timetracker", :controller => "indices", :action => "timetracker"
+  match "index/projectevaluator", :controller => "indices", :action => "projectevaluator"
+  
+  
+  
+  
+  
   
   # Resources
   resources :services
@@ -75,9 +89,10 @@ ShinyNinja::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'indices#start'
+  root :to => '/'
+
 
   # See how all your routes lay out with "rake routes"
 
