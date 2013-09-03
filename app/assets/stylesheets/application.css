@@ -258,6 +258,16 @@ body {
         width: auto;
         float: none;
     }
+    
+    #edituser .form-group.buttons {
+	    float: none;
+    }
+     #edituser .form-group.buttons .col-lg-3.col-lg-offset-2, #edituser .col-lg-6.col-lg-offset-1 {
+     	width: auto;
+	     margin-left: 0px;
+     }
+     
+     
 
 }
 
