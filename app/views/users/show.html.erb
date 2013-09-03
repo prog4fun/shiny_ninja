@@ -32,24 +32,18 @@
           <td><%= @user.phone_number %></td>
         </tr>
         <tr>
-          <th><%= t("activerecord.attributes.user.sreet_and_number") %></th>
-          <td><%= @user.street %> <%= @user.street_number %></td>
-        </tr>
-        <tr>
-          <th><%= t("activerecord.attributes.user.zipcode_and_city") %></th>
-          <td><%= @user.zipcode %><%= " " if @user.city.present? %><%= @user.city %></td>
-        </tr>
-        <tr>
-          <th><%= t("activerecord.attributes.user.country") %></th>
-          <td><%= @user.country %></td>
-        </tr>
-        <tr>
-          <th><%= t("activerecord.attributes.user.bank_code_and_name") %></th>
-          <td><%= @user.bank_code %><%= ", " if @user.bank_name.present? %><%= @user.bank_name %></td>
+          <th><%= t("activerecord.attributes.user.address") %></th>
+          <td><%= @user.street %> <%= @user.street_number %><br>
+          <%= @user.zipcode %><%= " " if @user.city.present? %><%= @user.city %><br>
+          <%= @user.country %></td>
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.user.bank_account_number") %></th>
           <td><%= @user.bank_account_number %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.bank_code_and_name") %></th>
+          <td><%= @user.bank_code %><%= ", " if @user.bank_name.present? %><%= @user.bank_name %></td>
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.user.tax_number") %></th>
