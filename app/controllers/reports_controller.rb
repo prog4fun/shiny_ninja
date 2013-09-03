@@ -20,7 +20,7 @@ class ReportsController < ApplicationController
     
     
     params[:search] ||= {}
-    @reports = Report.search(params[:search], current_user).page(params[:page])
+    @reports = Report.search(params[:search], params[:project_to_evaluate], current_user).page(params[:page])
     
     @active_menu = "report"
     @search_bar = true

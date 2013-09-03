@@ -5,7 +5,6 @@ class ProjectsUserMailer < ActionMailer::Base
     @time_tracker = time_tracker
     @project_evaluator = project_evaluator
     @project = project
-    @url  = 'http://example.com/login'
     mail(to: @project_evaluator.email, subject: 'Sie wurden zu einem Projekt hinzugefügt')
   end
   

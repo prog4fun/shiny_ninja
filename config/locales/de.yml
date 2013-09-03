@@ -324,6 +324,7 @@ de:
     report:
       date: "Datum"
       duration: "Dauer"
+      projects_to_evaluate: "auszuwertende Projekte"
     roles:
       administrator: "Administrator"
       timetracker: "Zeit-Erfasser"
