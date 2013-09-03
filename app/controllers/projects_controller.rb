@@ -42,6 +42,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @customers = Customer.where( :user_id => current_user.id )
+    @evaluators = @project.users
     
     @active_menu = "project"
     add_breadcrumb t("labels.actions.new"), new_project_path
