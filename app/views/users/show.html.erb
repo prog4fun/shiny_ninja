@@ -37,7 +37,7 @@
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.user.zipcode_and_city") %></th>
-          <td><%= @user.zipcode %><%= ", " if @user.city.present? %><%= @user.city %></td>
+          <td><%= @user.zipcode %><%= " " if @user.city.present? %><%= @user.city %></td>
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.user.country") %></th>

@@ -246,6 +246,7 @@ de:
         password_cofirmation_explanation: "Passwort wiederholen"
         phone_number: "Telefonnummer"
         phone_number_explanation: "Handy/Festnetz..."
+        address: "Adresse"
         street: "Straße"
         street_explanation: "Straße"
         street_number: "Hausnummer"

@@ -1,8 +1,8 @@
 # encoding: UTF-8
 <% if user_signed_in? %>
 <ul class="nav navbar-nav">
-  <li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
   <% if current_user.is? :time_tracker %>
+  	<li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
     <li class='<%= @active_menu == "project" ? "active" : "nav" %>'><%= link_to t('activerecord.models.projects'), projects_path %></li>
     <li class='<%= @active_menu == "customer" ? "active" : "nav" %>'><%= link_to t('activerecord.models.customers'), customers_path %></li>
     <li class='<%= @active_menu == "service" ? "active" : "nav" %>'><%= link_to t('activerecord.models.services'), services_path %></li>

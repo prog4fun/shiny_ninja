@@ -130,6 +130,21 @@ body {
     border-color: #46b8da;	
 }
 
+.input-group .form-control, .form-control {
+	width: auto;
+}
+
+#edituser .form-group {
+	display: block;
+	float: left;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.clear {
+	clear: both;
+}
+
 /*###################################
 
         css for webkit-browsers
