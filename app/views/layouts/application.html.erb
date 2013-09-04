@@ -51,7 +51,7 @@
 <%#= render "layouts/breadcrumbs" %> 
     <%= render "layouts/alerts" %> 
 
-    <div class="container">
+    <div id="<%= params[:controller] %>-<%= params[:action] %>" class="container">
       <%= yield %>
     </div>
 

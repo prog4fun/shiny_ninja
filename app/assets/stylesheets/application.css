@@ -26,7 +26,14 @@
         #######
         
         make element in sidebar toggle - visible as default:
-                class="sidebar-collapse in"		
+                class="sidebar-collapse in"	
+                
+        #######
+        
+        define styles for one page only:
+        	every container for the main content has its own id: #<controller>-<action>
+        	example: 	#users-edit changes style on /users/<id>/edit
+        				#reports-index changes style /reports
 
 ######################################################################
 
@@ -130,11 +137,13 @@ body {
     border-color: #46b8da;	
 }
 
-#edituser .input-group .form-control, #edituser .form-control {
+/* makes form on /users/<id>/edit looking good */
+
+#users-edit .input-group .form-control, #users-edit .form-control {
 	width: auto;
 }
 
-#edituser .form-group {
+#users-edit .form-group {
 	display: block;
 	float: left;
 	margin-right: 0px;
@@ -254,15 +263,17 @@ body {
 
 @media (min-width: 1200px) {
 
-    #edituser .col-lg-2, #edituser .col-lg-4 {
+	/* makes form on /users/<id>/edit looking good */
+
+    #users-edit .col-lg-2, #users-edit .col-lg-4 {
         width: auto;
         float: none;
     }
     
-    #edituser .form-group.buttons {
+    #users-edit .form-group.buttons {
 	    float: none;
     }
-     #edituser .form-group.buttons .col-lg-3.col-lg-offset-2, #edituser .col-lg-6.col-lg-offset-1 {
+     #users-edit .form-group.buttons .col-lg-3.col-lg-offset-2, #users-edit .col-lg-6.col-lg-offset-1 {
      	width: auto;
 	     margin-left: 0px;
      }

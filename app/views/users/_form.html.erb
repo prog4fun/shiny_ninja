@@ -18,8 +18,6 @@
         </div>
       <% end %>
 
- 
-      <div id="edituser">
       <div class="form-group">
         <%= f.label :login, t("activerecord.attributes.user.login") + " *", :class => "col-lg-2 control-label" %>
         <div class="col-lg-4"><%= f.text_field :login, :class => "form-control", placeholder: t("activerecord.attributes.user.login_explanation") %></div>
@@ -55,7 +53,7 @@
       <div class="clear"></div>
       <div class="form-group">
         <%= f.label :phone_number, t("activerecord.attributes.user.phone_number"), :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4"><%= f.text_field :phone_number, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.phone_number_explanation")}" %></div>
+        <div class="col-lg-4"><%= f.telephone_field :phone_number, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.phone_number_explanation")}" %></div>
       </div>
       <div class="clear"></div>
       <div class="form-group">
@@ -123,7 +121,6 @@
       <div class="text-muted col-lg-6 col-lg-offset-1">
         <%= t("labels.universe.mandatory_field_explanation") %><br/>
         <%= t("labels.universe.password_login_explanation") %></div>
-      </div>
     <% end %>
       
   </div>
