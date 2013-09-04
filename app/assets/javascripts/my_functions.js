@@ -164,11 +164,19 @@ $(function() {
 });
 
 
-
-
-$(document).ready(function(){
+$(function() {
 	$("a[href^='/']").click(function(event){
 		event.preventDefault();
 		window.location = $(this).attr('href');
 	});
+   
+    var comp = new RegExp(location.host);
+    $("a").click(function(event){
+	    if(comp.test($(this).attr('href'))) {           
+		    event.preventDefault();
+		    window.location = $(this).attr('href');
+		} else {
+			
+		}
+   });
 });

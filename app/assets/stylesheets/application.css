@@ -137,21 +137,16 @@ body {
     border-color: #46b8da;	
 }
 
-/* makes form on /users/<id>/edit looking good */
-
-#users-edit .input-group .form-control, #users-edit .form-control {
-	width: auto;
-}
-
-#users-edit .form-group {
-	display: block;
-	float: left;
-	margin-right: 0px;
-	margin-left: 0px;
-}
-
 .clear {
 	clear: both;
+}
+
+#reports-new .btn {
+	margin: 10px 0;
+}
+
+h1, .h1 {
+	font-size: 28px;
 }
 
 /*###################################
@@ -182,7 +177,6 @@ body {
         font-size: 12px;
         text-align: right;
     }
-
 }
 
 /*###################################
@@ -213,6 +207,11 @@ body {
     .navbar-form .form-group.hidden-xs, .navbar-right .btn.hidden-xs {
         display: inline-block !important;
     }
+    
+    h1, .h1 {
+	    font-size: 36px;
+	}
+	
 
 }
 
@@ -256,6 +255,19 @@ body {
         width: 75%;
         margin-left: 0px;
     }
+    
+    	/* makes form on /users/<id>/edit looking good */
+
+	#users-edit .input-group .form-control, #users-edit .form-control {
+		width: auto;
+	}
+	
+	#users-edit .form-group {
+		display: block;
+		float: left;
+		margin-right: 0px;
+		margin-left: 0px;
+	}
 
 }
 
@@ -263,7 +275,7 @@ body {
 
 @media (min-width: 1200px) {
 
-	/* makes form on /users/<id>/edit looking good */
+	/* makes form on /users/<id>/edit looking good - even on bigger screens */
 
     #users-edit .col-lg-2, #users-edit .col-lg-4 {
         width: auto;
