@@ -1,11 +1,28 @@
 // Datepicker
+$(function() {
+	if($(window).width() > 768) {
+		$(".datepicker").addClass("datepicker-active");
+		$(".datepicker-active").datepicker('enable');
+		$(function() {
+	    	$(".datepicker-active").datepicker($.datepicker.regional[ "de" ]);
+	    });
+	} 
+	});
 
-$(function() {
-    $("#datepicker_from").datepicker($.datepicker.regional[ "de" ]);
+$(window).resize(function() {
+	if($(window).width() > 768) {
+		$(".datepicker").addClass("datepicker-active");
+		$(".datepicker-active").datepicker('enable');
+		$(function() {
+	    	$(".datepicker-active").datepicker($.datepicker.regional[ "de" ]);
+	    });
+	} else {
+		    $(".datepicker-active").datepicker('destroy');
+		    $(".datepicker").removeClass("datepicker-active");
+	    }
 });
-$(function() {
-    $("#datepicker_to").datepicker($.datepicker.regional[ "de" ]);
-});
+
+
 
 
 // Combobox
