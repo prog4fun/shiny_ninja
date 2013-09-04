@@ -293,6 +293,7 @@ de:
       new_explanation: "Legt ein neuen Eintrag an"
       password_reset: "Passwort zurücksetzen"
       reset: "Zurücksetzen"
+      saveandnew: "Speichern und Neu"
       save: "Speichern"
       search: "Suchen"
       search_explanation: "Tabelle nach ausgewählten Kriterien filtern."
