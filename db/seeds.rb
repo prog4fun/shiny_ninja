@@ -5,6 +5,7 @@
 # +++++++++++++++++++++++++
 Customer.delete_all
 Project.delete_all
+ProjectsUser.delete_all
 Report.delete_all
 Service.delete_all
 User.delete_all

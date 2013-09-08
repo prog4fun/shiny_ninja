@@ -13,6 +13,7 @@ class Ability
       can :manage, Project
       can :manage, Report
       can :manage, Service
+      can :manage, ProjectsUser
       # Do not user :read, because read = show + index
       can :show, User  # To Show own Account --> UserController#Show
       can :update, User  # To Edit own Account --> UserController#Edit
@@ -21,6 +22,8 @@ class Ability
       can :show, Report
       can :show, User  # To Show own Account --> UserController#Show
       can :update, User  # To Edit own Account --> UserController#Edit
+      can :update, ProjectsUser
+      can :confirm_project_evaluator, ProjectsUser
     end
     
     #

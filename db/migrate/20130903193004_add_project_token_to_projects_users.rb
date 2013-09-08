@@ -5,6 +5,7 @@ class AddProjectTokenToProjectsUsers < ActiveRecord::Migration
       t.remove :user_id     # needs to be nil at some point
       t.integer :user_id
       t.string :project_token
+      t.string :confirmation_email
     end
   end
 

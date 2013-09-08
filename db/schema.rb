@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130903193004) do
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
     t.string   "project_token"
+    t.string   "confirmation_email"
   end
 
   create_table "reports", :force => true do |t|
