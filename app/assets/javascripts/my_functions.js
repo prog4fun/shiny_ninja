@@ -148,8 +148,9 @@ $(function() {
 
 
 $(function() {
-	$("a[href^='/']").each(function(){
-	
+	$("a[href^='/']").on('touchend', function(event){
+		event.preventDefault();
+		window.location = $(this).attr('href');
 	});
    
     var comp = new RegExp(location.host);
