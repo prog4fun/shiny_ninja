@@ -13,11 +13,11 @@ In 2 kurzen Schritten koennen Sie die Zeiten auswerten.
 +++++++++++++++++++++
 Sie keonnen diesen Schritt selbstverstaendlich ueberspringen, wenn sie bereits ueber einen Account verfuegen.
 Haben Sie noch keinen Account? Registrieren Sie sich, um die Zeiten auswerten zu koennen:
-<%= new_registration_url(:user) %>
+<%= root_url + "/users/sign_up" %>
 
 ++++++++++++++++++++++++
 ++ Projekt hinzufuegen ++
 ++++++++++++++++++++++++
 Sind sie bereits registriert oder haben Sie Ihre Registrierung gerade abgeschlossen?
 Mit folgendem Link koennen Sie das Projekt zu Ihrem Account hinzufuegen:
-<%= url_for( :host => @domain, :port => @port, :controller => "projects_users", :action => "confirm_project_evaluator", :project_token => @projects_user.project_token) %>
+<%= root_url + url_for( :controller => "projects_users", :action => "confirm_project_evaluator", :project_token => @projects_user.project_token) %>

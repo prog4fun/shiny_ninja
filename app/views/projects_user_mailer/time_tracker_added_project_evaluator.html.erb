@@ -22,5 +22,5 @@
 <p>
   Sind sie bereits registriert oder haben Sie Ihre Registrierung gerade abgeschlossen?<br/>
   Mit folgendem Link können Sie das Projekt zu Ihrem Account hinzufügen:<br/>
-  <%= link_to("Projekt hinzufügen", :host => @domain, :port => @port, :controller => "projects_users", :action => "confirm_project_evaluator", :project_token => @projects_user.project_token) %>
+  <a href="<%= root_url + url_for( :controller => "projects_users", :action => "confirm_project_evaluator", :project_token => @projects_user.project_token) %>">Projekt hinzufügen</a>  
 </p>
