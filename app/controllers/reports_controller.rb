@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
       format.html
       format.csv  {
         params[:data] ||= {}
-        projects_user = ProjectsUser.find(params[:projects_user])
+        projects_user = ProjectsUser.find(params[:projects_user]) if params[:projects_user].present?
         reports_for_download = Report.search(params[:data], projects_user, current_user)
         filename = reports_for_download.first.date.strftime("%d.%m.%Y-")
         filename << reports_for_download.last.date.strftime("%d.%m.%Y_")
