@@ -30,7 +30,7 @@ de:
       updated: 'Die Angaben wurden erfolgreich geändert.'
       destroyed: 'Ihr Account wurde erfolgreich gelöscht.'
       user:
-        signed_up_but_unconfirmed: "Der Account wurde erfolgreich erstellt. Sie erhalten in wenigen Minuten eine E-Mail. Bitte vervollständigen Sie die Registration mit dem enthalten Link."
+        signed_up_but_unconfirmed: "Der Account wurde erfolgreich erstellt. Sie erhalten in wenigen Minuten eine E-Mail. Bitte vervollständigen Sie die Registrierung mit dem enthalten Link."
     unlocks:
       send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihren Account entsperren können.'
       unlocked: 'Ihr Account wurde entsperrt. Sie sind angemeldet.'
