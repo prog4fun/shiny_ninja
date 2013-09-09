@@ -148,7 +148,8 @@ $(function() {
 
 
 $(function() {
-	$("a[href^='/']").on('touchend', function(event){
+if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+	$("a[href^='/']").click(function(event){
 		event.preventDefault();
 		window.location = $(this).attr('href');
 	});
@@ -162,4 +163,5 @@ $(function() {
 			
 		}
    });
+   }
 });
