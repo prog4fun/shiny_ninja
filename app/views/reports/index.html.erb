@@ -47,22 +47,26 @@
           <th colspan="3"><%= t("labels.actions.head") %></th>
         </tr>
 
-        <% @reports.each do |report| %>
-          <tr>
-            <td><%= report.date %></td>
-            <td><%= truncate(get_customer_of_report(report), :length => 25) %></td>
-            <td><%= truncate(report.project.name, :length => 25) %></td>
-            <td><%= truncate(report.service.name, :length => 25) %></td>
-            <% unless @evaluate_page %>
-              <td><%= report.service.wage %></td>
-            <% end %>
-            <td><%= report.duration %></td>
-            <td style="width:5%"><%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %></td>
-            <% unless @evaluate_page %>
-              <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
-              <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
-            <% end %>
-          </tr>
+        <% if @reports.empty? %>
+          <tr><td colspan="<%= @evaluate_page ? 8:9 %>" class="text-muted"><%= t("labels.universe.no_entry") %> </td></tr>
+        <% else %>
+          <% @reports.each do |report| %>
+            <tr>
+              <td><%= report.date %></td>
+              <td><%= truncate(get_customer_of_report(report), :length => 25) %></td>
+              <td><%= truncate(report.project.name, :length => 25) %></td>
+              <td><%= truncate(report.service.name, :length => 25) %></td>
+              <% unless @evaluate_page %>
+                <td><%= report.service.wage %></td>
+              <% end %>
+              <td><%= report.duration %></td>
+              <td style="width:5%"><%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %></td>
+              <% unless @evaluate_page %>
+                <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
+                <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+              <% end %>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     </div>
