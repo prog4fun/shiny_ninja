@@ -21,20 +21,13 @@ $(window).resize(function() {
 		    $(".datepicker").removeClass("datepicker-active");
 	    }
 });
-
-
-
-
 // Combobox
-
-
 (function($) {
     $.widget("custom.combobox", {
         _create: function() {
             this.wrapper = $("<span>")
                     .addClass("custom-autocomplete")
                     .insertAfter(this.element);
-
             this.element.hide();
             this._createAutocomplete();
             this._createShowAllButton();
@@ -42,7 +35,6 @@ $(window).resize(function() {
         _createAutocomplete: function() {
             var selected = this.element.children(":selected"),
                     value = selected.val() ? selected.text() : "";
-
             this.input = $("<input>")
                     .appendTo(this.wrapper)
                     .val(value)
@@ -57,7 +49,6 @@ $(window).resize(function() {
                     .tooltip({
                 tooltipClass: "ui-state-highlight"
             });
-
             this._on(this.input, {
                 autocompleteselect: function(event, ui) {
                     ui.item.option.selected = true;
@@ -71,7 +62,6 @@ $(window).resize(function() {
         _createShowAllButton: function() {
             var input = this.input,
                     wasOpen = false;
-
             $("<a>")
                     .attr("tabIndex", -1)
                     .attr("title", "Alle Einträge anzeigen")
@@ -90,12 +80,10 @@ $(window).resize(function() {
             })
                     .click(function() {
                 input.focus();
-
                 // Close if already visible
                 if (wasOpen) {
                     return;
                 }
-
                 // Pass empty string as value to search for, displaying all results
                 input.autocomplete("search", "");
             });
@@ -113,12 +101,10 @@ $(window).resize(function() {
             }));
         },
         _removeIfInvalid: function(event, ui) {
-
             // Selected an item, nothing to do
             if (ui.item) {
                 return;
             }
-
             // Search for a match (case-insensitive)
             var value = this.input.val(),
                     valueLowerCase = value.toLowerCase(),
@@ -129,12 +115,10 @@ $(window).resize(function() {
                     return false;
                 }
             });
-
             // Found a match, nothing to do
             if (valid) {
                 return;
             }
-
             // Remove invalid value
             this.input
                     .val("")
@@ -151,11 +135,7 @@ $(window).resize(function() {
             this.element.show();
         }
     });
-
-
-
 })(jQuery);
-
 $(function() {
     $(".autocomplete").combobox();
     $("#toggle").click(function() {
@@ -164,10 +144,12 @@ $(function() {
 });
 
 
+
+
+
 $(function() {
-	$("a[href^='/']").click(function(event){
-		event.preventDefault();
-		window.location = $(this).attr('href');
+	$("a[href^='/']").each(function(){
+	
 	});
    
     var comp = new RegExp(location.host);
