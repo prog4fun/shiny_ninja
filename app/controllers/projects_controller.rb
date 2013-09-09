@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     my_projects = Project.where( :customer_id => customers)
     
     if my_projects.include?(@project)
-      @evaluators = @project.users
+      @projects_users = ProjectsUser.where( :project_id => @project.id )
       @active_menu = "project"
       add_breadcrumb t("labels.actions.show"), project_path(@project)
 
@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
     my_projects = Project.where( :customer_id => @customers)
     
     if my_projects.include?(@project)
-      @evaluators = @project.users
+      @projects_users = ProjectsUser.where( :project_id => @project.id )
       @active_menu = "project"
       add_breadcrumb t("labels.actions.edit"), edit_project_path(@project.id)
     else
@@ -86,6 +86,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @customers = Customer.where( :user_id => current_user.id )
+    @projects_users = ProjectsUser.where( :project_id => @project.id )
     
     @active_menu = "project"
 

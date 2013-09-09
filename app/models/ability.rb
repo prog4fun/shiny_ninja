@@ -7,6 +7,8 @@ class Ability
     
     if user.is? :administrator
       can :manage, :all
+      # e.g. admins mustn't evaluate projects
+      cannot :manage, ProjectsUser
     elsif user.is? :time_tracker
       can :manage, Customer
       can :manage, ProjectsUser

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 
-<%= form_tag(reports_path, :method => 'get', :role => "form") do %>
+<%= form_tag( reports_path, :method => 'get', :role => "form") do %>
   <fieldset>
     <legend>
       <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
@@ -23,7 +23,7 @@
         <%= text_field_tag("[search][date_to]", params[:search][:date_to], :id => "datepicker_to", :size => 4, :class => "form-control") %>
       </div>
 
-      <% unless params[:project_to_evaluate].present? %>
+      <% unless @evaluate_page %>
         <div class="form-group">
           <%= label_tag("[search][customer]", t("activerecord.models.customer")) %>
           <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
@@ -33,10 +33,13 @@
           <%= label_tag("[search][project]", t("activerecord.models.project")) %>
           <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
         </div>
+
+      <% else %>
+        <%= hidden_field_tag "projects_user", params[:projects_user] %>
       <% end %>
 
       <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>
-      <a class="btn btn-default btn-xs" href="<%= reports_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a> 
+      <a class="btn btn-default btn-xs" href="<%= url_for(reports_path :projects_user => params[:projects_user]) %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a> 
 
     </div>
   </fieldset>

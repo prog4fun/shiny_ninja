@@ -218,6 +218,10 @@ de:
       services: "Tätigkeiten"
       user: "Benutzer"
       users: "Benutzer"
+    actions:
+      projects_user:
+        destroy: "Projekt entfernen"
+        destroy_explanation: "Projekt nicht mehr verfolgen"
     attributes:
       project:
         timebudget: "geplante Stunden"

@@ -17,11 +17,16 @@
     <% end %>
 
     <% if current_user.is? :project_evaluator %>
-      <li class="dropdown">
+      <li class="dropdown <%= @active_menu == "evaluate_project" ? "active" : "nav" %>">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t("labels.report.projects_to_evaluate") %> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <% current_user.projects.each do |project| %>
-            <li><a href="<%= url_for(:controller => "reports", :action => "index", :project_to_evaluate => project) %>"><%= project.name %> (<%= project.customer.user.lastname %>)</a></li>
+          <% projects_users = current_user.projects_users %>
+          <% if projects_users.present? %>
+            <% projects_users.each do |pu| %>
+              <li><a href="<%= url_for(:controller => "reports", :action => "index", :projects_user => pu) %>"><%= pu.project.name %> (<%= pu.project.customer.user.lastname %>)</a></li>
+            <% end %>
+          <% else %>
+            <li>Noch kein Projekt vorhanden</li>
           <% end %>
         </ul>
       </li>

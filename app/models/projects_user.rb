@@ -12,5 +12,5 @@ class ProjectsUser < ActiveRecord::Base
     :format => {:with => /^[^<>%&$]*$/}
   validates :project_id, :presence => true
   validates :confirmation_email, :presence => true, :on => :create 
-  
+  validates :confirmation_email, :uniqueness => {:case_sensitive => false, :scope => :project_id}  
 end

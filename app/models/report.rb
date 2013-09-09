@@ -48,21 +48,19 @@ class Report < ActiveRecord::Base
   
   
   # search
-  def self.search(search, project_to_evaluate, current_user)
+  def self.search(search, projects_user, current_user)
     
-    if project_to_evaluate.present?
-      #result = Report.find_by_project_id(project_to_evaluate)      
-      result = Report.where( :project_id => project_to_evaluate)
-      
+    if projects_user.present?
+      result = Report.where( :project_id => projects_user.project.id)
+      logger.debug "##########################################"
+      logger.debug "1." + result.inspect
+      logger.debug "##########################################"
     else
-      #end
-    
-      #if current_user.is? :project_evaluator
-      # projects = current_user.projects
-      # result = Report.where( :project_id => projects)
-      # else
       services = Service.where("user_id = ?", current_user.id)
       result = Report.where( :service_id => services)
+      logger.debug "##########################################"
+      logger.debug "2." + result.inspect
+      logger.debug "##########################################"
     end    
     
     if search
