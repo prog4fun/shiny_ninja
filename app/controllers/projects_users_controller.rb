@@ -23,6 +23,10 @@ class ProjectsUsersController < ApplicationController
       not_own_object_redirection
     end
   end
+  
+  def edit
+    @projects_user = ProjectsUser.find(params[:id])
+  end
 
   def confirm_project_evaluator
     # answer of the email with project_token
@@ -57,7 +61,7 @@ class ProjectsUsersController < ApplicationController
       
       if @projects_user.save
         time_tracker = User.find(current_user.id)
-        ProjectsUserMailer.time_tracker_added_project_evaluator(time_tracker, @projects_user).deliver
+        ProjectsUserMailer.time_tracker_added_project_evaluator(time_tracker, @projects_user, request.domain, request.port).deliver
         
         format.html { redirect_to  :controller => "projects", :action => "edit", :id => params[:projects_user][:project_id], notice: t("confirmations.messages.saved") }
       else

@@ -2,17 +2,25 @@
 
 <p>Hallo <%= @projects_user.confirmation_email %>,</p>
 
+
 <p>
   <%= @time_tracker.firstname %> <%= @time_tracker.lastname %> hat Sie zum Auswerten des Projektes "<%= @project.name %>" hinzugefügt.
 </p>
 
 <p>
+  In 2 kurzen Schritten können Sie die Zeiten auswerten.
+</p>
+
+<h3>Account anlegen</h3>
+<p>
+  Sie können diesen Schritt selbstverständlich überspringen, wenn Sie bereits über einen Account verfügen.<br/>
   Haben Sie noch keinen Account? Registrieren Sie sich, um die Zeiten auswerten zu können:<br/>
   <%= link_to "Registrierung", new_registration_path(:user) %>
 </p>
 
+<h3>Projekt hinzufügen</h3>
 <p>
   Sind sie bereits registriert oder haben Sie Ihre Registrierung gerade abgeschlossen?<br/>
   Mit folgendem Link können Sie das Projekt zu Ihrem Account hinzufügen:<br/>
-  <%= link_to "Projekt hinzufügen", :controller => "projects_users", :action => "confirm_project_evaluator", :project_token => @projects_user.project_token %>
+  <%= link_to("Projekt hinzufügen", :host => @domain, :port => @port, :controller => "projects_users", :action => "confirm_project_evaluator", :project_token => @projects_user.project_token) %>
 </p>
