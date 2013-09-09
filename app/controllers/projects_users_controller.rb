@@ -49,7 +49,7 @@ class ProjectsUsersController < ApplicationController
       @projects_user.update_attributes(:confirmation_email => nil)
       @projects_user.update_attributes(:project_token => nil)
     
-      redirect_to :controller => "reports", :action => "index", :project_to_evaluate => @projects_user.project, notice: t("confirmations.messages.saved")
+      redirect_to :controller => "reports", :action => "index", :projects_user => @projects_user, notice: t("confirmations.messages.saved")
     end
   end
 

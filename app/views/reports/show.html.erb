@@ -36,9 +36,11 @@
 
   <div class="col-md-1">
     <div class="btn-group-vertical">
-      <%= show_link_to_index(:controller => "reports", :action => "index") %>
-      <%= show_link_to_edit(:controller => "reports", :action => "edit", :id => @report.id) %>
-      <%= show_link_to_destroy(:controller => "reports", :action => "show", :id => @report.id) %>
+      <%= show_link_to_index(:controller => "reports", :action => "index", :projects_user => params[:projects_user]) %>
+      <% unless @evaluate_page %>
+        <%= show_link_to_edit(:controller => "reports", :action => "edit", :id => @report.id) %>
+        <%= show_link_to_destroy(:controller => "reports", :action => "show", :id => @report.id) %>
+      <% end %>
     </div>
   </div>
 

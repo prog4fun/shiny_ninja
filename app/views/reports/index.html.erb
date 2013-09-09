@@ -38,9 +38,9 @@
         <tr>
           <th><%= t("labels.report.date") %></th>
           <th><%= t("activerecord.models.customer") %></th>
-           <th><%= t("activerecord.models.project") %></th>
-           <th><%= t("activerecord.models.service") %></th>
-          <% unless current_user.is? :project_evaluator %>
+          <th><%= t("activerecord.models.project") %></th>
+          <th><%= t("activerecord.models.service") %></th>
+          <% unless @evaluate_page %>
             <th><%= t("labels.service.wage") %></th>
           <% end %>
           <th><%= t("labels.report.duration") %></th>
@@ -51,13 +51,13 @@
           <tr>
             <td><%= report.date %></td>
             <td><%= truncate(get_customer_of_report(report), :length => 25) %></td>
-              <td><%= truncate(report.project.name, :length => 25) %></td>
-              <td><%= truncate(report.service.name, :length => 25) %></td>
-            <% unless current_user.is? :project_evaluator %>
+            <td><%= truncate(report.project.name, :length => 25) %></td>
+            <td><%= truncate(report.service.name, :length => 25) %></td>
+            <% unless @evaluate_page %>
               <td><%= report.service.wage %></td>
             <% end %>
             <td><%= report.duration %></td>
-            <td style="width:5%"><%= link_to_show(report) %></td>
+            <td style="width:5%"><%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %></td>
             <% unless @evaluate_page %>
               <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
               <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>

@@ -49,15 +49,14 @@ class ReportsController < ApplicationController
      
     
     if my_reports.include?(@report)
-      @active_menu = "report"
       add_breadcrumb t("labels.actions.show"), report_path(@report)
 
       respond_to do |format|
         format.html
       end
     elsif pes_reports.include?(@report)
-      @active_menu = "report"
-      add_breadcrumb t("labels.actions.show"), report_path(@report)
+      @active_menu = "evaluate_project"
+      @evaluate_page = true
 
       respond_to do |format|
         format.html
