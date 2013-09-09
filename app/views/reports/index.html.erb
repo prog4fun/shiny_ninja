@@ -1,18 +1,31 @@
 # encoding: UTF-8
 
 <div class="page-header">
-  <h1><%= t("activerecord.models.reports")%></h1>
+  <h1>
+    <%= t("activerecord.models.reports")%>
+    <% if @evaluate_page %>
+      <small><%= t("activerecord.models.project") %>: <strong><%= @projects_user.project.name %></strong>, <%= t("labels.roles.timetracker") %>: <strong><%= @projects_user.project.customer.user.firstname %> <%= @projects_user.project.customer.user.lastname %></strong></small>  
+    <% end %>
+  </h1>
 </div>
-
 
 <div class="row">
   <div class="col-md-2 col-md-offset-7">
     <div class="btn-group">
-      <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :format => :csv) %>">
-        <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
-        <%= t("labels.actions.download") %>
-      </a>
-      <%= link_to_new(:controller => "reports", :action => "new") %>
+      <% if @reports.present?  %>
+        <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :projects_user => params[:projects_user], :format => :csv) %>">
+          <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
+          <%= t("labels.actions.download") %>
+        </a>
+      <% end %>
+      <% if @evaluate_page %>
+        <a class='btn btn-danger' href='<%= url_for(:controller => "projects_users", :action => "show", :id => @projects_user.id)%>' data-confirm='<%= t("labels.actions.confirm") %>' data-method='delete' rel='nofollow'>
+          <span class="glyphicon glyphicon-off" alt="<%= t("activerecord.actions.projects_user.destroy") %>" title="<%= t("activerecord.actions.projects_user.destroy_explanation") %>"></span>
+          <%= t("activerecord.actions.projects_user.destroy") %>
+        </a>
+      <% else %>
+        <%= link_to_new(:controller => "reports", :action => "new") %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -45,8 +58,10 @@
             <% end %>
             <td><%= report.duration %></td>
             <td style="width:5%"><%= link_to_show(report) %></td>
-            <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
-            <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+            <% unless @evaluate_page %>
+              <%= index_link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
+              <%= index_link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+            <% end %>
           </tr>
         <% end %>
       </table>

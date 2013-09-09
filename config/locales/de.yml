@@ -218,10 +218,17 @@ de:
       services: "Tätigkeiten"
       user: "Benutzer"
       users: "Benutzer"
+    actions:
+      projects_user:
+        destroy: "Projekt entfernen"
+        destroy_explanation: "Projekt nicht mehr verfolgen"
     attributes:
       project:
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
+      projects_user:
+        confirmation_email: "E-Mail"
+        confirmation_email_explanation: "E-Mail des Zeit-Auswerters"
       report:
         date: "Datum"
         duration: "Dauer"
@@ -326,6 +333,7 @@ de:
     report:
       date: "Datum"
       duration: "Dauer"
+      projects_to_evaluate: "auszuwertende Projekte"
     roles:
       administrator: "Administrator"
       timetracker: "Zeit-Erfasser"

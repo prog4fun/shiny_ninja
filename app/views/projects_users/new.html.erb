@@ -4,4 +4,20 @@
   <h1>Neuen <%= t("labels.roles.projectevaluator")%> hinzufügen</h1>
 </div>
 
+
+<div class="row">
+  <div class="col-md-7">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">E-Mail Inhalt</h3>
+      </div>
+      <div class="panel-body">
+        Beim Hinzufügen wird dem <%= t("labels.roles.projectevaluator")%> eine E-Mail gesendet.<br/>
+        Die E-Mail beinhaltet Ihren Vor- und Nachnamen, Ihre E-Mail-Adresse, sowie den Projektnamen
+        des ausgewählten Projektes als Information für den <%= t("labels.roles.projectevaluator")%>.
+      </div>
+    </div>
+  </div>
+</div>
+
 <%= render 'form' %>

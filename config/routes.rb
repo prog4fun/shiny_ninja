@@ -3,10 +3,10 @@ ShinyNinja::Application.routes.draw do
   # Reports
   # match "/reports/import", :controller => "reports", :action => "import"
   
+  # projects_Users
+  match "/projects_users/confirm_project_evaluator", :controller => "projects_users", :action => "confirm_project_evaluator"
   
   
- 
-
   # Index
   authenticated do
   match "/", :controller => "indices", :action => "start"

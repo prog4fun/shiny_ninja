@@ -24,8 +24,15 @@
         </tr>
         <tr>
           <th><%= t("labels.roles.projectevaluator") %></th>
-          <% @evaluators.each do |evaluator| %>
-            <td><%= evaluator.email %></td>
+          <% @projects_users.each do |pu| %>
+            <% if pu.project_token.present? # not confirmed yet%>
+              <td class="list-group-item text-muted">
+                <%= pu.confirmation_email %>
+              <% else %>
+              <td class="list-group-item">
+                <%= pu.user.firstname %> <%= pu.user.lastname %>
+              <% end %>
+            </td>
           <% end %>
         </tr>
         <tr>

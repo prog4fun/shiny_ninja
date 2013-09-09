@@ -8,27 +8,28 @@ class ReportsController < ApplicationController
   
   def index
     
-    if current_user.is? :project_evaluator
-      @projects = current_user.projects
-      customer_ids = Array.new
-      @projects.each{|project| customer_ids.push(project.customer_id)}
-      @customers = Customer.where(:id => customer_ids)
-    else
+    if params[:projects_user].present?
+      @active_menu = "evaluate_project"
+      @evaluate_page = true
+      @projects_user = ProjectsUser.find(params[:projects_user])
+      
+    else # see _search_bar !
+      @active_menu = "report"
       @customers = Customer.where( :user_id => current_user.id)
       @projects = Project.where( :customer_id => @customers)
     end
     
-    
     params[:search] ||= {}
-    @reports = Report.search(params[:search], current_user).page(params[:page])
+    @reports = Report.search(params[:search], @projects_user, current_user).page(params[:page])
     
-    @active_menu = "report"
     @search_bar = true
 
     respond_to do |format|
       format.html
       format.csv  {
-        reports_for_download = Report.search(params[:data], current_user)
+        params[:data] ||= {}
+        projects_user = ProjectsUser.find(params[:projects_user])
+        reports_for_download = Report.search(params[:data], projects_user, current_user)
         filename = reports_for_download.first.date.strftime("%d.%m.%Y-")
         filename << reports_for_download.last.date.strftime("%d.%m.%Y_")
         filename << t("activerecord.models.reports")

@@ -6,11 +6,20 @@
 
     <ul class="list-group">
       <%= link_to_new_evaluator(:controller => "projects_users", :action => "new", :project_id => @project.id) %>
-      <% @evaluators.each do |evaluator| %>
-        <li class="list-group-item">
-          <%= evaluator.email %>
-          <%= link_to_destroy_evaluator(:controller => "projects_users", :action => "show", :project_id => @project.id, :user_id => evaluator.id) %></td>
+      <% @projects_users.each do |pu| %>
+        <% if pu.project_token.present? # not confirmed yet%>
+          <li class="list-group-item text-muted">
+            <%= pu.confirmation_email %>
+          <% else %>
+          <li class="list-group-item">
+            <%= pu.user.firstname %> <%= pu.user.lastname %>
+          <% end %>
+          <%= link_to_destroy_evaluator(:controller => "projects_users", :action => "show", :id => pu.id, :project_id => @project.id) %></td>
         </li>
+      <% end %>
+
+      <% if @projects_users.present? %>
+        Ist der Eintrag <span class="text-muted">grau</span> hinterlegt, hat der <%= t("labels.roles.projectevaluator") %> das Projekt noch nicht bestätigt.
       <% end %>
     </ul>
   </div>

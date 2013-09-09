@@ -1,28 +1,45 @@
 # encoding: UTF-8
-<% if user_signed_in? %>
 <ul class="nav navbar-nav">
-  <% if current_user.is? :project_evaluator %>
-  	<li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
-  	<% end %>
-  	<% if current_user.is? :time_tracker %>
-  	<li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
-    <li class='<%= @active_menu == "project" ? "active" : "nav" %>'><%= link_to t('activerecord.models.projects'), projects_path %></li>
-    <li class='<%= @active_menu == "customer" ? "active" : "nav" %>'><%= link_to t('activerecord.models.customers'), customers_path %></li>
-    <li class='<%= @active_menu == "service" ? "active" : "nav" %>'><%= link_to t('activerecord.models.services'), services_path %></li>
-  <% end %>
-  <% if can? :index, User %>
-    <li class='<%= @active_menu == "user" ? "active" : "nav" %>'><%= link_to t('activerecord.models.users'), :controller => "users", :action => "index" %></li>
-  <% end %>
 
-  <li class='visible-xs'><a href="<%= user_path(current_user) %>"><%= t('labels.person.my_account') %></a></li>
-  <li class='nav danger visible-xs'> <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow"><%= t('labels.actions.logout') %></a></li>
-</ul>
-<% else %>
-<ul class="nav navbar-nav visible-xs">
-  <li class='nav success'><%= link_to(t('labels.actions.login'), new_user_session_path)  %></li>
-</ul>
-<ul class="nav navbar-nav visible-xs">
-  <li class='nav info'><%= link_to(t('labels.actions.sign_up'), new_registration_path(resource_name))  %></li>
+  <% if user_signed_in? %>
+
+    <% if current_user.customers.present? %> <%# if they're not present, the user has no time-entriers (e.g. only time evaluator and no time tracker%>
+      <li class="<%= @active_menu == "report" ? "active" : "nav" %>"><%= link_to t('activerecord.models.reports'), reports_path %></li>
+    <% end %>
+
+    <% if current_user.is? :time_tracker %>
+      <li class='<%= @active_menu == "project" ? "active" : "nav" %>'><%= link_to t('activerecord.models.projects'), projects_path %></li>
+      <li class='<%= @active_menu == "customer" ? "active" : "nav" %>'><%= link_to t('activerecord.models.customers'), customers_path %></li>
+      <li class='<%= @active_menu == "service" ? "active" : "nav" %>'><%= link_to t('activerecord.models.services'), services_path %></li>
+    <% end %>
+    <% if can? :index, User %>
+      <li class='<%= @active_menu == "user" ? "active" : "nav" %>'><%= link_to t('activerecord.models.users'), :controller => "users", :action => "index" %></li>
+    <% end %>
+
+    <% if current_user.is? :project_evaluator %>
+      <li class="dropdown <%= @active_menu == "evaluate_project" ? "active" : "nav" %>">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t("labels.report.projects_to_evaluate") %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <% projects_users = current_user.projects_users %>
+          <% if projects_users.present? %>
+            <% projects_users.each do |pu| %>
+              <li><a href="<%= url_for(:controller => "reports", :action => "index", :projects_user => pu) %>"><%= pu.project.name %> (<%= pu.project.customer.user.lastname %>)</a></li>
+            <% end %>
+          <% else %>
+            <li>Noch kein Projekt vorhanden</li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+
+    <li class='visible-xs'><a href="<%= user_path(current_user) %>"><%= t('labels.person.my_account') %></a></li>
+    <li class='nav danger visible-xs'> <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow"><%= t('labels.actions.logout') %></a></li>
+
+  <% else %>
+    <li class='nav success visible-xs'><%= link_to(t('labels.actions.login'), new_user_session_path)  %></li>
+    <li class='nav info visible-xs'><%= link_to(t('labels.actions.sign_up'), new_registration_path(resource_name))  %></li>
+
+  <% end %>
 </ul>
 <% end %>
 

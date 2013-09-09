@@ -18,20 +18,22 @@
       <% end %>
 
       <div class="form-group">
-        <%= f.label :user_id, t("labels.roles.projectevaluator") + " *", :class => "col-lg-2 control-label" %>
+        <%= f.label :confirmation_email, t("activerecord.attributes.projects_user.confirmation_email") + " *", :class => "col-lg-2 control-label" %>
         <div class="col-lg-4">
-          <div class="input-group-btn"> 
-            <%= select("projects_user", "user_id", @users.collect {|i| [ i.email, i.id ] }, {:include_blank => true}, {:class => "autocomplete"}) %>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <%= f.email_field :confirmation_email, :class => "form-control", placeholder: "#{t("activerecord.attributes.projects_user.confirmation_email_explanation")}" %>
           </div>
         </div>
       </div>
       <%= f.hidden_field :project_id, :value => @project.id %>
+      <%= f.hidden_field :project_token %>
 
       <div class="form-group">
         <div class="col-lg-3 col-lg-offset-2">
           <div class="btn-group">
             <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-            <%= cancel_link %>
+            <a class='btn btn-small btn-danger' href='<%= url_for(:controller => "projects", :action => "edit", :id => @project.id) %>' data-confirm='<%= t("labels.actions.confirm") %>'><%= t("labels.actions.cancel") %></a>
           </div>
         </div>
       </div>
