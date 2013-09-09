@@ -6,7 +6,6 @@ ShinyNinja::Application.routes.draw do
   # projects_Users
   match "/projects_users/confirm_project_evaluator", :controller => "projects_users", :action => "confirm_project_evaluator"
   
-  
   # Index
   authenticated do
   match "/", :controller => "indices", :action => "start"
@@ -20,11 +19,7 @@ ShinyNinja::Application.routes.draw do
   match "/index/administrator", :controller => "indices", :action => "administrator"
   match "/index/timetracker", :controller => "indices", :action => "timetracker"
   match "/index/projectevaluator", :controller => "indices", :action => "projectevaluator"
-  
-  
-  
-  
-  
+
   
   # Resources
   resources :services
