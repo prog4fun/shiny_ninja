@@ -258,11 +258,13 @@ h1, .h1 {
     
     	/* makes form on /users/<id>/edit looking good */
 
-	#users-edit .input-group .form-control, #users-edit .form-control {
+	#users-edit .input-group .form-control, #users-edit .form-control,
+	#users-new .input-group .form-control, #users-new .form-control {
 		width: auto;
 	}
 	
-	#users-edit .form-group {
+	#users-edit .form-group,
+	#users-new .form-group {
 		display: block;
 		float: left;
 		margin-right: 0px;
@@ -277,15 +279,18 @@ h1, .h1 {
 
 	/* makes form on /users/<id>/edit looking good - even on bigger screens */
 
-    #users-edit .col-lg-2, #users-edit .col-lg-4 {
+    #users-edit .col-lg-2, #users-edit .col-lg-4,
+    #users-new .col-lg-2, #users-new .col-lg-4 {
         width: auto;
         float: none;
     }
     
-    #users-edit .form-group.buttons {
+    #users-edit .form-group.buttons,
+    #users-new .form-group.buttons {
 	    float: none;
     }
-     #users-edit .form-group.buttons .col-lg-3.col-lg-offset-2, #users-edit .col-lg-6.col-lg-offset-1 {
+     #users-edit .form-group.buttons .col-lg-3.col-lg-offset-2, #users-edit .col-lg-6.col-lg-offset-1,
+     #users-new .form-group.buttons .col-lg-3.col-lg-offset-2, #users-new .col-lg-6.col-lg-offset-1 {
      	width: auto;
 	     margin-left: 0px;
      }
