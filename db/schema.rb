@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903193004) do
+ActiveRecord::Schema.define(:version => 20130916143505) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20130903193004) do
   end
 
   create_table "projects_users", :force => true do |t|
-    t.integer  "project_id",    :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "project_id",         :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
     t.string   "project_token"
     t.string   "confirmation_email"
@@ -71,10 +71,6 @@ ActiveRecord::Schema.define(:version => 20130903193004) do
     t.string   "zipcode"
     t.string   "city"
     t.string   "country"
-    t.string   "bank_name"
-    t.string   "bank_code"
-    t.string   "bank_account_number"
-    t.string   "tax_number"
     t.string   "signature"
     t.text     "comment"
     t.integer  "roles_mask"

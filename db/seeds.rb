@@ -28,10 +28,6 @@ user1 = User.create(
   zipcode: "62498",
   city: "MyCityName",
   country: "de",
-  bank_name: "MyVeryVeryLoongBankName",
-  bank_code: "64351684",
-  bank_account_number: "365468131",
-  tax_number: "999-888-555",
   signature: "/home/shiny-ninja-data/signature/mkoriath.png",
   roles_mask: 1,
   confirmed_at: DateTime.now

@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable
   
-  attr_accessible :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :confirmed_at, :country, :email, :firstname, :lastname, :login,
-    :password, :password_confirmation, :phone_number, :remember_me, :roles,
-    :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode
+  attr_accessible :city, :comment, :confirmed_at, :country, :email, :firstname,
+    :lastname, :login, :password, :password_confirmation, :phone_number,
+    :remember_me, :roles, :roles_mask, :signature, :street, :street_number,
+    :zipcode
   
   # associations
   has_many :customers
