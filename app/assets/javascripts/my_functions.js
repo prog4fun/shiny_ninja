@@ -1,25 +1,25 @@
 // Datepicker
 $(function() {
-	if($(window).width() > 768) {
-		$(".datepicker").addClass("datepicker-active");
-		$(".datepicker-active").datepicker('enable');
-		$(function() {
-	    	$(".datepicker-active").datepicker($.datepicker.regional[ "de" ]);
-	    });
-	} 
-	});
+    if ($(window).width() > 768) {
+        $(".datepicker").addClass("datepicker-active");
+        $(".datepicker-active").datepicker('enable');
+        $(function() {
+            $(".datepicker-active").datepicker($.datepicker.regional[ "de" ]);
+        });
+    }
+});
 
 $(window).resize(function() {
-	if($(window).width() > 768) {
-		$(".datepicker").addClass("datepicker-active");
-		$(".datepicker-active").datepicker('enable');
-		$(function() {
-	    	$(".datepicker-active").datepicker($.datepicker.regional[ "de" ]);
-	    });
-	} else {
-		    $(".datepicker-active").datepicker('destroy');
-		    $(".datepicker").removeClass("datepicker-active");
-	    }
+    if ($(window).width() > 768) {
+        $(".datepicker").addClass("datepicker-active");
+        $(".datepicker-active").datepicker('enable');
+        $(function() {
+            $(".datepicker-active").datepicker($.datepicker.regional[ "de" ]);
+        });
+    } else {
+        $(".datepicker-active").datepicker('destroy');
+        $(".datepicker").removeClass("datepicker-active");
+    }
 });
 // Combobox
 (function($) {
@@ -148,20 +148,20 @@ $(function() {
 
 
 $(function() {
-if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-	$("a[href^='/']").click(function(event){
-		event.preventDefault();
-		window.location = $(this).attr('href');
-	});
-   
-    var comp = new RegExp(location.host);
-    $("a").click(function(event){
-	    if(comp.test($(this).attr('href'))) {           
-		    event.preventDefault();
-		    window.location = $(this).attr('href');
-		} else {
-			
-		}
-   });
-   }
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+        $("a[href^='/']").click(function(event) {
+            event.preventDefault();
+            window.location = $(this).attr('href');
+        });
+
+        var comp = new RegExp(location.host);
+        $("a").click(function(event) {
+            if (comp.test($(this).attr('href'))) {
+                event.preventDefault();
+                window.location = $(this).attr('href');
+            } else {
+
+            }
+        });
+    }
 });

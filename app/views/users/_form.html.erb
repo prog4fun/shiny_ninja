@@ -57,7 +57,7 @@
       </div>
       <div class="clear"></div>
       <div class="form-group">
-      <%= f.label :street, t("activerecord.attributes.user.address"), :class => "col-lg-2 control-label" %>
+        <%= f.label :street, t("activerecord.attributes.user.address"), :class => "col-lg-2 control-label" %>
       </div>
       <div class="clear"></div>
       <div class="form-group">
@@ -91,14 +91,14 @@
         <div class="col-lg-4"><%= f.text_field :bank_name, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.bank_name")}" %></div>
       </div>
       <div class="clear"></div>
-      
+
       <div class="form-group">
         <%= f.label :tax_number, t("activerecord.attributes.user.tax_number"), :class => "col-lg-2 control-label" %>
         <div class="col-lg-4"><%= f.text_field :tax_number, :class => "form-control", placeholder: "#{t("activerecord.attributes.user.tax_number")}" %></div>
       </div>
 
       <% if current_user.is? :administrator %>
-      <div class="clear"></div>
+        <div class="clear"></div>
         <%= f.fields_for :users do |builder| %>
           <%= render "role_fields", :f => builder %>
         <% end %>
@@ -122,6 +122,6 @@
         <%= t("labels.universe.mandatory_field_explanation") %><br/>
         <%= t("labels.universe.password_login_explanation") %></div>
     <% end %>
-      
+
   </div>
 </div>

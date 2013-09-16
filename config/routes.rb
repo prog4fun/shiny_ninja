@@ -8,7 +8,7 @@ ShinyNinja::Application.routes.draw do
   
   # Index
   authenticated do
-  match "/", :controller => "indices", :action => "start"
+    match "/", :controller => "indices", :action => "start"
   end
   
   match "/", :controller => "indices", :action => "home"
@@ -84,7 +84,7 @@ ShinyNinja::Application.routes.draw do
   #     resources :products
   #   end
 
-   # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'indices#start'
 

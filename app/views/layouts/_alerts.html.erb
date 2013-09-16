@@ -1,15 +1,15 @@
 # encoding: UTF-8
 
-<% if notice.present? %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= notice %>
-    </div>
-  <% end %>
+<% if notice.present? || params[:notice].present? %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= notice %> <%= params[:notice] %>
+  </div>
+<% end %>
 
-  <% if alert.present? %>
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= alert %>
-    </div>
+<% if alert.present? || params[:alert].present? %>
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= alert %> <%= params[:alert] %>
+  </div>
 <% end %>

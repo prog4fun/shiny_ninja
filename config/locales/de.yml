@@ -99,6 +99,7 @@ de:
   confirmations:
     messages:
       saved: "Eintrag wurde erfolgreich gespeichert."
+      saved_and_new: "Eintrag wurde erfolgreich gespeichert. Sie können jetzt einen weiteren Eintrag anlegen."
   errors: &errors
     format: ! "%{attribute} %{message}"
     messages:

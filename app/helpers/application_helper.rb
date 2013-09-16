@@ -118,7 +118,7 @@ module ApplicationHelper
     end
   end
   
-   def link_to_destroy_evaluator(options = {})
+  def link_to_destroy_evaluator(options = {})
     if can? :create, hash_with_controller_to_model(options)
       # if can? :destroy, object.class
       # options.merge!(:class => "no_hover")

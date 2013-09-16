@@ -67,7 +67,13 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new :date => Date.today
+    if params[:report].present?
+      @report = Report.new :date => params[:report][:date],
+        :project_id => params[:report][:project_id],
+        :service_id => params[:report][:service_id]
+    else
+      @report = Report.new :date => Date.today
+    end
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
     @services = Service.where( :user_id => current_user.id)
@@ -105,11 +111,14 @@ class ReportsController < ApplicationController
     @active_menu = "report"
 
     respond_to do |format|
-      params[:report][:country] = "de"
       if @report.save
-        format.html { redirect_to @report, notice: t("confirmations.messages.saved") }
+        if params[:saveandnew]
+          format.html { redirect_to :controller => "reports", :action => "new", :report => params[:report], notice: t("confirmations.messages.saved_and_new") }
+        else
+          format.html { redirect_to @report, notice: t("confirmations.messages.saved") }
+        end
       else
-        format.html { render action: "new" }
+        format.html { render :action => "new" }
       end
     end
   end
