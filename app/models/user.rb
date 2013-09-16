@@ -20,11 +20,10 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :projects_users
   
   # validations
-  validates :bank_account_number, :bank_name, :bank_code, :city,
-    :comment, :country, :email, :firstname, :lastname, :login,
-    :password, :password_confirmation, :phone_number, :remember_me, :roles,
-    :roles_mask, :signature, :street, :street_number, :tax_number, :zipcode,
-    :format => {:with => /^[^<>%&$]*$/}
+  validates :city, :comment, :confirmed_at, :country, :email, :firstname,
+    :lastname, :login, :password, :password_confirmation, :phone_number,
+    :remember_me, :roles, :roles_mask, :signature, :street, :street_number,
+    :zipcode, :format => {:with => /^[^<>%&$]*$/}
   
   validates :login, :presence => true,
     :uniqueness => {:case_sensitive => false}
