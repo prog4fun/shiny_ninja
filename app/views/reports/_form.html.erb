@@ -54,7 +54,7 @@
 
       <div class="form-group">
         <div class="col-lg-6 col-lg-offset-2">
-          <% if params[:action] == "new" || "create" %>
+          <% if params[:action] == ("new" || "create") %>
             <%= f.submit t("labels.actions.saveandnew"), :class => "btn btn-success", :name => "saveandnew" %>
           <% end %>
           <div class="btn-group">
