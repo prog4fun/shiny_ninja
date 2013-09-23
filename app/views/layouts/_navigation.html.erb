@@ -25,7 +25,7 @@
               <li><a href="<%= url_for(:controller => "reports", :action => "index", :projects_user => pu) %>"><%= pu.project.name %> (<%= pu.project.customer.user.lastname %>)</a></li>
             <% end %>
           <% else %>
-            <li>Noch kein Projekt vorhanden</li>
+            <li><a href="#">Noch kein Projekt vorhanden</a></li>
           <% end %>
         </ul>
       </li>

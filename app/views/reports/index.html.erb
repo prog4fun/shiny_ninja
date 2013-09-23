@@ -13,7 +13,7 @@
   <div class="col-md-2 col-md-offset-7">
     <div class="btn-group">
       <% if @reports.present?  %>
-        <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :projects_user => params[:projects_user], :format => :csv) %>">
+        <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :projects_user => params[:projects_user], :format => :csv) %>" target="_blank">
           <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
           <%= t("labels.actions.download") %>
         </a>
