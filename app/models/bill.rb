@@ -28,23 +28,32 @@ class Bill < ActiveRecord::Base
   DECEMBER =12
   
   def self.generate_bill_number
-    time = Time.now
-  
-    position = Bill.count(:all)
-    position =+ 1
-    position.to_s
+    number_digits = Array.new
     
+    positions = Array.new
+    bill_count = (Bill.count(:all) + 1).to_s
+
+    i = 0    
+    while i < bill_count.length do
+      positions.push(bill_count[i])
+      i += 1
+    end
+    
+    number_digits.push(positions)
+    
+    time = Time.now
     hours = time.strftime("%H")
     minutes = time.strftime("%M")
-    
-    first = hours[1].to_s
-    second = position[0].to_s
-    third = hours[0].to_s
-    fourth = minutes[1].to_s
-    fifth = position[1].to_s
-    sixth =minutes[0].to_s
 
-    number = first + second + third + fourth + fifth + sixth
+    number_digits.push(hours[0].to_s)
+    number_digits.push(hours[1].to_s)
+    number_digits.push(minutes[0].to_s)
+    number_digits.push(minutes[1].to_s)
+    
+    number_digits.flatten!
+    number_digits.shuffle!
+    
+    number = number_digits.join
     return number
   end
   

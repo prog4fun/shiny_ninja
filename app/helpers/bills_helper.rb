@@ -54,25 +54,4 @@ module BillsHelper
     return year
   end
   
-  def create_bill_number
-    time = Time.now
-  
-    position = Bill.count(:all)
-    position =+ 1
-    position.to_s
-    
-    hours = time.strftime("%H")
-    minutes = time.strftime("%M")
-    
-    first = hours[1].to_s
-    second = position[0].to_s
-    third = hours[0].to_s
-    fourth = minutes[1].to_s
-    fifth = position[1].to_s
-    sixth =minutes[0].to_s
-
-    number = first + second + third + fourth + fifth + sixth
-    return number
-  end
-  
 end
