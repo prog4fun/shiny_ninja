@@ -227,8 +227,8 @@ de:
       bill:
         number: "Nummer"
         number_explanation: "Rechnungsnummer"
-        date: "Rechnungs-Datum"
-        date_explanation: "hier eintragen"
+        date: "Datum"
+        date_explanation: "Rechnungsdatum"
         month: "Monat"
         year: "Jahr"
         year_explanation: "der Rechnung, z.B. 2010"
