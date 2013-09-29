@@ -10,6 +10,7 @@ class Ability
       # e.g. admins mustn't evaluate projects
       cannot :manage, ProjectsUser
     elsif user.is? :time_tracker
+      can :manage, Bill
       can :manage, Customer
       can :manage, ProjectsUser
       can :manage, Project
