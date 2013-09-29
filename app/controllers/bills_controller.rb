@@ -1,19 +1,38 @@
+# encoding: UTF-8
+
 class BillsController < ApplicationController
-  # GET /bills
-  # GET /bills.json
+  include BillsHelper
+  
+  # Filter
+  before_filter :authenticate_user!
+  # before_filter :add_breadcrumb_index
+  load_and_authorize_resource
+  
+  
   def index
-    @bills = Bill.all
+    @customers = Customer.where( :user_id => current_user.id )
+    params[:search] ||= {}
+    @bills = Bill.search(params[:search], current_user).page(params[:page])
+    
+    @active_menu = "bill"
+    @search_bar = true
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @bills }
+      format.html
     end
   end
 
-  # GET /bills/1
-  # GET /bills/1.json
   def show
     @bill = Bill.find(params[:id])
+    
+    customers = current_user.customers
+    my_bills = Bill.where( :customer_id => customers)
+    
+    if my_bills.include?(@bill)
+      @active_menu = "bill"
+    else
+      not_own_object_redirection
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,63 +40,75 @@ class BillsController < ApplicationController
     end
   end
 
-  # GET /bills/new
-  # GET /bills/new.json
   def new
-    @bill = Bill.new
+    @bill = Bill.new :number => Bill.generate_bill_number,
+      :date => Date.today,
+      :year => get_current_year
+    @customers = current_user.customers
+    
+    @active_menu = "bill"
+    add_breadcrumb t("labels.actions.new"), new_bill_path
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @bill }
+      format.html
     end
   end
 
-  # GET /bills/1/edit
   def edit
     @bill = Bill.find(params[:id])
+    
+    @customers = current_user.customers
+    my_bills = Bill.where( :customer_id => @customers)
+    
+    if my_bills.include?(@bill)
+      @active_menu = "bill"
+      add_breadcrumb t("labels.actions.edit"), edit_bill_path(@bill.id)
+    else
+      not_own_object_redirection
+    end
   end
 
-  # POST /bills
-  # POST /bills.json
   def create
     @bill = Bill.new(params[:bill])
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
-        format.json { render json: @bill, status: :created, location: @bill }
+        format.html { redirect_to @bill, notice: t("confirmations.messages.saved") }
       else
+        @customers = current_user.customers
         format.html { render action: "new" }
-        format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /bills/1
-  # PUT /bills/1.json
   def update
     @bill = Bill.find(params[:id])
 
     respond_to do |format|
       if @bill.update_attributes(params[:bill])
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to @bill, notice: t("confirmations.messages.saved") }
       else
+        @customers = current_user.customers
         format.html { render action: "edit" }
-        format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /bills/1
-  # DELETE /bills/1.json
   def destroy
     @bill = Bill.find(params[:id])
+    @active_menu = "project"
     @bill.destroy
 
     respond_to do |format|
       format.html { redirect_to bills_url }
-      format.json { head :no_content }
     end
   end
+
+  #######################################################################
+  
+  private
+  def add_breadcrumb_index
+    add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
+  end
+  
 end

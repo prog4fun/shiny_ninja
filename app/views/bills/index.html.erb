@@ -21,7 +21,6 @@
           <th><%= t("activerecord.attributes.bill.date")%></th>
           <th><%= t("activerecord.attributes.bill.month")%></th>
           <th><%= t("activerecord.attributes.bill.year")%></th>
-          <th><%= t("activerecord.attributes.bill.paid")%></th>
           <th><%= t("activerecord.attributes.bill.customer")%></th>
           <th colspan="3"><%= t("labels.actions.head") %></th>
         </tr>
@@ -32,7 +31,6 @@
             <td><%= bill.date %></td>
             <td><%= bill.month %></td>
             <td><%= bill.year %></td>
-            <td><%= bill.paid %></td>
             <td><%= bill.customer_id %></td>
             <td style="width:5%"><%= link_to_show(bill) %></td>
             <%= index_link_to_edit(:controller => "bills", :action => "edit", :id => bill.id) %></td>

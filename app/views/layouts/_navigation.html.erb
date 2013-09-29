@@ -10,7 +10,7 @@
       <li class='<%= @active_menu == "project" ? "active" : "nav" %>'><%= link_to t('activerecord.models.projects'), projects_path %></li>
       <li class='<%= @active_menu == "customer" ? "active" : "nav" %>'><%= link_to t('activerecord.models.customers'), customers_path %></li>
       <li class='<%= @active_menu == "service" ? "active" : "nav" %>'><%= link_to t('activerecord.models.services'), services_path %></li>
-      <li class='<%= @active_menu == "bills" ? "active" : "nav" %>'><%= link_to t('activerecord.models.bills'), bills_path %></li>
+      <li class='<%= @active_menu == "bill" ? "active" : "nav" %>'><%= link_to t('activerecord.models.bills'), bills_path %></li>
     <% end %>
     <% if can? :index, User %>
       <li class='<%= @active_menu == "user" ? "active" : "nav" %>'><%= link_to t('activerecord.models.users'), :controller => "users", :action => "index" %></li>

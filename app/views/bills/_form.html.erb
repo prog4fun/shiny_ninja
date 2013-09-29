@@ -1,49 +1,80 @@
-<%= form_for(@bill) do |f| %>
-  <% if @bill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+# encoding: UTF-8
 
-      <ul>
-      <% @bill.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+
+<div class="row">
+  <div class="col-md-9">
+
+
+    <%= form_for(@bill, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
+      <% if @bill.errors.any? %>
+
+        <div class="alert alert-danger">
+          <h4><strong><%= @bill.errors.count %> <%= t("errors.form") %></strong></h4>
+          <ul>
+            <% @bill.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
+      <div class="form-group">
+        <%= f.label :number, t("activerecord.attributes.bill.number") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.text_field :number, :class => "form-control", placeholder: "#{t("activerecord.attributes.bill.number_explanation")}" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date, t("activerecord.attributes.bill.date") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= f.text_field :date, :id => "datepicker_from", :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :month, t("activerecord.attributes.bill.month"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= get_pulldown_month(:bill, :month, @bill.month) %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :year, t("activerecord.attributes.bill.year"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4"><%= f.number_field :year, :class => "form-control", placeholder: "#{t("activerecord.attributes.bill.year_explanation")}" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :amount, t("activerecord.attributes.bill.amount") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+            <%= f.number_field :amount, :class => "form-control", placeholder: "#{t("activerecord.attributes.bill.amount_explanation")}" %></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :paid, t("activerecord.attributes.bill.paid"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <div class="checkbox">
+            <%= f.check_box :paid, :class => "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :customer_id, t("activerecord.models.customer") + " *", :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= select("bill", "customer_id", @customers.collect {|i| [ i.name, i.id ] }, {:include_blank => true}, {:class => "autocomplete"}) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :comment, t("labels.universe.comment"), :class => "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+          <%= f.text_area :comment, :class => "form-control", :size => "40x10", placeholder: "#{t("labels.universe.comment_explanation")}" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-3 col-lg-offset-2">
+          <div class="btn-group">
+            <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+            <%= cancel_link %>
+          </div>
+        </div>
+      </div>
+      <div class="text-muted col-lg-5 col-lg-offset-1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :month %><br />
-    <%= f.text_field :month %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.number_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :paid %><br />
-    <%= f.check_box :paid %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :customer_id %><br />
-    <%= f.number_field :customer_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

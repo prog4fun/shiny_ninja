@@ -112,7 +112,4 @@ class CustomersController < ApplicationController
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
   
-  #  def redirect_if_not_own_object
-  #    raise ActiveRecord::RecordNotFound
-  #  end
 end

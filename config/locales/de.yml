@@ -225,13 +225,19 @@ de:
         destroy_explanation: "Projekt nicht mehr verfolgen"
     attributes:
       bill:
-        number: "Rechnungsnummer"
-        date: "Rechnungsdatum"
-        month: "Rechnungsmonat"
+        number: "Nummer"
+        number_explanation: "Rechnungsnummer"
+        date: "Datum"
+        date_explanation: "hier eintragen"
+        month: "Monat"
         year: "Jahr"
+        year_explanation: "der Rechnung, z.B. 2010"
         amount: "Betrag"
-        paid: "Rechnung bezahlt?"
+        amount_explanation: "z.B. 30.50"
+        paid: "Bezahlt?"
         customer: "Rechnungsempfänger"
+        customer_explanation: "Welcher Kunde Bezahlt die Rechnung?"
+        task_period: "Tätigkeitszeitraum"
       project:
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
@@ -363,3 +369,4 @@ de:
       mandatory_field_explanation: "*  markierte Felder sind Pflichtfelder"
       no_entry: "Keine Einträge vorhanden"
       password_login_explanation: "** Ändern Sie Ihr eigenes Passwort, so müssen Sie sich im Anschluss mit dem neuen Passwort anmelden."
+      unknown: "Unbekannt"

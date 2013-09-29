@@ -4,6 +4,7 @@ class Customer < ActiveRecord::Base
   attr_accessible :comment, :email, :name, :user_id
   
   # associations
+  has_many :bills
   has_many :projects
   belongs_to :user
   
