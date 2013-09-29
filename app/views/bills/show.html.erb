@@ -28,11 +28,11 @@
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.bill.paid") %></th>
-          <td><%= @bill.paid %></td>
+          <td><%= icon_boolean(@bill.paid) %></td>
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.bill.customer") %></th>
-          <td><%= @bill.customer.id %></td>
+          <td><%= @bill.customer.name %></td>
         </tr>
         <tr>
           <th><%= t("labels.universe.comment") %></th>

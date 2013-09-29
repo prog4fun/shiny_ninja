@@ -3,47 +3,47 @@ module BillsHelper
   def get_pulldown_month(object_name, method_name, selected_value)
     value_key_pairs = [
       [t("labels.universe.unknown"), Bill::MONTH_UNKNOWN],
-      [t("date.month_names.january"), Bill::JANUARY],
-      [t("date.month_names.february"), Bill::FEBRUARY],
-      [t("date.month_names.march"), Bill::MARCH],
-      [t("date.month_names.april"), Bill::APRIL],
-      [t("date.month_names.may"), Bill:: MAY],
-      [t("date.month_names.june"), Bill::JUNE],
-      [t("date.month_names.july"), Bill::JULY],
-      [t("date.month_names.august"), Bill::AUGUST],
-      [t("date.month_names.september"), Bill::SEPTEMBER],
-      [t("date.month_names.october"), Bill::OCTOBER],
-      [t("date.month_names.november"), Bill::NOVEMBER],
-      [t("date.month_names.december"), Bill::DECEMBER], ]
+      [t("date.month_names")[0], Bill::JANUARY],
+      [t("date.month_names")[1], Bill::FEBRUARY],
+      [t("date.month_names")[2], Bill::MARCH],
+      [t("date.month_names")[3], Bill::APRIL],
+      [t("date.month_names")[4], Bill:: MAY],
+      [t("date.month_names")[5], Bill::JUNE],
+      [t("date.month_names")[6], Bill::JULY],
+      [t("date.month_names")[7], Bill::AUGUST],
+      [t("date.month_names")[8], Bill::SEPTEMBER],
+      [t("date.month_names")[9], Bill::OCTOBER],
+      [t("date.month_names")[10], Bill::NOVEMBER],
+      [t("date.month_names")[11], Bill::DECEMBER], ]
     select object_name, method_name, value_key_pairs, {:selected => selected_value}, {:class => "form-control"}
   end
   
   def label_for_month(month)
     case month
     when Bill::JANUARY
-      return t("date.month_names.january")  
+      return t("date.month_names")[0]
     when Bill::FEBRUARY
-      return t("date.month_names.february")  
+      return t("date.month_names")[1]
     when Bill::MARCH
-      return t("date.month_names.march")  
+      return t("date.month_names")[2]
     when Bill::APRIL
-      return t("date.month_names.april")
+      return t("date.month_names")[3]
     when Bill:: MAY
-      return t("date.month_names.may")
+      return t("date.month_names")[4]
     when  Bill::JUNE
-      return t("date.month_names.june")
+      return t("date.month_names")[5]
     when Bill::JULY
-      return t("date.month_names.july")
+      return t("date.month_names")[6]
     when Bill::AUGUST
-      return t("date.month_names.august")
+      return t("date.month_names")[7]
     when Bill::SEPTEMBER
-      return t("date.month_names.september")
+      return t("date.month_names")[8]
     when Bill::OCTOBER
-      return t("date.month_names.october")
+      return t("date.month_names")[9]
     when Bill::NOVEMBER
-      return t("date.month_names.november")
+      return t("date.month_names")[10]
     when Bill::DECEMBER
-      return t("date.month_names.december")
+      return t("date.month_names")[11]
     else  
       return t("standards.unknown") 
     end 

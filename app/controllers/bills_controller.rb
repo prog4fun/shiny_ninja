@@ -61,6 +61,7 @@ class BillsController < ApplicationController
     my_bills = Bill.where( :customer_id => @customers)
     
     if my_bills.include?(@bill)
+      @bill.year = @bill.year.to_s[0..-1]
       @active_menu = "bill"
       add_breadcrumb t("labels.actions.edit"), edit_bill_path(@bill.id)
     else

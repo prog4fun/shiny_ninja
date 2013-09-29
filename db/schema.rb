@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20130929153443) do
   create_table "bills", :force => true do |t|
     t.string   "number",                                     :null => false
     t.date     "date",                                       :null => false
-    t.decimal  "month",       :precision => 10, :scale => 0
-    t.decimal  "year",        :precision => 10, :scale => 0
-    t.integer  "amount",                                     :null => false
+    t.decimal  "month",       :precision => 0, :scale => 0
+    t.decimal  "year",        :precision => 0, :scale => 0
+    t.decimal  "amount", :precision => 10, :scale => 2, :null => false
     t.boolean  "paid"
     t.text     "comment"
     t.integer  "customer_id",                                :null => false

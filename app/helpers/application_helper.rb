@@ -16,9 +16,9 @@ module ApplicationHelper
   # ICONS
   def icon_boolean(state)
     if state == true
-      return t("labels.state.positive")
+      return raw "<i class='#{icon_yes}' alt='#{t("labels.state.positive")}' title='#{t("labels.state.positive")}'></i>"
     else
-      return t("labels.state.negative")
+      return raw "<i class='#{icon_no}' alt='#{t("labels.state.negative")}' title='#{t("labels.state.negative")}'></i>"
     end
   end
   
@@ -31,6 +31,14 @@ module ApplicationHelper
     return image_tag(image_path, :alt => alt_text, :title => alt_text)
   end
   
+  def icon_yes
+    return "glyphicon glyphicon-check"
+  end
+  
+  def icon_no
+    return "glyphicon glyphicon-unchecked"
+  end
+
   def icon_index
     return "glyphicon glyphicon-th-list"
   end
