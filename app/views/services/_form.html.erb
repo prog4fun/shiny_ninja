@@ -28,7 +28,7 @@
         <%= f.label :wage, t("activerecord.attributes.service.wage") + " *", :class => "col-lg-2 control-label" %>
         <div class="col-lg-4">
           <div class="input-group">
-            <span class="input-group-addon">€</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
             <%= f.text_field :wage, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
           </div>
         </div>
