@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: MyString
+  date: 2013-09-29
+  month: 9.99
+  year: 9.99
+  amount: 1
+  paid: false
+  comment: MyText
+  customer_id: 1
+
+two:
+  number: MyString
+  date: 2013-09-29
+  month: 9.99
+  year: 9.99
+  amount: 1
+  paid: false
+  comment: MyText
+  customer_id: 1

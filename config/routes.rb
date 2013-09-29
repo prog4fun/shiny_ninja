@@ -1,5 +1,6 @@
 ShinyNinja::Application.routes.draw do
   
+
   # Reports
   # match "/reports/import", :controller => "reports", :action => "import"
   
@@ -22,6 +23,8 @@ ShinyNinja::Application.routes.draw do
 
   
   # Resources
+  resources :bills
+  
   resources :services
 
   resources :reports
