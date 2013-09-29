@@ -329,6 +329,8 @@ de:
     breadcrumbs:
       index: "Startseite"
       index_title: "Zurück zur Übersicht"
+    bill:
+      red_highlighed: Rot markierte Rechnungen sind noch nicht bezahlt.
     customer:
       name: "Bezeichnung"
       name_explanation: "Name, Firma, ..."
