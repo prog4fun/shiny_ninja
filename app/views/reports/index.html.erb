@@ -57,7 +57,7 @@
               <td><%= truncate(report.project.name, :length => 25) %></td>
               <td><%= truncate(report.service.name, :length => 25) %></td>
               <% unless @evaluate_page %>
-                <td><%= report.service.wage %></td>
+                <td><%= report.service.wage %> €</td>
               <% end %>
               <td><%= report.duration %></td>
               <td style="width:5%"><%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %></td>

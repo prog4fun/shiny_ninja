@@ -50,6 +50,7 @@ class ReportsController < ApplicationController
     
     if my_reports.include?(@report)
       add_breadcrumb t("labels.actions.show"), report_path(@report)
+      @active_menu = "report"
 
       respond_to do |format|
         format.html

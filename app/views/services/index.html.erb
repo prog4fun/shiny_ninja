@@ -25,7 +25,7 @@
         <% @services.each do |service| %>
           <tr>
             <td><%= service.name %></td>
-            <td><%= service.wage %></td>
+            <td><%= service.wage %> €</td>
             <td style="width:5%"><%= link_to_show(service) %></td>
             <%= index_link_to_edit(:controller => "services", :action => "edit", :id => service.id) %></td>
             <%= index_link_to_destroy(:controller => "services", :action => "show", :id => service.id) %></td>
