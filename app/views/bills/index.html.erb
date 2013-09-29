@@ -1,37 +1,52 @@
-<h1>Listing bills</h1>
+# encoding: UTF-8
 
-<table>
-  <tr>
-    <th>Number</th>
-    <th>Date</th>
-    <th>Month</th>
-    <th>Year</th>
-    <th>Amount</th>
-    <th>Paid</th>
-    <th>Comment</th>
-    <th>Customer</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="page-header">
+  <h1><%= t("activerecord.models.bills")%></h1>
+</div>
 
-<% @bills.each do |bill| %>
-  <tr>
-    <td><%= bill.number %></td>
-    <td><%= bill.date %></td>
-    <td><%= bill.month %></td>
-    <td><%= bill.year %></td>
-    <td><%= bill.amount %></td>
-    <td><%= bill.paid %></td>
-    <td><%= bill.comment %></td>
-    <td><%= bill.customer_id %></td>
-    <td><%= link_to 'Show', bill %></td>
-    <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-    <td><%= link_to 'Destroy', bill, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+<div class="row">
+  <div class="col-md-1 col-md-offset-8">
+    <%= link_to_new(:controller => "bills", :action => "new") %>
+  </div>
+</div>
 
-<%= link_to 'New Bill', new_bill_path %>
+<div class="row">
+  <div class="col-md-9">
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed">
+        <tr>
+          <th><%= t("activerecord.attributes.bill.number")%></th>
+          <th><%= t("activerecord.attributes.bill.date")%></th>
+          <th><%= t("activerecord.attributes.bill.month")%></th>
+          <th><%= t("activerecord.attributes.bill.year")%></th>
+          <th><%= t("activerecord.attributes.bill.paid")%></th>
+          <th><%= t("activerecord.attributes.bill.customer")%></th>
+          <th colspan="3"><%= t("labels.actions.head") %></th>
+        </tr>
+
+        <% @bills.each do |bill| %>
+          <tr>
+            <td><%= bill.number %></td>
+            <td><%= bill.date %></td>
+            <td><%= bill.month %></td>
+            <td><%= bill.year %></td>
+            <td><%= bill.paid %></td>
+            <td><%= bill.customer_id %></td>
+            <td style="width:5%"><%= link_to_show(bill) %></td>
+            <%= index_link_to_edit(:controller => "bills", :action => "edit", :id => bill.id) %></td>
+            <%= index_link_to_destroy(:controller => "bills", :action => "show", :id => bill.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="col-md-offset-4"><%= paginate @bills %></div>
+  </div>
+
+  <div class="col-md-3">
+    <%= render "search_bar" %>
+  </div>
+
+</div>         
