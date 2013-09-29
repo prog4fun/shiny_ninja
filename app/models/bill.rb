@@ -55,6 +55,15 @@ class Bill < ActiveRecord::Base
     result = Bill.where( :customer_id => customers )
     
     if search
+      if search["number"].present?
+        result = result.where('number LIKE ?', "%" + search["number"] + "%")
+      end
+      if search["date_from"].present?
+        result = result.where("date >= ?", search["date_from"].to_date)
+      end
+      if search["date_to"].present?
+        result = result.where("date <= ?", search["date_to"].to_date)
+      end
       if search["customer"].present?
         result = result.where('customer_id = ?', search["customer"])
       end

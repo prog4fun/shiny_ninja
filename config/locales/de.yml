@@ -227,7 +227,7 @@ de:
       bill:
         number: "Nummer"
         number_explanation: "Rechnungsnummer"
-        date: "Datum"
+        date: "Rechnungs-Datum"
         date_explanation: "hier eintragen"
         month: "Monat"
         year: "Jahr"
@@ -337,8 +337,10 @@ de:
     datetime:
       date_from: "Datum von"
       date_to: "Datum bis"
+      from: " von"
       hour: "Stunde"
       hours: "Stunden"
+      to: " bis"
     person:
       creator: "Ersteller"
       my_account: "Mein Account"
