@@ -224,6 +224,14 @@ de:
         destroy: "Projekt entfernen"
         destroy_explanation: "Projekt nicht mehr verfolgen"
     attributes:
+      bills:
+        number: "Rechnungsnummer"
+        date: "Rechnungsdatum"
+        month: "Rechnungsmonat"
+        year: "Jahr"
+        amount: "Betrag"
+        paid: "Rechnung bezahlt?"
+        customer: "Rechnungsempfänger"
       project:
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
