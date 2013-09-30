@@ -58,16 +58,16 @@
         <span class="icon-bar"></span>
       </button>
     </legend>
-    <div class="statistics-collapse in">  	
+    <div class="statistics-collapse in">
     <%= t("labels.statistics.all") %>:<br>
     <p class="statistic"><%= t("labels.datetime.hours") %>: <%= @statistics_duration_all %></p>
-    <p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_all %></p>
+    <% unless @evaluate_page %><p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_all %></p><% end %>
     <br><%= t("labels.statistics.this_month") %> (<%= @this_month %>):<br>
     <p class="statistic"><%= t("labels.datetime.hours") %>: <%= @statistics_duration_this_month %></p>
-    <p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_this_month %></p>
+    <% unless @evaluate_page %><p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_this_month %></p><% end %>
     <br><%= t("labels.statistics.last_month") %> (<%= @last_month %>):<br>
     <p class="statistic"><%= t("labels.datetime.hours") %>: <%= @statistics_duration_last_month %></p>
-    <p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_last_month %></p>
+    <% unless @evaluate_page %><p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_last_month %></p><% end %>
     </div>
    </fieldset>
 <% end %>
