@@ -348,7 +348,8 @@ de:
       positive: "Ja"
       negative: "Nein"
     statistics:
-      all: "Gesamt"
+      all: "aktueller Zeitraum"
+      this_month: "aktueller Monat"
     universe:
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."

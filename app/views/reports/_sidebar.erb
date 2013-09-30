@@ -59,16 +59,18 @@
       </button>
     </legend>
     <div class="statistics-collapse in">
+    <%= t("labels.datetime.hours") %>:<br>
     <% 	statistics_duration_all = 0
     	@reports.each do |statistics|
     		statistics_duration_all += statistics.duration
     	end %>
-    <%= t("labels.statistics.all") %>: <%= statistics_duration_all %><br><br>
+    <p class="statistic"><%= t("labels.statistics.all") %>: <%= statistics_duration_all %></p>
     
-     Test<br>
-  Test<br>
-   Test<br>
-    Test<br>
+     <% 	statistics_duration_this_month = 0
+    	@reports_this_month.each do |statistics|
+    		statistics_duration_this_month += statistics.duration
+    	end %>
+    <p class="statistic"><%= t("labels.statistics.this_month") %>: <%= statistics_duration_this_month %></p>
     </div>
    </fieldset>
 <% end %>

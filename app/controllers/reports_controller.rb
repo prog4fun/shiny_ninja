@@ -23,6 +23,12 @@ class ReportsController < ApplicationController
     @reports = Report.search(params[:search], @projects_user, current_user).page(params[:page])
     
     @search_bar = true
+    
+    params[:search_this_month] ||= {
+	    :date_from => Date.today.beginning_of_month,
+	    :date_to => Date.today.end_of_month
+    }
+    @reports_this_month = Report.search(params[:search_this_month], @projects_user, current_user).page(params[:page])
 
     respond_to do |format|
       format.html
