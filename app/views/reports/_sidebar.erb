@@ -6,13 +6,13 @@
     <legend>
       <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
       <%= t("labels.actions.search_head") %>
-      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".sidebar-collapse" title="<%= t("labels.actions.search_toggle") %>">
+      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".search-collapse" title="<%= t("labels.actions.search_toggle") %>">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
     </legend>
-    <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
+    <div class="<%= search_active? ? "search-collapse in" : "search-collapse collapse" %>">
       <div class="form-group">
         <%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %>
   <%# text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4, :class => "datepicker form-control") %>
@@ -45,4 +45,30 @@
 
     </div>
   </fieldset>
+  
+  
+  
+   <fieldset>
+    <legend>
+      <i class="glyphicon glyphicon-stats" alt="<%= t("labels.actions.statistics") %>" title="<%= t("labels.actions.statistics") %>"></i>
+      <%= t("labels.actions.statistics") %>
+      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".statistics-collapse" title="<%= t("labels.actions.search_toggle") %>">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </legend>
+    <div class="statistics-collapse in">
+    <% 	statistics_duration_all = 0
+    	@reports.each do |statistics|
+    		statistics_duration_all += statistics.duration
+    	end %>
+    <%= t("labels.statistics.all") %>: <%= statistics_duration_all %><br><br>
+    
+     Test<br>
+  Test<br>
+   Test<br>
+    Test<br>
+    </div>
+   </fieldset>
 <% end %>

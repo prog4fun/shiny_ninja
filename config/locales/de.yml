@@ -304,6 +304,7 @@ de:
       saveandnew: "Speichern und Neu"
       save: "Speichern"
       search: "Suchen"
+      statistics: "Statistik"
       search_explanation: "Tabelle nach ausgewählten Kriterien filtern."
       search_toggle: "Klicken um Suche ein- oder auszublenden."
       search_head: "Suche"
@@ -346,6 +347,8 @@ de:
     state:
       positive: "Ja"
       negative: "Nein"
+    statistics:
+      all: "Gesamt"
     universe:
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."

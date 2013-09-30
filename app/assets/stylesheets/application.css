@@ -63,6 +63,10 @@ body {
 }
 
 
+fieldset {
+	margin-bottom: 20px;
+}
+
 .sidebar-toggle {
     position: relative;
     float: right;
