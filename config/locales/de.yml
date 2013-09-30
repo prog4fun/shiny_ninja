@@ -344,12 +344,14 @@ de:
       billable: "Abrechenbar"
       name: "Servicename"
       wage: "Gehalt"
+      wages: "Umsatz"
     state:
       positive: "Ja"
       negative: "Nein"
     statistics:
       all: "aktueller Zeitraum"
       this_month: "aktueller Monat"
+      last_month: "vergangener Monat"
     universe:
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."

@@ -58,19 +58,16 @@
         <span class="icon-bar"></span>
       </button>
     </legend>
-    <div class="statistics-collapse in">
-    <%= t("labels.datetime.hours") %>:<br>
-    <% 	statistics_duration_all = 0
-    	@reports.each do |statistics|
-    		statistics_duration_all += statistics.duration
-    	end %>
-    <p class="statistic"><%= t("labels.statistics.all") %>: <%= statistics_duration_all %></p>
-    
-     <% 	statistics_duration_this_month = 0
-    	@reports_this_month.each do |statistics|
-    		statistics_duration_this_month += statistics.duration
-    	end %>
-    <p class="statistic"><%= t("labels.statistics.this_month") %>: <%= statistics_duration_this_month %></p>
+    <div class="statistics-collapse in">  	
+    <%= t("labels.statistics.all") %>:<br>
+    <p class="statistic"><%= t("labels.datetime.hours") %>: <%= @statistics_duration_all %></p>
+    <p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_all %></p>
+    <br><%= t("labels.statistics.this_month") %> (<%= @this_month %>):<br>
+    <p class="statistic"><%= t("labels.datetime.hours") %>: <%= @statistics_duration_this_month %></p>
+    <p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_this_month %></p>
+    <br><%= t("labels.statistics.last_month") %> (<%= @last_month %>):<br>
+    <p class="statistic"><%= t("labels.datetime.hours") %>: <%= @statistics_duration_last_month %></p>
+    <p class="statistic"><%= t("labels.service.wages") %>: <%= @statistics_wages_last_month %></p>
     </div>
    </fieldset>
 <% end %>

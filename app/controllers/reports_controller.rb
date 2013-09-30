@@ -24,11 +24,46 @@ class ReportsController < ApplicationController
     
     @search_bar = true
     
+    
+    @statistics_duration_all = 0
+   	@statistics_wages_all = 0
+    @reports.each do |statistics|
+    	@statistics_duration_all += statistics.duration
+    	@statistics_wages_all += statistics.service.wage
+    end
+    
+    @date = Date.today
+	@this_month = @date.strftime("%B")
+	
     params[:search_this_month] ||= {
-	    :date_from => Date.today.beginning_of_month,
-	    :date_to => Date.today.end_of_month
+	    :date_from => @date.beginning_of_month,
+	    :date_to => @date.end_of_month
     }
     @reports_this_month = Report.search(params[:search_this_month], @projects_user, current_user).page(params[:page])
+    
+    @statistics_duration_this_month = 0
+    @statistics_wages_this_month = 0
+    @reports_this_month.each do |statistics|
+    	@statistics_duration_this_month += statistics.duration
+    	@statistics_wages_this_month += statistics.service.wage
+    end
+    
+    @last_month = @date - 1.month
+    
+    params[:search_last_month] ||= {
+	    :date_from => @last_month.beginning_of_month,
+	    :date_to => @last_month.end_of_month
+    }
+    @reports_last_month = Report.search(params[:search_last_month], @projects_user, current_user).page(params[:page])
+    
+    @statistics_duration_last_month = 0
+    @statistics_wages_last_month = 0
+    @reports_last_month.each do |statistics|
+    	@statistics_duration_last_month += statistics.duration
+    	@statistics_wages_last_month += statistics.service.wage
+    end
+    
+    @last_month = @last_month.strftime("%B")
 
     respond_to do |format|
       format.html
