@@ -75,25 +75,25 @@ customer1 = Customer.create(
   name: "Homer Simpson",
   email: "Homer.Simpson@mail.de",
   comment: "I love beer",
-  user_id: user1.id
+  user_id: user3.id
 )
 customer2 = Customer.create(
   name: "Marge Simpson",
   email: "Marge.Simpson@mail.de",
   comment: "Where's the broom?",
-  user_id: user1.id
+  user_id: user3.id
 )
 customer3 = Customer.create(
   name: "Bart Simpson",
   email: "Bart.Simpson@mail.de",
   comment: "Skateboarding!!",
-  user_id: user2.id
+  user_id: user3.id
 )
 customer4 = Customer.create(
   name: "Carl Carlson",
   email: "Carl.Carlson@mail.de",
   comment: "I'm boring",
-  user_id: user3.id
+  user_id: user4.id
 )
 customer5 = Customer.create(
   name: "Rod Flanders",
@@ -110,28 +110,28 @@ service1 = Service.create(
   wage: 10,
   billable: true,
   comment: "Java programming",
-  user_id: user1.id
+  user_id: user3.id
 )
 service2 = Service.create(
   name: "C++",
   wage: 15,
   billable: true,
   comment: "C++ programming",
-  user_id: user1.id
+  user_id: user3.id
 )
 service3 = Service.create(
   name: "Ruby",
   wage: 20,
   billable: true,
   comment: "Ruby programming",
-  user_id: user2.id
+  user_id: user3.id
 )
 service4 = Service.create(
   name: "HTML",
   wage: 25,
   billable: false,
   comment: "HTML programming",
-  user_id: user3.id
+  user_id: user4.id
 )
 service5 = Service.create(
   name: "JavaScript",
@@ -168,42 +168,58 @@ project4 = Project.create(
   comment: "Event application programming",
   customer_id: customer4.id
 )
+project5 = Project.create(
+  name: "iOS",
+  timebudget: 400,
+  comment: "iOS application programming",
+  customer_id: customer5.id
+)
 
 
 # Reports
 # +++++++++++++++++++++++++
-report1 = Report.create(
-  date: DateTime.strptime("05/08/2011", "%d/%m/%Y"),
-  duration: 2.3,
-  comment: "A lot of fun",
+20.times do
+Report.create(
+  date: rand(1...90).days.ago,
+  duration: rand(1...10)*1.25,
+  comment: "A lot of fun!",
   project_id: project1.id,
   service_id: service1.id
 )
-report2 = Report.create(
-  date: DateTime.strptime("10/02/2012", "%d/%m/%Y"),
-  duration: 3.74,
-  comment: "Great",
+end
+20.times do
+Report.create(
+  date: rand(1...90).days.ago,
+  duration: rand(1...10)*1.75,
+  comment: "A lot of fun!!",
   project_id: project2.id,
   service_id: service2.id
 )
-report3 = Report.create(
-  date: DateTime.strptime("15/09/2012", "%d/%m/%Y"),
-  duration: 4.25,
-  comment: "Boring",
+end
+20.times do
+Report.create(
+  date: rand(1...90).days.ago,
+  duration: rand(1...10)*1.50,
+  comment: "A lot of fun!!!",
   project_id: project3.id,
   service_id: service3.id
 )
-report4 = Report.create(
-  date: DateTime.strptime("20/12/2014", "%d/%m/%Y"),
-  duration: 5.68,
-  comment: "What's next?",
+end
+30.times do
+Report.create(
+  date: rand(1...90).days.ago,
+  duration: rand(1...10)*1.75,
+  comment: "A lot of fun!",
   project_id: project4.id,
   service_id: service4.id
 )
-report5 = Report.create(
-  date: DateTime.strptime("04/03/2015", "%d/%m/%Y"),
-  duration: 3.70,
-  comment: "Looking forward",
-  project_id: project4.id,
-  service_id: service4.id
+end
+30.times do
+Report.create(
+  date: rand(1...90).days.ago,
+  duration: rand(1...10)*1.75,
+  comment: "A lot of fun!!",
+  project_id: project5.id,
+  service_id: service5.id
 )
+end
