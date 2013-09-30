@@ -163,5 +163,19 @@ $(function() {
 
             }
         });
-    }
+    } 
+});
+
+$(function () {    
+	var visiblePopover;
+    $('tr.report').popover({
+	    html: true,
+	    trigger: 'click',
+	    placement: 'top',
+	    content: function() {
+		    var selection = $(this).attr('class').split(' ')[1];
+		   return ''+$('.popover_'+selection).html()+'';
+	    },
+	    container: '#popover_container'
+	 });
 });
