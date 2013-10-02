@@ -26,6 +26,7 @@ class ReportsController < ApplicationController
     
     @reports_all = Report.search(params[:search], @projects_user, current_user)
     
+    
     @statistics_duration_all = 0
    	@statistics_wages_all = 0
     @reports_all.each do |statistics|
@@ -33,33 +34,25 @@ class ReportsController < ApplicationController
     	@statistics_wages_all += statistics.service.wage
     end
     
-    @date = Date.today
-	@this_month = @date.strftime("%B")
+    date = Date.today
+	@this_month = date.strftime("%B")
 	
-    params[:search_this_month] ||= {
-	    :date_from => @date.beginning_of_month,
-	    :date_to => @date.end_of_month
-    }
-    @reports_this_month = Report.search(params[:search_this_month], @projects_user, current_user)
+    reports_this_month = Report.showstats("this_month", @projects_user, current_user)
     
     @statistics_duration_this_month = 0
     @statistics_wages_this_month = 0
-    @reports_this_month.each do |statistics|
+    reports_this_month.each do |statistics|
     	@statistics_duration_this_month += statistics.duration
     	@statistics_wages_this_month += statistics.service.wage
     end
     
-    @last_month = @date - 1.month
+    @last_month = date - 1.month
     
-    params[:search_last_month] ||= {
-	    :date_from => @last_month.beginning_of_month,
-	    :date_to => @last_month.end_of_month
-    }
-    @reports_last_month = Report.search(params[:search_last_month], @projects_user, current_user)
+    reports_last_month = Report.showstats("last_month", @projects_user, current_user)
     
     @statistics_duration_last_month = 0
     @statistics_wages_last_month = 0
-    @reports_last_month.each do |statistics|
+    reports_last_month.each do |statistics|
     	@statistics_duration_last_month += statistics.duration
     	@statistics_wages_last_month += statistics.service.wage
     end
