@@ -49,7 +49,7 @@ class ProjectsUsersController < ApplicationController
       @projects_user.update_attributes(:confirmation_email => nil)
       @projects_user.update_attributes(:project_token => nil)
     
-      redirect_to :controller => "reports", :action => "index", :projects_user => @projects_user, notice: t("confirmations.messages.saved")
+      redirect_to :controller => "reports", :action => "index", :projects_user => @projects_user, notice: t("activerecord.actions.projects_user.confirmed_project_message")
     end
   end
 
@@ -63,7 +63,7 @@ class ProjectsUsersController < ApplicationController
         time_tracker = User.find(current_user.id)
         ProjectsUserMailer.time_tracker_added_project_evaluator(time_tracker, @projects_user, request.domain, request.port).deliver
         
-        format.html { redirect_to  :controller => "projects", :action => "edit", :id => params[:projects_user][:project_id], notice: t("confirmations.messages.saved") }
+        format.html { redirect_to  :controller => "projects", :action => "edit", :id => params[:projects_user][:project_id], notice: t("activerecord.actions.projects_user.saved_message") }
       else
         format.html { render action: "new" }
       end
@@ -83,7 +83,15 @@ class ProjectsUsersController < ApplicationController
   end
 
   def destroy
+    logger.debug "#########tsehh####################################"
+    logger.debug @projects_user
+    logger.debug "#############################################"
+    
     @projects_user = ProjectsUser.find(params[:id])
+    
+    logger.debug "#########tsehh####################################"
+    logger.debug @projects_user
+    logger.debug "#############################################"
     
     if @projects_user.user.present?
       project_evaluator = @projects_user.user
@@ -97,11 +105,18 @@ class ProjectsUsersController < ApplicationController
       end
     end
     
+    #   flash[:notice] = "Der Zeit-Auswerter wurde erfolgreich von Ihrem Projekt entfernt."
+    
     @projects_user.destroy
+    
+    logger.debug "##########erth###################################"
+    logger.debug @projects_user
+    logger.debug "#############################################"
+    
     
     respond_to do |format|
       if params[:project_id].present? # user came from edit page and it's his own project
-        format.html { redirect_to :controller => "projects", :action => "edit", :id => params[:project_id] }
+        format.html { redirect_to :controller => "projects", :action => "edit", :id => params[:project_id], :notice => "Der Zeit-Auswerter wurde erfolgreich von Ihrem Projekt entfernt." }
       else
         format.html { redirect_to :controller => "reports", :action => "index" }
       end

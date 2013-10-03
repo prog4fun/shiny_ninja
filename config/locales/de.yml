@@ -223,6 +223,8 @@ de:
       projects_user:
         destroy: "Projekt entfernen"
         destroy_explanation: "Projekt nicht mehr verfolgen"
+        confirmed_project_message: "Das Projekt wurde erfolgreich hinzugefügt."
+        saved_message: "Der Zeit-Auswerter wurde erfolgreich eingetragen. Die Person wurde per E-Mail benachrichtigt."
     attributes:
       bill:
         number: "Nummer"
@@ -353,6 +355,7 @@ de:
       date: "Datum"
       duration: "Dauer"
       projects_to_evaluate: "auszuwertende Projekte"
+      no_projects_as_evaluator: "Sie haben noch kein Projekt hinzugefügt. Sie können ein Projekt zum Auswerten mit dem Link aus Ihrer E-Mail hinzufügen."
     roles:
       administrator: "Administrator"
       timetracker: "Zeit-Erfasser"

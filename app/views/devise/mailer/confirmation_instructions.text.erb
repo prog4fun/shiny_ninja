@@ -1,0 +1,11 @@
+# encoding: ASCII
+
+<p>Herzlich Willkommen <%= @resource.firstname.encode("ASCII", :invalid => :replace, :undef => :replace) %> <%= @resource.lastname.encode("ASCII", :invalid => :replace, :undef => :replace) %>,</p>
+
+<p>Sie koennen Ihren Account bestaetigen, indem Sie den folgenden Link anklicken:</p>
+
+<p><%= link_to 'Account bestaetigen', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>Sie werden direkt angemeldet und der Account ist freigeschaltet.</p>
+
+<p>Viel Spass mit der Applikation</p>
