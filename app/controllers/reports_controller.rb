@@ -20,44 +20,16 @@ class ReportsController < ApplicationController
     end
     
     params[:search] ||= {}
-    @reports = Report.search(params[:search], @projects_user, current_user).page(params[:page])
     
-    @search_bar = true 
-    
+    @date = Date.today  
     @reports_all = Report.search(params[:search], @projects_user, current_user)
-    
-    
-    @statistics_duration_all = 0
-   	@statistics_wages_all = 0
-    @reports_all.each do |statistics|
-    	@statistics_duration_all += statistics.duration
-    	@statistics_wages_all += statistics.service.wage
-    end
-    
-    date = Date.today
-	@this_month = date.strftime("%B")
-	
-    reports_this_month = Report.showstats("this_month", @projects_user, current_user)
-    
-    @statistics_duration_this_month = 0
-    @statistics_wages_this_month = 0
-    reports_this_month.each do |statistics|
-    	@statistics_duration_this_month += statistics.duration
-    	@statistics_wages_this_month += statistics.service.wage
-    end
-    
-    @last_month = date - 1.month
-    
-    reports_last_month = Report.showstats("last_month", @projects_user, current_user)
-    
-    @statistics_duration_last_month = 0
-    @statistics_wages_last_month = 0
-    reports_last_month.each do |statistics|
-    	@statistics_duration_last_month += statistics.duration
-    	@statistics_wages_last_month += statistics.service.wage
-    end
-    
-    @last_month = @last_month.strftime("%B")
+    @reports = @reports_all.page(params[:page])
+    @search_bar = true 
+    @reports_this_month = Report.showstats(@date, @projects_user, current_user)
+    @reports_last_month = Report.showstats(@date - 1.month, @projects_user, current_user)
+    @this_month = @date.strftime("%B")
+    @last_month = (@date - 1.month).strftime("%B")
+
 
     respond_to do |format|
       format.html
