@@ -59,13 +59,22 @@
       </button>
     </legend>
     <div class="statistics-collapse in">
-    <%= t("labels.statistics.all") %>:<br>
+    <%= search_active? ? t("labels.statistics.selected") : t("labels.statistics.all") %>:<br>
     <p class="statistic">
     	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_all) %>
     	<% unless @evaluate_page %>
     		<i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= get_wages(@reports_all) %>
     	<% end %>
     </p>
+    <% unless (get_duration(@reports_today) == 0) %>
+    <br><%= t("labels.statistics.today") %>:<br>
+    <p class="statistic">
+    	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_today) %>
+    	<% unless @evaluate_page %>
+    		<i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= get_wages(@reports_today) %>
+    	<% end %>
+    </p>
+    <% end %>
     <br><%= t("labels.statistics.this_month") %> (<%= @this_month %>):<br>
     <p class="statistic">
     	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_this_month) %>

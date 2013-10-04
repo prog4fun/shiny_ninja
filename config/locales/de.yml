@@ -349,9 +349,11 @@ de:
       positive: "Ja"
       negative: "Nein"
     statistics:
-      all: "aktueller Zeitraum"
-      this_month: "aktueller Monat"
-      last_month: "vergangener Monat"
+      all: "Alle Einträge"
+      selected: "Gefilterte Einträge"
+      today: "Heutige Arbeiten"
+      this_month: "Aktueller Monat"
+      last_month: "Vergangener Monat"
     universe:
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."
