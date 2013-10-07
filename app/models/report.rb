@@ -83,4 +83,14 @@ class Report < ActiveRecord::Base
     result.order("date DESC")
   end
   
+  # search
+  def self.showstats(month, projects_user, current_user)
+	if projects_user.present?
+		result = Report.where(:project_id => projects_user.project.id, :date => month)
+	else
+	   services = Service.where("user_id = ?", current_user.id)
+	   result = Report.where( :service_id => services, :date => month)
+	end
+  end
+  
 end

@@ -1,0 +1,94 @@
+# encoding: UTF-8
+
+
+<%= form_tag( reports_path, :method => 'get', :role => "form") do %>
+  <fieldset>
+    <legend>
+      <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
+      <%= t("labels.actions.search_head") %>
+      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".search-collapse" title="<%= t("labels.actions.search_toggle") %>">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </legend>
+    <div class="<%= search_active? ? "search-collapse in" : "search-collapse collapse" %>">
+      <div class="form-group">
+        <%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %>
+  <%# text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4, :class => "datepicker form-control") %>
+        <input class="datepicker form-control" id="_search_date_from" name="[search][date_from]" size="4" type="date">
+      </div>
+
+      <div class="form-group">
+        <%= label_tag("[search][date_to]", t("labels.datetime.date_to")) %>
+  <%# text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4, :class => "datepicker form-control") %>
+        <input class="datepicker form-control" id="_search_date_to" name="[search][date_to]" size="4" type="date">
+      </div>
+
+      <% unless @evaluate_page %>
+        <div class="form-group">
+          <%= label_tag("[search][customer]", t("activerecord.models.customer")) %>
+          <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag("[search][project]", t("activerecord.models.project")) %>
+          <%= select_tag("[search][project]", options_for_select(@projects.order("name ASC").collect{ |p| [p.name, p.id] }, params[:search][:project]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
+        </div>
+
+      <% else %>
+        <%= hidden_field_tag "projects_user", params[:projects_user] %>
+      <% end %>
+
+      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>
+      <a class="btn btn-default btn-xs" href="<%= url_for(reports_path :projects_user => params[:projects_user]) %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a> 
+
+    </div>
+  </fieldset>
+  
+  
+  
+   <fieldset class="statistics">
+    <legend>
+      <i class="glyphicon glyphicon-stats" alt="<%= t("labels.actions.statistics") %>" title="<%= t("labels.actions.statistics") %>"></i>
+      <%= t("labels.actions.statistics") %>
+      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".statistics-collapse" title="<%= t("labels.actions.search_toggle") %>">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </legend>
+    <div class="statistics-collapse in">
+    <%= search_active? ? t("labels.statistics.selected") : t("labels.statistics.all") %>:<br>
+    <p class="statistic">
+    	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_all) %>
+    	<% unless @evaluate_page %>
+    		<i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= get_wages(@reports_all) %>
+    	<% end %>
+    </p>
+    <% unless (get_duration(@reports_today) == 0) %>
+    <br><%= t("labels.statistics.today") %>:<br>
+    <p class="statistic">
+    	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_today) %>
+    	<% unless @evaluate_page %>
+    		<i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= get_wages(@reports_today) %>
+    	<% end %>
+    </p>
+    <% end %>
+    <br><%= t("labels.statistics.this_month") %> (<%= @this_month %>):<br>
+    <p class="statistic">
+    	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_this_month) %>
+    	<% unless @evaluate_page %>
+    		<i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= get_wages(@reports_this_month) %>
+    	<% end %>
+    </p>
+    <br><%= t("labels.statistics.last_month") %> (<%= @last_month %>):<br>
+    <p class="statistic">
+    	<i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= get_duration(@reports_last_month) %>
+    	<% unless @evaluate_page %>
+    		<i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= get_wages(@reports_last_month) %>
+    	<% end %>
+    </p>
+    </div>
+   </fieldset>
+<% end %>

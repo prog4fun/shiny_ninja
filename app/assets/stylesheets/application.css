@@ -63,6 +63,10 @@ body {
 }
 
 
+fieldset {
+	margin-bottom: 20px;
+}
+
 .sidebar-toggle {
     position: relative;
     float: right;
@@ -147,6 +151,14 @@ body {
 
 h1, .h1 {
     font-size: 28px;
+}
+
+fieldset.statistics .glyphicon {
+	top: 0px;
+}
+
+p.statistic {
+	margin: 0 0 0 10px;
 }
 
 /*###################################

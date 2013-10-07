@@ -320,6 +320,7 @@ de:
       saveandnew: "Speichern und Neu"
       save: "Speichern"
       search: "Suchen"
+      statistics: "Statistik"
       search_explanation: "Tabelle nach ausgewählten Kriterien filtern."
       search_toggle: "Klicken um Suche ein- oder auszublenden."
       search_head: "Suche"
@@ -364,9 +365,16 @@ de:
       billable: "Abrechenbar"
       name: "Servicename"
       wage: "Gehalt"
+      wages: "Umsatz"
     state:
       positive: "Ja"
       negative: "Nein"
+    statistics:
+      all: "Alle Einträge"
+      selected: "Gefilterte Einträge"
+      today: "Heutige Arbeiten"
+      this_month: "Aktueller Monat"
+      last_month: "Vergangener Monat"
     universe:
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."

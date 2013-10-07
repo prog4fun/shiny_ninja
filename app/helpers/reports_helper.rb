@@ -12,4 +12,20 @@ module ReportsHelper
     return true if report.service.billable
   end
   
+  def get_duration(reports)
+  		duration = 0
+     reports.each do |report|
+        duration += report.duration
+     end
+     return duration
+  end
+  
+  def get_wages(reports)
+  		wages = 0
+     reports.each do |report|
+        wages += report.service.wage
+     end
+     return wages
+  end
+  
 end
