@@ -23,7 +23,7 @@ module ReportsHelper
   def get_wages(reports)
   		wages = 0
      reports.each do |report|
-        wages += report.service.wage
+        wages += (report.duration * report.service.wage)
      end
      return wages
   end
