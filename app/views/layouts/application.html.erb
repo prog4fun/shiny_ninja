@@ -1,19 +1,17 @@
-# encoding: UTF-8
-
-<!DOCTYPE html>
-<html>
+# encoding: UTF-8 <!DOCTYPE html>
+<html class="no-js">
   <head>
     <title>ShinyNinja</title>
     <%= stylesheet_link_tag    "bootstrap", :rel => "stylesheet" %>
     <%= stylesheet_link_tag    "jquery-ui-1.10.3.custom", :rel => "stylesheet" %>
     <%= stylesheet_link_tag    "application", :rel => "stylesheet" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "modernizr.js" %>
 <%#<script src="//code.jquery.com/jquery.js"></script> %>
     <%= javascript_include_tag "jquery-1.9.1" %>
     <%= javascript_include_tag "bootstrap" %>
     <%= javascript_include_tag "jquery-ui-1.10.3.custom" %>
     <%= javascript_include_tag "my_functions.js" %>
-
 <%# Set Viewport, Initial Scaling, Restrict Scaling by User, Hide Safari Address Bar on iOS, WebApp-Images for iOS and Android %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes" />

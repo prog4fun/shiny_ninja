@@ -15,14 +15,12 @@
     <div class="<%= search_active? ? "search-collapse in" : "search-collapse collapse" %>">
       <div class="form-group">
         <%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %>
-  <%# text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4, :class => "datepicker form-control") %>
-        <input class="datepicker form-control" id="_search_date_from" name="[search][date_from]" size="4" type="date">
+  <%= text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4, :class => "form-control", :type => "date" ) %>
       </div>
 
       <div class="form-group">
         <%= label_tag("[search][date_to]", t("labels.datetime.date_to")) %>
-  <%# text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4, :class => "datepicker form-control") %>
-        <input class="datepicker form-control" id="_search_date_to" name="[search][date_to]" size="4" type="date">
+  <%= text_field_tag("[search][date_to]", params[:search][:date_to], :size => 4, :class => "datepicker form-control", :type => "date" ) %>
       </div>
 
       <% unless @evaluate_page %>
