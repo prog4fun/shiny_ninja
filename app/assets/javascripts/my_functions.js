@@ -1,6 +1,9 @@
 // Datepicker
 if (!Modernizr.inputtypes.date) {
      $(function() {
+     		$("input[type='date'].editreport").val(function(index, value) {
+	     		return $.datepicker.formatDate('dd.mm.yy', new Date(value));
+  			});
             $("input[type='date']").datepicker($.datepicker.regional[ "de" ]);
      });
 };
