@@ -46,12 +46,9 @@ class Report < ActiveRecord::Base
     end
   end
   
-  # Calculates and returns the Wage of the current Report-Wage
+  # Calculates and returns the Wage of 5the current Report-Wage
   def calculate_wage
     wage = self.duration * self.service.wage
-    logger.debug "#######################################################"
-    logger.debug wage
-    logger.debug "#######################################################"
     return wage
   end
   
