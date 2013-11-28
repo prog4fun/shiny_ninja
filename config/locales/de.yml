@@ -250,6 +250,7 @@ de:
         date: "Datum"
         duration: "Dauer"
         duration_explanation: "in Stunden, z.B. 5.3"
+        wage: "Gehalt"
       service:
         wage: "Stundenlohn"
         wage_explanation: "z.B. 30.50"

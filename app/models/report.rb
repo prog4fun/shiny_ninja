@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class Report < ActiveRecord::Base
-  attr_accessible :comment, :date, :duration, :project_id, :service_id
+  attr_accessible :comment, :date, :duration, :project_id, :service_id, :wage
   
   # associations
   belongs_to :project
@@ -46,21 +46,23 @@ class Report < ActiveRecord::Base
     end
   end
   
+  # Calculates and returns the Wage of the current Report-Wage
+  def calculate_wage
+    wage = self.duration * self.service.wage
+    logger.debug "#######################################################"
+    logger.debug wage
+    logger.debug "#######################################################"
+    return wage
+  end
   
   # search
   def self.search(search, projects_user, current_user)
     
     if projects_user.present?
       result = Report.where( :project_id => projects_user.project.id)
-      logger.debug "##########################################"
-      logger.debug "1." + result.inspect
-      logger.debug "##########################################"
     else
       services = Service.where("user_id = ?", current_user.id)
       result = Report.where( :service_id => services)
-      logger.debug "##########################################"
-      logger.debug "2." + result.inspect
-      logger.debug "##########################################"
     end    
     
     if search
@@ -85,12 +87,12 @@ class Report < ActiveRecord::Base
   
   # search
   def self.showstats(month, projects_user, current_user)
-	if projects_user.present?
-		result = Report.where(:project_id => projects_user.project.id, :date => month)
-	else
-	   services = Service.where("user_id = ?", current_user.id)
-	   result = Report.where( :service_id => services, :date => month)
-	end
+    if projects_user.present?
+      result = Report.where(:project_id => projects_user.project.id, :date => month)
+    else
+      services = Service.where("user_id = ?", current_user.id)
+      result = Report.where( :service_id => services, :date => month)
+    end
   end
   
 end

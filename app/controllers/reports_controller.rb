@@ -4,6 +4,7 @@ class ReportsController < ApplicationController
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
+  after_filter :update_wage, :only => [:create, :update]
   load_and_authorize_resource
   
   def index
@@ -161,15 +162,12 @@ class ReportsController < ApplicationController
     end
   end
   
-  #######################################################################
-  
-  def import
-    
-  end
-  
-  
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), reports_path, :title => t("labels.breadcrumbs.index_title")
+  end
+  
+  def update_wage 
+    @report.update_attributes(:wage => @report.calculate_wage)
   end
 end
