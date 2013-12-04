@@ -79,8 +79,7 @@ class ReportsController < ApplicationController
   def new
     if params[:report].present?
       @report = Report.new :date => params[:report][:date],
-        :project_id => params[:report][:project_id],
-        :service_id => params[:report][:service_id]
+        :project_id => params[:report][:project_id]
     else
       @report = Report.new :date => Date.today
     end
