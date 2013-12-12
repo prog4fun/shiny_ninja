@@ -83,15 +83,7 @@ class ProjectsUsersController < ApplicationController
   end
 
   def destroy
-    logger.debug "#########tsehh####################################"
-    logger.debug @projects_user
-    logger.debug "#############################################"
-    
     @projects_user = ProjectsUser.find(params[:id])
-    
-    logger.debug "#########tsehh####################################"
-    logger.debug @projects_user
-    logger.debug "#############################################"
     
     if @projects_user.user.present?
       project_evaluator = @projects_user.user
@@ -105,14 +97,7 @@ class ProjectsUsersController < ApplicationController
       end
     end
     
-    #   flash[:notice] = "Der Zeit-Auswerter wurde erfolgreich von Ihrem Projekt entfernt."
-    
     @projects_user.destroy
-    
-    logger.debug "##########erth###################################"
-    logger.debug @projects_user
-    logger.debug "#############################################"
-    
     
     respond_to do |format|
       if params[:project_id].present? # user came from edit page and it's his own project

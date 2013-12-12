@@ -26,6 +26,7 @@ class Ability
       can :show, User  # To Show own Account --> UserController#Show
       can :update, User  # To Edit own Account --> UserController#Edit
       can :update, ProjectsUser
+      can :destroy, ProjectsUser # Project_Evalautors need to remove their (evaluate) projects
       can :confirm_project_evaluator, ProjectsUser
     end
     

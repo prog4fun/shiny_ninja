@@ -18,6 +18,7 @@
         </a>
       <% end %>
       <% if @evaluate_page %>
+        <%= link_to_destroy_evaluator(:controller => "projects_users", :action => "show", :id => @projects_user.id, :project_id => @reports_all.first.project.id) %>
         <a class='btn btn-danger' href='<%= url_for(:controller => "projects_users", :action => "show", :id => @projects_user.id)%>' data-confirm='<%= t("labels.actions.confirm") %>' data-method='delete' rel='nofollow'>
           <span class="glyphicon glyphicon-off" alt="<%= t("activerecord.actions.projects_user.destroy") %>" title="<%= t("activerecord.actions.projects_user.destroy_explanation") %>"></span>
           <%= t("activerecord.actions.projects_user.destroy") %>
