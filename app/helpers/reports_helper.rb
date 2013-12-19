@@ -12,20 +12,22 @@ module ReportsHelper
     return true if report.service.billable
   end
   
-  def get_duration(reports)
-  		duration = 0
-     reports.each do |report|
-        duration += report.duration
-     end
-     return duration
+  # Returns total duration of one or more Reports.
+  def sum_of_duration(reports)
+    duration = 0
+    reports.each do |report|
+      duration += report.duration
+    end
+    return duration
   end
   
-  def get_wages(reports)
-  		wages = 0
-     reports.each do |report|
-        wages += (report.duration * report.service.wage)
-     end
-     return wages
+  # Returns total income of one or more Reports.
+  def sum_of_income(reports)
+    income = 0
+    reports.each do |report|
+      income += report.get_income(false)
+    end
+    return number_to_currency(income, :unit => "")
   end
   
 end

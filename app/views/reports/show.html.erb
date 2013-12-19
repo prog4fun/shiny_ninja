@@ -20,7 +20,11 @@
         </tr>
         <tr>
           <th><%= t("labels.report.wage") %></th>
-          <td><%= @report.wage %> €</td>
+          <td><%= @report.get_wage %></td>
+        </tr>
+        <tr>
+          <th><%= t("labels.report.income") %></th>
+          <td><%= @report.get_income %></td>
         </tr>
         <tr>
           <th><%= t("activerecord.models.project") %></th>

@@ -179,47 +179,50 @@ project5 = Project.create(
 # Reports
 # +++++++++++++++++++++++++
 20.times do
-Report.create(
-  date: rand(1...90).days.ago,
-  duration: rand(1...10)*1.25,
-  comment: "A lot of fun!",
-  project_id: project1.id,
-  service_id: service1.id
-)
+  Report.create(
+    date: rand(1...90).days.ago,
+    duration: rand(1...10)*1.25,
+    comment: "A lot of fun!",
+    project_id: project1.id,
+    service_id: service1.id
+  )
 end
 20.times do
-Report.create(
-  date: rand(1...90).days.ago,
-  duration: rand(1...10)*1.75,
-  comment: "A lot of fun!!",
-  project_id: project2.id,
-  service_id: service2.id
-)
+  Report.create(
+    date: rand(1...90).days.ago,
+    duration: rand(1...10)*1.75,
+    comment: "A lot of fun!!",
+    project_id: project2.id,
+    service_id: service2.id
+  )
 end
 20.times do
-Report.create(
-  date: rand(1...90).days.ago,
-  duration: rand(1...10)*1.50,
-  comment: "A lot of fun!!!",
-  project_id: project3.id,
-  service_id: service3.id
-)
+  Report.create(
+    date: rand(1...90).days.ago,
+    duration: rand(1...10)*1.50,
+    comment: "A lot of fun!!!",
+    project_id: project3.id,
+    service_id: service3.id
+  )
 end
 30.times do
-Report.create(
-  date: rand(1...90).days.ago,
-  duration: rand(1...10)*1.75,
-  comment: "A lot of fun!",
-  project_id: project4.id,
-  service_id: service4.id
-)
+  Report.create(
+    date: rand(1...90).days.ago,
+    duration: rand(1...10)*1.75,
+    comment: "A lot of fun!",
+    project_id: project4.id,
+    service_id: service4.id
+  )
 end
 30.times do
-Report.create(
-  date: rand(1...90).days.ago,
-  duration: rand(1...10)*1.75,
-  comment: "A lot of fun!!",
-  project_id: project5.id,
-  service_id: service5.id
-)
+  Report.create(
+    date: rand(1...90).days.ago,
+    duration: rand(1...10)*1.75,
+    comment: "A lot of fun!!",
+    project_id: project5.id,
+    service_id: service5.id
+  )
 end
+
+reports = Report.all
+reports.each{|report| report.update_attributes(:wage => report.service.wage)}

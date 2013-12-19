@@ -345,6 +345,7 @@ de:
       date_to: "Datum bis"
       from: " von"
       hour: "Stunde"
+      hour_short: "Std."
       hours: "Stunden"
       to: " bis"
     person:
@@ -354,6 +355,7 @@ de:
       name: "Projektname"
       name_explanation: "Name für das Projekt"
     report:
+      income: "Einnahmen"
       date: "Datum"
       duration: "Dauer"
       projects_to_evaluate: "auszuwertende Projekte"

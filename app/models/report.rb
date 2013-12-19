@@ -46,10 +46,26 @@ class Report < ActiveRecord::Base
     end
   end
   
-  # Calculates and returns the Wage of 5the current Report-Wage
-  def calculate_wage
-    wage = self.duration * self.service.wage
-    return wage
+  # Returns the wage in currency format.
+  def get_wage
+    return number_to_currency(self.wage)
+  end
+  
+  # Returns the wage in readable format.
+  def get_duration
+    return "#{self.duration.to_s.sub!('.',',')} #{I18n.t("labels.datetime.hour_short")}"
+  end
+
+  # Calculates and returns the income (wage + duration) of the current Report.
+  # Readable can be set to false if it is necessary to calculate with the result.
+  # readable false => returns number instead of a string.
+  def get_income(readable = true)
+    income = self.wage * self.duration
+    if readable
+      return number_to_currency(self.wage * self.duration)
+    else
+      return income
+    end
   end
   
   # search
