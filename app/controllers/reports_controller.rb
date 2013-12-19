@@ -4,7 +4,6 @@ class ReportsController < ApplicationController
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
-  after_filter :update_wage, :only => [:create, :update]
   load_and_authorize_resource
   
   def index
@@ -121,6 +120,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
+        @report.update_attributes(:wage => @report.service.wage)
         if params[:saveandnew]
           format.html { redirect_to :controller => "reports", :action => "new", :report => params[:report], notice: t("confirmations.messages.saved_and_new") }
         else
@@ -137,11 +137,13 @@ class ReportsController < ApplicationController
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
     @services = Service.where( :user_id => current_user.id)
+    service_before_update = @report.service
     
     @active_menu = "report"
 
     respond_to do |format|
       if @report.update_attributes(params[:report])
+        check_and_update_wages(service_before_update)
         format.html { redirect_to @report, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "edit" }
@@ -166,7 +168,14 @@ class ReportsController < ApplicationController
     add_breadcrumb t("labels.breadcrumbs.index"), reports_path, :title => t("labels.breadcrumbs.index_title")
   end
   
-  def update_wage 
-    @report.update_attributes(:wage => @report.calculate_wage)
+  # Wages will only be updated if the Service has been changed
+  # It might be possible, that the wages change of a Service,
+  # after that the User updates e.g. the Date of a Report,
+  # in this case the wages must not be updated.
+  def check_and_update_wages(service_before_update)
+    unless @report.service == service_before_update
+      @report.update_attributes(:wage => @report.service.wage)
+    end
   end
+  
 end
