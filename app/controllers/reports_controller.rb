@@ -97,7 +97,7 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
-
+	
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
     @services = Service.where("user_id = ?", current_user.id)
@@ -121,7 +121,9 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
-        @report.update_attributes(:wage => @report.service.wage)
+        if !@report.wage.presence
+          @report.update_attributes(:wage => @report.service.wage)
+        end
         if params[:saveandnew]
           format.html { redirect_to :controller => "reports", :action => "new", :report => params[:report], notice: t("confirmations.messages.saved_and_new") }
         else
@@ -177,6 +179,9 @@ class ReportsController < ApplicationController
     unless @report.service == service_before_update
       @report.update_attributes(:wage => @report.service.wage)
     end
+     if !@report.wage.presence
+      @report.update_attributes(:wage => @report.service.wage)
+     end
   end
   
 end
