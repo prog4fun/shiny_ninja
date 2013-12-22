@@ -51,9 +51,15 @@
             <tr><td colspan="5" class="text-muted"><%= t("labels.report.no_projects_as_evaluator")%> </td></tr>
           <% end %>
         <% else %>
+        <% date_prev = "" %>
           <% @reports.each do |report| %>
             <tr class="report report<%= report.id %>" rel="popover" data-placement="top" >
-              <td><%= report.date %></td>
+              <% if report.date == date_prev %>
+              	<td></td>
+              <% else %>
+              	<td ><%= report.date%></td>
+              <% end %>
+              <% date_prev = report.date %>
               <td><%= truncate(report.project.name, :length => 40) %></td>
               <td><%= truncate(report.service.name, :length => 40) %></td>
               <% unless @evaluate_page %>
