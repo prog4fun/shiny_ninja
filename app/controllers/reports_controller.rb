@@ -120,7 +120,9 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
-        @report.update_attributes(:wage => @report.service.wage)
+        if !@report.wage.presence
+          @report.update_attributes(:wage => @report.service.wage)
+        end
         if params[:saveandnew]
           format.html { redirect_to :controller => "reports", :action => "new", :report => params[:report], notice: t("confirmations.messages.saved_and_new") }
         else
