@@ -13,6 +13,14 @@ module ApplicationHelper
     params[:search].present? ? true : false
   end
   
+  # Returns a String of the translated month name.
+  # Takes a date (not formatted).
+  # Reduces 1 month of the date and builds the month name of it.
+  # Locales caused a problem to display a incorrect month name. This methods works as a workaround. 
+  def get_translated_month_name(date)
+    I18n.localize(date - 1.month, :format => '%B')
+  end
+  
   # ICONS
   def icon_boolean(state)
     if state == true

@@ -69,8 +69,10 @@
               <td style="display: none;" class="popover_report<%= report.id %>">
                 <div style="margin-bottom: 25px;">
                   <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %><br>
-                  <b><%= t("labels.report.income") %></b>: <%= report.get_income %><br>
-                  <b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
+                  <b><%= t("labels.report.income") %></b>: <%= report.get_income %>
+                  <% if report.comment.presence %>
+                  <br><b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
+                  <% end %>
                   </div>
                   <div style="text-align: center;">
                   <%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %>

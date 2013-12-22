@@ -6,6 +6,9 @@ class ReportsController < ApplicationController
   before_filter :add_breadcrumb_index
   load_and_authorize_resource
   
+  # Includes
+  include ApplicationHelper
+  
   def index
     
     if params[:projects_user].present?
@@ -28,9 +31,6 @@ class ReportsController < ApplicationController
     @reports_today = Report.showstats(@date.to_date..@date.to_date, @projects_user, current_user)
     @reports_this_month = Report.showstats(@date.beginning_of_month.to_date..@date.end_of_month.to_date, @projects_user, current_user)
     @reports_last_month = Report.showstats((@date - 1.month).beginning_of_month.to_date..(@date - 1.month).end_of_month.to_date, @projects_user, current_user)
-    @this_month = @date.strftime("%B")
-    @last_month = (@date - 1.month).strftime("%B")
-
 
     respond_to do |format|
       format.html
