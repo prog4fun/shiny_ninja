@@ -53,7 +53,7 @@
         <% else %>
         <% date_prev = "" %>
           <% @reports.each do |report| %>
-            <tr class="report report<%= report.id %>" rel="popover" data-placement="top" >
+            <tr class="report report<%= report.id %>" rel="popover" data-placement="top" data-toggle="popover">
               <% if report.date == date_prev %>
               	<td></td>
               <% else %>
@@ -67,9 +67,12 @@
               <% end %>
               <td><%= report.get_duration %></td>
               <td style="display: none;" class="popover_report<%= report.id %>">
-                <div style="text-align: center;">
+                <div style="margin-bottom: 25px;">
                   <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %><br>
-                  <b><%= t("labels.report.income") %></b>: <%= report.get_income %><br><br>
+                  <b><%= t("labels.report.income") %></b>: <%= report.get_income %><br>
+                  <b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
+                  </div>
+                  <div style="text-align: center;">
                   <%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %>
                   <% unless @evaluate_page %><%= link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %><% end %>
                   <% unless @evaluate_page %><%= link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %><% end %>
