@@ -73,14 +73,14 @@
           <% end %>
         </p>
       <% end %>
-      <br><%= t("labels.statistics.this_month") %> (<%= @this_month %>):<br>
+      <br><%= t("labels.statistics.this_month") %> (<%= get_translated_month_name(@date) %>):<br>
       <p class="statistic">
         <i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= sum_of_duration(@reports_this_month) %>
         <% unless @evaluate_page %>
           <i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= sum_of_income(@reports_this_month) %>
         <% end %>
       </p>
-      <br><%= t("labels.statistics.last_month") %> (<%= @last_month %>):<br>
+      <br><%= t("labels.statistics.last_month") %> (<%= get_translated_month_name(@date - 1.month) %>):<br>
       <p class="statistic">
         <i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= sum_of_duration(@reports_last_month) %>
         <% unless @evaluate_page %>
