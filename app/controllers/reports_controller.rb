@@ -48,6 +48,7 @@ class ReportsController < ApplicationController
   end
 
   def show
+    @evaluate_page = true if params[:projects_user].present?
     @report = Report.find(params[:id])
     
     my_services = Service.where("user_id = ?", current_user.id)

@@ -51,13 +51,13 @@
             <tr><td colspan="5" class="text-muted"><%= t("labels.report.no_projects_as_evaluator")%> </td></tr>
           <% end %>
         <% else %>
-        <% date_prev = "" %>
+          <% date_prev = "" %>
           <% @reports.each do |report| %>
             <tr class="report report<%= report.id %>" rel="popover" data-placement="top" data-toggle="popover">
               <% if report.date == date_prev %>
-              	<td></td>
+                <td></td>
               <% else %>
-              	<td ><%= report.date%></td>
+                <td ><%= report.date%></td>
               <% end %>
               <% date_prev = report.date %>
               <td><%= truncate(report.project.name, :length => 40) %></td>
@@ -68,13 +68,15 @@
               <td><%= report.get_duration %></td>
               <td style="display: none;" class="popover_report<%= report.id %>">
                 <div style="margin-bottom: 25px;">
-                  <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %><br>
-                  <b><%= t("labels.report.income") %></b>: <%= report.get_income %>
-                  <% if report.comment.presence %>
-                  <br><b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
+                  <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %>
+                  <% unless @evaluate_page %>
+                    <br><b><%= t("labels.report.income") %></b>: <%= report.get_income %>
                   <% end %>
-                  </div>
-                  <div style="text-align: center;">
+                  <% if report.comment.presence %>
+                    <br><b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
+                  <% end %>
+                </div>
+                <div style="text-align: center;">
                   <%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %>
                   <% unless @evaluate_page %><%= link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %><% end %>
                   <% unless @evaluate_page %><%= link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %><% end %>

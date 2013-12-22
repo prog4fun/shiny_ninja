@@ -18,14 +18,16 @@
           <th><%= t("labels.report.duration") %></th>
           <td><%= @report.duration %> <%= t("labels.datetime.hours") %></td>
         </tr>
-        <tr>
-          <th><%= t("labels.report.wage") %></th>
-          <td><%= @report.get_wage %></td>
-        </tr>
-        <tr>
-          <th><%= t("labels.report.income") %></th>
-          <td><%= @report.get_income %></td>
-        </tr>
+        <% unless @evaluate_page %>
+          <tr>
+            <th><%= t("labels.report.wage") %></th>
+            <td><%= @report.get_wage %></td>
+          </tr>
+          <tr>
+            <th><%= t("labels.report.income") %></th>
+            <td><%= @report.get_income %></td>
+          </tr>
+        <% end %>
         <tr>
           <th><%= t("activerecord.models.project") %></th>
           <td><%= @report.project.name %></td>
