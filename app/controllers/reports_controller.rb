@@ -96,7 +96,7 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
-
+	
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
     @services = Service.where("user_id = ?", current_user.id)
@@ -178,6 +178,9 @@ class ReportsController < ApplicationController
     unless @report.service == service_before_update
       @report.update_attributes(:wage => @report.service.wage)
     end
+     if !@report.wage.presence
+      @report.update_attributes(:wage => @report.service.wage)
+     end
   end
   
 end
