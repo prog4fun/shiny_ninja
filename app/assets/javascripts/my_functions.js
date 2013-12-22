@@ -154,16 +154,45 @@ $(function() {
     } 
 });
 
-$(function () {    
+   
+
+$(function () { 
+	// Global variable - cringe
 	var visiblePopover;
-    $('tr.report').popover({
-	    html: true,
-	    trigger: 'click',
-	    placement: 'top',
-	    content: function() {
-		    var selection = $(this).attr('class').split(' ')[1];
-		   return ''+$('.popover_'+selection).html()+'';
-	    },
-	    container: '#popover_container'
-	 });
+	
+	// enable popovers - all of mine in this instance have a class of .hov
+	$("tr.report").popover({
+		    html: true,
+		    trigger: 'click',
+		    placement: 'top',
+		    content: function() {
+			    var selection = $(this).attr('class').split(' ')[1];
+			   return ''+$('.popover_'+selection).html()+'';
+		    },
+		    container: '#popover_container'
+		 });
+	
+	$("[data-toggle='popover']").on('click', function(e) {
+		// don't fall through
+		e.stopPropagation();
+		var $this = $(this);
+		// check if the one clicked is now shown
+		if ($('.popover').hasClass('in')) {
+			// if another was showing, hide it
+			visiblePopover && visiblePopover.popover('toggle');
+			// then store the current popover
+			visiblePopover = $this;
+		} else {
+			// if it was hidden, then nothing must be showing
+			visiblePopover = '';
+		}
+	});
+	
+	// hide all popovers if any non-popover part of the body is clicked
+	$("body").on('click', function (e) {
+		if ( $(".popover").has(e.target).length === 0) {
+			visiblePopover && visiblePopover.popover('toggle');
+			visiblePopover = '';
+		}
+	});
 });
