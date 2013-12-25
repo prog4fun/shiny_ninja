@@ -250,6 +250,7 @@ de:
         date: "Datum"
         duration: "Dauer"
         duration_explanation: "in Stunden, z.B. 5.3"
+        wage_edit_explanation: "leer lassen für Wert aus Tätigkeit..."
         wage: "Gehalt"
       service:
         wage: "Stundenlohn"
@@ -360,6 +361,7 @@ de:
       duration: "Dauer"
       projects_to_evaluate: "auszuwertende Projekte"
       no_projects_as_evaluator: "Sie haben noch kein Projekt hinzugefügt. Sie können ein Projekt zum Auswerten mit dem Link aus Ihrer E-Mail hinzufügen."
+      comment_explanation: "Platz für mehr ... (Beachten Sie, dass mögliche Zeitauswerter diesen Kommentar auch lesen können.)"
     roles:
       administrator: "Administrator"
       timetracker: "Zeit-Erfasser"
