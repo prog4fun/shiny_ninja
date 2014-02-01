@@ -2,16 +2,11 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable,
   # :lockable, :timeoutable and :omniauthable
   # :validatable
   devise :database_authenticatable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable
   
-  attr_accessible :city, :comment, :confirmed_at, :country, :email, :firstname,
-    :lastname, :login, :password, :password_confirmation, :phone_number,
-    :remember_me, :roles, :roles_mask, :signature, :street, :street_number,
-    :zipcode
   
   # associations
   has_many :customers
@@ -20,10 +15,7 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :projects_users
   
   # validations
-  validates :city, :comment, :confirmed_at, :country, :email, :firstname,
-    :lastname, :login, :password, :password_confirmation, :phone_number,
-    :remember_me, :roles, :roles_mask, :signature, :street, :street_number,
-    :zipcode, :format => {:with => /^[^<>%&$]*$/}
+ # validates :city, :comment, :confirmed_at, :country, :email, :firstname, :lastname, :login, :password, :password_confirmation, :phone_number, :remember_me, :roles, :roles_mask, :signature, :street, :street_number, :zipcode, :format => {:with => /^[^<>%&$]*$/}
   
   validates :login, :presence => true,
     :uniqueness => {:case_sensitive => false}
@@ -35,7 +27,7 @@ class User < ActiveRecord::Base
     :allow_blank => true,
     :on => :update
   validates :email, :presence => true,
-    :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/},
+    #:format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/},
     :uniqueness => {:case_sensitive => false}
   validates :firstname, :presence => true
   validates :lastname, :presence => true

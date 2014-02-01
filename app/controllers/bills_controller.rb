@@ -70,7 +70,7 @@ class BillsController < ApplicationController
   end
 
   def create
-    @bill = Bill.new(params[:bill])
+    @bill = Bill.new(bill_params)
 
     respond_to do |format|
       if @bill.save
@@ -86,7 +86,7 @@ class BillsController < ApplicationController
     @bill = Bill.find(params[:id])
 
     respond_to do |format|
-      if @bill.update_attributes(params[:bill])
+      if @bill.update_attributes(bill_params)
         format.html { redirect_to @bill, notice: t("confirmations.messages.saved") }
       else
         @customers = current_user.customers
@@ -110,6 +110,10 @@ class BillsController < ApplicationController
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
+  end
+  
+  def bill_params
+	params.require(:bill).permit(:amount, :comment, :customer_id, :date, :month, :number, :paid, :year)
   end
   
 end

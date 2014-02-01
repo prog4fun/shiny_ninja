@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   ### Create ##################################################################
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     
     @active_menu = "user"
         
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       params[:user][:country] = "de"
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(user_params)
         format.html { redirect_to @user, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "edit" }
@@ -130,4 +130,9 @@ class UsersController < ApplicationController
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), users_path, :title => t("labels.breadcrumbs.index_title")
   end
+  
+  def user_params
+	params.require(:user).permit(:city, :comment, :confirmed_at, :country, :email, :firstname, :lastname, :login, :password, :password_confirmation, :phone_number, :remember_me, :roles, :roles_mask, :signature, :street, :street_number, :zipcode)
+  end
+  
 end

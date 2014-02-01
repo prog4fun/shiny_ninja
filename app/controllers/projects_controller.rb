@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(params[:project])
+    @project = Project.new(project_params)
     @customers = Customer.where( :user_id => current_user.id )
     
     @active_menu = "project"
@@ -91,7 +91,7 @@ class ProjectsController < ApplicationController
     @active_menu = "project"
 
     respond_to do |format|
-      if @project.update_attributes(params[:project])
+      if @project.update_attributes(project_params)
         format.html { redirect_to @project, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "edit" }
@@ -123,5 +123,9 @@ class ProjectsController < ApplicationController
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), projects_path, :title => t("labels.breadcrumbs.index_title")
+  end
+  
+  def project_params
+	params.require(:project).permit(:comment, :customer_id, :name, :timebudget)
   end
 end

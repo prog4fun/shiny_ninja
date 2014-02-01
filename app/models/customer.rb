@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 class Customer < ActiveRecord::Base
-  attr_accessible :comment, :email, :name, :user_id
   
   # associations
   has_many :bills
@@ -9,11 +8,10 @@ class Customer < ActiveRecord::Base
   belongs_to :user
   
   # validations
-  validates :comment, :email, :name, :user_id,
-    :format => {:with => /^[^<>%&$]*$/}
+ # validates :comment, :email, :name, :user_id, :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
-  validates :email, :presence => true,
-    :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/}
+  validates :email, :presence => true
+  #,:format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/}
   validates :user_id, :presence => true
   
   # search

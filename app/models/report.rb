@@ -1,15 +1,13 @@
 # encoding: UTF-8
 
 class Report < ActiveRecord::Base
-  attr_accessible :comment, :date, :duration, :project_id, :service_id, :wage
   
   # associations
   belongs_to :project
   belongs_to :service
   
   # validations
-  validates :comment, :date, :duration, :project_id, :service_id,
-    :format => {:with => /^[^<>%&$]*$/}
+  # validates :comment, :date, :duration, :project_id, :service_id, :format => {:with => /^[^<>%&$]*$/}
   validates :date, :presence => true
   validates :duration, :presence => true
   validates :project_id, :presence => true

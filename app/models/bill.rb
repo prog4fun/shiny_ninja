@@ -1,13 +1,11 @@
 class Bill < ActiveRecord::Base
-  attr_accessible :amount, :comment, :customer_id, :date, :month, :number, :paid, :year
   
   
   # associations
   belongs_to :customer
   
   # validations
-  validates :amount, :comment, :customer_id, :date,
-    :month, :number, :paid, :year, :format => {:with => /^[^<>%&$]*$/}
+ # validates :amount, :comment, :customer_id, :date, :month, :number, :paid, :year, :format => {:with => /^[^<>%&$]*$/}
   validates :number, :presence => true
   validates :date, :presence => true
   validates :amount, :presence => true

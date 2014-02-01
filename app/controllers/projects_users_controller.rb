@@ -54,7 +54,7 @@ class ProjectsUsersController < ApplicationController
   end
 
   def create
-    @projects_user = ProjectsUser.new(params[:projects_user])
+    @projects_user = ProjectsUser.new(projects_user_params)
     @project = Project.find(params[:projects_user][:project_id])
 
     respond_to do |format|
@@ -74,7 +74,7 @@ class ProjectsUsersController < ApplicationController
     @projects_user = ProjectsUser.find(params[:id])
 
     respond_to do |format|
-      if @projects_user.update_attributes(params[:projects_user])
+      if @projects_user.update_attributes(projects_user_params)
         format.html { redirect_to @projects_user, notice: 'Projects user was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -107,4 +107,11 @@ class ProjectsUsersController < ApplicationController
       end
     end
   end
+  
+  private
+  
+  def projects_user_params
+	params.require(:projects_user).permit(:project_id, :user_id, :project_token, :confirmation_email)
+  end
+  
 end

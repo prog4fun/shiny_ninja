@@ -62,7 +62,7 @@ class ServicesController < ApplicationController
   end
 
   def create
-    @service = Service.new(params[:service])
+    @service = Service.new(service_params)
     
     @active_menu = "service"
 
@@ -81,7 +81,7 @@ class ServicesController < ApplicationController
     @active_menu = "service"
 
     respond_to do |format|
-      if @service.update_attributes(params[:service])
+      if @service.update_attributes(service_params)
         format.html { redirect_to @service, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "edit" }
@@ -112,4 +112,10 @@ class ServicesController < ApplicationController
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), services_path, :title => t("labels.breadcrumbs.index_title")
   end
+  
+  
+  def service_params
+	params.require(:service).permit(:billable, :comment, :name, :user_id, :wage)
+  end
+  
 end

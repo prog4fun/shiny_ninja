@@ -112,7 +112,7 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new(params[:report])
+    @report = Report.new(report_params)
     customers = Customer.where( :user_id => current_user.id)
     @projects = Project.where( :customer_id => customers)
     @services = Service.where( :user_id => current_user.id)
@@ -145,7 +145,7 @@ class ReportsController < ApplicationController
     @active_menu = "report"
 
     respond_to do |format|
-      if @report.update_attributes(params[:report])
+      if @report.update_attributes(report_params)
         check_and_update_wages(service_before_update)
         format.html { redirect_to @report, notice: t("confirmations.messages.saved") }
       else
@@ -182,6 +182,10 @@ class ReportsController < ApplicationController
      if !@report.wage.presence
       @report.update_attributes(:wage => @report.service.wage)
      end
+  end
+  
+  def report_params
+	params.require(:report).permit(:comment, :date, :duration, :project_id, :service_id, :wage)
   end
   
 end

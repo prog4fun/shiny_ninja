@@ -59,7 +59,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(params[:customer])
+    @customer = Customer.new(customer_params)
     
     @active_menu = "customer"
 
@@ -79,7 +79,7 @@ class CustomersController < ApplicationController
     @active_menu = "customer"
 
     respond_to do |format|
-      if @customer.update_attributes(params[:customer])
+      if @customer.update_attributes(customer_params)
         format.html { redirect_to @customer, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "edit" }
@@ -110,6 +110,10 @@ class CustomersController < ApplicationController
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
+  end
+  
+  def customer_params
+	params.require(:customer).permit(:comment, :email, :name, :user_id)
   end
   
 end

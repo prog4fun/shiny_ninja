@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 class Project < ActiveRecord::Base
-  attr_accessible :comment, :customer_id, :name, :timebudget
   
   # associations
   belongs_to :customer
@@ -9,8 +8,7 @@ class Project < ActiveRecord::Base
   has_many :users, :through => :projects_users
   
   # validations
-  validates :comment, :customer_id, :name, :timebudget,
-    :format => {:with => /^[^<>%&$]*$/}
+ # validates :comment, :customer_id, :name, :timebudget, :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
   validates :customer_id, :presence => true
   
