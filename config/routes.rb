@@ -2,24 +2,24 @@ ShinyNinja::Application.routes.draw do
   
 
   # Reports
-  # match "/reports/import", :controller => "reports", :action => "import"
+  # get "/reports/import", :controller => "reports", :action => "import"
   
   # projects_Users
-  match "/projects_users/confirm_project_evaluator", :controller => "projects_users", :action => "confirm_project_evaluator"
+  get "/projects_users/confirm_project_evaluator", :controller => "projects_users", :action => "confirm_project_evaluator"
   
   # Index
   authenticated do
-    match "/", :controller => "indices", :action => "start"
+    get "/", :controller => "indices", :action => "start"
   end
   
-  match "/", :controller => "indices", :action => "home"
-  match "/index/start", :controller => "indices", :action => "start"
-  match "/index/home", :controller => "indices", :action => "home"
-  match "/index/impressum", :controller => "indices", :action => "impressum"
-  match "/index/impressum", :controller => "devise/indices", :action => "impressum"
-  match "/index/administrator", :controller => "indices", :action => "administrator"
-  match "/index/timetracker", :controller => "indices", :action => "timetracker"
-  match "/index/projectevaluator", :controller => "indices", :action => "projectevaluator"
+  get "/", :controller => "indices", :action => "home"
+  get "/index/start", :controller => "indices", :action => "start"
+  get "/index/home", :controller => "indices", :action => "home"
+  get "/index/impressum", :controller => "indices", :action => "impressum"
+  get "/index/impressum", :controller => "devise/indices", :action => "impressum"
+  get "/index/administrator", :controller => "indices", :action => "administrator"
+  get "/index/timetracker", :controller => "indices", :action => "timetracker"
+  get "/index/projectevaluator", :controller => "indices", :action => "projectevaluator"
 
   
   # Resources
@@ -34,7 +34,6 @@ ShinyNinja::Application.routes.draw do
   resources :projects
 
   devise_for :users, :controllers => { :registrations => :registrations, :passwords => :passwords}
-  devise_for :users
 
   resources :customers
 
@@ -44,11 +43,11 @@ ShinyNinja::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #   get 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  #   get 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -96,5 +95,5 @@ ShinyNinja::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  # get ':controller(/:action(/:id))(.:format)'
 end
