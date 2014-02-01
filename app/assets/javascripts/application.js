@@ -12,11 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.ui.autocomplete
+//= require jquery.ui.datepicker
 //= require bootstrap
+//= require turbolinks
 //= require_tree .
 
-
+$(document).on('ready page:load', function () {
 // Datepicker
 if (!Modernizr.inputtypes.date) {
      $(function() {
@@ -214,4 +216,6 @@ $(function () {
 			visiblePopover = '';
 		}
 	});
+});
+
 });
