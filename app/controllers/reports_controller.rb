@@ -125,7 +125,7 @@ class ReportsController < ApplicationController
           @report.update_attributes(:wage => @report.service.wage)
         end
         if params[:saveandnew]
-          format.html { redirect_to :controller => "reports", :action => "new", :report => params[:report], notice: t("confirmations.messages.saved_and_new") }
+          format.html { redirect_to :controller => "reports", :action => "new", :report => report_params, notice: t("confirmations.messages.saved_and_new") }
         else
           format.html { redirect_to @report, notice: t("confirmations.messages.saved") }
         end

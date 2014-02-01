@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
     @active_menu = "project"
 
     respond_to do |format|
-      params[:project][:country] = "de"
+
       if @project.save
         format.html { redirect_to @project, notice: t("confirmations.messages.saved") }
       else
