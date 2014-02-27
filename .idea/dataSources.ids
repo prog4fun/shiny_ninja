@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails shiny_ninja: staging" uuid="bf1b012e-7360-48c5-8fa1-e4a3bffa3976">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails shiny_ninja: test" uuid="5c2fe74d-e523-497f-a9cb-9666221ec77c">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails shiny_ninja: production" uuid="bda9d46e-2328-42e3-9e93-b4c574623535">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>
