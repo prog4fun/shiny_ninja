@@ -27,8 +27,7 @@ ShinyNinja::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  #TODO This is still from Rails3. Needed?
-  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  #ActionMailer::Base.delivery_method = :file
+  config.action_mailer.default_url_options = {:host => 'localhost:3000'}
+  ActionMailer::Base.delivery_method = :file
   #ActionMailer::Base.file_settings = { :location => Rails.root.join('tmp/mail') }
 end
