@@ -2,29 +2,39 @@
 
 <div class="page-header">
   <h1>
-    <%= t("activerecord.models.reports")%>
+    <%= t("activerecord.models.reports") %>
     <% if @evaluate_page %>
-      <small><%= t("activerecord.models.project") %>: <strong><%= @projects_user.project.name %></strong>, <%= t("labels.roles.timetracker") %>: <strong><%= @projects_user.project.customer.user.firstname %> <%= @projects_user.project.customer.user.lastname %></strong></small>  
+        <small><%= t("activerecord.models.project") %>:
+          <strong><%= @projects_user.project.name %></strong>, <%= t("labels.roles.timetracker") %>:
+          <strong><%= @projects_user.project.customer.user.firstname %> <%= @projects_user.project.customer.user.lastname %></strong>
+        </small>
     <% end %>
   </h1>
 </div>
 <div class="row">
   <div class="col-md-2 col-md-offset-7">
     <div class="btn-group">
-      <% if @reports.present?  %>
-        <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :projects_user => params[:projects_user], :format => :csv) %>" target="_blank">
-          <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
-          <%= t("labels.actions.download") %>
-        </a>
+      <% logger.debug "##############################################################################################" %>
+      <% logger.debug @reports.inspect %>
+      <% logger.debug "##############################################################################################" %>
+      <% logger.debug @reports.first %>
+      <% logger.debug "##############################################################################################" %>
+      <% logger.debug @reports.present? %>
+      <% logger.debug "##############################################################################################" %>
+      <% if @reports.present? %>
+          <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :projects_user => params[:projects_user], :format => :csv) %>" target="_blank">
+            <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
+            <%= t("labels.actions.download") %>
+          </a>
       <% end %>
       <% if @evaluate_page %>
-        <%= link_to_destroy_evaluator(:controller => "projects_users", :action => "show", :id => @projects_user.id, :project_id => @reports_all.first.project.id) %>
-        <a class='btn btn-danger' href='<%= url_for(:controller => "projects_users", :action => "show", :id => @projects_user.id)%>' data-confirm='<%= t("labels.actions.confirm") %>' data-method='delete' rel='nofollow'>
-          <span class="glyphicon glyphicon-off" alt="<%= t("activerecord.actions.projects_user.destroy") %>" title="<%= t("activerecord.actions.projects_user.destroy_explanation") %>"></span>
-          <%= t("activerecord.actions.projects_user.destroy") %>
-        </a>
+          <%= link_to_destroy_evaluator(:controller => "projects_users", :action => "show", :id => @projects_user.id, :project_id => @reports_all.first.project.id) %>
+          <a class='btn btn-danger' href='<%= url_for(:controller => "projects_users", :action => "show", :id => @projects_user.id) %>' data-confirm='<%= t("labels.actions.confirm") %>' data-method='delete' rel='nofollow'>
+            <span class="glyphicon glyphicon-off" alt="<%= t("activerecord.actions.projects_user.destroy") %>" title="<%= t("activerecord.actions.projects_user.destroy_explanation") %>"></span>
+            <%= t("activerecord.actions.projects_user.destroy") %>
+          </a>
       <% else %>
-        <%= link_to_new(:controller => "reports", :action => "new") %>
+          <%= link_to_new(:controller => "reports", :action => "new") %>
       <% end %>
     </div>
   </div>
@@ -39,50 +49,56 @@
           <th><%= t("activerecord.models.project") %></th>
           <th><%= t("activerecord.models.service") %></th>
           <% unless @evaluate_page %>
-            <th><%= t("activerecord.attributes.report.wage") %></th>
+              <th><%= t("activerecord.attributes.report.wage") %></th>
           <% end %>
           <th><%= t("labels.report.duration") %></th>
           <th style="display: none;"></th>
         </tr>
 
         <% if @reports.empty? %>
-          <tr><td colspan="<%= @evaluate_page ? 5:6 %>" class="text-muted"><%= t("labels.universe.no_entry") %> </td></tr>
-          <% if current_user.is? :project_evaluator %>
-            <tr><td colspan="5" class="text-muted"><%= t("labels.report.no_projects_as_evaluator")%> </td></tr>
-          <% end %>
-        <% else %>
-          <% rowspan_dates_array = generate_rowspan_for_reports(@reports) %>
-
-          <% @reports.each_with_index do |report, index| %>
-            <tr class="report report<%= report.id %>" rel="popover" data-placement="top" data-toggle="popover">
-              <% if rowspan_dates_array[index].present? %>
-                <td rowspan="<%= rowspan_dates_array[index] %>"><%= report.date %></td>
-              <% end %>
-              <td><%= truncate(report.project.name, :length => 40) %></td>
-              <td><%= truncate(report.service.name, :length => 40) %></td>
-              <% unless @evaluate_page %>
-                <td><%= report.get_wage %></td>
-              <% end %>
-              <td><%= report.get_duration %></td>
-              <td style="display: none;" class="popover_report<%= report.id %>">
-                <div style="margin-bottom: 25px;">
-                  <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %>
-                  <% unless @evaluate_page %>
-                    <br><b><%= t("labels.report.income") %></b>: <%= report.get_income %>
-                  <% end %>
-                  <% if report.comment.presence %>
-                    <br><b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
-                  <% end %>
-                </div>
-                <div style="text-align: center;">
-                  <%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %>
-                  <% unless @evaluate_page %><%= link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %><% end %>
-                  <% unless @evaluate_page %><%= link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %><% end %>
-                </div>
-              </td>
-
+            <tr>
+              <td colspan="<%= @evaluate_page ? 5 : 6 %>" class="text-muted"><%= t("labels.universe.no_entry") %> </td>
             </tr>
-          <% end %>
+            <% if current_user.is? :project_evaluator %>
+                <tr>
+                  <td colspan="5" class="text-muted"><%= t("labels.report.no_projects_as_evaluator") %> </td>
+                </tr>
+            <% end %>
+        <% else %>
+            <% rowspan_dates_array = generate_rowspan_for_reports(@reports) %>
+
+            <% @reports.each_with_index do |report, index| %>
+                <tr class="report report<%= report.id %>" rel="popover" data-placement="top" data-toggle="popover">
+                  <% if rowspan_dates_array[index].present? %>
+                      <td rowspan="<%= rowspan_dates_array[index] %>"><%= report.date %></td>
+                  <% end %>
+                  <td><%= truncate(report.project.name, :length => 40) %></td>
+                  <td><%= truncate(report.service.name, :length => 40) %></td>
+                  <% unless @evaluate_page %>
+                      <td><%= report.get_wage %></td>
+                  <% end %>
+                  <td><%= report.get_duration %></td>
+                  <td style="display: none;" class="popover_report<%= report.id %>">
+                    <div style="margin-bottom: 25px;">
+                      <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %>
+                      <% unless @evaluate_page %>
+                          <br><b><%= t("labels.report.income") %></b>: <%= report.get_income %>
+                      <% end %>
+                      <% if report.comment.presence %>
+                          <br><b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
+                      <% end %>
+                    </div>
+                    <div style="text-align: center;">
+                      <%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %>
+                      <% unless @evaluate_page %><%= link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
+                      <% end %>
+                      <% unless @evaluate_page %><%= link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+                      <% end %>
+                    </div>
+                  </td>
+
+                </tr>
+            <% end %>
         <% end %>
       </table>
       <div id="popover_container"></div>
