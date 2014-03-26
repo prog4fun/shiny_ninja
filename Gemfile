@@ -37,5 +37,8 @@ gem 'rvm-capistrano'
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
+# Use Apache with PhusionPassenger
+gem 'passenger', :group => [:staging, :production]
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
