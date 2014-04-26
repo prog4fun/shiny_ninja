@@ -31,8 +31,8 @@ gem 'browser'
 gem 'turbolinks'
 
 # Deploy with Capistrano
-gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'capistrano',  '~> 3.1'
+gem 'capistrano-rails', '~> 1.1'
 
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
