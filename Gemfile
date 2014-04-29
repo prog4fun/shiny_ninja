@@ -34,10 +34,10 @@ group :development, :test do
   gem 'awesome_print'
 # gem 'binding_of_caller'
 # Testing:
-  gem 'rspec-rails', '~> 3.0.0.beta' #Update! (https://github.com/rspec/rspec-rails)
-  gem 'fuubar'
-  gem 'capybara'
-  gem 'factory_girl' # factory_girl_rails only for Rails 3
+  #gem 'rspec-rails', '~> 3.0.0.beta' #Update! (https://github.com/rspec/rspec-rails)
+  #gem 'fuubar'
+  #gem 'capybara'
+  #gem 'factory_girl' # factory_girl_rails only for Rails 3
 end
 
 # Athentication:
