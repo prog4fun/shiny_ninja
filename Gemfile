@@ -10,7 +10,7 @@ gem 'sqlite3', :group => [:development, :test]
 
 # Standards:
 gem 'uglifier'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.3'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'therubyracer', :platforms => :ruby
