@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
       @projects = Project.where( :customer_id => @customers)
     end
     
-    params[:search] ||= {}
+    params[:search] ||= { date_from: (Date.today - 3.months).beginning_of_month }
     
     @date = Date.today  
     @reports_all = Report.search(params[:search], @projects_user, current_user)
