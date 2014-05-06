@@ -4,8 +4,8 @@
   <h1><%= t("activerecord.models.project") %> "<%= @project.name %>"</h1>
 </div>
 
-
-<div class="row">
+<% @project.archived? ? css="row archived" : css="row" %>
+<div class="<%= css %>">
   <div class="col-md-9">
 
     <div class="table-responsive">
@@ -30,7 +30,7 @@
           <th><%= t("labels.roles.projectevaluator") %></th>
           <% if @projects_users.present? %>
               <% @projects_users.each do |pu| %>
-                  <% if pu.project_token.present? # not confirmed yet       %>
+                  <% if pu.project_token.present? # not confirmed yet          %>
                       <td class="list-group-item text-muted">
                         <%= pu.confirmation_email %>
                   <% else %>
@@ -39,9 +39,13 @@
                   <% end %>
                   </td>
               <% end %>
-          <% else # no projects_user     %>
+          <% else # no projects_user        %>
               <td class="list-group-item">
-                <%= link_to(t("activerecord.attributes.project.new_time_evaluator"), controller: "projects", action: "edit", id: @project.id) %>
+                <% if @project.archived? %>
+                    <%= t("activerecord.attributes.project.no_time_evaluator") %>
+                <% else %>
+                    <%= link_to(t("activerecord.attributes.project.new_time_evaluator"), controller: "projects", action: "edit", id: @project.id) %>
+                <% end %>
               </td>
           <% end %>
         </tr>
