@@ -28,14 +28,20 @@
         </tr>
         <tr>
           <th><%= t("labels.roles.projectevaluator") %></th>
-          <% @projects_users.each do |pu| %>
-              <% if pu.project_token.present? # not confirmed yet %>
-                  <td class="list-group-item text-muted">
-                    <%= pu.confirmation_email %>
-              <% else %>
-                  <td class="list-group-item">
-                    <%= pu.user.firstname %> <%= pu.user.lastname %>
+          <% if @projects_users.present? %>
+              <% @projects_users.each do |pu| %>
+                  <% if pu.project_token.present? # not confirmed yet     %>
+                      <td class="list-group-item text-muted">
+                        <%= pu.confirmation_email %>
+                  <% else %>
+                      <td class="list-group-item">
+                        <%= pu.user.firstname %> <%= pu.user.lastname %>
+                  <% end %>
+                  </td>
               <% end %>
+          <% else # no projects_user   %>
+              <td class="list-group-item">
+                <%= link_to(t("activerecord.attributes.project.new_time_evaluator"), controller: "projects", action: "edit", id: @project.id) %>
               </td>
           <% end %>
         </tr>

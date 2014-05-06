@@ -241,6 +241,7 @@ de:
         customer_explanation: "Welcher Kunde Bezahlt die Rechnung?"
         task_period: "Tätigkeitszeitraum"
       project:
+        new_time_evaluator: 'Auswerter hinzufügen'
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
         wage: "Stundenlohn"
