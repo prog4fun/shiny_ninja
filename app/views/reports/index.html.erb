@@ -14,13 +14,6 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-7">
     <div class="btn-group">
-      <% logger.debug "##############################################################################################" %>
-      <% logger.debug @reports.inspect %>
-      <% logger.debug "##############################################################################################" %>
-      <% logger.debug @reports.first %>
-      <% logger.debug "##############################################################################################" %>
-      <% logger.debug @reports.present? %>
-      <% logger.debug "##############################################################################################" %>
       <% if @reports.present? %>
           <a class="btn btn-info" href="<%= url_for(:action => "index", :data => params[:search], :projects_user => params[:projects_user], :format => :csv) %>" target="_blank">
             <span class="glyphicon glyphicon-cloud-download" alt="<%= t("labels.actions.download") %>" title="<%= t("labels.actions.download_csv_explanation") %>"></span>
