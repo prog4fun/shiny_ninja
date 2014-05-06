@@ -20,6 +20,8 @@ ShinyNinja::Application.routes.draw do
   get "/index/administrator", :controller => "indices", :action => "administrator"
   get "/index/timetracker", :controller => "indices", :action => "timetracker"
   get "/index/projectevaluator", :controller => "indices", :action => "projectevaluator"
+  get "/projects/:id/archive", :controller => "projects", :action => "archive"
+  get "/projects/:id/restore", :controller => "projects", :action => "restore"
 
   
   # Resources

@@ -30,7 +30,7 @@
           <th><%= t("labels.roles.projectevaluator") %></th>
           <% if @projects_users.present? %>
               <% @projects_users.each do |pu| %>
-                  <% if pu.project_token.present? # not confirmed yet     %>
+                  <% if pu.project_token.present? # not confirmed yet       %>
                       <td class="list-group-item text-muted">
                         <%= pu.confirmation_email %>
                   <% else %>
@@ -39,7 +39,7 @@
                   <% end %>
                   </td>
               <% end %>
-          <% else # no projects_user   %>
+          <% else # no projects_user     %>
               <td class="list-group-item">
                 <%= link_to(t("activerecord.attributes.project.new_time_evaluator"), controller: "projects", action: "edit", id: @project.id) %>
               </td>
@@ -57,7 +57,12 @@
   <div class="col-md-1">
     <div class="btn-group-vertical">
       <%= show_link_to_index(:controller => "projects", :action => "index") %>
-      <%= show_link_to_edit(:controller => "projects", :action => "edit", :id => @project.id) %>
+      <% if @project.archived? %>
+          <%= show_link_to_restore(:controller => "projects", :action => "restore", :id => @project.id) %>
+      <% else %>
+          <%= show_link_to_archive(:controller => "projects", :action => "archive", :id => @project.id) %>
+          <%= show_link_to_edit(:controller => "projects", :action => "edit", :id => @project.id) %>
+      <% end %>
       <%= show_link_to_destroy(:controller => "projects", :action => "show", :id => @project.id) %>
     </div>
   </div>

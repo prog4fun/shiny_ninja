@@ -118,6 +118,27 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def archive
+    @project = Project.find(params[:id])
+    if @project.archived?
+      redirect_to @project, alert: t("labels.state.archived_already_info", element: t("activerecord.models.project"))
+    else
+      @project.update_attributes(archived: true)
+      redirect_to @project, notice: t("activerecord.attributes.project.archive_notice")
+    end
+  end
+
+  def restore
+    @project = Project.find(params[:id])
+    if @project.archived?
+      @project.update_attributes(archived: false)
+      redirect_to @project, notice: t("labels.actions.restore_notice", element: t("activerecord.models.project"))
+    else
+      redirect_to @project, alert: t("labels.state.not_archived_already_info", element: t("activerecord.models.project"))
+    end
+
+  end
+
   #######################################################################
 
   private

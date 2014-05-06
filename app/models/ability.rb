@@ -14,6 +14,7 @@ class Ability
       can :manage, Customer
       can :manage, ProjectsUser
       can :manage, Project
+      #can :archive, Project
       can :manage, Report
       can :manage, Service
       can :manage, ProjectsUser
