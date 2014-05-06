@@ -60,7 +60,7 @@
       <% if @project.archived? %>
           <%= show_link_to_restore(:controller => "projects", :action => "restore", :id => @project.id) %>
       <% else %>
-          <%= show_link_to_archive(:controller => "projects", :action => "archive", :id => @project.id) %>
+          <%= show_link_to_archive_confirm(t("activerecord.attributes.project.restore_warning"), :controller => "projects", :action => "archive", :id => @project.id) %>
           <%= show_link_to_edit(:controller => "projects", :action => "edit", :id => @project.id) %>
       <% end %>
       <%= show_link_to_destroy(:controller => "projects", :action => "show", :id => @project.id) %>

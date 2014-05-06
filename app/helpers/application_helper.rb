@@ -181,6 +181,14 @@ module ApplicationHelper
     end
   end
 
+  def show_link_to_archive_confirm(confirm_text, options = {})
+    if can? :archive, hash_with_controller_to_model(options)
+      url = url_for(options)
+      html_code = "<a class='btn btn-success' href='#{url}' data-confirm='#{confirm_text}'><i class='#{icon_archive}' alt='#{t("labels.actions.archive")}' title='#{t("labels.actions.archive_explanation")}'></i> #{t("labels.actions.archive")}</a>"
+      return raw html_code
+    end
+  end
+
   def show_link_to_restore(options = {})
     if can? :archive, hash_with_controller_to_model(options)
       url = url_for(options)

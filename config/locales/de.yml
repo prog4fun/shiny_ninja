@@ -244,6 +244,8 @@ de:
         archived: 'archiviert'
         archive_notice: "Projekt wurde archiviert. Zeit-Auswerter können auch archivierte Projekte sehen."
         new_time_evaluator: 'Auswerter hinzufügen'
+        restore_warning: 'Wird das Projekt archiviert, werden auch alle zugehörigen Zeiteinträge archiviert. (NOCH NICHT!)'
+        #TODO noch nicht weg
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
         wage: "Stundenlohn"
