@@ -241,6 +241,7 @@ de:
         customer_explanation: "Welcher Kunde Bezahlt die Rechnung?"
         task_period: "Tätigkeitszeitraum"
       project:
+        archived: 'archiviert'
         new_time_evaluator: 'Auswerter hinzufügen'
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
@@ -250,6 +251,7 @@ de:
         confirmation_email: "E-Mail"
         confirmation_email_explanation: "E-Mail des Zeit-Auswerters"
       report:
+        archived: 'archiviert'
         date: "Datum"
         duration: "Dauer"
         duration_explanation: "in Stunden, z.B. 5.3"
@@ -299,6 +301,7 @@ de:
       
   labels:
     actions:
+      archive: 'archivieren'
       back: "Zurück"
       cancel: "Abbrechen"
       cancel_confirm: "Sind Sie sich sicher? Alle Eingaben gehen verloren."
@@ -322,6 +325,7 @@ de:
       new_explanation: "Legt ein neuen Eintrag an"
       password_reset: "Passwort zurücksetzen"
       reset: "Zurücksetzen"
+      restore: 'wiederherstellen'
       saveandnew: "Speichern und Neu"
       save: "Speichern"
       search: "Suchen"
@@ -330,6 +334,7 @@ de:
       search_toggle: "Klicken um Suche ein- oder auszublenden."
       search_head: "Suche"
       show: "Anzeigen"
+      show_explanation: 'Zeigt den ausgewählten Eintrag'
       sign_up: "Registrieren"
       sign_up_explanation: "Neuen Account anlegen"
     authorization:
@@ -375,6 +380,8 @@ de:
       wage: "Gehalt"
       wages: "Umsatz"
     state:
+      archived: 'archivierte %{element}'
+      not_archived: 'aktuelle %{element} '
       positive: "Ja"
       negative: "Nein"
     statistics:
@@ -384,6 +391,8 @@ de:
       this_month: "Aktueller Monat"
       last_month: "Vergangener Monat"
     universe:
+      all: 'alle %{element}'
+      archive: "Archiv"
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."
       empty_search_option: "Bitte auswählen"

@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
   def index
     @customers = Customer.where(:user_id => current_user.id)
-    params[:search] ||= {}
+    params[:search] ||= {archived: false}
     @projects = Project.search(params[:search], current_user).page(params[:page])
 
     @active_menu = "project"
