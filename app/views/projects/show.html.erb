@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 <div class="page-header">
-  <h1><%= t("activerecord.models.project")%> "<%= @project.name %>"</h1>
+  <h1><%= t("activerecord.models.project") %> "<%= @project.name %>"</h1>
 </div>
 
 
@@ -23,16 +23,26 @@
           <td><%= @project.timebudget %></td>
         </tr>
         <tr>
+          <th><%= t("activerecord.attributes.project.wage") %></th>
+          <td><%= number_to_currency(@project.wage) %></td>
+        </tr>
+        <tr>
           <th><%= t("labels.roles.projectevaluator") %></th>
-          <% @projects_users.each do |pu| %>
-            <% if pu.project_token.present? # not confirmed yet%>
-              <td class="list-group-item text-muted">
-                <%= pu.confirmation_email %>
-              <% else %>
-              <td class="list-group-item">
-                <%= pu.user.firstname %> <%= pu.user.lastname %>
+          <% if @projects_users.present? %>
+              <% @projects_users.each do |pu| %>
+                  <% if pu.project_token.present? # not confirmed yet     %>
+                      <td class="list-group-item text-muted">
+                        <%= pu.confirmation_email %>
+                  <% else %>
+                      <td class="list-group-item">
+                        <%= pu.user.firstname %> <%= pu.user.lastname %>
+                  <% end %>
+                  </td>
               <% end %>
-            </td>
+          <% else # no projects_user   %>
+              <td class="list-group-item">
+                <%= link_to(t("activerecord.attributes.project.new_time_evaluator"), controller: "projects", action: "edit", id: @project.id) %>
+              </td>
           <% end %>
         </tr>
         <tr>
