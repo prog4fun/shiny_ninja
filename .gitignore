@@ -29,3 +29,4 @@ pickle-email-*.html
 /config/deploy/staging.rb
 /.idea/*
 /config/initializers/secret_token.rb
+*~
