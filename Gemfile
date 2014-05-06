@@ -7,7 +7,6 @@ gem 'mysql2', :group => [:staging, :production]
 gem 'sqlite3', :group => [:development, :test]
 
 
-
 # Standards:
 gem 'uglifier'
 gem 'sass-rails', '~> 4.0.3'
@@ -20,7 +19,6 @@ gem 'sdoc', :require => false, :group => [:doc]
 gem 'yard'
 
 
-
 group :development, :test do
 # Faster than Webrick:
   gem 'puma'
@@ -30,14 +28,14 @@ group :development, :test do
   gem 'quiet_assets'
 # More infomration in error-pages, live console:
   gem 'better_errors'
+  gem 'binding_of_caller'
 # Structured output of inspect, ap(<>).html_safe:
   gem 'awesome_print'
-# gem 'binding_of_caller'
 # Testing:
-  #gem 'rspec-rails', '~> 3.0.0.beta' #Update! (https://github.com/rspec/rspec-rails)
-  #gem 'fuubar'
-  #gem 'capybara'
-  #gem 'factory_girl' # factory_girl_rails only for Rails 3
+#gem 'rspec-rails', '~> 3.0.0.beta' #Update! (https://github.com/rspec/rspec-rails)
+#gem 'fuubar'
+#gem 'capybara'
+#gem 'factory_girl' # factory_girl_rails only for Rails 3
 end
 
 # Athentication:
@@ -52,7 +50,7 @@ gem 'browser'
 
 
 # Deploy with Capistrano
-gem 'capistrano',  '~> 3.1'
+gem 'capistrano', '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
 
 gem 'bootstrap-sass'
