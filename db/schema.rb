@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504185003) do
+ActiveRecord::Schema.define(version: 20140506115528) do
 
   create_table "bills", force: true do |t|
     t.string   "number",                               null: false
@@ -36,13 +36,14 @@ ActiveRecord::Schema.define(version: 20140504185003) do
   end
 
   create_table "projects", force: true do |t|
-    t.string   "name",                                 null: false
+    t.string   "name",                                                 null: false
     t.decimal  "timebudget",  precision: 10, scale: 2
     t.text     "comment"
-    t.integer  "customer_id",                          null: false
+    t.integer  "customer_id",                                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "wage",        precision: 10, scale: 2
+    t.boolean  "archived",                             default: false
   end
 
   create_table "projects_users", force: true do |t|
@@ -55,14 +56,15 @@ ActiveRecord::Schema.define(version: 20140504185003) do
   end
 
   create_table "reports", force: true do |t|
-    t.date     "date",                                null: false
+    t.date     "date",                                                null: false
     t.decimal  "duration",   precision: 10, scale: 2
     t.text     "comment"
-    t.integer  "project_id",                          null: false
-    t.integer  "service_id",                          null: false
+    t.integer  "project_id",                                          null: false
+    t.integer  "service_id",                                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "wage",       precision: 10, scale: 2
+    t.boolean  "archived",                            default: false
   end
 
   create_table "services", force: true do |t|

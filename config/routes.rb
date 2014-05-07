@@ -1,17 +1,17 @@
 ShinyNinja::Application.routes.draw do
-  
+
 
   # Reports
   # get "/reports/import", :controller => "reports", :action => "import"
-  
+
   # projects_Users
   get "/projects_users/confirm_project_evaluator", :controller => "projects_users", :action => "confirm_project_evaluator"
-  
+
   # Index
   authenticated do
     get "/", :controller => "indices", :action => "start"
   end
-  
+
   get "/", :controller => "indices", :action => "home"
   get "/index/start", :controller => "indices", :action => "start"
   get "/index/home", :controller => "indices", :action => "home"
@@ -21,19 +21,25 @@ ShinyNinja::Application.routes.draw do
   get "/index/timetracker", :controller => "indices", :action => "timetracker"
   get "/index/projectevaluator", :controller => "indices", :action => "projectevaluator"
 
-  
+  # archive
+  get "/projects/:id/archive", :controller => "projects", :action => "archive"
+  get "/projects/:id/restore", :controller => "projects", :action => "restore"
+  get "/reports/:id/archive", :controller => "reports", :action => "archive"
+  get "/reports/:id/restore", :controller => "reports", :action => "restore"
+
+
   # Resources
   resources :bills
-  
+
   resources :services
 
   resources :reports
-  
+
   resources :projects_users
-  
+
   resources :projects
 
-  devise_for :users, :controllers => { :registrations => :registrations, :passwords => :passwords}
+  devise_for :users, :controllers => {:registrations => :registrations, :passwords => :passwords}
 
   resources :customers
 

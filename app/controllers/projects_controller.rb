@@ -5,11 +5,12 @@ class ProjectsController < ApplicationController
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
+  before_action :get_my_projects, only: [:show, :archive, :restore]
   load_and_authorize_resource
 
   def index
     @customers = Customer.where(:user_id => current_user.id)
-    params[:search] ||= {}
+    params[:search] ||= {archived: 'false'}
     @projects = Project.search(params[:search], current_user).page(params[:page])
 
     @active_menu = "project"
@@ -23,10 +24,10 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
 
-    customers = current_user.customers
-    my_projects = Project.where(:customer_id => customers)
+    # customers = current_user.customers
+    # my_projects = Project.where(:customer_id => customers)
 
-    if my_projects.include?(@project)
+    if @my_projects.include?(@project)
       @projects_users = ProjectsUser.where(:project_id => @project.id)
       @active_menu = "project"
       add_breadcrumb t("labels.actions.show"), project_path(@project)
@@ -118,6 +119,36 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def archive
+    project = Project.find(params[:id])
+    if @my_projects.include?(project)
+      if project.archived?
+        redirect_to project, alert: t("labels.state.archived_already_info", element: t("activerecord.models.project"))
+      else
+        reports_of_project = Report.where(project_id: project.id)
+        reports_of_project.each { |report| report.update_attributes(archived: true) }
+        project.update_attributes(archived: true)
+        redirect_to project, notice: t("activerecord.attributes.project.archive_notice")
+      end
+    else
+      not_own_object_redirection
+    end
+  end
+
+  def restore
+    project = Project.find(params[:id])
+    if @my_projects.include?(project)
+      if project.archived?
+        project.update_attributes(archived: false)
+        redirect_to project, notice: t("labels.actions.restore_notice", element: t("activerecord.models.project"))
+      else
+        redirect_to project, alert: t("labels.state.not_archived_already_info", element: t("activerecord.models.project"))
+      end
+    else
+      not_own_object_redirection
+    end
+  end
+
   #######################################################################
 
   private
@@ -127,5 +158,10 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:comment, :customer_id, :name, :timebudget, :wage)
+  end
+
+  def get_my_projects
+    customers = current_user.customers
+    @my_projects = Project.where(:customer_id => customers)
   end
 end

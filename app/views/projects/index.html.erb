@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 <div class="page-header">
-  <h1><%= t("activerecord.models.projects")%></h1>
+  <h1><%= t("activerecord.models.projects") %></h1>
 </div>
 
 
@@ -23,13 +23,14 @@
         </tr>
 
         <% @projects.each do |project| %>
-          <tr>
-            <td><%= project.name %></td>
-            <td><%= project.customer.name %></td>
-            <td style="width:5%"><%= link_to_show(project) %></td>
-            <%= index_link_to_edit(:controller => "projects", :action => "edit", :id => project.id) %></td>
-            <%= index_link_to_destroy(:controller => "projects", :action => "show", :id => project.id) %></td>
-          </tr>
+            <% project.archived? ? css="archived" : css="" %>
+            <tr class="<%= css %>">
+              <td><%= project.name %></td>
+              <td><%= project.customer.name %></td>
+              <td style="width:5%"><%= link_to_show(project) %></td>
+              <%= index_link_to_edit(:controller => "projects", :action => "edit", :id => project.id) %></td>
+              <%= index_link_to_destroy(:controller => "projects", :action => "show", :id => project.id) %></td>
+            </tr>
         <% end %>
       </table>
     </div>
