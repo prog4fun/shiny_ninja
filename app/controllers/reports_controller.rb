@@ -83,7 +83,7 @@ class ReportsController < ApplicationController
       @report = Report.new :date => Date.today
     end
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
@@ -98,7 +98,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
 
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where("user_id = ?", current_user.id)
     my_reports = Report.where(:service_id => @services)
 
@@ -113,7 +113,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
@@ -137,7 +137,7 @@ class ReportsController < ApplicationController
   def update
     @report = Report.find(params[:id])
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
