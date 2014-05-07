@@ -125,6 +125,8 @@ class ProjectsController < ApplicationController
       if project.archived?
         redirect_to project, alert: t("labels.state.archived_already_info", element: t("activerecord.models.project"))
       else
+        reports_of_project = Report.where(project_id: project.id)
+        reports_of_project.each { |report| report.update_attributes(archived: true) }
         project.update_attributes(archived: true)
         redirect_to project, notice: t("activerecord.attributes.project.archive_notice")
       end

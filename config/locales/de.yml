@@ -242,11 +242,10 @@ de:
         task_period: "Tätigkeitszeitraum"
       project:
         archived: 'archiviert'
-        archive_notice: "Projekt wurde archiviert. Zeit-Auswerter können auch archivierte Projekte sehen."
+        archive_notice: "Projekt wurde archiviert. Zeit-Auswerter können auch archivierte Projekte und deren Zeit-Einträge sehen."
         new_time_evaluator: 'Auswerter hinzufügen'
         no_time_evaluator: 'kein Zeitauswerter'
-        restore_warning: 'Wird das Projekt archiviert, werden auch alle zugehörigen Zeiteinträge archiviert. (NOCH NICHT!)'
-        #TODO "noch nicht" entfernen
+        restore_warning: 'Wird das Projekt archiviert, werden auch alle zugehörigen Zeiteinträge archiviert.'
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
         wage: "Stundenlohn"
