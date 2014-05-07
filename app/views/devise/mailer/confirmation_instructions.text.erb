@@ -1,11 +1,13 @@
 # encoding: ASCII
 
-<p>Herzlich Willkommen <%= @resource.firstname.encode("ASCII", :invalid => :replace, :undef => :replace) %> <%= @resource.lastname.encode("ASCII", :invalid => :replace, :undef => :replace) %>,</p>
+Herzlich Willkommen <%= @resource.firstname.encode("ASCII", :invalid => :replace, :undef => :replace) %> <%= @resource.lastname.encode("ASCII", :invalid => :replace, :undef => :replace) %>,
 
-<p>Sie koennen Ihren Account bestaetigen, indem Sie den folgenden Link anklicken:</p>
+Sie koennen Ihren Account bestaetigen, indem Sie den folgenden Link anklicken:
 
-<p><%= link_to 'Account bestaetigen', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<%= link_to 'Account bestaetigen', confirmation_url(@resource, :confirmation_token => @token) %>
 
-<p>Sie werden direkt angemeldet und der Account ist freigeschaltet.</p>
+Danach koennen Sie sich mit Ihrem Benutzernamen und Ihrem Passwort anmelden.
 
-<p>Viel Spass mit der Applikation</p>
+Falls Sie den Account zum Zeit auswerten erstellt haben, koennen Sie mithilfe des Links in der vorherigen E-Mail das Projekt hinzuf?gen.
+
+Viel Spass mit der Applikation!
