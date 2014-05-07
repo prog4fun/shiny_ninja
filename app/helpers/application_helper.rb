@@ -30,6 +30,13 @@ module ApplicationHelper
     end
   end
 
+  # archive dropdown (e.g. in filters)
+  def options_for_archive(element_translation)
+    options_for_select([[t("labels.state.not_archived", elements: element_translation), 'false'],
+                        [t("labels.state.archived", elements: element_translation), 'true'],
+                        [t("labels.universe.all", elements: element_translation), nil]],
+                       selected: params[:search][:archived])
+  end
 
   def link_to_function(icon, options = {})
     return link_to(icon, options, :class => "no_hover")

@@ -12,9 +12,6 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true
   validates :customer_id, :presence => true
 
-  ARCHIVED = 1
-  NOT_ARCHIVED = 0
-
   # search
   def self.search(search, current_user)
 
@@ -28,11 +25,11 @@ class Project < ActiveRecord::Base
       if search["customer"].present?
         result = result.where('customer_id = ?', search["customer"])
       end
-      # archived, will return nil if all is selected.
-      if search["archived"] == Project::NOT_ARCHIVED.to_s
+      # archived, will return nil if 'all' is selected.
+      if search["archived"] == 'false'
         result = result.where('archived = ?', false)
       end
-      if search["archived"] == Project::ARCHIVED.to_s
+      if search["archived"] == 'true'
         result = result.where('archived = ?', true)
       end
     end

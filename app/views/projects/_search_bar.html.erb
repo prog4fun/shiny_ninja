@@ -20,11 +20,7 @@
 
         <div class="form-group">
           <%= label_tag("[search][archived]", t("labels.universe.archive")) %>
-          <%= select_tag("[search][archived]",
-                         options_for_select([[t("labels.state.not_archived", elements: t("activerecord.models.projects")), Project::NOT_ARCHIVED],
-                                             [t("labels.state.archived", elements: t("activerecord.models.projects")), Project::ARCHIVED],
-                                             [t("labels.universe.all", elements: t("activerecord.models.projects")), nil]], selected: params[:search][:archived]),
-                         class: "form-control")%>
+          <%= select_tag("[search][archived]", options_for_archive(t("activerecord.models.projects")), class: "form-control") %>
         </div>
 
         <div class="form-group">

@@ -11,18 +11,18 @@ class ReportsController < ApplicationController
 
   def index
 
-    if params[:projects_user].present?
+    if params[:projects_user].present? # index for project_evaluator
       @active_menu = "evaluate_project"
       @evaluate_page = true
       @projects_user = ProjectsUser.find(params[:projects_user])
+      params[:search] ||= {date_from: (Date.today - 3.months).beginning_of_month}
 
-    else # see _search_bar !
+    else # index for timetracker + _search_bar !
       @active_menu = "report"
       @customers = Customer.where(:user_id => current_user.id)
       @projects = Project.where(:customer_id => @customers)
+      params[:search] ||= {date_from: (Date.today - 3.months).beginning_of_month, archived: 'false'}
     end
-
-    params[:search] ||= {date_from: (Date.today - 3.months).beginning_of_month}
 
     @date = Date.today
     @reports_all = Report.search(params[:search], @projects_user, current_user)
