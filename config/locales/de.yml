@@ -306,7 +306,7 @@ de:
   labels:
     actions:
       archive: 'Archivieren'
-      archive_notice: "#element wurde archiviert."
+      archive_notice: "%{element} wurde archiviert."
       archive_explanation: 'Archiviert den ausgewählten Eintrag.'
       back: "Zurück"
       cancel: "Abbrechen"
@@ -388,9 +388,9 @@ de:
       wages: "Umsatz"
     state:
       archived: 'archivierte %{elements}'
-      archived_already_info: "%{element} kann nicht archiviert werden. Es ist bereits archiviert."
+      archived_already_info: "%{element} kann nicht archiviert werden. %{element} ist bereits archiviert."
       not_archived: 'aktuelle %{elements}'
-      not_archived_already_info: "%{element} kann nicht wiederhergestellt werden. Es ist nicht archiviert."
+      not_archived_already_info: "%{element} kann nicht wiederhergestellt werden. %{element} ist nicht archiviert."
       positive: "Ja"
       negative: "Nein"
     statistics:

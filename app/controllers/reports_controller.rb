@@ -4,6 +4,7 @@ class ReportsController < ApplicationController
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
+  before_action :get_my_reports, only: [:show, :archive, :restore]
   load_and_authorize_resource
 
   # Includes
@@ -51,13 +52,11 @@ class ReportsController < ApplicationController
     @evaluate_page = true if params[:projects_user].present?
     @report = Report.find(params[:id])
 
-    my_services = Service.where("user_id = ?", current_user.id)
-    my_reports = Report.where(:service_id => my_services)
     pes_projects = current_user.projects
     pes_reports = Report.where(:project_id => pes_projects)
 
 
-    if my_reports.include?(@report)
+    if @my_reports.include?(@report)
       add_breadcrumb t("labels.actions.show"), report_path(@report)
       @active_menu = "report"
 
@@ -165,6 +164,34 @@ class ReportsController < ApplicationController
     end
   end
 
+  def archive
+    report = Report.find(params[:id])
+    if @my_reports.include?(report)
+      if report.archived?
+        redirect_to report, alert: t("labels.state.archived_already_info", element: t("activerecord.models.report"))
+      else
+        report.update_attributes(archived: true)
+        redirect_to report, notice: t("labels.actions.archive_notice", element: t("activerecord.models.report"))
+      end
+    else
+      not_own_object_redirection
+    end
+  end
+
+  def restore
+    report = Report.find(params[:id])
+    if @my_reports.include?(report)
+      if report.archived?
+        report.update_attributes(archived: false)
+        redirect_to report, notice: t("labels.actions.restore_notice", element: t("activerecord.models.report"))
+      else
+        redirect_to report, alert: t("labels.state.not_archived_already_info", element: t("activerecord.models.report"))
+      end
+    else
+      not_own_object_redirection
+    end
+  end
+
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), reports_path, :title => t("labels.breadcrumbs.index_title")
@@ -182,11 +209,15 @@ class ReportsController < ApplicationController
     params.require(:report).permit(:comment, :date, :duration, :project_id, :service_id, :wage)
   end
 
+  def get_my_reports
+    my_services = Service.where("user_id = ?", current_user.id)
+    @my_reports = Report.where(:service_id => my_services)
+  end
+
   def get_wage
     wage = @report.project.wage
     return wage if wage.present?
     return @report.service.wage
-
   end
 
 end

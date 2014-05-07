@@ -61,7 +61,8 @@
             <% rowspan_dates_array = generate_rowspan_for_reports(@reports) %>
 
             <% @reports.each_with_index do |report, index| %>
-                <tr class="report report<%= report.id %>" rel="popover" data-placement="top" data-toggle="popover">
+                <% (report.archived? && !@evaluate_page) ? css="report report#{report.id} archived" : css="report report#{report.id} " %>
+                <tr class="<%= css %>" rel="popover" data-placement="top" data-toggle="popover">
                   <% if rowspan_dates_array[index].present? %>
                       <td rowspan="<%= rowspan_dates_array[index] %>"><%= report.date %></td>
                   <% end %>
