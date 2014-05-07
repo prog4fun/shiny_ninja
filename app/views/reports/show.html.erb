@@ -4,8 +4,8 @@
   <h1>Eintrag vom <%= @report.date %></h1>
 </div>
 
-
-<div class="row">
+<% (@report.archived? && !@evaluate_page) ? css="row archived" : css="row" %>
+<div class="<%= css %>">
   <div class="col-md-9">
 
     <div class="table-responsive">
@@ -19,19 +19,20 @@
           <td><%= @report.duration %> <%= t("labels.datetime.hours") %></td>
         </tr>
         <% unless @evaluate_page %>
-          <tr>
-            <th><%= t("labels.report.wage") %></th>
-            <td><%= @report.get_wage %></td>
-          </tr>
-          <tr>
-            <th><%= t("labels.report.income") %></th>
-            <td><%= @report.get_income %></td>
-          </tr>
+            <tr>
+              <th><%= t("labels.report.wage") %></th>
+              <td><%= @report.get_wage %></td>
+            </tr>
+            <tr>
+              <th><%= t("labels.report.income") %></th>
+              <td><%= @report.get_income %></td>
+            </tr>
         <% end %>
         <tr>
           <th><%= t("activerecord.models.project") %></th>
           <td><%= @report.project.name %></td>
-        </tr><tr>
+        </tr>
+        <tr>
           <th><%= t("activerecord.models.service") %></th>
           <td><%= @report.service.name %></td>
         </tr>
@@ -47,9 +48,17 @@
   <div class="col-md-1">
     <div class="btn-group-vertical">
       <%= show_link_to_index(:controller => "reports", :action => "index", :projects_user => params[:projects_user]) %>
+
+      <% if @report.archived? %>
+          <%= show_link_to_restore(:controller => "reports", :action => "restore", :id => @report.id) %>
+      <% else %>
+          <%= show_link_to_archive(:controller => "reports", :action => "archive", :id => @report.id) %>
+          <% unless @evaluate_page %>
+              <%= show_link_to_edit(:controller => "reports", :action => "edit", :id => @report.id) %>
+          <% end %>
+      <% end %>
       <% unless @evaluate_page %>
-        <%= show_link_to_edit(:controller => "reports", :action => "edit", :id => @report.id) %>
-        <%= show_link_to_destroy(:controller => "reports", :action => "show", :id => @report.id) %>
+          <%= show_link_to_destroy(:controller => "reports", :action => "show", :id => @report.id) %>
       <% end %>
     </div>
   </div>

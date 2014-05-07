@@ -1,31 +1,39 @@
 # encoding: UTF-8
 
 <%= form_tag(projects_path, :method => 'get', :role => "form") do %>
-  <fieldset>
-    <legend>
-      <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
-      <%= t("labels.actions.search_head") %>
-      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".sidebar-collapse" title="<%= t("labels.actions.search_toggle") %>">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </legend>
+    <fieldset>
+      <legend>
+        <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
+        <%= t("labels.actions.search_head") %>
+        <button type="button" class="sidebar-toggle" data-toggle="collapse" data-target=".sidebar-collapse" title="<%= t("labels.actions.search_toggle") %>">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </legend>
 
-    <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
-      <div class="form-group">
-        <%= label_tag("[search][name]", t("labels.name")) %>
-        <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>
+      <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
+        <div class="form-group">
+          <%= label_tag("[search][name]", t("labels.name")) %>
+          <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag("[search][archived]", t("labels.universe.archive")) %>
+          <%= select_tag("[search][archived]", options_for_archive(t("activerecord.models.projects")), class: "form-control") %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag("[search][customer]", t("activerecord.models.customer")) %>
+          <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect { |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
+        </div>
+
+        <button type="submit" class="btn btn-info">
+          <i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %>
+        </button>
+        <a class="btn btn-default btn-xs" href="<%= projects_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %>
+        </a></legend>
+
       </div>
-
-      <div class="form-group">
-        <%= label_tag("[search][customer]", t("activerecord.models.customer")) %>
-        <%= select_tag("[search][customer]", options_for_select(@customers.order("name ASC").collect{ |c| [c.name, c.id] }, params[:search][:customer]), :prompt => t("labels.universe.empty_search_option"), :class => "form-control") %>
-      </div>
-
-      <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>    
-      <a class="btn btn-default btn-xs" href="<%= projects_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a></legend>
-
-    </div>
-  </fieldset>
+    </fieldset>
 <% end %>

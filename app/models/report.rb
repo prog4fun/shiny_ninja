@@ -92,6 +92,13 @@ class Report < ActiveRecord::Base
       if search["project"].present?
         result = result.where('project_id = ?', search["project"])
       end
+      # archived, will return nil if 'all' is selected.
+      if search["archived"] == 'false'
+        result = result.where('archived = ?', false)
+      end
+      if search["archived"] == 'true'
+        result = result.where('archived = ?', true)
+      end
     end
     result.order("date DESC")
   end

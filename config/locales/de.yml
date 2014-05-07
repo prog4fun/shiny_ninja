@@ -241,7 +241,11 @@ de:
         customer_explanation: "Welcher Kunde Bezahlt die Rechnung?"
         task_period: "Tätigkeitszeitraum"
       project:
+        archived: 'archiviert'
+        archive_notice: "Projekt wurde archiviert. Zeit-Auswerter können auch archivierte Projekte und deren Zeit-Einträge sehen."
         new_time_evaluator: 'Auswerter hinzufügen'
+        no_time_evaluator: 'kein Zeitauswerter'
+        restore_warning: 'Wird das Projekt archiviert, werden auch alle zugehörigen Zeiteinträge archiviert.'
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
         wage: "Stundenlohn"
@@ -250,6 +254,7 @@ de:
         confirmation_email: "E-Mail"
         confirmation_email_explanation: "E-Mail des Zeit-Auswerters"
       report:
+        archived: 'archiviert'
         date: "Datum"
         duration: "Dauer"
         duration_explanation: "in Stunden, z.B. 5.3"
@@ -299,6 +304,9 @@ de:
       
   labels:
     actions:
+      archive: 'Archivieren'
+      archive_notice: "%{element} wurde archiviert."
+      archive_explanation: 'Archiviert den ausgewählten Eintrag.'
       back: "Zurück"
       cancel: "Abbrechen"
       cancel_confirm: "Sind Sie sich sicher? Alle Eingaben gehen verloren."
@@ -311,7 +319,7 @@ de:
       email_confirmation_submit: "E-Mail Bestätigung anfordern"
       email_confirmation_new: "E-Mail Bestätigung erneut anfordern"
       edit: "Bearbeiten"
-      edit_explanation: "Editiert den ausgewählten Eintrag"
+      edit_explanation: "Bearbeitet den ausgewählten Eintrag"
       forgot_password: "Passwort vergessen?"
       head: "Aktionen"
       index: "Übersicht"
@@ -322,6 +330,8 @@ de:
       new_explanation: "Legt ein neuen Eintrag an"
       password_reset: "Passwort zurücksetzen"
       reset: "Zurücksetzen"
+      restore: 'Wiederherstellen'
+      restore_notice: "%{element} wurde wiederhergestellt."
       saveandnew: "Speichern und Neu"
       save: "Speichern"
       search: "Suchen"
@@ -330,6 +340,7 @@ de:
       search_toggle: "Klicken um Suche ein- oder auszublenden."
       search_head: "Suche"
       show: "Anzeigen"
+      show_explanation: 'Zeigt den ausgewählten Eintrag'
       sign_up: "Registrieren"
       sign_up_explanation: "Neuen Account anlegen"
     authorization:
@@ -375,6 +386,10 @@ de:
       wage: "Gehalt"
       wages: "Umsatz"
     state:
+      archived: 'archivierte %{elements}'
+      archived_already_info: "%{element} kann nicht archiviert werden. %{element} ist bereits archiviert."
+      not_archived: 'aktuelle %{elements}'
+      not_archived_already_info: "%{element} kann nicht wiederhergestellt werden. %{element} ist nicht archiviert."
       positive: "Ja"
       negative: "Nein"
     statistics:
@@ -384,6 +399,8 @@ de:
       this_month: "Aktueller Monat"
       last_month: "Vergangener Monat"
     universe:
+      all: 'alle %{elements}'
+      archive: "Archiv"
       comment: "Kommentar"
       comment_explanation: "Platz für mehr ..."
       empty_search_option: "Bitte auswählen"
