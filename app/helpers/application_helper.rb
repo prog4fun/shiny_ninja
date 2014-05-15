@@ -9,19 +9,45 @@ module ApplicationHelper
     return raw html_code
   end
 
-  def search_active?
-    params[:search].present? ? true : false
+  # Checks search parameters.
+  # Takes exceptions as Hash (key value) which will be ignored (can be present but won't care).
+  # returns true if search parameters (minus exceptions) are present. False if not.
+  def search_active?(key = nil, value = nil)
+    #def search_active?(key, value)
+    # raise
+    if (key.nil? || value.nil?) || params[:search][key] == value
+      if params[:search][:archived] == 'false'
+        if params[:search].except(:archived, key).present?
+          true
+        else
+          false
+        end
+      else
+        # "params[:search][key] == value ? false : true" will be enough
+        # if every model has a archive function
+        if params[:search].except(:archived).present?
+          true
+        else
+          false
+        end
+      end
+
+    else
+      true
+    end
+
   end
 
-  # Returns a String of the translated month name.
-  # Takes a date (not formatted).
-  # Reduces 1 month of the date and builds the month name of it.
-  # Locales caused a problem to display a incorrect month name. This methods works as a workaround. 
+
+# Returns a String of the translated month name.
+# Takes a date (not formatted).
+# Reduces 1 month of the date and builds the month name of it.
+# Locales caused a problem to display a incorrect month name. This methods works as a workaround.
   def get_translated_month_name(date)
     I18n.localize(date - 1.month, :format => '%B')
   end
 
-  # ICONS
+# ICONS
   def icon_boolean(state)
     if state == true
       return raw "<i class='#{icon_yes}' alt='#{t("labels.state.positive")}' title='#{t("labels.state.positive")}'></i>"
@@ -30,7 +56,7 @@ module ApplicationHelper
     end
   end
 
-  # archive dropdown (e.g. in filters)
+# archive dropdown (e.g. in filters)
   def options_for_archive(element_translation)
     options_for_select([[t("labels.state.not_archived", elements: element_translation), 'false'],
                         [t("labels.state.archived", elements: element_translation), 'true'],
@@ -90,7 +116,7 @@ module ApplicationHelper
     return icon("icons/log_out/logout_16x16.png", t("labels.actions.logout"))
   end
 
-  # LINKS
+# LINKS
   def show_link_to_index(options = {})
     if can? :tt_show, hash_with_controller_to_model(options)
       url = url_for(options)
@@ -213,7 +239,7 @@ module ApplicationHelper
     end
   end
 
-  # needs to be merged with method above!!
+# needs to be merged with method above!!
   def link_to_new_evaluator(options = {})
     if can? :create, hash_with_controller_to_model(options)
       # return link_to_function(icon_new, options)

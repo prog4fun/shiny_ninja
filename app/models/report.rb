@@ -45,11 +45,14 @@ class Report < ActiveRecord::Base
     end
   end
 
+
+  #TODO in helper
   # Returns the wage in currency format.
   def get_wage
     return number_to_currency(self.wage)
   end
 
+  #TODO in helper
   # Returns the wage in readable format.
   def get_duration
     return "#{self.duration.to_s.sub!('.', ',')} #{I18n.t("labels.datetime.hour_short")}"
@@ -76,6 +79,8 @@ class Report < ActiveRecord::Base
       services = Service.where("user_id = ?", current_user.id)
       result = Report.where(:service_id => services)
     end
+
+   # raise
 
     if search
       if search["date_from"].present?
