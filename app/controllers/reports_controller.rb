@@ -16,7 +16,8 @@ class ReportsController < ApplicationController
       @active_menu = "evaluate_project"
       @evaluate_page = true
       @projects_user = ProjectsUser.find(params[:projects_user])
-      params[:search] ||= {date_from: (Date.today - 3.months).beginning_of_month}
+      @default_time_span = (Date.today - 3.months).beginning_of_month
+      params[:search] ||= {date_from: @default_time_span}
 
     else # index for timetracker + _search_bar !
       @active_menu = "report"
@@ -83,7 +84,7 @@ class ReportsController < ApplicationController
       @report = Report.new :date => Date.today
     end
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
@@ -98,7 +99,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
 
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where("user_id = ?", current_user.id)
     my_reports = Report.where(:service_id => @services)
 
@@ -113,7 +114,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
@@ -137,7 +138,7 @@ class ReportsController < ApplicationController
   def update
     @report = Report.find(params[:id])
     customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(:customer_id => customers)
+    @projects = Project.where(customer_id: customers, archived: false)
     @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
@@ -206,7 +207,7 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:comment, :date, :duration, :project_id, :service_id, :wage)
+    params.require(:report).permit(:comment, :date, :duration, :project_id, :service_id, :wage, :search)
   end
 
   def get_my_reports

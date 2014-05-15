@@ -12,7 +12,7 @@
           <span class="icon-bar"></span>
         </button>
       </legend>
-      <div class="<%= search_active? ? "search-collapse in" : "search-collapse collapse" %>">
+      <div class="<%= search_active?(:date_from, @default_time_span) ? "search-collapse in" : "search-collapse collapse" %>">
         <div class="form-group">
           <%= label_tag("[search][date_from]", t("labels.datetime.date_from")) %>
           <%= text_field_tag("[search][date_from]", params[:search][:date_from], :size => 4, :class => "form-control", :type => "date") %>
@@ -65,7 +65,8 @@
         </button>
       </legend>
       <div class="statistics-collapse in">
-        <%= search_active? ? t("labels.statistics.selected") : t("labels.statistics.all") %>:<br>
+        <%= search_active?(:date_from, @default_time_span) ? t("labels.statistics.selected") : t("labels.statistics.all") %>
+        :<br>
 
         <p class="statistic">
           <i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= sum_of_duration(@reports_all) %>

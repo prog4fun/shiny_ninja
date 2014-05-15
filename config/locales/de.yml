@@ -249,7 +249,7 @@ de:
         timebudget: "geplante Stunden"
         timebudget_explanation: "geplante Stunden z.B. [10.5]"
         wage: "Stundenlohn"
-        wage_explanation: "höhere Priorität als Tätigkeit"
+        wage_explanation: 'höhere Priorität als Tätigkeit'
       projects_user:
         confirmation_email: "E-Mail"
         confirmation_email_explanation: "E-Mail des Zeit-Auswerters"
@@ -369,6 +369,7 @@ de:
     project:
       name: "Projektname"
       name_explanation: "Name für das Projekt"
+      worked: 'gearbeitet'
     report:
       income: "Einnahmen"
       date: "Datum"

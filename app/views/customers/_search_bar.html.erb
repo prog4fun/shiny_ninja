@@ -1,43 +1,47 @@
 # encoding: UTF-8
 
 <%
-if params[:search].present?
-  x = "sidebar-collapse in"
-  else
-  x = "sidebar-collapse collapse"
-  end
+   if params[:search].present?
+     x = "sidebar-collapse in"
+   else
+     x = "sidebar-collapse collapse"
+   end
 
 
 %>
 
 
 <%= form_tag(customers_path, :method => 'get', :role => "form") do %>
-  <fieldset>
-    <legend>
-      <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
-      <%= t("labels.actions.search_head") %>
-      <button type="button" class="sidebar-toggle"  data-toggle="collapse" data-target=".sidebar-collapse" title="<%= t("labels.actions.search_toggle") %>">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </legend>
+    <fieldset>
+      <legend>
+        <i class="glyphicon glyphicon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i>
+        <%= t("labels.actions.search_head") %>
+        <button type="button" class="sidebar-toggle" data-toggle="collapse" data-target=".sidebar-collapse" title="<%= t("labels.actions.search_toggle") %>">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </legend>
 
-    <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
-      <div class="form-group">
+      <div class="<%= search_active? ? "sidebar-collapse in" : "sidebar-collapse collapse" %>">
         <div class="form-group">
-          <%= label_tag("[search][name]", t("labels.name")) %>
-          <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>
+          <div class="form-group">
+            <%= label_tag("[search][name]", t("labels.name")) %>
+            <%= text_field_tag("[search][name]", params[:search][:name], :class => "form-control") %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag("[search][email]", t("labels.email")) %>
+            <%= text_field_tag("[search][email]", params[:search][:email], :class => "form-control") %>
+          </div>
+
+          <button type="submit" class="btn btn-info">
+            <i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %>
+          </button>
+          <a class="btn btn-default btn-xs" href="<%= customers_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %>
+          </a>
+
         </div>
-
-        <div class="form-group">
-          <%= label_tag("[search][email]", t("labels.email")) %>
-          <%= text_field_tag("[search][email]", params[:search][:email], :class => "form-control") %>
-        </div>
-
-        <button type="submit" class="btn btn-info"><i class="icon-search" alt="<%= t("labels.actions.search") %>" title="<%= t("labels.actions.search_explanation") %>"></i> <%= t("labels.actions.search") %></button>    
-        <a class="btn btn-default btn-xs" href="<%= customers_path %>"><i class="glyphicon glyphicon-refresh" alt="<%= t("labels.actions.reset") %>" title="<%= t("labels.actions.reset") %>"></i> <%= t("labels.actions.reset") %></a>
-
       </div>
-  </fieldset>
+    </fieldset>
 <% end %>
