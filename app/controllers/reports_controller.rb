@@ -206,7 +206,7 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:comment, :date, :duration, :project_id, :service_id, :wage)
+    params.require(:report).permit(:comment, :date, :duration, :project_id, :service_id, :wage, :search)
   end
 
   def get_my_reports

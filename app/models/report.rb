@@ -80,6 +80,8 @@ class Report < ActiveRecord::Base
       result = Report.where(:service_id => services)
     end
 
+   # raise
+
     if search
       if search["date_from"].present?
         result = result.where("date >= ?", search["date_from"].to_date)

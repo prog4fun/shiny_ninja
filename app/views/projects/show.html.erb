@@ -20,7 +20,14 @@
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.project.timebudget") %></th>
-          <td><%= @project.timebudget %></td>
+          <td><%= @project.timebudget %>
+
+            <% worked = sum_of_duration(@project.reports_worked) %>
+            <% if worked > 0 %>
+                - <%= link_to("davon #{worked} #{t("labels.project.worked")}",
+                              controller: 'reports', action: 'index', search: {project: @project.id, archived: ''}) %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.project.wage") %></th>
@@ -30,7 +37,7 @@
           <th><%= t("labels.roles.projectevaluator") %></th>
           <% if @projects_users.present? %>
               <% @projects_users.each do |pu| %>
-                  <% if pu.project_token.present? # not confirmed yet                         %>
+                  <% if pu.project_token.present? # not confirmed yet                   %>
                       <td class="list-group-item text-muted">
                         <%= pu.confirmation_email %>
                   <% else %>
@@ -39,7 +46,7 @@
                   <% end %>
                   </td>
               <% end %>
-          <% else # no projects_user                       %>
+          <% else # no projects_user           %>
               <td class="list-group-item">
                 <% if @project.archived? %>
                     <%= t("activerecord.attributes.project.no_time_evaluator") %>
@@ -57,11 +64,11 @@
     </div>
 
 
-    <div class="progress progress-striped active">
+    <div class="progress progress-striped">
       <% finished = get_proportion_of_project_and_report_duration_in_percent(@project) %>
       <div class="progress-bar progress-bar-success" role="progressbar"
            aria-valuenow="<%= finished %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= finished %>%;">
-        <%= finished %>% <%= t("labels.project.worked") %>
+        <%= finished %>%
       </div>
     </div>
 
