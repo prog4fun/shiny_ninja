@@ -16,7 +16,8 @@ class ReportsController < ApplicationController
       @active_menu = "evaluate_project"
       @evaluate_page = true
       @projects_user = ProjectsUser.find(params[:projects_user])
-      params[:search] ||= {date_from: (Date.today - 3.months).beginning_of_month}
+      @default_time_span = (Date.today - 3.months).beginning_of_month
+      params[:search] ||= {date_from: @default_time_span}
 
     else # index for timetracker + _search_bar !
       @active_menu = "report"
