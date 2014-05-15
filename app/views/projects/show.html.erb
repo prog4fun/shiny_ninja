@@ -30,7 +30,7 @@
           <th><%= t("labels.roles.projectevaluator") %></th>
           <% if @projects_users.present? %>
               <% @projects_users.each do |pu| %>
-                  <% if pu.project_token.present? # not confirmed yet          %>
+                  <% if pu.project_token.present? # not confirmed yet                         %>
                       <td class="list-group-item text-muted">
                         <%= pu.confirmation_email %>
                   <% else %>
@@ -39,7 +39,7 @@
                   <% end %>
                   </td>
               <% end %>
-          <% else # no projects_user        %>
+          <% else # no projects_user                       %>
               <td class="list-group-item">
                 <% if @project.archived? %>
                     <%= t("activerecord.attributes.project.no_time_evaluator") %>
@@ -55,6 +55,16 @@
         </tr>
       </table>
     </div>
+
+
+    <div class="progress progress-striped active">
+      <% finished = get_proportion_of_project_and_report_duration_in_percent(@project) %>
+      <div class="progress-bar progress-bar-success" role="progressbar"
+           aria-valuenow="<%= finished %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= finished %>%;">
+        <%= finished %>% <%= t("labels.project.worked") %>
+      </div>
+    </div>
+
 
   </div>
 
@@ -72,6 +82,11 @@
   </div>
 
 </div>
+
+
+
+
+
 
 
 

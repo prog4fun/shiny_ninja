@@ -35,4 +35,8 @@ class Project < ActiveRecord::Base
     end
     result.order("name")
   end
+
+  def reports_worked
+    Report.all.where(project_id: id)
+  end
 end
