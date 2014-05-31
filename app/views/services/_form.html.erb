@@ -29,7 +29,7 @@
         <div class="col-lg-4">
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-            <%= f.text_field :wage, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
+            <%= f.text_field :wage, :step => 0.1, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
           </div>
         </div>
       </div>
