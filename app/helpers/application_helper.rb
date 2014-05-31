@@ -3,15 +3,26 @@
 module ApplicationHelper
 
   # UNIVERSE
-  def cancel_link
-    url = url_for(request.env["HTTP_REFERER"])
+
+  # Optionally takes a controller, action and id.
+  # If no argument is present it will use the HTTP_REFERER for redirect.
+  # If the id id is present, it will take the given action as action for the URL,
+  # otherwise it will use the :index action.
+  # Returns a button, with a confirmation a link behind it.
+  def cancel_link(controller=nil, action=nil, id=nil)
+    if action.present?
+      url = url_for(controller: controller, action: :index)
+      url = url_for(controller: controller, action: action, id: id) if id.present?
+    else
+      url = url_for(request.env['HTTP_REFERER'])
+    end
     html_code = "<a class='btn btn-small btn-danger' href='#{url}' data-confirm='#{t("labels.actions.confirm")}'>#{t("labels.actions.cancel")}</a>"
     return raw html_code
   end
 
-  # Checks search parameters.
-  # Takes exceptions as Hash (key value) which will be ignored (can be present but won't care).
-  # returns true if search parameters (minus exceptions) are present. False if not.
+# Checks search parameters.
+# Takes exceptions as Hash (key value) which will be ignored (can be present but won't care).
+# returns true if search parameters (minus exceptions) are present. False if not.
   def search_active?(key = nil, value = nil)
     #def search_active?(key, value)
     # raise
