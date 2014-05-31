@@ -33,7 +33,7 @@
         <div class="form-group">
           <%= f.label :timebudget, t("labels.datetime.hours"), :class => "col-lg-2 control-label" %>
           <div class="col-lg-4">
-            <%= f.number_field :timebudget, :class => "form-control", placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %>
+            <%= f.number_field :timebudget, :step => 0.01, :class => "form-control", placeholder: "#{t("activerecord.attributes.project.timebudget_explanation")}" %>
           </div>
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@
           <div class="col-lg-3 col-lg-offset-2">
             <div class="btn-group">
               <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-              <%= cancel_link %>
+              <%= cancel_link(:projects, :show, @project.id) %>
             </div>
           </div>
         </div>

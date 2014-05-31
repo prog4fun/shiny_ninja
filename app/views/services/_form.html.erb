@@ -29,7 +29,7 @@
         <div class="col-lg-4">
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-            <%= f.text_field :wage, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
+            <%= f.text_field :wage, :step => 0.1, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
         <div class="col-lg-3 col-lg-offset-2">
           <div class="btn-group">
             <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-            <%= cancel_link %>
+            <%= cancel_link(:services, :show, @service.id) %>
           </div>
         </div>
       </div>
