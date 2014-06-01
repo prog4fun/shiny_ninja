@@ -1,23 +1,66 @@
 # encoding: UTF-8
 
 <div class="page-header">
-  <h1>Neuen <%= t("labels.roles.projectevaluator")%> hinzufügen</h1>
+  <h1>Neuen <%= t("labels.roles.projectevaluator") %> hinzufügen</h1>
 </div>
 
 
 <div class="row">
   <div class="col-md-7">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">E-Mail Inhalt</h3>
+
+<%#TODO Add to locale %>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Was ist ein Zeit-Auswerter?
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            Die Zeit-Einträge eines Projektes können einer oder mehreren Personen freigegegeben werden.<br/>
+            Der Zeit-Auswerter erhält keine Einsicht in den Stundenlohn oder das Gehalt.
+          </div>
+        </div>
       </div>
-      <div class="panel-body">
-        Beim Hinzufügen wird dem <%= t("labels.roles.projectevaluator")%> eine E-Mail gesendet.<br/>
-        Die E-Mail beinhaltet Ihren Vor- und Nachnamen, Ihre E-Mail-Adresse, sowie den Projektnamen
-        des ausgewählten Projektes als Information für den <%= t("labels.roles.projectevaluator")%>.
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              Wer kann als Zeit-Auswerter eingetragen werden?
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+          <div class="panel-body">
+            Grundsätzlich kann jeder als Zeit-Auswerter eingetragen werden.<br/>
+            Nach dem Anlegen des Zeit-Auswerters wird an die eingetragene E-Mail-Adresse ein Link verschickt, um das
+            Projekt zur Auswertung hinzuzufügen.<br/>
+            Damit das Projekt hinzugefügt werden kann, muss sich der Zeit-Auswerter (kostenlos) registrieren.
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              Was kann der Zeit-Auswerter mit den Zeit-Einträgen machen?
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            Der Zeit-Auswerer kann die Zeit-Einträge anschauen, filtern und herunterladen. Außerdem kann er die
+            Kommentare der Zeit-Einträge sehen.<br/>
+            Falls der Zeit-Auswerter gelöscht wurde, hat er keinen Zugriff mehr auf die Einträge. Dieser Vorgang kann
+            ein paar Minuten in Anspruch nehmen.
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
-
 <%= render 'form' %>
