@@ -2,18 +2,18 @@
 
 class BillsController < ApplicationController
   include BillsHelper
-  
+
   # Filter
   before_filter :authenticate_user!
   # before_filter :add_breadcrumb_index
   load_and_authorize_resource
-  
-  
+
+
   def index
-    @customers = Customer.where( :user_id => current_user.id )
+    @customers = Customer.where(:user_id => current_user.id)
     params[:search] ||= {}
     @bills = Bill.search(params[:search], current_user).page(params[:page])
-    
+
     @active_menu = "bill"
     @search_bar = true
 
@@ -24,10 +24,10 @@ class BillsController < ApplicationController
 
   def show
     @bill = Bill.find(params[:id])
-    
+
     customers = current_user.customers
-    my_bills = Bill.where( :customer_id => customers)
-    
+    my_bills = Bill.where(:customer_id => customers)
+
     if my_bills.include?(@bill)
       @active_menu = "bill"
     else
@@ -42,10 +42,11 @@ class BillsController < ApplicationController
 
   def new
     @bill = Bill.new :number => Bill.generate_bill_number,
-      :date => Date.today,
-      :year => get_current_year
+                     :date => Date.today,
+                     :year => get_current_year
     @customers = current_user.customers
-    
+    redirect_to controller: :customers, action: :new, alert: t("activerecord.attributes.customer.dependency") and return if @customers.empty?
+
     @active_menu = "bill"
     add_breadcrumb t("labels.actions.new"), new_bill_path
 
@@ -56,10 +57,10 @@ class BillsController < ApplicationController
 
   def edit
     @bill = Bill.find(params[:id])
-    
+
     @customers = current_user.customers
-    my_bills = Bill.where( :customer_id => @customers)
-    
+    my_bills = Bill.where(:customer_id => @customers)
+
     if my_bills.include?(@bill)
       @bill.year = @bill.year.to_s[0..-1]
       @active_menu = "bill"
@@ -106,14 +107,14 @@ class BillsController < ApplicationController
   end
 
   #######################################################################
-  
+
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
-  
+
   def bill_params
-	params.require(:bill).permit(:amount, :comment, :customer_id, :date, :month, :number, :paid, :year)
+    params.require(:bill).permit(:amount, :comment, :customer_id, :date, :month, :number, :paid, :year)
   end
-  
+
 end
