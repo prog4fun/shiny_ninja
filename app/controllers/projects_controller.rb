@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @customers = Customer.where(:user_id => current_user.id)
+    redirect_to controller: :customers, action: :new, alert: t("activerecord.attributes.customer.dependency") and return if @customers.empty?
     @evaluators = @project.users
 
     @active_menu = "project"

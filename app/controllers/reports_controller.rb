@@ -82,10 +82,16 @@ class ReportsController < ApplicationController
                            :project_id => params[:report][:project_id]
     else
       @report = Report.new :date => Date.today
+
+      # defines variables and checks if dependencies that need to be created before creating a report are present.
+      @services = Service.where(:user_id => current_user.id)
+      if Report.where(:service_id => @services).empty?
+        redirect_to controller: :services, action: :new, alert: t("activerecord.attributes.service.dependency") and return if @services.empty?
+        customers = Customer.where(:user_id => current_user.id)
+        @projects = Project.where(customer_id: customers, archived: false)
+        redirect_to controller: :projects, action: :new, alert: t("activerecord.attributes.project.dependency") and return if @projects.empty?
+      end
     end
-    customers = Customer.where(:user_id => current_user.id)
-    @projects = Project.where(customer_id: customers, archived: false)
-    @services = Service.where(:user_id => current_user.id)
 
     @active_menu = "report"
     add_breadcrumb t("labels.actions.new"), new_report_path

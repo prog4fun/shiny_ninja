@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   # associations
   belongs_to :customer
   has_many :projects_users
+  has_many :reports
   has_many :users, :through => :projects_users
 
   # validations
