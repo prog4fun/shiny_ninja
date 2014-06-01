@@ -221,9 +221,9 @@ de:
       users: "Benutzer"
     actions:
       projects_user:
+        confirmed_project_message: "Das Projekt wurde erfolgreich hinzugefügt."
         destroy: "Projekt entfernen"
         destroy_explanation: "Projekt nicht mehr verfolgen"
-        confirmed_project_message: "Das Projekt wurde erfolgreich hinzugefügt."
         saved_message: "Der Zeit-Auswerter wurde erfolgreich eingetragen. Die Person wurde per E-Mail benachrichtigt."
     attributes:
       bill:
@@ -240,9 +240,12 @@ de:
         customer: "Rechnungsempfänger"
         customer_explanation: "Welcher Kunde Bezahlt die Rechnung?"
         task_period: "Tätigkeitszeitraum"
+      customer:
+        dependency: 'Bitte legen Sie zuerst einen Kunden an.'
       project:
         archived: 'archiviert'
         archive_notice: "Projekt wurde archiviert. Zeit-Auswerter können auch archivierte Projekte und deren Zeit-Einträge sehen."
+        dependency: 'Bitte legen Sie zuerst ein Projekt an.'
         new_time_evaluator: 'Auswerter hinzufügen'
         no_time_evaluator: 'kein Zeitauswerter'
         restore_warning: 'Wird das Projekt archiviert, werden auch alle zugehörigen Zeiteinträge archiviert.'
@@ -261,6 +264,7 @@ de:
         wage_edit_explanation: "leer lassen für vordefiniertes Gehalt"
         wage: "Gehalt"
       service:
+        dependency: 'Bitte legen Sie zuerst eine Tätigkeit an.'
         wage: "Stundenlohn"
         wage_explanation: "z.B. 30.50"
       user:
