@@ -94,7 +94,7 @@ class CustomersController < ApplicationController
     
     dependency = @customer.projects.count
     if dependency > 0
-      flash[:alert] = t("activerecord.models.customer") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.customers")})."
+      flash[:alert] = t("activerecord.models.customer") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.projects")})."
       redirect_to customers_url
     else
       @customer.destroy
