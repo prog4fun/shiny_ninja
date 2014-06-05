@@ -65,15 +65,26 @@
         </button>
       </legend>
       <div class="statistics-collapse in">
-        <%= search_active?(:date_from, @default_time_span) ? t("labels.statistics.selected") : t("labels.statistics.all") %>
-        :<br>
+        <%- if search_active?(:date_from, @default_time_span) %>
+            <%= t("labels.statistics.selected") %>:<br>
 
-        <p class="statistic">
-          <i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= sum_of_duration(@reports_all) %>
-          <% unless @evaluate_page %>
-              <i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= sum_of_income(@reports_all) %>
-          <% end %>
-        </p>
+            <p class="statistic">
+              <i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= sum_of_duration(@reports_all) %>
+              <% unless @evaluate_page %>
+                  <i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= sum_of_income(@reports_all) %>
+              <% end %>
+            </p>
+        <%- else %>
+            <%= t("labels.statistics.all") %>:<br>
+
+            <p class="statistic">
+              <i class="glyphicon glyphicon-time" alt="<%= t("labels.datetime.hours") %>" title="<%= t("labels.datetime.hours") %>"></i> <%= sum_of_duration(Report.search({}, @projects_user, current_user)) %>
+              <% unless @evaluate_page %>
+                  <i class="glyphicon glyphicon-euro" alt="<%= t("labels.service.wages") %>" title="<%= t("labels.service.wages") %>"></i> <%= sum_of_income(@reports_all) %>
+              <% end %>
+            </p>
+        <%- end %>
+
         <% unless (sum_of_duration(@reports_today) == 0) %>
             <br><%= t("labels.statistics.today") %>:<br>
 
