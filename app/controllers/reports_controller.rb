@@ -77,7 +77,11 @@ class ReportsController < ApplicationController
   end
 
   def new
+    #TODO services, customers and projects DRY
     if params[:report].present?
+      @services = Service.where(:user_id => current_user.id)
+      customers = Customer.where(:user_id => current_user.id)
+      @projects = Project.where(customer_id: customers, archived: false)
       @report = Report.new :date => params[:report][:date],
                            :project_id => params[:report][:project_id]
     else
