@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.1'
 
 # Database (mySQL for production, sqlite for development):
 gem 'mysql2', :group => [:staging, :production]

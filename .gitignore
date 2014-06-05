@@ -28,5 +28,5 @@ pickle-email-*.html
 /config/deploy/production.rb
 /config/deploy/staging.rb
 /.idea/*
-/config/initializers/secret_token.rb
+/config/secrets.yml
 *~
