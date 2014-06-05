@@ -6,56 +6,56 @@
 
 
     <%= form_for(@service, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
-      <% if @service.errors.any? %>
+        <% if @service.errors.any? %>
 
-        <div class="alert alert-danger">
-          <h4><strong><%= @service.errors.count %> <%= t("errors.form") %></strong></h4>
-          <ul>
-            <% @service.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+            <div class="alert alert-danger">
+              <h4><strong><%= @service.errors.count %> <%= t("errors.form") %></strong></h4>
+              <ul>
+                <% @service.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
-      <div class="form-group">
-        <%= f.label :name, t("labels.service.name") + " *", :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4">
-          <%= f.text_field :name, :class => "form-control", placeholder: "#{t("labels.universe.label")}" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :wage, t("activerecord.attributes.service.wage") + " *", :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4">
-          <div class="input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-            <%= f.text_field :wage, :step => 0.1, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
+        <div class="form-group">
+          <%= f.label :name, t("labels.service.name") + " *", :class => "col-lg-2 control-label" %>
+          <div class="col-lg-4">
+            <%= f.text_field :name, :class => "form-control", placeholder: "#{t("labels.universe.label")}" %>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :billable, t("labels.service.billable"), :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4">
-          <%= f.check_box :billable, :class => "form-control" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :comment, t("labels.universe.comment"), :class => "col-lg-2 control-label" %>
-        <div class="col-lg-4">
-          <%= f.text_area :comment, :class => "form-control", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %>
-        </div>
-      </div>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-
-      <div class="form-group">
-        <div class="col-lg-3 col-lg-offset-2">
-          <div class="btn-group">
-            <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
-            <%= cancel_link(:services, :show, @service.id) %>
+        <div class="form-group">
+          <%= f.label :wage, t("activerecord.attributes.service.wage") + " *", :class => "col-lg-2 control-label" %>
+          <div class="col-lg-4">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+              <%= f.number_field :wage, :step => 0.01, :class => "form-control", placeholder: "#{t("activerecord.attributes.service.wage_explanation")}" %>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="text-muted col-lg-5 col-lg-offset-1"><%= t("labels.universe.mandatory_field_explanation") %></div>
+        <div class="form-group">
+          <%= f.label :billable, t("labels.service.billable"), :class => "col-lg-2 control-label" %>
+          <div class="col-lg-4">
+            <%= f.check_box :billable, :class => "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :comment, t("labels.universe.comment"), :class => "col-lg-2 control-label" %>
+          <div class="col-lg-4">
+            <%= f.text_area :comment, :class => "form-control", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %>
+          </div>
+        </div>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+
+        <div class="form-group">
+          <div class="col-lg-3 col-lg-offset-2">
+            <div class="btn-group">
+              <button type="submit" class="btn btn-success"><%= t("labels.actions.save") %></button>
+              <%= cancel_link(:services, :show, @service.id) %>
+            </div>
+          </div>
+        </div>
+        <div class="text-muted col-lg-5 col-lg-offset-1"><%= t("labels.universe.mandatory_field_explanation") %></div>
 
     <% end %>
   </div>
