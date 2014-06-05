@@ -241,11 +241,11 @@ de:
         customer_explanation: "Welcher Kunde Bezahlt die Rechnung?"
         task_period: "Tätigkeitszeitraum"
       customer:
-        dependency: 'Bitte legen Sie zuerst einen Kunden an.'
+        dependency: 'Bitte legen Sie zuerst einen Kunden an oder stellen Sie archivierte Kunden wieder her'
       project:
         archived: 'archiviert'
         archive_notice: "Projekt wurde archiviert. Zeit-Auswerter können auch archivierte Projekte und deren Zeit-Einträge sehen."
-        dependency: 'Bitte legen Sie zuerst ein Projekt an.'
+        dependency: 'Bitte legen Sie zuerst ein Projekt an oder stellen Sie archivierte Projekte wieder her.'
         new_time_evaluator: 'Auswerter hinzufügen'
         no_time_evaluator: 'kein Zeitauswerter'
         restore_warning: 'Wird das Projekt archiviert, werden auch alle zugehörigen Zeiteinträge archiviert.'
