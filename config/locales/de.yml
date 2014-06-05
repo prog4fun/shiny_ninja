@@ -379,7 +379,7 @@ de:
       date: "Datum"
       duration: "Dauer"
       projects_to_evaluate: "auszuwertende Projekte"
-      no_projects_as_evaluator: "Sie haben noch kein Projekt hinzugefügt. Sie können ein Projekt zum Auswerten mit dem Link aus Ihrer E-Mail hinzufügen."
+      no_projects_as_evaluator: "Sie haben noch kein Projekt zum Auswerten hinzugefügt. Sie können ein Projekt zum Auswerten mit dem Link aus Ihrer E-Mail hinzufügen."
       comment_explanation: "Platz für mehr ... (Beachten Sie, dass mögliche Zeitauswerter diesen Kommentar auch lesen können.)"
     roles:
       administrator: "Administrator"
@@ -412,6 +412,6 @@ de:
       label: "Bezeichnung"
       mandatory_field: "Pflichtfeld"
       mandatory_field_explanation: "*  markierte Felder sind Pflichtfelder"
-      no_entry: "Keine Einträge vorhanden"
+      no_entry: "Noch keine Einträge vorhanden."
       password_login_explanation: "** Ändern Sie Ihr eigenes Passwort, so müssen Sie sich im Anschluss mit dem neuen Passwort anmelden."
       unknown: "Unbekannt"
