@@ -32,10 +32,11 @@ group :development, :test do
 # Structured output of inspect, ap(<>).html_safe:
   gem 'awesome_print'
 # Testing:
-#gem 'rspec-rails', '~> 3.0.0.beta' #Update! (https://github.com/rspec/rspec-rails)
-#gem 'fuubar'
-#gem 'capybara'
-#gem 'factory_girl' # factory_girl_rails only for Rails 3
+  gem 'rspec-rails', '~> 3.0.0' #Update! (https://github.com/rspec/rspec-rails)
+  gem 'fuubar'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
 end
 
 # Athentication:
