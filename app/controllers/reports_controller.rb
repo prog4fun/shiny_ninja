@@ -77,7 +77,11 @@ class ReportsController < ApplicationController
   end
 
   def new
+    #TODO services, customers and projects DRY
     if params[:report].present?
+      @services = Service.where(:user_id => current_user.id)
+      customers = Customer.where(:user_id => current_user.id)
+      @projects = Project.where(customer_id: customers, archived: false)
       @report = Report.new :date => params[:report][:date],
                            :project_id => params[:report][:project_id]
     else
@@ -85,12 +89,10 @@ class ReportsController < ApplicationController
 
       # defines variables and checks if dependencies that need to be created before creating a report are present.
       @services = Service.where(:user_id => current_user.id)
-      if Report.where(:service_id => @services).empty?
-        redirect_to controller: :services, action: :new, alert: t("activerecord.attributes.service.dependency") and return if @services.empty?
-        customers = Customer.where(:user_id => current_user.id)
-        @projects = Project.where(customer_id: customers, archived: false)
-        redirect_to controller: :projects, action: :new, alert: t("activerecord.attributes.project.dependency") and return if @projects.empty?
-      end
+      redirect_to controller: :services, action: :new, alert: t("activerecord.attributes.service.dependency") and return if @services.empty?
+      customers = Customer.where(:user_id => current_user.id)
+      @projects = Project.where(customer_id: customers, archived: false)
+      redirect_to controller: :projects, action: :new, alert: t("activerecord.attributes.project.dependency") and return if @projects.empty?
     end
 
     @active_menu = "report"

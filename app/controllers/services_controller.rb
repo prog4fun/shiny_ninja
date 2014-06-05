@@ -5,11 +5,11 @@ class ServicesController < ApplicationController
   before_filter :authenticate_user!
   # before_filter :add_breadcrumb_index
   load_and_authorize_resource
-  
+
   def index
     params[:search] ||= {}
     @services = Service.search(params[:search], current_user).page(params[:page])
-    
+
     @active_menu = "service"
     @search_bar = true
 
@@ -20,7 +20,7 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.find(params[:id])
-    
+
     if @service.user_id == current_user.id
       @active_menu = "service"
       add_breadcrumb t("labels.actions.show"), service_path(@service)
@@ -35,24 +35,20 @@ class ServicesController < ApplicationController
 
   def new
     @service = Service.new
-    
-    my_services = Service.where("user_id = ?", current_user.id)
-    
-    if my_services.include?(@service)
-      @active_menu = "service"
-      add_breadcrumb t("labels.actions.new"), new_service_path
 
-      respond_to do |format|
-        format.html
-      end
+    @active_menu = "service"
+    add_breadcrumb t("labels.actions.new"), new_service_path
+
+    respond_to do |format|
+      format.html
     end
   end
 
   def edit
     @service = Service.find(params[:id])
-    
+
     my_services = Service.where("user_id = ?", current_user.id)
-    
+
     if my_services.include?(@service)
       @active_menu = "service"
       add_breadcrumb t("labels.actions.edit"), edit_service_path(@service.id)
@@ -63,7 +59,7 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
-    
+
     @active_menu = "service"
 
     respond_to do |format|
@@ -77,7 +73,7 @@ class ServicesController < ApplicationController
 
   def update
     @service = Service.find(params[:id])
-    
+
     @active_menu = "service"
 
     respond_to do |format|
@@ -91,9 +87,9 @@ class ServicesController < ApplicationController
 
   def destroy
     @service = Service.find(params[:id])
-    
+
     @active_menu = "service"
-    
+
     dependency = @service.reports.count
     if dependency > 0
       flash[:alert] = t("activerecord.models.service") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.reports")})."
@@ -106,16 +102,17 @@ class ServicesController < ApplicationController
       end
     end
   end
+
   #######################################################################
-  
+
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), services_path, :title => t("labels.breadcrumbs.index_title")
   end
-  
-  
+
+
   def service_params
-	params.require(:service).permit(:billable, :comment, :name, :user_id, :wage)
+    params.require(:service).permit(:billable, :comment, :name, :user_id, :wage)
   end
-  
+
 end
