@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Teststring:</strong>
+  <%= @testmodel.teststring %>
+</p>
+
+<p>
+  <strong>Testcheck:</strong>
+  <%= @testmodel.testcheck %>
+</p>
+
+<p>
+  <strong>Testnumber:</strong>
+  <%= @testmodel.testnumber %>
+</p>
+
+<%= link_to 'Edit', edit_testmodel_path(@testmodel) %> |
+<%= link_to 'Back', testmodels_path %>

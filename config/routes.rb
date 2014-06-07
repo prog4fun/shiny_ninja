@@ -1,6 +1,8 @@
 ShinyNinja::Application.routes.draw do
 
 
+  resources :testmodels
+
   # Reports
   # get "/reports/import", :controller => "reports", :action => "import"
 

@@ -1,0 +1,29 @@
+<h1>Listing testmodels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Teststring</th>
+      <th>Testcheck</th>
+      <th>Testnumber</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testmodels.each do |testmodel| %>
+      <tr>
+        <td><%= testmodel.teststring %></td>
+        <td><%= testmodel.testcheck %></td>
+        <td><%= testmodel.testnumber %></td>
+        <td><%= link_to 'Show', testmodel %></td>
+        <td><%= link_to 'Edit', edit_testmodel_path(testmodel) %></td>
+        <td><%= link_to 'Destroy', testmodel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Testmodel', new_testmodel_path %>
