@@ -93,6 +93,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    newrelic_rpm (3.8.1.221)
     orm_adapter (0.5.0)
     passenger (4.0.44)
       daemon_controller (>= 1.2.0)
@@ -194,6 +195,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   mysql2
+  newrelic_rpm
   passenger
   pry-rails
   puma
