@@ -215,6 +215,7 @@ test:
 # transaction, you can leave this on all the time without
 # incurring any user-visible performance degradation.
 production:
+  app_name: ShinyNinja (production)
   <<: *default_settings
   monitor_mode: true
 
@@ -222,6 +223,7 @@ production:
 # identically to production. Support for that environment is provided
 # here.  By default, the staging environment has the agent turned on.
 staging:
+  app_name: ShinyNinja (staging)
   <<: *default_settings
   monitor_mode: true
   # app_name: My Application (Staging)
