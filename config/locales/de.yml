@@ -261,8 +261,8 @@ de:
         date: "Datum"
         duration: "Dauer"
         duration_explanation: "in Stunden, z.B. 5.3"
-        wage_edit_explanation: "leer lassen für vordefiniertes Gehalt"
-        wage: "Gehalt"
+        wage_edit_explanation: "leer lassen für vordefinierter Stundenlohn"
+        wage: "Stundenlohn"
       service:
         dependency: 'Bitte legen Sie zuerst eine Tätigkeit an.'
         wage: "Stundenlohn"
@@ -388,7 +388,7 @@ de:
     service:
       billable: "Abrechenbar"
       name: "Servicename"
-      wage: "Gehalt"
+      wage: "Stundenlohn"
       wages: "Umsatz"
     state:
       archived: 'archivierte %{elements}'

@@ -42,7 +42,7 @@
           <th><%= t("activerecord.models.project") %></th>
           <th><%= t("activerecord.models.service") %></th>
           <% unless @evaluate_page %>
-              <th><%= t("activerecord.attributes.report.wage") %></th>
+              <th><%= t("labels.report.income") %></th>
           <% end %>
           <th><%= t("labels.report.duration") %></th>
           <th style="display: none;"></th>
@@ -68,25 +68,29 @@
                   <% end %>
                   <td><%= truncate(report.project.name, :length => 40) %></td>
                   <td><%= truncate(report.service.name, :length => 40) %></td>
+
                   <% unless @evaluate_page %>
-                      <td><%= report.get_wage %></td>
+                      <td><%= report.get_income %></td>
                   <% end %>
                   <td><%= report.get_duration %></td>
+
                   <td style="display: none;" class="popover_report<%= report.id %>">
                     <div style="margin-bottom: 25px;">
                       <b><%= t("activerecord.models.customer") %></b>: <%= get_customer_of_report(report) %>
+
                       <% unless @evaluate_page %>
-                          <br><b><%= t("labels.report.income") %></b>: <%= report.get_income %>
+                          <br/><b><%= t("activerecord.attributes.report.wage") %></b>: <%= report.get_wage %>
                       <% end %>
+
                       <% if report.comment.presence %>
                           <br><b><%= t("labels.universe.comment") %></b>: <%= truncate(report.comment, :length => 111) %>
                       <% end %>
                     </div>
                     <div style="text-align: center;">
                       <%= link_to_show(:controller => "reports", :action => "show", :id => report.id, :projects_user => params[:projects_user]) %>
-                      <% unless @evaluate_page %><%= link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
-                      <% end %>
-                      <% unless @evaluate_page %><%= link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
+                      <% unless @evaluate_page %>
+                          <%= link_to_edit(:controller => "reports", :action => "edit", :id => report.id) %>
+                          <%= link_to_destroy(:controller => "reports", :action => "show", :id => report.id) %>
                       <% end %>
                     </div>
                   </td>
