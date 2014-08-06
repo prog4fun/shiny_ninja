@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class ProjectsUserMailer < ActionMailer::Base
-  default from: "no-reply-shinyninja@koriath-tech.de"
+  default from: "no-reply@codeline.me"
   
   def time_tracker_added_project_evaluator(time_tracker, projects_user, domain, port)
     @time_tracker = time_tracker
