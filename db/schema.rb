@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506115528) do
+ActiveRecord::Schema.define(version: 20140928135740) do
 
   create_table "bills", force: true do |t|
     t.string   "number",                               null: false
@@ -24,13 +24,14 @@ ActiveRecord::Schema.define(version: 20140506115528) do
     t.integer  "customer_id",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
   end
 
   create_table "customers", force: true do |t|
     t.string   "name"
     t.string   "email",      null: false
     t.text     "comment"
-    t.integer  "user_id"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140506115528) do
     t.datetime "updated_at"
     t.decimal  "wage",        precision: 10, scale: 2
     t.boolean  "archived",                             default: false
+    t.integer  "creator_id"
   end
 
   create_table "projects_users", force: true do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140506115528) do
     t.datetime "updated_at"
     t.decimal  "wage",       precision: 10, scale: 2
     t.boolean  "archived",                            default: false
+    t.integer  "creator_id"
   end
 
   create_table "services", force: true do |t|
@@ -72,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140506115528) do
     t.decimal  "wage",       precision: 10, scale: 2
     t.boolean  "billable",                            default: true
     t.text     "comment"
-    t.integer  "user_id",                                            null: false
+    t.integer  "creator_id",                                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
