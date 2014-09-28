@@ -35,7 +35,7 @@
         <%= f.label :comment, t("labels.uiverse.comment"), :class => "col-lg-2 control-label" %>
         <div class="col-lg-4"><%= f.text_area :comment, :class => "form-control", :size => "50x10", placeholder: "#{t("labels.universe.comment_explanation")}" %></div>
       </div>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :creator_id, :value => current_user.id %>
 
       <div class="form-group">
         <div class="col-lg-3 col-lg-offset-2">

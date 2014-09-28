@@ -9,11 +9,14 @@ class User < ActiveRecord::Base
   
   
   # associations
-  has_many :customers
+  has_many :bills, foreign_key: :creator_id
+  has_many :customers, foreign_key: :creator_id
+  has_many :projects, foreign_key: :creator_id
+  has_many :evaluate_projects, through: :projects_users, source: :project
+
   has_many :services
   has_many :projects_users
-  has_many :projects, :through => :projects_users
-  
+
   # validations
  # validates :city, :comment, :confirmed_at, :country, :email, :firstname, :lastname, :login, :password, :password_confirmation, :phone_number, :remember_me, :roles, :roles_mask, :signature, :street, :street_number, :zipcode, :format => {:with => /^[^<>%&$]*$/}
   

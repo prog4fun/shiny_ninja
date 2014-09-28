@@ -3,7 +3,9 @@ class Bill < ActiveRecord::Base
   
   # associations
   belongs_to :customer
-  
+  belongs_to :user, foreign_key: :creator_id
+
+
   # validations
  # validates :amount, :comment, :customer_id, :date, :month, :number, :paid, :year, :format => {:with => /^[^<>%&$]*$/}
   validates :number, :presence => true
@@ -58,8 +60,10 @@ class Bill < ActiveRecord::Base
   # search
   def self.search(search, current_user)
     
-    customers = current_user.customers
-    result = Bill.where( :customer_id => customers )
+    # customers = current_user.customers
+    # result = Bill.where( :customer_id => customers )
+
+    result = current_user.bills
     
     if search
       if search["number"].present?

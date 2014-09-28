@@ -19,12 +19,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t("labels.report.projects_to_evaluate") %>
               <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <% projects_users = current_user.projects_users %>
+              <% projects_users = current_user.evaluate_projects %>
               <% if projects_users.present? %>
                   <% projects_users.each do |pu| %>
                       <li>
-                        <a href="<%= url_for(:controller => "reports", :action => "index", :projects_user => pu) %>"><%= pu.project.name %>
-                          (<%= pu.project.customer.user.lastname %>)</a></li>
+                        <a href="<%= url_for(:controller => "reports", :action => "index", :projects_user => pu) %>"><%= pu.name %>
+                          (<%= pu.user.lastname %>)</a></li>
                   <% end %>
               <% else %>
                   <li><a href="#">Noch kein Projekt vorhanden</a></li>

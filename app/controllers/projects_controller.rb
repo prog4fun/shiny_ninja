@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @customers = Customer.where(:user_id => current_user.id)
+    @customers = Customer.where(:creator_id => current_user.id)
     params[:search] ||= {archived: 'false'}
     @projects = Project.search(params[:search], current_user).page(params[:page])
 
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @customers = Customer.where(:user_id => current_user.id)
+    @customers = Customer.where(:creator_id => current_user.id)
     redirect_to controller: :customers, action: :new, alert: t("activerecord.attributes.customer.dependency") and return if @customers.empty?
     @evaluators = @project.users
 
@@ -71,13 +71,14 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @customers = Customer.where(:user_id => current_user.id)
+    @customers = Customer.where(:creator_id => current_user.id)
 
     @active_menu = "project"
 
     respond_to do |format|
 
       if @project.save
+        @project.update_attribute(:creator_id, current_user.id)
         format.html { redirect_to @project, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "new" }
@@ -87,7 +88,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @customers = Customer.where(:user_id => current_user.id)
+    @customers = Customer.where(:creator_id => current_user.id)
     @projects_users = ProjectsUser.where(:project_id => @project.id)
 
     @active_menu = "project"

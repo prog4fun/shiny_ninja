@@ -21,7 +21,7 @@ class ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
 
-    if @service.user_id == current_user.id
+    if @service.creator_id == current_user.id
       @active_menu = "service"
       add_breadcrumb t("labels.actions.show"), service_path(@service)
 
@@ -47,7 +47,7 @@ class ServicesController < ApplicationController
   def edit
     @service = Service.find(params[:id])
 
-    my_services = Service.where("user_id = ?", current_user.id)
+    my_services = Service.where("creator_id = ?", current_user.id)
 
     if my_services.include?(@service)
       @active_menu = "service"
@@ -64,6 +64,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
+        @service.update_attribute(:creator_id, current_user.id)
         format.html { redirect_to @service, notice: t("confirmations.messages.saved") }
       else
         format.html { render action: "new" }
@@ -112,7 +113,7 @@ class ServicesController < ApplicationController
 
 
   def service_params
-    params.require(:service).permit(:billable, :comment, :name, :user_id, :wage)
+    params.require(:service).permit(:billable, :comment, :name, :creator_id, :wage)
   end
 
 end

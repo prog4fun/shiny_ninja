@@ -76,7 +76,7 @@ class Report < ActiveRecord::Base
     if projects_user.present?
       result = Report.where(:project_id => projects_user.project.id)
     else
-      services = Service.where("user_id = ?", current_user.id)
+      services = Service.where(:creator_id => current_user.id)
       result = Report.where(:service_id => services)
     end
 
@@ -113,7 +113,7 @@ class Report < ActiveRecord::Base
     if projects_user.present?
       result = Report.where(:project_id => projects_user.project.id, :date => month)
     else
-      services = Service.where("user_id = ?", current_user.id)
+      services = Service.where(:creator_id => current_user.id)
       result = Report.where(:service_id => services, :date => month)
     end
   end

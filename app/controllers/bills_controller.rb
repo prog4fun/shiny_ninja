@@ -5,12 +5,13 @@ class BillsController < ApplicationController
 
   # Filter
   before_filter :authenticate_user!
+
   # before_filter :add_breadcrumb_index
   load_and_authorize_resource
 
 
   def index
-    @customers = Customer.where(:user_id => current_user.id)
+    @customers = current_user.customers
     params[:search] ||= {}
     @bills = Bill.search(params[:search], current_user).page(params[:page])
 
@@ -75,6 +76,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.save
+        @bill.update_attribute(:creator_id, current_user.id)
         format.html { redirect_to @bill, notice: t("confirmations.messages.saved") }
       else
         @customers = current_user.customers
@@ -109,12 +111,13 @@ class BillsController < ApplicationController
   #######################################################################
 
   private
+
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
 
   def bill_params
-    params.require(:bill).permit(:amount, :comment, :customer_id, :date, :month, :number, :paid, :year)
+    params.require(:bill).permit(:amount, :comment, :creator_id, :customer_id, :date, :month, :number, :paid, :year)
   end
 
 end

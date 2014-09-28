@@ -9,12 +9,12 @@ class Service < ActiveRecord::Base
   # validations
   # validates :billable, :comment, :name, :user_id, :wage, :format => {:with => /^[^<>%&$]*$/}
   validates :name, :presence => true
-  validates :user_id, :presence => true
+  validates :creator_id, :presence => true
   
   # search
   def self.search(search, current_user)
     
-    result = Service.where("user_id = ?", current_user.id)
+    result = Service.where(:creator_id => current_user.id)
     
     if search
       if search["name"].present?

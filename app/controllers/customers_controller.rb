@@ -1,16 +1,16 @@
 # encoding: UTF-8
 
 class CustomersController < ApplicationController
-  
+
   # Filter
   before_filter :authenticate_user!
   before_filter :add_breadcrumb_index
   load_and_authorize_resource
-  
+
   def index
     params[:search] ||= {}
     @customers = Customer.search(params[:search], current_user).page(params[:page])
-    
+
     @active_menu = "customer"
     @search_bar = true
 
@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    
+
     if current_user.customers.include?(@customer)
       @active_menu = "customer"
       add_breadcrumb t("labels.actions.show"), customer_path(@customer)
@@ -29,7 +29,7 @@ class CustomersController < ApplicationController
       respond_to do |format|
         format.html
       end
-      
+
     else
       not_own_object_redirection
     end
@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
-    
+
     @active_menu = "customer"
     add_breadcrumb t("labels.actions.new"), new_customer_path
 
@@ -48,11 +48,11 @@ class CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
-    
+
     if current_user.customers.include?(@customer)
       @active_menu = "customer"
       add_breadcrumb t("labels.actions.edit"), edit_customer_path(@customer.id)
-    
+
     else
       not_own_object_redirection
     end
@@ -60,14 +60,15 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    
+
     @active_menu = "customer"
 
     respond_to do |format|
-      params[:customer][:country] = "de"
+      @customer.update_attribute(:creator_id, current_user.id)
       if @customer.save
         format.html { redirect_to @customer, notice: t("confirmations.messages.saved") }
       else
+        params[:customer][:country] = "de"
         format.html { render action: "new" }
       end
     end
@@ -75,7 +76,7 @@ class CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    
+
     @active_menu = "customer"
 
     respond_to do |format|
@@ -89,9 +90,9 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:id])
-    
+
     @active_menu = "customer"
-    
+
     dependency = @customer.projects.count
     if dependency > 0
       flash[:alert] = t("activerecord.models.customer") + t("errors.messages.dependency_exists") + " (#{t("activerecord.models.projects")})."
@@ -104,16 +105,16 @@ class CustomersController < ApplicationController
       end
     end
   end
-  
+
   #######################################################################
-  
+
   private
   def add_breadcrumb_index
     add_breadcrumb t("labels.breadcrumbs.index"), customers_path, :title => t("labels.breadcrumbs.index_title")
   end
-  
+
   def customer_params
-	params.require(:customer).permit(:comment, :email, :name, :user_id)
+    params.require(:customer).permit(:comment, :email, :name, :user_id)
   end
-  
+
 end

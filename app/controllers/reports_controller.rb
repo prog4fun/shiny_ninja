@@ -21,7 +21,7 @@ class ReportsController < ApplicationController
 
     else # index for timetracker + _search_bar !
       @active_menu = "report"
-      @customers = Customer.where(:user_id => current_user.id)
+      @customers = Customer.where(:creator_id => current_user.id)
       @projects = Project.where(:customer_id => @customers)
       params[:search] ||= {date_from: (Date.today - 3.months).beginning_of_month, archived: 'false'}
     end
@@ -79,8 +79,8 @@ class ReportsController < ApplicationController
   def new
     #TODO services, customers and projects DRY
     if params[:report].present?
-      @services = Service.where(:user_id => current_user.id)
-      customers = Customer.where(:user_id => current_user.id)
+      @services = Service.where(:creator_id => current_user.id)
+      customers = Customer.where(:creator_id => current_user.id)
       @projects = Project.where(customer_id: customers, archived: false)
       @report = Report.new :date => params[:report][:date],
                            :project_id => params[:report][:project_id]
@@ -88,9 +88,9 @@ class ReportsController < ApplicationController
       @report = Report.new :date => Date.today
 
       # defines variables and checks if dependencies that need to be created before creating a report are present.
-      @services = Service.where(:user_id => current_user.id)
+      @services = Service.where(:creator_id => current_user.id)
       redirect_to controller: :services, action: :new, alert: t("activerecord.attributes.service.dependency") and return if @services.empty?
-      customers = Customer.where(:user_id => current_user.id)
+      customers = Customer.where(:creator_id => current_user.id)
       @projects = Project.where(customer_id: customers, archived: false)
       redirect_to controller: :projects, action: :new, alert: t("activerecord.attributes.project.dependency") and return if @projects.empty?
     end
@@ -106,9 +106,9 @@ class ReportsController < ApplicationController
   def edit
     @report = Report.find(params[:id])
 
-    customers = Customer.where(:user_id => current_user.id)
+    customers = Customer.where(:creator_id => current_user.id)
     @projects = Project.where(customer_id: customers, archived: false)
-    @services = Service.where("user_id = ?", current_user.id)
+    @services = Service.where(:creator_id => current_user.id)
     my_reports = Report.where(:service_id => @services)
 
     if my_reports.include?(@report)
@@ -121,17 +121,17 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    customers = Customer.where(:user_id => current_user.id)
+    customers = Customer.where(:creator_id => current_user.id)
     @projects = Project.where(customer_id: customers, archived: false)
-    @services = Service.where(:user_id => current_user.id)
+    @services = Service.where(:creator_id => current_user.id)
 
     @active_menu = "report"
 
     respond_to do |format|
       if @report.save
-        if @report.wage.blank?
-          @report.update_attributes(:wage => get_wage)
-        end
+        @report.update_attribute(:creator_id, current_user.id)
+        @report.update_attributes(:wage => get_wage) if @report.wage.blank?
+
         if params[:saveandnew]
           format.html { redirect_to :controller => "reports", :action => "new", :report => report_params, notice: t("confirmations.messages.saved_and_new") }
         else
@@ -145,9 +145,9 @@ class ReportsController < ApplicationController
 
   def update
     @report = Report.find(params[:id])
-    customers = Customer.where(:user_id => current_user.id)
+    customers = Customer.where(:creator_id => current_user.id)
     @projects = Project.where(customer_id: customers, archived: false)
-    @services = Service.where(:user_id => current_user.id)
+    @services = Service.where(:creator_id => current_user.id)
 
     @active_menu = "report"
 
@@ -219,7 +219,7 @@ class ReportsController < ApplicationController
   end
 
   def get_my_reports
-    my_services = Service.where("user_id = ?", current_user.id)
+    my_services = Service.where(:creator_id => current_user.id)
     @my_reports = Report.where(:service_id => my_services)
   end
 

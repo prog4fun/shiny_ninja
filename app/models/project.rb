@@ -4,9 +4,10 @@ class Project < ActiveRecord::Base
 
   # associations
   belongs_to :customer
-  has_many :projects_users
+  has_many :evaluators, through: :projects_users, source: :user
   has_many :reports
-  has_many :users, :through => :projects_users
+
+  belongs_to :user, foreign_key: :creator_id
 
   # validations
   # validates :comment, :customer_id, :name, :timebudget, :format => {:with => /^[^<>%&$]*$/}
@@ -16,8 +17,10 @@ class Project < ActiveRecord::Base
   # search
   def self.search(search, current_user)
 
-    customers = current_user.customers
-    result = Project.where(:customer_id => customers)
+    # customers = current_user.customers
+    # result = Project.where(:customer_id => customers)
+
+    result = current_user.projects
 
     if search
       if search["name"].present?

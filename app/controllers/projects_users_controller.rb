@@ -8,8 +8,11 @@ class ProjectsUsersController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     
-    customers = current_user.customers
-    my_projects = Project.where( :customer_id => customers)
+    #customers = current_user.customers
+    #my_projects = Project.where( :customer_id => customers)
+    my_projects = current_user.projects
+
+
     if my_projects.include?(@project)
     
       @projects_user = ProjectsUser.new :project_token => ProjectsUsersHelper.generate_project_token
@@ -31,9 +34,10 @@ class ProjectsUsersController < ApplicationController
   def confirm_project_evaluator
     # answer of the email with project_token
     @projects_user = ProjectsUser.find_by_project_token(params[:project_token])
-    customers = current_user.customers
-    my_projects = Project.where( :customer_id => customers)
-    
+    #customers = current_user.customers
+    #my_projects = Project.where( :customer_id => customers)
+    my_projects = current_user.projects
+
     # time_tracker mustn't be able to evaluate their own projects
     if my_projects.include?(@projects_user.project)
       not_own_object_redirection
